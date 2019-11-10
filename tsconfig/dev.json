@@ -1,0 +1,7 @@
+{
+  "extends": "./esnext",
+  "compilerOptions": {
+    "inlineSources": true,
+    "inlineSourceMap": true
+  }
+}
