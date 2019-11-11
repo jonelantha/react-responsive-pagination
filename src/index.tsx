@@ -11,12 +11,14 @@ export default memo(Pagination);
 
 function Pagination({
   current: propsCurrent,
-  total,
+  total: propsTotal,
   onPageChange: handlePageChange,
-  maxWidth,
+  maxWidth = 0,
   skin: propsSkin,
 }: Props) {
-  const current = Math.min(propsCurrent, total);
+  const total = propsTotal || 0;
+
+  const current = Math.max(1, Math.min(propsCurrent || 0, total));
 
   const Skin = createSkin(propsSkin);
 
@@ -25,7 +27,7 @@ function Pagination({
   const narrowToWideCompositionsProvider = () =>
     narrowToWideCompositions(current, total);
 
-  return maxWidth ? (
+  return total > 0 ? (
     <MaxWidthRenderer {...{ maxWidth, narrowToWideCompositionsProvider, View }} />
   ) : null;
 }
