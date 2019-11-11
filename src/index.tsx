@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import PropTypes from 'prop-types';
 import { narrowToWideCompositions } from './compositions';
 import { BootstrapSkin, SkinComponent } from './skins';
 import { useView, PageChangeHandler } from './view';
@@ -35,6 +36,14 @@ type Props = {
   onPageChange: PageChangeHandler;
   maxWidth?: number;
   skin?: SkinName | SkinComponent;
+};
+
+Pagination.propTypes = {
+  current: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  onPageChange: PropTypes.func.isRequired,
+  maxWidth: PropTypes.number,
+  skin: PropTypes.oneOfType([PropTypes.oneOf(['bootstrap']), PropTypes.elementType]),
 };
 
 function createSkin(skin?: SkinName | SkinComponent) {
