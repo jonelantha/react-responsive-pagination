@@ -1,9 +1,11 @@
 {
   "name": "react-responsive-pagination",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React component for responsive pagination",
   "author": "Jon Pollard",
-  "license": "UNLICENSED",
+  "license": "MIT",
+  "repository": "github:jonelantha/react-responsive-pagination",
+  "homepage": "https://github.com/jonelantha/react-responsive-pagination#readme",
   "main": "lib.cjs/index.js",
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -18,12 +20,20 @@
     "start": "rimraf lib/ && tsc --project ./tsconfig/dev.json --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --ext .ts --ext .tsx src",
-    "upload": "npm run build && npm publish"
+    "prepublishOnly": "npm run build"
   },
+  "keywords": [
+    "responsive",
+    "pagination",
+    "react",
+    "reactjs",
+    "react-component"
+  ],
   "eslintConfig": {
     "extends": "react-app"
   },
   "dependencies": {
+    "prop-types": "^15.7.2",
     "resize-observer-polyfill": "^1.5.1"
   },
   "peerDependencies": {

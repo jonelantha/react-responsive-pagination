@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import PropTypes from 'prop-types';
 import { narrowToWideCompositions } from './compositions';
 import { BootstrapSkin, SkinComponent } from './skins';
 import { useView, PageChangeHandler } from './view';
@@ -10,12 +11,14 @@ export default memo(Pagination);
 
 function Pagination({
   current: propsCurrent,
-  total,
+  total: propsTotal,
   onPageChange: handlePageChange,
-  maxWidth,
+  maxWidth = 0,
   skin: propsSkin,
 }: Props) {
-  const current = Math.min(propsCurrent, total);
+  const total = propsTotal || 0;
+
+  const current = Math.max(1, Math.min(propsCurrent || 0, total));
 
   const Skin = createSkin(propsSkin);
 
@@ -24,7 +27,7 @@ function Pagination({
   const narrowToWideCompositionsProvider = () =>
     narrowToWideCompositions(current, total);
 
-  return maxWidth ? (
+  return total > 0 ? (
     <MaxWidthRenderer {...{ maxWidth, narrowToWideCompositionsProvider, View }} />
   ) : null;
 }
@@ -35,6 +38,14 @@ type Props = {
   onPageChange: PageChangeHandler;
   maxWidth?: number;
   skin?: SkinName | SkinComponent;
+};
+
+Pagination.propTypes = {
+  current: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  onPageChange: PropTypes.func.isRequired,
+  maxWidth: PropTypes.number,
+  skin: PropTypes.oneOfType([PropTypes.oneOf(['bootstrap']), PropTypes.elementType]),
 };
 
 function createSkin(skin?: SkinName | SkinComponent) {
