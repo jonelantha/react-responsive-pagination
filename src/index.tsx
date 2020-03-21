@@ -14,13 +14,12 @@ function Pagination({
   total: propsTotal,
   onPageChange: handlePageChange,
   maxWidth = 0,
-  skin: propsSkin,
 }: Props) {
   const total = propsTotal || 0;
 
   const current = Math.max(1, Math.min(propsCurrent || 0, total));
 
-  const Skin = createSkin(propsSkin);
+  const Skin = BootstrapSkin;
 
   const View = useView(Skin, handlePageChange);
 
@@ -37,7 +36,6 @@ type Props = {
   total: number;
   onPageChange: PageChangeHandler;
   maxWidth?: number;
-  skin?: SkinName | SkinComponent;
 };
 
 Pagination.propTypes = {
@@ -45,15 +43,4 @@ Pagination.propTypes = {
   total: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
   maxWidth: PropTypes.number,
-  skin: PropTypes.oneOfType([PropTypes.oneOf(['bootstrap']), PropTypes.elementType]),
 };
-
-function createSkin(skin?: SkinName | SkinComponent) {
-  switch (skin) {
-    case 'bootstrap':
-    default:
-      return BootstrapSkin;
-  }
-}
-
-type SkinName = 'bootstrap';
