@@ -1,6 +1,6 @@
 # React Responsive Pagination
 
-A React pagination component which intelligently renders to a given pixel width. Styled for Bootstrap 4.
+A React pagination component which intelligently renders to a given pixel width. Styled for Bootstrap 4
 
 ![Example pagination](./pagination.png?raw=true 'React Responsive Pagination')
 
