@@ -22,7 +22,7 @@
     "lint": "eslint --ext .ts --ext .tsx src",
     "prepublishOnly": "npm run build",
     "release": "semantic-release",
-    "previewChangeLog": "semantic-release --dry-run"
+    "previewReleaseNotes": "semantic-release --dry-run"
   },
   "keywords": [
     "responsive",
