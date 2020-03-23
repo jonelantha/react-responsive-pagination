@@ -22,7 +22,7 @@
     "lint": "eslint --ext .ts --ext .tsx src",
     "prepublishOnly": "npm run build",
     "release": "semantic-release",
-    "previewChangeLog": "semantic-release --dry-run"
+    "previewReleaseNotes": "semantic-release --dry-run"
   },
   "keywords": [
     "responsive",
@@ -45,23 +45,22 @@
   "devDependencies": {
     "@semantic-release/changelog": "^5.0.0",
     "@semantic-release/git": "^9.0.0",
-    "@types/react": "^16.9.1",
-    "@types/react-dom": "^16.8.5",
-    "@typescript-eslint/eslint-plugin": "1.13.0",
-    "@typescript-eslint/parser": "1.13.0",
-    "babel-eslint": "10.0.2",
-    "eslint": "^6.4.0",
-    "eslint-config-react-app": "^5.0.1",
-    "eslint-loader": "2.2.1",
-    "eslint-plugin-flowtype": "3.13.0",
-    "eslint-plugin-import": "2.18.2",
-    "eslint-plugin-jsx-a11y": "6.2.3",
-    "eslint-plugin-react": "7.14.3",
-    "eslint-plugin-react-hooks": "^1.6.1",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0",
-    "rimraf": "^3.0.0",
+    "@types/react": "^16.9.25",
+    "@types/react-dom": "^16.9.5",
+    "@typescript-eslint/eslint-plugin": "^2.25.0",
+    "@typescript-eslint/parser": "^2.25.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-react-app": "^5.2.1",
+    "eslint-plugin-flowtype": "^4.6.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "rimraf": "^3.0.2",
     "semantic-release": "^17.0.4",
-    "typescript": "^3.6.3"
+    "typescript": "^3.8.3"
   }
 }

@@ -15,9 +15,9 @@ function Pagination({
   onPageChange: handlePageChange,
   maxWidth = 0,
 }: Props) {
-  const total = propsTotal || 0;
+  const total = propsTotal ?? 0;
 
-  const current = Math.max(1, Math.min(propsCurrent || 0, total));
+  const current = Math.max(1, Math.min(propsCurrent ?? 0, total));
 
   const Skin = BootstrapSkin;
 
