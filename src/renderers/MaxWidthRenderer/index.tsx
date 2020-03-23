@@ -44,13 +44,13 @@ function getLargestFittingCompositionWithFallback(
 ) {
   const narrowToWideCompositions = getNarrowToWideCompositions();
 
-  const firstComposition = iteratorNext(narrowToWideCompositions) || [];
+  const firstComposition = iteratorNext(narrowToWideCompositions) ?? [];
 
   const doesCompositionFit = (composition: ViewItem[]) => {
     return getCompositionWidth(composition) < maxWidth;
   };
 
-  return lastWhere(narrowToWideCompositions, doesCompositionFit) || firstComposition;
+  return lastWhere(narrowToWideCompositions, doesCompositionFit) ?? firstComposition;
 }
 
 function getItemsDomElements(viewDomElement: HTMLElement | null) {
