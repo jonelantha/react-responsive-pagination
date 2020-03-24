@@ -7,7 +7,7 @@ function getDryRunConfig() {
     repositoryUrl: getLocalRepoUrl(),
     branches: getCurrentBranch(),
     plugins: [
-      '@semantic-release/commit-analyzer',
+      ['@semantic-release/commit-analyzer', getCommitAnalyzerConfig()],
       '@semantic-release/release-notes-generator',
     ],
   };
@@ -16,7 +16,7 @@ function getDryRunConfig() {
 function getNormalConfig() {
   return {
     plugins: [
-      '@semantic-release/commit-analyzer',
+      ['@semantic-release/commit-analyzer', getCommitAnalyzerConfig()],
       '@semantic-release/release-notes-generator',
       [
         '@semantic-release/changelog',
@@ -33,6 +33,13 @@ function getNormalConfig() {
         },
       ],
     ],
+  };
+}
+
+function getCommitAnalyzerConfig() {
+  return {
+    preset: 'angular',
+    releaseRules: [{ type: 'docs', release: 'patch' }],
   };
 }
 
