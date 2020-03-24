@@ -1,5 +1,11 @@
 # React Responsive Pagination
 
+![npm version](https://img.shields.io/npm/v/react-responsive-pagination.svg?style=flat)
+![minzipped size](https://img.shields.io/bundlephobia/minzip/react-responsive-pagination)
+![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
+![release](https://github.com/jonelantha/react-responsive-pagination/workflows/Release/badge.svg)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+
 A React pagination component which intelligently renders to a given pixel width. Styled for Bootstrap 4
 
 ![Example pagination](./pagination.png?raw=true 'React Responsive Pagination')
