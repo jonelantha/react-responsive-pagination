@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 
 export default function Item({
   label,
@@ -30,7 +30,7 @@ export default function Item({
 }
 
 type Props = {
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
   isActive?: Boolean;
   label: string;
   a11yLabel?: string;
