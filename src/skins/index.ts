@@ -1,4 +1,4 @@
-import { Ref } from 'react';
+import { Ref, MouseEventHandler } from 'react';
 
 export { default as BootstrapSkin } from './BootstrapSkin';
 
@@ -15,12 +15,12 @@ type Page = {
   type: 'page';
   active: boolean;
   label: string;
-  onClick: () => void;
+  onClick: MouseEventHandler<HTMLAnchorElement>;
 };
 
 type Nav = {
   type: NavType;
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
 };
 
 type Ellipsis = {
