@@ -1,5 +1,13 @@
 # React Responsive Pagination Changelog
 
+## [1.0.3](https://github.com/jonelantha/react-responsive-pagination/compare/v1.0.2...v1.0.3) (2020-06-16)
+
+
+### Bug Fixes
+
+* Package Bumps ([7f73b6e](https://github.com/jonelantha/react-responsive-pagination/commit/7f73b6ea246d685f4ab265439152794e23647af4))
+* Prevent navigating to '#' on clicks ([a910ac1](https://github.com/jonelantha/react-responsive-pagination/commit/a910ac1e7fafd872dd5ede943336938cb16670f0))
+
 ## [1.0.2](https://github.com/jonelantha/react-responsive-pagination/compare/v1.0.1...v1.0.2) (2020-03-24)
 
 ## [1.0.1](https://github.com/jonelantha/react-responsive-pagination/compare/v1.0.0...v1.0.1) (2020-03-23)
