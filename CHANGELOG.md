@@ -1,5 +1,17 @@
 # React Responsive Pagination Changelog
 
+# [1.1.0](https://github.com/jonelantha/react-responsive-pagination/compare/v1.0.3...v1.1.0) (2020-07-13)
+
+
+### Bug Fixes
+
+* Package Bumps ([b55832f](https://github.com/jonelantha/react-responsive-pagination/commit/b55832f2f1754b038fd6518475a6ed266791fcc6))
+
+
+### Features
+
+* Auto calculation of width from parent element ([fe42252](https://github.com/jonelantha/react-responsive-pagination/commit/fe42252806d07f4870bbd281e08f8a6ffa37bc87))
+
 ## [1.0.3](https://github.com/jonelantha/react-responsive-pagination/compare/v1.0.2...v1.0.3) (2020-06-16)
 
 
