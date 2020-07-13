@@ -6,7 +6,7 @@
 ![release](https://github.com/jonelantha/react-responsive-pagination/workflows/Release/badge.svg)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-A React pagination component which intelligently renders to a given pixel width. Styled for Bootstrap 4
+A React pagination component which intelligently renders to the available width. Styled for Bootstrap 4
 
 ![Example pagination](./pagination.png?raw=true 'React Responsive Pagination')
 
@@ -18,7 +18,9 @@ A React pagination component which intelligently renders to a given pixel width.
 
 - Import the component with `import Pagination from 'react-responsive-pagination'`
 
-- Use the component with `<Pagination current={currentPage} total={totalPages} onPageChange={pageChangeHandler} maxWidth={maxWidth}/>` (see below for a more detailed example)
+- Use the component with `<Pagination current={currentPage} total={totalPages} onPageChange={pageChangeHandler} />` (see [Usage Example](#usage-example) for a more detailed example)
+
+- See the [About Auto Sizing](#about-auto-sizing) section below for info on some limitations of the auto sizing algorithm.
 
 ## More details...
 
@@ -32,17 +34,13 @@ A React pagination component which intelligently renders to a given pixel width.
 
 ### Usage Example
 
-- The example below includes a simple `useWindowWidth` hook which supplies the pagination component with the browser's window width.
-
 - The [Bootstrap 4 CSS styles](https://getbootstrap.com/docs/4.3/getting-started/download/) needs to be included in the project for this example to work
 
 ```jsx
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Pagination from 'react-responsive-pagination';
 
 function MyApp() {
-  const windowWidth = useWindowWidth();
-
   const [currentPage, setCurrentPage] = useState(4);
 
   const totalPages = 17;
@@ -52,28 +50,18 @@ function MyApp() {
       current={currentPage}
       total={totalPages}
       onPageChange={setCurrentPage}
-      maxWidth={windowWidth}
     />
   );
 }
-
-function useWindowWidth() {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const resizeHandler = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener('resize', resizeHandler);
-    return () => {
-      window.removeEventListener('resize', resizeHandler);
-    };
-  }, []);
-
-  return windowWidth;
-}
 ```
+
+### About Auto Sizing
+
+Auto sizing uses the width of the immediate parent element. For best results make sure the parent element isn't intrinsically sized; that means the width of the parent element shouldn't depend on its contents. If your layout is intrinsic then the pagination component should still fill the space correctly but you may occasionally see inconsistant results or additional renders.
+
+You can choose to override the auto sizing by specifying the `maxWidth` prop (see [Props](#props) section below).
+
+The final thing to note is that for very narrow widths the component may exceed the available space - this is to ensure that there's always a usable pagination component.
 
 ### Props
 
@@ -82,4 +70,4 @@ function useWindowWidth() {
 | current      | number                    | The current active page. Indexed from 1                                                                                                                                                                                                     |
 | total        | number                    | The total number of pages                                                                                                                                                                                                                   |
 | onPageChange | (newPage: number) => void | A callback handler which is called when the user clicks a new page, note that the active page will not change unless the `current` prop is updated to reflect the new page (as in the example above). The `newPage` value is indexed from 1 |
-| maxWidth     | number                    | The maximum width (in pixels) of the pagination component. Note this width may be exceeded in the case where it's not possible to output a small enough component                                                                           |
+| maxWidth     | number                    | The maximum width (in pixels) of the pagination component. Specify a value if you want to override the automatic sizing. Note this width may be exceeded in the case where it's not possible to output a small enough component             |
