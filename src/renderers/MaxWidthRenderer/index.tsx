@@ -4,32 +4,37 @@ import { lastWhere, iteratorNext } from '../../helpers/iterator';
 import { useWidthCalculator } from './useWidthCalculator';
 import { useFoutDetector } from './useFoutDetector';
 
-export default function MaxWidthRenderer({
-  maxWidth,
-  narrowToWideCompositionsProvider,
-  View,
-}: Props) {
-  const widthCalculator = useWidthCalculator(View);
+const MaxWidthRenderer = React.forwardRef<HTMLElement, Props>(
+  ({ maxWidth, narrowToWideCompositionsProvider, View }, forwardedViewRef) => {
+    const widthCalculator = useWidthCalculator(View);
 
-  const viewRef = useRef<HTMLElement>(null);
+    const localViewRef = useRef<HTMLElement | null>(null);
 
-  useFoutDetector(
-    () => getItemsDomElements(viewRef.current),
-    'clearCache' in widthCalculator ? widthCalculator.clearCache : () => {},
-  );
+    function setViewRef(ref: HTMLElement | null) {
+      typeof forwardedViewRef === 'function' && forwardedViewRef(ref);
+      localViewRef.current = ref;
+    }
 
-  if ('measuringComponentNeedsRender' in widthCalculator) {
-    return widthCalculator.measuringComponentNeedsRender;
-  }
+    useFoutDetector(
+      () => getItemsDomElements(localViewRef.current),
+      'clearCache' in widthCalculator ? widthCalculator.clearCache : () => {},
+    );
 
-  const composition = getLargestFittingCompositionWithFallback(
-    narrowToWideCompositionsProvider,
-    widthCalculator.getWidth,
-    maxWidth,
-  );
+    if ('measuringComponentNeedsRender' in widthCalculator) {
+      return widthCalculator.measuringComponentNeedsRender;
+    }
 
-  return <View items={composition} ref={viewRef} />;
-}
+    const composition = getLargestFittingCompositionWithFallback(
+      narrowToWideCompositionsProvider,
+      widthCalculator.getWidth,
+      maxWidth,
+    );
+
+    return <View items={composition} ref={setViewRef} />;
+  },
+);
+
+export default MaxWidthRenderer;
 
 type Props = {
   maxWidth: number;

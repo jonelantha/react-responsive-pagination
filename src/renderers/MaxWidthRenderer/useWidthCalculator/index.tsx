@@ -3,12 +3,15 @@ import { ViewComponent, createViewItem } from '../../../view';
 import { createWidthCalculator, WidthCalculator } from './widthCalculator';
 import ViewDomResolver, { ViewDomProvider } from './ViewDomResolver';
 import { getViewMetrics } from './getViewMetrics';
+import { useIsMounted } from './useIsMounted';
 
 export function useWidthCalculator(view: ViewComponent) {
   const [{ calculator, validForView }, setCalculatorWithView] = useState<{
     calculator?: WidthCalculator;
     validForView?: ViewComponent;
   }>({});
+
+  const isMounted = useIsMounted();
 
   const resetCalculator = useCallback(() => setCalculatorWithView({}), []);
 
@@ -19,11 +22,13 @@ export function useWidthCalculator(view: ViewComponent) {
         rootMetricItemsToMeasure,
       );
 
+      if (!isMounted()) return;
+
       const calculator = createWidthCalculator(calculatorRootMetrics);
 
       setCalculatorWithView({ calculator, validForView: view });
     },
-    [view],
+    [view, isMounted],
   );
 
   if (!calculator || validForView !== view) {
