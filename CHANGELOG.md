@@ -1,5 +1,12 @@
 # React Responsive Pagination Changelog
 
+## [1.1.1-beta.1](https://github.com/jonelantha/react-responsive-pagination/compare/v1.1.0...v1.1.1-beta.1) (2020-10-20)
+
+
+### Bug Fixes
+
+* Package Bumps ([29409f3](https://github.com/jonelantha/react-responsive-pagination/commit/29409f3054067a4e4b9c6077e173b22090f5484b))
+
 # [1.1.0](https://github.com/jonelantha/react-responsive-pagination/compare/v1.0.3...v1.1.0) (2020-07-13)
 
 
