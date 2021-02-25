@@ -1,9 +1,5 @@
 /node_modules
 
-# production
-/lib
-/lib.cjs
-
 # misc
 .DS_Store
 .vscode
