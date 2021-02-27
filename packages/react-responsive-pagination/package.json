@@ -1,6 +1,6 @@
 {
   "name": "react-responsive-pagination",
-  "version": "1.1.1",
+  "version": "1.1.2-beta.1",
   "description": "React component for responsive pagination",
   "author": "Jon Pollard",
   "license": "MIT",
@@ -39,28 +39,28 @@
     "resize-observer-polyfill": "^1.5.1"
   },
   "peerDependencies": {
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "react": "^16.8.0 || ^17.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
-    "@types/react": "^16.9.53",
-    "@types/react-dom": "^16.9.8",
+    "@types/react": "^17.0.1",
+    "@types/react-dom": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.11.0",
-    "eslint-config-react-app": "^5.2.1",
+    "eslint-config-react-app": "^6.0.0",
     "eslint-plugin-flowtype": "^5.2.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.1.2",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "rimraf": "^3.0.2",
     "semantic-release": "^17.2.1",
-    "typescript": "^4.0.3"
+    "typescript": "4.1.x"
   }
 }

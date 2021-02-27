@@ -4,7 +4,9 @@
     "./packages/*"
   ],
   "scripts": {
-    "build": "cd packages/react-responsive-pagination && npm run build",
-    "release": "cd packages/react-responsive-pagination && semantic-release"
+    "build": "yarn workspace react-responsive-pagination run build",
+    "test-dev": "yarn workspace browser-test test-dev",
+    "dev-test-harness": "yarn workspace browser-test start",
+    "test": "yarn workspace browser-test run test"
   }
 }
