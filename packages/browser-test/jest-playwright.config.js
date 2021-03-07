@@ -5,9 +5,11 @@ const commonConfig = {
 if (process.env.PROD_TEST) {
   module.exports = {
     ...commonConfig,
-    browsers: ['chromium', 'firefox', 'webkit'],
+    browsers: process.env.BROWSER
+      ? [process.env.BROWSER]
+      : ['chromium', 'firefox', 'webkit'],
     serverOptions: {
-      command: 'yarn serve-prod',
+      command: 'yarn serve-harness',
       port: 5000,
       debug: true,
     },

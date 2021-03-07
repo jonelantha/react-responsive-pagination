@@ -3,52 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babel/core": "^7.13.8",
-    "@babel/preset-env": "^7.13.9",
-    "@babel/preset-typescript": "^7.13.0",
     "@types/jest": "^26.0.15",
     "@types/node": "^12.0.0",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "babel-jest": "^26.6.3",
-    "bootstrap": "^4.6.0",
-    "formik": "^2.2.6",
     "jest": "^26.6.3",
     "jest-playwright-preset": "^1.4.7",
     "playwright": "^1.9.1",
-    "prettier": "^2.2.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-responsive-pagination": "^1.1.1",
-    "react-scripts": "4.0.3",
-    "serve": "11.3.2",
+    "ts-jest": "^26.5.3",
     "typescript": "^4.1.2"
   },
   "scripts": {
-    "start": "PORT=3001 react-scripts start",
-    "build": "react-scripts build",
-    "serve-prod": "serve -s build",
+    "start-harness": "yarn workspace test-harness start",
+    "build-harness": "yarn workspace test-harness build",
+    "serve-harness": "yarn workspace test-harness serve",
     "test-dev": "jest",
-    "test-prod": "PROD_TEST=1 jest",
-    "test": "yarn build && yarn test-prod",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "test": "yarn build-harness && PROD_TEST=1 jest"
   }
 }

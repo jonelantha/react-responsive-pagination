@@ -1,4 +1,3 @@
-import React from 'react';
 import Pagination from 'react-responsive-pagination';
 import { useFormik } from 'formik';
 
@@ -6,33 +5,49 @@ import './App.css';
 
 function App() {
   const fields = {
-    totalJson: 'Total Pages (JSON)',
-    maxWidthJson: 'Max Width (JSON)',
-    currentJson: 'Current Page (JSON)',
+    totalAsJson: 'Total Pages (JSON)',
+    maxWidthAsJson: 'Max Width (JSON)',
+    currentPageAsJson: 'Current Page (JSON)',
   };
 
   const formik = useFormik({
     initialValues: {
-      totalJson: '1',
-      maxWidthJson: '',
-      currentJson: '0',
+      totalAsJson: '1',
+      maxWidthAsJson: '',
+      currentPageAsJson: '0',
     },
     onSubmit: () => {},
   });
 
-  const total = tryJsonParse(formik.values.totalJson);
-  const maxWidth = tryJsonParse(formik.values.maxWidthJson);
-  const current = tryJsonParse(formik.values.currentJson);
+  const initialStyle = '.pagination { font-size: inherit; }';
+
+  const total = tryJsonParse(formik.values.totalAsJson);
+  const maxWidth = tryJsonParse(formik.values.maxWidthAsJson);
+  const current = tryJsonParse(formik.values.currentPageAsJson);
 
   return (
     <>
       <div className="container">
         <h1>Browser Test</h1>
         <form>
+          <div className="form-group row">
+            <label className="col-sm-4 col-form-label">Style</label>
+            <div className="col-sm-8">
+              <style
+                id="editable-style-block"
+                className="form-control"
+                scoped
+                contentEditable
+                suppressContentEditableWarning
+              >
+                {initialStyle}
+              </style>
+            </div>
+          </div>
           {(Object.entries(fields) as Entries<typeof fields>).map(
             ([field, title]) => (
               <div className="form-group row" key={field}>
-                <label htmlFor={field} className="col-sm-3 col-form-label">
+                <label htmlFor={field} className="col-sm-4 col-form-label">
                   {title}
                 </label>
                 <div className="col-sm-2">
@@ -52,7 +67,7 @@ function App() {
         current={current}
         maxWidth={maxWidth}
         total={total}
-        onPageChange={page => formik.setFieldValue('currentJson', page)}
+        onPageChange={page => formik.setFieldValue('currentPageAsJson', page)}
       />
     </>
   );

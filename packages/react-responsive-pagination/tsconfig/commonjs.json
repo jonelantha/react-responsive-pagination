@@ -1,5 +1,5 @@
 {
-  "extends": "./base",
+  "extends": "../tsconfig",
   "compilerOptions": {
     "outDir": "../lib.cjs",
     "esModuleInterop": true,

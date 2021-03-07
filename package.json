@@ -1,12 +1,13 @@
 {
   "private": true,
   "workspaces": [
-    "./packages/*"
+    "packages/**"
   ],
   "scripts": {
-    "build": "yarn workspace react-responsive-pagination run build",
+    "start": "yarn workspace react-responsive-pagination start",
+    "build": "yarn workspace react-responsive-pagination build",
+    "start-test-harness": "yarn workspace browser-test start-harness",
     "test-dev": "yarn workspace browser-test test-dev",
-    "dev-test-harness": "yarn workspace browser-test start",
-    "test": "yarn workspace browser-test run test"
+    "test": "yarn workspace browser-test test"
   }
 }

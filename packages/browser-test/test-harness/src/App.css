@@ -2,3 +2,7 @@
 .pagination span {
   font-family: 'Roboto';
 }
+
+#editable-style-block {
+  display: 'block';
+}
