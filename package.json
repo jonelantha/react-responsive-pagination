@@ -5,6 +5,9 @@
   ],
   "scripts": {
     "start": "yarn workspace react-responsive-pagination start",
-    "build": "yarn workspace react-responsive-pagination build"
+    "build": "yarn workspace react-responsive-pagination build",
+    "start-test-harness": "yarn workspace browser-test start-harness",
+    "test-dev": "yarn workspace browser-test test-dev",
+    "test": "yarn workspace browser-test test"
   }
 }

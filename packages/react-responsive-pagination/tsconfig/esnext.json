@@ -1,5 +1,5 @@
 {
-  "extends": "./base",
+  "extends": "../tsconfig",
   "compilerOptions": {
     "outDir": "../lib",
     "module": "esnext"

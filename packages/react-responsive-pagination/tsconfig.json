@@ -1,3 +1,14 @@
 {
-  "extends": "./tsconfig/base.json"
+  "extends": "../../tsconfig",
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "esnext"],
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "jsx": "react",
+    "declaration": true,
+    "downlevelIteration": true,
+    "skipLibCheck": true
+  },
+  "include": ["./src"]
 }
