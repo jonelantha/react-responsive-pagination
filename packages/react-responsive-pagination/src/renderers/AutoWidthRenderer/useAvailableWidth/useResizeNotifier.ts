@@ -27,8 +27,8 @@ export function useResizeNotifier(
   }, [element]);
 }
 
-function withResizeLoopDetection(callback: () => void): ResizeObserverCallback {
-  return (entries, resizeObserver) => {
+function withResizeLoopDetection(callback: () => void) {
+  return (entries: ResizeObserverEntry[], resizeObserver: ResizeObserver) => {
     const elements = entries.map(entry => entry.target);
 
     const rectsBefore = elements.map(element => element.getBoundingClientRect());
