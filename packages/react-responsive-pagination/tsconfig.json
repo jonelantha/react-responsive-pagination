@@ -1,13 +1,14 @@
 {
+  "extends": "../../tsconfig",
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "esnext"],
     "allowSyntheticDefaultImports": true,
-    "strict": true,
     "moduleResolution": "node",
     "jsx": "react",
     "declaration": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "skipLibCheck": true
   },
-  "include": ["../src"]
+  "include": ["./src"]
 }

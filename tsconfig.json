@@ -1,3 +1,7 @@
 {
-  "extends": "./tsconfig/base.json"
+  "compilerOptions": {
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true
+  }
 }

@@ -46,7 +46,7 @@ function setupResizeObserver(
   elements: HTMLElement[],
   handleElementsResized: (elements: HTMLElement[]) => void,
 ) {
-  const resizeObserver = new ResizeObserver(entries => {
+  const resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]) => {
     const elements = entries.map(getTargetElement);
 
     handleElementsResized(elements);

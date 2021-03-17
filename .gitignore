@@ -1,8 +1,4 @@
-/node_modules
-
-# production
-/lib
-/lib.cjs
+node_modules
 
 # misc
 .DS_Store

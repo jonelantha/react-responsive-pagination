@@ -1,66 +1,14 @@
 {
-  "name": "react-responsive-pagination",
-  "version": "1.1.1",
-  "description": "React component for responsive pagination",
-  "author": "Jon Pollard",
-  "license": "MIT",
-  "repository": "github:jonelantha/react-responsive-pagination",
-  "homepage": "https://github.com/jonelantha/react-responsive-pagination#readme",
-  "main": "lib.cjs/index.js",
-  "module": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "files": [
-    "/lib",
-    "/lib.cjs"
+  "private": true,
+  "workspaces": [
+    "packages/**"
   ],
   "scripts": {
-    "tsc-commonjs": "rimraf lib.cjs/ && tsc --project ./tsconfig/commonjs.json",
-    "tsc-esnext": "rimraf lib/ && tsc --project ./tsconfig/esnext.json",
-    "build": "npm run lint && npm run tsc-commonjs && npm run tsc-esnext",
-    "start": "rimraf lib/ && tsc --project ./tsconfig/dev.json --watch",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint --ext .ts --ext .tsx src",
-    "prepublishOnly": "npm run build",
-    "release": "semantic-release",
-    "previewReleaseNotes": "semantic-release --dry-run"
-  },
-  "keywords": [
-    "responsive",
-    "pagination",
-    "react",
-    "reactjs",
-    "react-component"
-  ],
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "dependencies": {
-    "prop-types": "^15.7.2",
-    "resize-observer-polyfill": "^1.5.1"
-  },
-  "peerDependencies": {
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
-  },
-  "devDependencies": {
-    "@semantic-release/changelog": "^5.0.1",
-    "@semantic-release/git": "^9.0.0",
-    "@types/react": "^16.9.53",
-    "@types/react-dom": "^16.9.8",
-    "@typescript-eslint/eslint-plugin": "^4.5.0",
-    "@typescript-eslint/parser": "^4.5.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.11.0",
-    "eslint-config-react-app": "^5.2.1",
-    "eslint-plugin-flowtype": "^5.2.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^4.1.2",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "rimraf": "^3.0.2",
-    "semantic-release": "^17.2.1",
-    "typescript": "^4.0.3"
+    "start": "yarn workspace react-responsive-pagination start",
+    "build": "yarn workspace react-responsive-pagination build",
+    "release": "yarn workspace react-responsive-pagination release",
+    "start-test-harness": "yarn workspace browser-test start-harness",
+    "test-dev": "yarn workspace browser-test test-dev",
+    "test": "yarn workspace browser-test test"
   }
 }
