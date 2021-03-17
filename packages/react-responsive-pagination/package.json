@@ -20,7 +20,8 @@
     "start": "rimraf lib/ && tsc --project ./tsconfig/dev.json --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --ext .ts --ext .tsx src",
-    "prepublishOnly": "yarn build",
+    "prepublishOnly": "yarn copy-readme && yarn build",
+    "copy-readme": "cp '../../README.md' .",
     "release": "semantic-release",
     "previewReleaseNotes": "semantic-release --dry-run"
   },
