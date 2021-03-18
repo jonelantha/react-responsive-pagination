@@ -27,7 +27,7 @@ function createItem(item: SkinItem) {
         <Item
           key={item.key}
           onClick={item.onClick}
-          label={item.type === 'previous' ? '«' : '»'}
+          label={item.type === 'previous' ? '«x' : '»'}
           a11yLabel={item.type === 'previous' ? 'Previous' : 'Next'}
         />
       );
