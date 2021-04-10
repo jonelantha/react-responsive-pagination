@@ -1,40 +1,36 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { ViewComponent, createViewItem } from '../../../view';
 import { createWidthCalculator, WidthCalculator } from './widthCalculator';
-import ViewDomResolver, { ViewDomProvider } from './ViewDomResolver';
-import { getViewMetrics } from './getViewMetrics';
+import { getViewMetricsFromViewDom, ViewMetrics } from './getViewMetrics';
+import { objectUnzip } from '../../../helpers/object';
 import { useIsMounted } from './useIsMounted';
 
-export function useWidthCalculator(view: ViewComponent) {
-  const [{ calculator, validForView }, setCalculatorWithView] = useState<{
-    calculator?: WidthCalculator;
+export function useWidthCalculator(View: ViewComponent) {
+  const [{ baseMetrics, validForView }, setBaseMetricsWithView] = useState<{
+    baseMetrics?: ViewMetrics<keyof typeof rootMetricItemsToMeasure>;
     validForView?: ViewComponent;
   }>({});
 
   const isMounted = useIsMounted();
 
-  const resetCalculator = useCallback(() => setCalculatorWithView({}), []);
+  const resetCalculator = useCallback(() => setBaseMetricsWithView({}), []);
 
-  const setupCalculator = useCallback(
-    async (viewDomProvider: ViewDomProvider) => {
-      const calculatorRootMetrics = await getViewMetrics(
-        viewDomProvider,
-        rootMetricItemsToMeasure,
-      );
+  const calculator = useMemo(() => {
+    return baseMetrics && createWidthCalculator(baseMetrics);
+  }, [baseMetrics]);
 
-      if (!isMounted()) return;
+  if (!baseMetrics || validForView !== View) {
+    const [itemKeys, items] = objectUnzip(rootMetricItemsToMeasure);
 
-      const calculator = createWidthCalculator(calculatorRootMetrics);
+    const getBaseMetrics = (viewDom: HTMLElement) => {
+      const baseMetrics = getViewMetricsFromViewDom(viewDom, itemKeys);
 
-      setCalculatorWithView({ calculator, validForView: view });
-    },
-    [view, isMounted],
-  );
+      isMounted() && setBaseMetricsWithView({ baseMetrics, validForView: View });
+    };
 
-  if (!calculator || validForView !== view) {
     return {
       measuringComponentNeedsRender: (
-        <ViewDomResolver view={view} onDomProvidable={setupCalculator} />
+        <View items={items} ref={viewDom => viewDom && getBaseMetrics(viewDom)} />
       ),
     } as RenderNeededResult;
   }

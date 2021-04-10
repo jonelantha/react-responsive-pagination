@@ -1,20 +1,7 @@
-import { ViewItem } from '../../../view';
-import { objectUnzip, objectZip } from '../../../helpers/object';
+import { objectZip } from '../../../helpers/object';
 import { getNonContentWidth, getElementWidth } from '../../../helpers/style';
-import { ViewDomProvider } from './ViewDomResolver';
 
-export async function getViewMetrics<ItemKey extends string>(
-  getViewDom: ViewDomProvider,
-  keyedItemsToMeasure: { [key in ItemKey]: ViewItem },
-) {
-  const [itemKeys, items] = objectUnzip(keyedItemsToMeasure);
-
-  const viewDom = await getViewDom(items);
-
-  return getViewMetricsFromViewDom(viewDom, itemKeys);
-}
-
-function getViewMetricsFromViewDom<ItemKey extends string>(
+export function getViewMetricsFromViewDom<ItemKey extends string>(
   viewContainerElement: HTMLElement,
   itemKeys: ItemKey[],
 ): ViewMetrics<ItemKey> {
