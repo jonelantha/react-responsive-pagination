@@ -12,7 +12,7 @@ function App() {
 
   const formik = useFormik({
     initialValues: {
-      totalAsJson: '1',
+      totalAsJson: '100',
       maxWidthAsJson: '',
       currentPageAsJson: '0',
     },
