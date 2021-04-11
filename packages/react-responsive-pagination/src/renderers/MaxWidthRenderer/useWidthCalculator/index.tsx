@@ -1,31 +1,37 @@
 import React, { useState, useCallback, useMemo } from 'react';
-import { ViewComponent, createViewItem } from '../../../view';
-import { createWidthCalculator, WidthCalculator } from './widthCalculator';
-import { getViewMetricsFromViewDom, ViewMetrics } from './getViewMetrics';
+import { ViewComponent } from '../../../view';
+import {
+  createWidthCalculator,
+  WidthCalculator,
+  WidthCalculatorBaseMetrics,
+} from './widthCalculator';
+import { getViewMetricsFromViewDom } from './getViewMetrics';
 import { objectUnzip } from '../../../helpers/object';
 import { useIsMounted } from './useIsMounted';
 
 export function useWidthCalculator(View: ViewComponent) {
-  const [{ baseMetrics, validForView }, setBaseMetricsWithView] = useState<{
-    baseMetrics?: ViewMetrics<keyof typeof rootMetricItemsToMeasure>;
-    validForView?: ViewComponent;
-  }>({});
+  const [baseMetrics, setBaseMetrics] = useState<WidthCalculatorBaseMetrics | null>(
+    null,
+  );
+
+  const [measuredView, setMeasuredView] = useState<ViewComponent | null>(null);
 
   const isMounted = useIsMounted();
 
-  const resetCalculator = useCallback(() => setBaseMetricsWithView({}), []);
+  const resetCalculator = useCallback(() => setBaseMetrics(null), []);
 
-  const calculator = useMemo(() => {
-    return baseMetrics && createWidthCalculator(baseMetrics);
-  }, [baseMetrics]);
+  const calculatorResult = useMemo(() => {
+    return createWidthCalculator(measuredView === View ? baseMetrics : null);
+  }, [baseMetrics, measuredView, View]);
 
-  if (!baseMetrics || validForView !== View) {
-    const [itemKeys, items] = objectUnzip(rootMetricItemsToMeasure);
+  if ('requiredBaseMetrics' in calculatorResult) {
+    const [itemKeys, items] = objectUnzip(calculatorResult.requiredBaseMetrics);
 
     const getBaseMetrics = (viewDom: HTMLElement) => {
-      const baseMetrics = getViewMetricsFromViewDom(viewDom, itemKeys);
+      if (!isMounted()) return;
 
-      isMounted() && setBaseMetricsWithView({ baseMetrics, validForView: View });
+      setBaseMetrics(getViewMetricsFromViewDom(viewDom, itemKeys));
+      setMeasuredView(View);
     };
 
     return {
@@ -36,22 +42,10 @@ export function useWidthCalculator(View: ViewComponent) {
   }
 
   return {
-    getWidth: calculator,
+    getWidth: calculatorResult,
     clearCache: resetCalculator,
   } as CalculatorResult;
 }
-
-const rootMetricItemsToMeasure = {
-  normalPageSingleDigit: createViewItem.page(8, false),
-  normalPageDoubleDigit: createViewItem.page(88, false),
-  activePageSingleDigit: createViewItem.page(8, true),
-  activePageDoubleDigit: createViewItem.page(88, true),
-  navPreviousEnabled: createViewItem.nav('previous', 0),
-  navPreviousDisabled: createViewItem.nav('previous'),
-  navNextEnabled: createViewItem.nav('next', 0),
-  navNextDisabled: createViewItem.nav('next'),
-  ellipsis: createViewItem.ellipsis('left'),
-};
 
 type RenderNeededResult = {
   measuringComponentNeedsRender: JSX.Element;
