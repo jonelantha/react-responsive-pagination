@@ -1,6 +1,9 @@
 import Pagination from 'react-responsive-pagination';
+import { useLocation, useHistory } from 'react-router-dom';
 import { useFormik } from 'formik';
 
+import 'bootstrap/dist/css/bootstrap.css';
+import './TestStyles.css';
 import './App.css';
 
 function App() {
@@ -19,6 +22,13 @@ function App() {
     onSubmit: () => {},
   });
 
+  const cssExtraClassOptions = ['add-margin-padding', 'content-box'];
+
+  const [cssExtraClasses, toggleCssExtraClass] = makeToggles(
+    useURLParam('css'),
+    cssExtraClassOptions,
+  );
+
   const initialStyle = '.pagination { font-size: inherit; }';
 
   const total = tryJsonParse(formik.values.totalAsJson);
@@ -27,11 +37,18 @@ function App() {
 
   return (
     <>
+      <div className={cssExtraClasses.join(' ')}>
+        <Pagination
+          current={current}
+          maxWidth={maxWidth}
+          total={total}
+          onPageChange={page => formik.setFieldValue('currentPageAsJson', page)}
+        />
+      </div>
       <div className="container">
-        <h1>Browser Test</h1>
         <form>
           <div className="form-group row">
-            <label className="col-sm-4 col-form-label">Style</label>
+            <label className="col-sm-4 col-form-label">Style (non-React)</label>
             <div className="col-sm-8">
               <style
                 id="editable-style-block"
@@ -44,36 +61,90 @@ function App() {
               </style>
             </div>
           </div>
-          {(Object.entries(fields) as Entries<typeof fields>).map(
-            ([field, title]) => (
-              <div className="form-group row" key={field}>
-                <label htmlFor={field} className="col-sm-4 col-form-label">
-                  {title}
-                </label>
-                <div className="col-sm-2">
+          <div className="form-group row">
+            <label className="col-sm-4 col-form-label">
+              Additional Pagination CSS (React)
+            </label>
+            <div className="col-sm-8">
+              {cssExtraClassOptions.map(value => (
+                <div className="form-check form-check-inline" key={value}>
                   <input
-                    type="text"
-                    className="form-control"
-                    id={field}
-                    {...formik.getFieldProps(field)}
+                    className="form-check-input"
+                    type="checkbox"
+                    id={value}
+                    value={value}
+                    checked={cssExtraClasses.includes(value)}
+                    onChange={event =>
+                      toggleCssExtraClass(value, event.target.checked)
+                    }
                   />
+                  <label className="form-check-label" htmlFor={value}>
+                    {value}
+                  </label>
                 </div>
+              ))}
+            </div>
+          </div>
+          {Object.entries(fields).map(([field, title]) => (
+            <div className="form-group row" key={field}>
+              <label htmlFor={field} className="col-sm-4 col-form-label">
+                {title}
+              </label>
+              <div className="col-sm-2">
+                <input
+                  type="text"
+                  className="form-control"
+                  id={field}
+                  {...formik.getFieldProps(field)}
+                />
               </div>
-            ),
-          )}
+            </div>
+          ))}
         </form>
       </div>
-      <Pagination
-        current={current}
-        maxWidth={maxWidth}
-        total={total}
-        onPageChange={page => formik.setFieldValue('currentPageAsJson', page)}
-      />
     </>
   );
 }
 
 export default App;
+
+function useURLParam(
+  name: string,
+): [value: string | undefined, set: (newValue: string) => void] {
+  const location = useLocation();
+  const history = useHistory();
+
+  const query = new URLSearchParams(location.search);
+
+  return [
+    query.get(name) ?? undefined,
+
+    function set(newValue) {
+      query.set(name, newValue);
+      history.push(`?${query.toString()}`);
+    },
+  ];
+}
+
+function makeToggles(
+  [rawState, setState]: [string | undefined, (state: string) => void],
+  validValues: string[],
+): [activeValues: string[], toggleValue: (value: string, toggle: boolean) => void] {
+  let activeValues = (rawState?.split(',') ?? []).filter(value =>
+    validValues.includes(value),
+  );
+
+  function toggleValue(value: string, toggle: boolean) {
+    if (toggle && !activeValues.includes(value)) {
+      activeValues = [...activeValues, value];
+    } else if (!toggle && activeValues.includes(value)) {
+      activeValues = activeValues.filter(existingValue => existingValue !== value);
+    }
+    setState(activeValues.join(','));
+  }
+
+  return [activeValues, toggleValue];
+}
 
 function tryJsonParse(str: string) {
   try {
@@ -82,7 +153,3 @@ function tryJsonParse(str: string) {
     return undefined;
   }
 }
-
-type Entries<T> = {
-  [K in keyof T]: [K, T[K]];
-}[keyof T][];
