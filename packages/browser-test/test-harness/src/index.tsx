@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'bootstrap/dist/css/bootstrap.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 import App from './App';
 
 document.fonts.load('16px Roboto').then(() => {
   ReactDOM.render(
     <React.StrictMode>
-      <App />
+      <Router>
+        <App />
+      </Router>
     </React.StrictMode>,
     document.getElementById('root'),
   );

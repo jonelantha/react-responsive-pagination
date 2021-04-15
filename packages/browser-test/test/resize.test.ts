@@ -1,10 +1,6 @@
 export {};
 
-beforeAll(async () => {
-  await page.goto(harnessUrl);
-
-  await page.fill('#totalAsJson', '100');
-});
+const testCssClasses = ['', 'add-margin-padding', 'add-margin-padding,content-box'];
 
 // prettier-ignore
 const testWidths = [
@@ -12,17 +8,26 @@ const testWidths = [
   250, 350, 450, 550, 650, 750, 850, 950,
 ];
 
-describe('Auto sizing', () => {
-  test.each(testWidths.map(width => [width]))(
-    'renders correctly with viewport width %ipx',
-    async width => {
-      await page.setViewportSize({ width, height: 700 });
+describe.each(testCssClasses.map(cssClasses => [cssClasses]))(
+  'Auto sizing with %p classes',
+  cssClasses => {
+    beforeAll(async () => {
+      await page.goto(`${harnessUrl}?css=${cssClasses}`);
 
-      await page.evaluate(() => new Promise(requestAnimationFrame));
+      await page.fill('#totalAsJson', '100');
+    });
 
-      const paginationHtml = await page.$eval('ul.pagination', ul => ul.innerHTML);
+    test.each(testWidths.map(width => [width]))(
+      'renders correctly with viewport width %ipx',
+      async width => {
+        await page.setViewportSize({ width, height: 700 });
 
-      expect(paginationHtml).toMatchSnapshot();
-    },
-  );
-});
+        await page.evaluate(() => new Promise(requestAnimationFrame));
+
+        const paginationHtml = await page.$eval('ul.pagination', ul => ul.innerHTML);
+
+        expect(paginationHtml).toMatchSnapshot();
+      },
+    );
+  },
+);
