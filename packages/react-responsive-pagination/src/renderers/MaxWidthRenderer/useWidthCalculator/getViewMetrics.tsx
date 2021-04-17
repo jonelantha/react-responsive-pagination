@@ -1,16 +1,14 @@
 import { objectZip } from '../../../helpers/object';
 import { getNonContentWidth, getElementWidth } from '../../../helpers/style';
 
-export function getViewMetricsFromViewDom<ItemKey extends string>(
-  viewContainerElement: HTMLElement,
+export function getViewMetricsFromContainer<ItemKey extends string>(
+  containerElement: HTMLElement,
   itemKeys: ItemKey[],
 ): ViewMetrics<ItemKey> {
-  const viewItemElements = Array.from(
-    viewContainerElement.children,
-  ) as HTMLElement[];
+  const viewItemElements = Array.from(containerElement.children) as HTMLElement[];
 
   return {
-    outerFrameWidth: getNonContentWidth(viewContainerElement),
+    outerFrameWidth: getNonContentWidth(containerElement),
     itemWidths: getItemWidthsFromItemDomElements(itemKeys, viewItemElements),
   };
 }
