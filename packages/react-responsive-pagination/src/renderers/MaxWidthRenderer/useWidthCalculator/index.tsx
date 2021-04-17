@@ -1,13 +1,13 @@
-import React, { useState, useCallback, useMemo } from 'react';
-import { ViewComponent } from '../../../view';
+import { useState, useCallback, useMemo } from 'react';
+import { ViewComponent, ViewItem } from '../../../view';
 import {
   createWidthCalculator,
   WidthCalculator,
   WidthCalculatorBaseMetrics,
 } from './widthCalculator';
-import { getViewMetricsFromViewDom } from './getViewMetrics';
+import { getViewMetricsFromContainer } from './getViewMetrics';
 import { objectUnzip } from '../../../helpers/object';
-import { useIsMounted } from './useIsMounted';
+import { useIsUnmounted } from './useIsUnmounted';
 
 export function useWidthCalculator(View: ViewComponent) {
   const [baseMetrics, setBaseMetrics] = useState<WidthCalculatorBaseMetrics | null>(
@@ -16,7 +16,7 @@ export function useWidthCalculator(View: ViewComponent) {
 
   const [measuredView, setMeasuredView] = useState<ViewComponent | null>(null);
 
-  const isMounted = useIsMounted();
+  const isUnmounted = useIsUnmounted();
 
   const resetCalculator = useCallback(() => setBaseMetrics(null), []);
 
@@ -27,17 +27,19 @@ export function useWidthCalculator(View: ViewComponent) {
   if ('requiredBaseMetrics' in calculatorResult) {
     const [itemKeys, items] = objectUnzip(calculatorResult.requiredBaseMetrics);
 
-    const getBaseMetrics = (viewDom: HTMLElement) => {
-      if (!isMounted()) return;
+    const updateBaseMetrics = (containerElement: HTMLElement) => {
+      if (isUnmounted()) return;
 
-      setBaseMetrics(getViewMetricsFromViewDom(viewDom, itemKeys));
+      setBaseMetrics(getViewMetricsFromContainer(containerElement, itemKeys));
       setMeasuredView(View);
     };
 
     return {
-      measuringComponentNeedsRender: (
-        <View items={items} ref={viewDom => viewDom && getBaseMetrics(viewDom)} />
-      ),
+      renderNeeded: {
+        items,
+        ref: containerElement =>
+          containerElement && updateBaseMetrics(containerElement),
+      },
     } as RenderNeededResult;
   }
 
@@ -48,7 +50,10 @@ export function useWidthCalculator(View: ViewComponent) {
 }
 
 type RenderNeededResult = {
-  measuringComponentNeedsRender: JSX.Element;
+  renderNeeded: {
+    items: ViewItem[];
+    ref: (element: HTMLElement | null) => void;
+  };
 };
 
 type CalculatorResult = {

@@ -1,36 +1,43 @@
-import React, { useRef } from 'react';
+import React, { Ref, forwardRef, useRef } from 'react';
 import { ViewComponent, ViewItem } from '../../view';
 import { lastWhere, iteratorNext } from '../../helpers/iterator';
 import { useWidthCalculator } from './useWidthCalculator';
 import { useFoutDetector } from './useFoutDetector';
 
-const MaxWidthRenderer = React.forwardRef<HTMLElement, Props>(
+const MaxWidthRenderer = forwardRef<HTMLElement, Props>(
   ({ maxWidth, narrowToWideCompositionsProvider, View }, forwardedViewRef) => {
     const widthCalculator = useWidthCalculator(View);
 
-    const localViewRef = useRef<HTMLElement | null>(null);
-
-    function setViewRef(ref: HTMLElement | null) {
-      typeof forwardedViewRef === 'function' && forwardedViewRef(ref);
-      localViewRef.current = ref;
-    }
+    const containerElementRef = useRef<HTMLElement | null>(null);
 
     useFoutDetector(
-      () => getItemsDomElements(localViewRef.current),
+      () => getItemsDomElements(containerElementRef.current),
       'clearCache' in widthCalculator ? widthCalculator.clearCache : () => {},
     );
 
-    if ('measuringComponentNeedsRender' in widthCalculator) {
-      return widthCalculator.measuringComponentNeedsRender;
+    let items: ViewItem[];
+    let ref: Ref<HTMLElement>;
+
+    if ('renderNeeded' in widthCalculator) {
+      items = widthCalculator.renderNeeded.items;
+      ref = function (containerElement) {
+        widthCalculator.renderNeeded.ref(containerElement);
+        typeof forwardedViewRef === 'function' && forwardedViewRef(containerElement);
+        containerElementRef.current = containerElement;
+      };
+    } else {
+      items = getLargestFittingCompositionWithFallback(
+        narrowToWideCompositionsProvider,
+        widthCalculator.getWidth,
+        maxWidth,
+      );
+      ref = function (containerElement) {
+        typeof forwardedViewRef === 'function' && forwardedViewRef(containerElement);
+        containerElementRef.current = containerElement;
+      };
     }
 
-    const composition = getLargestFittingCompositionWithFallback(
-      narrowToWideCompositionsProvider,
-      widthCalculator.getWidth,
-      maxWidth,
-    );
-
-    return <View items={composition} ref={setViewRef} />;
+    return <View items={items} ref={ref} />;
   },
 );
 
