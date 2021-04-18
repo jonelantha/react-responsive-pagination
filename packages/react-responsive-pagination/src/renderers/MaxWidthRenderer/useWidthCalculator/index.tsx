@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo } from 'react';
-import { ViewComponent, ViewItem } from '../../../view';
+import { ViewItem } from '../../../view';
 import {
   createWidthCalculator,
   WidthCalculator,
@@ -9,42 +9,37 @@ import { getViewMetricsFromContainer } from './getViewMetrics';
 import { objectUnzip } from '../../../helpers/object';
 import { useIsUnmounted } from './useIsUnmounted';
 
-export function useWidthCalculator(View: ViewComponent) {
+export function useWidthCalculator() {
   const [baseMetrics, setBaseMetrics] = useState<WidthCalculatorBaseMetrics | null>(
     null,
   );
-
-  const [measuredView, setMeasuredView] = useState<ViewComponent | null>(null);
 
   const isUnmounted = useIsUnmounted();
 
   const resetCalculator = useCallback(() => setBaseMetrics(null), []);
 
   const calculatorResult = useMemo(() => {
-    return createWidthCalculator(measuredView === View ? baseMetrics : null);
-  }, [baseMetrics, measuredView, View]);
+    return createWidthCalculator(baseMetrics);
+  }, [baseMetrics]);
 
   if ('requiredBaseMetrics' in calculatorResult) {
     const [itemKeys, items] = objectUnzip(calculatorResult.requiredBaseMetrics);
 
-    const updateBaseMetrics = (containerElement: HTMLElement) => {
-      if (isUnmounted()) return;
-
-      setBaseMetrics(getViewMetricsFromContainer(containerElement, itemKeys));
-      setMeasuredView(View);
-    };
-
     return {
       renderNeeded: {
         items,
-        ref: containerElement =>
-          containerElement && updateBaseMetrics(containerElement),
+        ref(containerElement) {
+          if (containerElement && !isUnmounted()) {
+            setBaseMetrics(getViewMetricsFromContainer(containerElement, itemKeys));
+          }
+        },
       },
+      clearCache: resetCalculator,
     } as RenderNeededResult;
   }
 
   return {
-    getWidth: calculatorResult,
+    calculator: calculatorResult,
     clearCache: resetCalculator,
   } as CalculatorResult;
 }
@@ -54,9 +49,10 @@ type RenderNeededResult = {
     items: ViewItem[];
     ref: (element: HTMLElement | null) => void;
   };
+  clearCache: () => void;
 };
 
 type CalculatorResult = {
-  getWidth: WidthCalculator;
+  calculator: WidthCalculator;
   clearCache: () => void;
 };
