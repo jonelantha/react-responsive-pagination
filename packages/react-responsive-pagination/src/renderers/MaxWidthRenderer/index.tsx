@@ -1,4 +1,4 @@
-import React, { Ref, forwardRef, useRef } from 'react';
+import React, { Ref, forwardRef, useRef, useLayoutEffect } from 'react';
 import { ViewComponent, ViewItem } from '../../view';
 import { lastWhere, iteratorNext } from '../../helpers/iterator';
 import { useWidthCalculator } from './useWidthCalculator';
@@ -6,14 +6,20 @@ import { useFoutDetector } from './useFoutDetector';
 
 const MaxWidthRenderer = forwardRef<HTMLElement, Props>(
   ({ maxWidth, narrowToWideCompositionsProvider, View }, forwardedViewRef) => {
-    const widthCalculator = useWidthCalculator(View);
+    const widthCalculator = useWidthCalculator();
 
     const containerElementRef = useRef<HTMLElement | null>(null);
 
+    const clearCache = widthCalculator.clearCache;
+
     useFoutDetector(
       () => getItemsDomElements(containerElementRef.current),
-      'clearCache' in widthCalculator ? widthCalculator.clearCache : () => {},
+      clearCache,
     );
+
+    useLayoutEffect(() => {
+      return () => clearCache();
+    }, [View, clearCache]);
 
     let items: ViewItem[];
     let ref: Ref<HTMLElement>;
@@ -28,7 +34,7 @@ const MaxWidthRenderer = forwardRef<HTMLElement, Props>(
     } else {
       items = getLargestFittingCompositionWithFallback(
         narrowToWideCompositionsProvider,
-        widthCalculator.getWidth,
+        widthCalculator.calculator,
         maxWidth,
       );
       ref = function (containerElement) {
