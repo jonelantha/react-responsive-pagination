@@ -1,14 +1,20 @@
-import MaxWidthRenderer from '../MaxWidthRenderer';
-import React, { useState } from 'react';
+import React, { useLayoutEffect } from 'react';
+import useWidestComposition from '../useWidestComposition';
 import { ViewItem, ViewComponent } from '../../view';
-import { useAvailableWidth } from './useAvailableWidth';
 
-export default function AutoWidthRenderer(props: Props) {
-  const [viewElement, setViewElement] = useState<HTMLElement | null>(null);
+export default function AutoWidthRenderer({
+  narrowToWideCompositionsProvider,
+  View,
+}: Props) {
+  const { items, ref, clearCache } = useWidestComposition(
+    narrowToWideCompositionsProvider,
+  );
 
-  const width = useAvailableWidth(viewElement) ?? 0;
+  useLayoutEffect(() => {
+    return () => clearCache();
+  }, [View, clearCache]);
 
-  return <MaxWidthRenderer maxWidth={width} ref={setViewElement} {...props} />;
+  return <View items={items} ref={ref} />;
 }
 
 type Props = {
