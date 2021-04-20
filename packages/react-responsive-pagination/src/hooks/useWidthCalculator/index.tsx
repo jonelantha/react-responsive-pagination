@@ -4,10 +4,10 @@ import {
   createWidthCalculator,
   WidthCalculator,
   WidthCalculatorBaseMetrics,
-} from './widthCalculator';
+} from '../../widthCalculator';
 import { getViewMetricsFromContainer } from './getViewMetrics';
 import { objectUnzip } from '../../helpers/object';
-import { useIsUnmounted } from './useIsUnmounted';
+import { useIsUnmounted } from '../useIsUnmounted';
 
 export function useWidthCalculator() {
   const [baseMetrics, setBaseMetrics] = useState<WidthCalculatorBaseMetrics | null>(
