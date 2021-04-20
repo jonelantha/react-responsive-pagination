@@ -3,7 +3,7 @@ import { createItemWidthCalculator } from './itemWidthCalculator';
 import { createNavWidthCalculator } from './navWidthCalculator';
 import { createPageWidthCalculator } from './pageWidthCalculator';
 import { createNumberWidthCalculator } from './numberWidthCalculator';
-import { createViewItem } from '../../../view';
+import { createViewItem } from '../view';
 
 export function createWidthCalculator(
   baseMetrics: WidthCalculatorBaseMetrics | null,

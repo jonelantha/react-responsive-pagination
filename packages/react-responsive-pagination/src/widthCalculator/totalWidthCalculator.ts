@@ -1,5 +1,5 @@
-import { ViewItem } from '../../../view';
-import { sum } from '../../../helpers/util';
+import { ViewItem } from '../view';
+import { sum } from '../helpers/util';
 import { GetItemWidth } from './itemWidthCalculator';
 
 export function createTotalWidthCalculator({
