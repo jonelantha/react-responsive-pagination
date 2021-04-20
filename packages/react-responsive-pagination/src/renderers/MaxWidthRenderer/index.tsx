@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from 'react';
-import useWidestCompositionForWidth from '../useWidestCompositionForWidth';
+import useWidestCompositionForWidth from '../../hooks/useWidestCompositionForWidth';
 import { ViewItem, ViewComponent } from '../../view';
 
 export default function MaxWidthRenderer({

@@ -1,12 +1,12 @@
 import { useState, useCallback, useMemo } from 'react';
-import { ViewItem } from '../../../view';
+import { ViewItem } from '../../view';
 import {
   createWidthCalculator,
   WidthCalculator,
   WidthCalculatorBaseMetrics,
 } from './widthCalculator';
 import { getViewMetricsFromContainer } from './getViewMetrics';
-import { objectUnzip } from '../../../helpers/object';
+import { objectUnzip } from '../../helpers/object';
 import { useIsUnmounted } from './useIsUnmounted';
 
 export function useWidthCalculator() {

@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from 'react';
-import useWidestComposition from '../useWidestComposition';
+import useWidestComposition from '../../hooks/useWidestComposition';
 import { ViewItem, ViewComponent } from '../../view';
 
 export default function AutoWidthRenderer({
