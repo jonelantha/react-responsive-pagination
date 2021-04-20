@@ -1,6 +1,6 @@
 import { ForwardedRef, useRef } from 'react';
-import { ViewItem } from '../../view';
-import { lastWhere, iteratorNext } from '../../helpers/iterator';
+import { ViewItem } from '../view';
+import { lastWhere, iteratorNext } from '../helpers/iterator';
 import { useWidthCalculator } from './useWidthCalculator';
 import { useFoutDetector } from './useFoutDetector';
 

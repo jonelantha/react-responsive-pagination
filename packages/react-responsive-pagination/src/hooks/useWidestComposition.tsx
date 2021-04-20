@@ -1,8 +1,8 @@
 import { ForwardedRef, useCallback, useState } from 'react';
-import { setRefValue } from '../../helpers/ref';
-import { ViewItem } from '../../view';
-import { useAvailableWidth } from '../useAvailableWidth';
-import useWidestCompositionForWidth from '../useWidestCompositionForWidth';
+import { setRefValue } from '../helpers/ref';
+import { ViewItem } from '../view';
+import { useAvailableWidth } from './useAvailableWidth';
+import useWidestCompositionForWidth from './useWidestCompositionForWidth';
 
 export default function useWidestComposition(
   narrowToWideCompositionsProvider: () => IterableIterator<ViewItem[]>,

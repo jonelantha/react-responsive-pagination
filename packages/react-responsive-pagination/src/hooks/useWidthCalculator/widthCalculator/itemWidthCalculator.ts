@@ -1,4 +1,4 @@
-import { ViewItem } from '../../../../view';
+import { ViewItem } from '../../../view';
 import { GetPageWidth } from './pageWidthCalculator';
 import { GetNavWidth } from './navWidthCalculator';
 
