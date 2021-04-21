@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import { narrowToWideCompositions } from './compositions';
 import { BootstrapSkin, SkinComponent } from './skins';
 import { useView, PageChangeHandler } from './view';
-import AutoWidthRenderer from './renderers/AutoWidthRenderer';
-import MaxWidthRenderer from './renderers/MaxWidthRenderer';
 import { sanatizeInteger } from './helpers/util';
+import { useWidestComposition } from './hooks/useWidestComposition';
 
 export { SkinComponent };
 
@@ -19,7 +18,8 @@ function Pagination({
 }: Props) {
   const total = sanatizeInteger(propsTotal);
 
-  const current = Math.max(1, Math.min(sanatizeInteger(propsCurrent), total));
+  const current =
+    total < 1 ? null : Math.max(1, Math.min(sanatizeInteger(propsCurrent), total));
 
   const Skin = BootstrapSkin;
 
@@ -28,15 +28,12 @@ function Pagination({
   const narrowToWideCompositionsProvider = () =>
     narrowToWideCompositions(current, total);
 
-  if (total <= 0) {
-    return null;
-  } else if (maxWidth === undefined) {
-    return <AutoWidthRenderer {...{ narrowToWideCompositionsProvider, View }} />;
-  } else {
-    return (
-      <MaxWidthRenderer {...{ maxWidth, narrowToWideCompositionsProvider, View }} />
-    );
-  }
+  const { items, ref } = useWidestComposition(
+    narrowToWideCompositionsProvider,
+    maxWidth,
+  );
+
+  return items.length > 0 ? <View items={items} ref={ref} /> : null;
 }
 
 type Props = {

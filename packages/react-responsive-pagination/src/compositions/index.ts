@@ -2,7 +2,9 @@ import { zipIterators } from '../helpers/iterator';
 import { narrowToWideRanges } from './ranges';
 import { createViewItem, ViewItem } from '../view';
 
-export function* narrowToWideCompositions(current: number, total: number) {
+export function* narrowToWideCompositions(current: number | null, total: number) {
+  if (current === null) return;
+
   const leftRanges = narrowToWideRanges(1, current - 1, 'left');
   const rightRanges = narrowToWideRanges(current + 1, total, 'right');
 

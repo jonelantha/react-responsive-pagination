@@ -4,13 +4,12 @@ import { lastWhere, iteratorNext } from '../helpers/iterator';
 import { useWidthCalculator } from './useWidthCalculator';
 import { useFoutDetector } from './useFoutDetector';
 
-export default function useWidestCompositionForWidth(
+export function useWidestCompositionForWidth(
   narrowToWideCompositionsProvider: () => IterableIterator<ViewItem[]>,
   maxWidth: number,
 ): {
   items: ViewItem[];
   ref: ForwardedRef<HTMLElement | null>;
-  clearCache: () => void;
 } {
   const widthCalculator = useWidthCalculator();
 
@@ -30,7 +29,6 @@ export default function useWidestCompositionForWidth(
         widthCalculator.renderNeeded.ref(containerElement);
         containerElementRef.current = containerElement;
       },
-      clearCache,
     };
   } else {
     return {
@@ -40,7 +38,6 @@ export default function useWidestCompositionForWidth(
         maxWidth,
       ),
       ref: containerElementRef,
-      clearCache,
     };
   }
 }
