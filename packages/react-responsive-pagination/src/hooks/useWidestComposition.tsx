@@ -2,24 +2,27 @@ import { ForwardedRef, useCallback, useState } from 'react';
 import { setRefValue } from '../helpers/ref';
 import { ViewItem } from '../view';
 import { useAvailableWidth } from './useAvailableWidth';
-import useWidestCompositionForWidth from './useWidestCompositionForWidth';
+import { useWidestCompositionForWidth } from './useWidestCompositionForWidth';
 
-export default function useWidestComposition(
+export function useWidestComposition(
   narrowToWideCompositionsProvider: () => IterableIterator<ViewItem[]>,
+  maxWidth?: number,
 ): {
   items: ViewItem[];
   ref: ForwardedRef<HTMLElement | null>;
-  clearCache: () => void;
 } {
   const [containerElement, setContainerElement] = useState<HTMLElement | null>(null);
 
-  const width = useAvailableWidth(containerElement) ?? 0;
+  const availableWidth = useAvailableWidth(
+    maxWidth === undefined ? containerElement : null,
+  );
 
-  const {
-    items,
-    ref: widestCompositionRef,
-    clearCache,
-  } = useWidestCompositionForWidth(narrowToWideCompositionsProvider, width);
+  const width = maxWidth ?? availableWidth ?? 0;
+
+  const { items, ref: widestCompositionRef } = useWidestCompositionForWidth(
+    narrowToWideCompositionsProvider,
+    width,
+  );
 
   const ref = useCallback(
     (element: HTMLElement | null) => {
@@ -32,6 +35,5 @@ export default function useWidestComposition(
   return {
     items,
     ref,
-    clearCache,
   };
 }
