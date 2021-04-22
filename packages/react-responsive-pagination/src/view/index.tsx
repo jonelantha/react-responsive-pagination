@@ -1,13 +1,4 @@
-import React, { Ref } from 'react';
-
-export { useView } from './useView';
-
 export { createViewItem } from './createViewItem';
-
-export type ViewComponent = React.ComponentType<{
-  ref?: Ref<HTMLElement>;
-  items: ViewItem[];
-}>;
 
 export type ViewItem = Page | Nav | Ellipsis;
 
