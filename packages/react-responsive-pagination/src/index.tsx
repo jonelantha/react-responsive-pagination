@@ -1,4 +1,4 @@
-import React, { memo, MouseEventHandler } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { PageChangeHandler } from './view';
 import { usePaginationItems } from './hooks/usePaginationItems';
@@ -95,7 +95,10 @@ function BootstrapPaginationItem({
         <a
           className="page-link"
           href="#"
-          onClick={handleClick}
+          onClick={e => {
+            e.preventDefault();
+            handleClick();
+          }}
           aria-label={a11yLabel}
         >
           {getContent(label, a11yLabel)}
@@ -108,7 +111,7 @@ function BootstrapPaginationItem({
 }
 
 type BootstrapPaginationItemProps = {
-  onClick?: MouseEventHandler<HTMLAnchorElement>;
+  onClick?: () => void;
   isActive?: Boolean;
   label: string;
   a11yLabel?: string;
