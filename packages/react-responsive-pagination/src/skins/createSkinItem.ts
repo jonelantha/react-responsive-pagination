@@ -1,12 +1,7 @@
 import { SkinItem, NavType } from '.';
-import { MouseEventHandler } from 'react';
 
 export const createSkinItem = {
-  page: (
-    page: number,
-    active: boolean,
-    onClick: MouseEventHandler<HTMLAnchorElement>,
-  ): SkinItem => ({
+  page: (page: number, active: boolean, onClick: () => void): SkinItem => ({
     type: 'page',
     key: active ? `page_${page}` : `active_${page}`,
     label: page.toString(),
@@ -19,10 +14,7 @@ export const createSkinItem = {
     key: `ellipsis_${position}`,
   }),
 
-  nav: (
-    type: NavType,
-    onClick?: MouseEventHandler<HTMLAnchorElement>,
-  ): SkinItem => ({
+  nav: (type: NavType, onClick?: () => void): SkinItem => ({
     type,
     onClick,
     key: onClick ? type : `${type}_disabled`,

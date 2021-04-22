@@ -1,5 +1,3 @@
-import { MouseEventHandler } from 'react';
-
 export { createSkinItem } from './createSkinItem';
 
 export type SkinItem = { key: string } & (Page | Nav | Ellipsis);
@@ -8,12 +6,12 @@ type Page = {
   type: 'page';
   active: boolean;
   label: string;
-  onClick: MouseEventHandler<HTMLAnchorElement>;
+  onClick: () => void;
 };
 
 type Nav = {
   type: NavType;
-  onClick?: MouseEventHandler<HTMLAnchorElement>;
+  onClick?: () => void;
 };
 
 type Ellipsis = {
