@@ -1,10 +1,9 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import { BootstrapSkin, SkinComponent } from './skins';
-import { useView, PageChangeHandler } from './view';
+import { BootstrapSkin } from './skins';
+import { PageChangeHandler } from './view';
 import { usePaginationItems } from './hooks/usePaginationItems';
-
-export { SkinComponent };
+import { viewItemToSkinItem } from './view/viewItemToSkinItem';
 
 export default memo(Pagination);
 
@@ -16,9 +15,9 @@ function Pagination({
 }: Props) {
   const { items, ref } = usePaginationItems(current, total, maxWidth);
 
-  const View = useView(BootstrapSkin, handlePageChange);
+  const skinItems = items.map(viewItemToSkinItem(handlePageChange));
 
-  return items.length > 0 ? <View items={items} ref={ref} /> : null;
+  return items.length > 0 ? <BootstrapSkin items={skinItems} ref={ref} /> : null;
 }
 
 type Props = {
