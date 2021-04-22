@@ -1,13 +1,6 @@
-import { Ref, MouseEventHandler } from 'react';
-
-export { default as BootstrapSkin } from './BootstrapSkin';
+import { MouseEventHandler } from 'react';
 
 export { createSkinItem } from './createSkinItem';
-
-export type SkinComponent = React.ComponentType<{
-  ref?: Ref<HTMLElement>;
-  items: SkinItem[];
-}>;
 
 export type SkinItem = { key: string } & (Page | Nav | Ellipsis);
 
