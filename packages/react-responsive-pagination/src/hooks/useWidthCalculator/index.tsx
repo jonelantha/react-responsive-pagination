@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo } from 'react';
-import { ViewItem } from '../../view';
+import { PaginationItem } from '../../paginationItem';
 import {
   createWidthCalculator,
   WidthCalculator,
@@ -46,7 +46,7 @@ export function useWidthCalculator() {
 
 type RenderNeededResult = {
   renderNeeded: {
-    items: ViewItem[];
+    items: PaginationItem[];
     ref: (element: HTMLElement | null) => void;
   };
   clearCache: () => void;

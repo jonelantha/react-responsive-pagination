@@ -5,11 +5,11 @@ export function getViewMetricsFromContainer<ItemKey extends string>(
   containerElement: HTMLElement,
   itemKeys: ItemKey[],
 ): ViewMetrics<ItemKey> {
-  const viewItemElements = Array.from(containerElement.children) as HTMLElement[];
+  const itemElements = Array.from(containerElement.children) as HTMLElement[];
 
   return {
     outerFrameWidth: getNonContentWidth(containerElement),
-    itemWidths: getItemWidthsFromItemDomElements(itemKeys, viewItemElements),
+    itemWidths: getItemWidthsFromItemDomElements(itemKeys, itemElements),
   };
 }
 

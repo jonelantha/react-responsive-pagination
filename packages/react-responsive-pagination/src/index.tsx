@@ -1,8 +1,6 @@
 import React, { memo, MouseEventHandler } from 'react';
 import PropTypes from 'prop-types';
-import { PageChangeHandler } from './view';
 import { usePaginationItems } from './hooks/usePaginationItems';
-import { viewItemToSkinItem } from './view/viewItemToSkinItem';
 
 export default memo(BootstrapPagination);
 
@@ -16,16 +14,14 @@ function BootstrapPagination({
 }: BootstrapPaginationProps) {
   const { items, ref } = usePaginationItems(current, total, maxWidth);
 
-  const skinItems = items.map(viewItemToSkinItem(handlePageChange));
-
-  if (skinItems.length === 0) return null;
+  if (items.length === 0) return null;
 
   return (
     <ul
       className="pagination justify-content-center"
       ref={ref as React.Ref<HTMLUListElement>}
     >
-      {skinItems.map(item => {
+      {items.map(item => {
         switch (item.type) {
           case 'ellipsis':
             return (
@@ -40,10 +36,10 @@ function BootstrapPagination({
                   <a
                     className="page-link"
                     href="#"
-                    onClick={preventDefault(item.onClick)}
+                    onClick={preventDefault(() => handlePageChange(item.page))}
                     aria-label="(current)"
                   >
-                    <span aria-hidden="true">{item.label}</span>
+                    <span aria-hidden="true">{item.page}</span>
                     <span className="sr-only">(current)</span>
                   </a>
                 </li>
@@ -54,9 +50,9 @@ function BootstrapPagination({
                   <a
                     className="page-link"
                     href="#"
-                    onClick={preventDefault(item.onClick)}
+                    onClick={preventDefault(() => handlePageChange(item.page))}
                   >
-                    {item.label}
+                    {item.page}
                   </a>
                 </li>
               );
@@ -66,13 +62,13 @@ function BootstrapPagination({
             const label = item.type === 'previous' ? '«' : '»';
             const a11yLabel = item.type === 'previous' ? 'Previous' : 'Next';
 
-            if (item.onClick) {
+            if (item.page) {
               return (
                 <li className="page-item" key={item.key}>
                   <a
                     className="page-link"
                     href="#"
-                    onClick={preventDefault(item.onClick!)}
+                    onClick={preventDefault(() => handlePageChange(item.page!))}
                     aria-label={a11yLabel}
                   >
                     <span aria-hidden="true">{label}</span>
@@ -108,7 +104,7 @@ function preventDefault(handler: () => void): MouseEventHandler {
 type BootstrapPaginationProps = {
   current: number;
   total: number;
-  onPageChange: PageChangeHandler;
+  onPageChange: (page: number) => void;
   maxWidth?: number;
 };
 

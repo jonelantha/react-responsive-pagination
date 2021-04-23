@@ -1,14 +1,18 @@
-import { createViewItem, EllipsisPosition } from '../view';
+import {
+  createEllipsisItem,
+  createPageItem,
+  EllipsisPosition,
+} from '../paginationItem';
 
-export { narrowToWideViewItemRanges as narrowToWideRanges };
+export { narrowToWidePaginationItemRanges as narrowToWideRanges };
 
-function* narrowToWideViewItemRanges(
+function* narrowToWidePaginationItemRanges(
   start: number,
   end: number,
   ellipsisPos: EllipsisPosition,
 ) {
   for (const range of narrowToWideNumberRanges(start, end, ellipsisPos)) {
-    yield toViewItems(range, ellipsisPos);
+    yield toPaginationItems(range, ellipsisPos);
   }
 }
 
@@ -47,11 +51,11 @@ function getInclusiveWidth(first: number, last: number) {
   return last - first + 1;
 }
 
-function toViewItems(numberRange: NumberRange, ellipsisPos: EllipsisPosition) {
+function toPaginationItems(numberRange: NumberRange, ellipsisPos: EllipsisPosition) {
   return numberRange.map(number => {
-    if (number === '...') return createViewItem.ellipsis(ellipsisPos);
+    if (number === '...') return createEllipsisItem(ellipsisPos);
 
-    return createViewItem.page(number, false);
+    return createPageItem(number, false);
   });
 }
 

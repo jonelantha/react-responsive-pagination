@@ -1,14 +1,14 @@
 import { ForwardedRef, useCallback, useState } from 'react';
 import { setRefValue } from '../helpers/ref';
-import { ViewItem } from '../view';
+import { PaginationItem } from '../paginationItem';
 import { useAvailableWidth } from './useAvailableWidth';
 import { useWidestCompositionForWidth } from './useWidestCompositionForWidth';
 
 export function useWidestComposition(
-  narrowToWideCompositionsProvider: () => IterableIterator<ViewItem[]>,
+  narrowToWideCompositionsProvider: () => IterableIterator<PaginationItem[]>,
   maxWidth?: number,
 ): {
-  items: ViewItem[];
+  items: PaginationItem[];
   ref: ForwardedRef<HTMLElement | null>;
 } {
   const [containerElement, setContainerElement] = useState<HTMLElement | null>(null);
