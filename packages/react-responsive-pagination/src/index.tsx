@@ -1,10 +1,12 @@
-import React, { memo } from 'react';
+import React, { memo, MouseEventHandler } from 'react';
 import PropTypes from 'prop-types';
 import { PageChangeHandler } from './view';
 import { usePaginationItems } from './hooks/usePaginationItems';
 import { viewItemToSkinItem } from './view/viewItemToSkinItem';
 
 export default memo(BootstrapPagination);
+
+/* eslint-disable jsx-a11y/anchor-is-valid */
 
 function BootstrapPagination({
   current,
@@ -27,38 +29,80 @@ function BootstrapPagination({
         switch (item.type) {
           case 'ellipsis':
             return (
-              <BootstrapPaginationItem
-                key={item.key}
-                label={'…'}
-                a11yHidden={true}
-              />
+              <li className="page-item disabled" aria-hidden={true} key={item.key}>
+                <span className="page-link">…</span>
+              </li>
             );
           case 'page':
-            return (
-              <BootstrapPaginationItem
-                key={item.key}
-                onClick={item.onClick}
-                isActive={item.active}
-                label={item.label}
-                a11yLabel={item.active ? '(current)' : undefined}
-              />
-            );
+            if (item.active) {
+              return (
+                <li className="page-item active" key={item.key}>
+                  <a
+                    className="page-link"
+                    href="#"
+                    onClick={preventDefault(item.onClick)}
+                    aria-label="(current)"
+                  >
+                    <span aria-hidden="true">{item.label}</span>
+                    <span className="sr-only">(current)</span>
+                  </a>
+                </li>
+              );
+            } else {
+              return (
+                <li className="page-item" key={item.key}>
+                  <a
+                    className="page-link"
+                    href="#"
+                    onClick={preventDefault(item.onClick)}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              );
+            }
           case 'previous':
           case 'next':
-            return (
-              <BootstrapPaginationItem
-                key={item.key}
-                onClick={item.onClick}
-                label={item.type === 'previous' ? '«' : '»'}
-                a11yLabel={item.type === 'previous' ? 'Previous' : 'Next'}
-              />
-            );
+            const label = item.type === 'previous' ? '«' : '»';
+            const a11yLabel = item.type === 'previous' ? 'Previous' : 'Next';
+
+            if (item.onClick) {
+              return (
+                <li className="page-item" key={item.key}>
+                  <a
+                    className="page-link"
+                    href="#"
+                    onClick={preventDefault(item.onClick!)}
+                    aria-label={a11yLabel}
+                  >
+                    <span aria-hidden="true">{label}</span>
+                    <span className="sr-only">{a11yLabel}</span>
+                  </a>
+                </li>
+              );
+            } else {
+              return (
+                <li className="page-item disabled" key={item.key}>
+                  <span className="page-link">
+                    <span aria-hidden="true">{label}</span>
+                    <span className="sr-only">{a11yLabel}</span>
+                  </span>
+                </li>
+              );
+            }
           default:
             return null;
         }
       })}
     </ul>
   );
+}
+
+function preventDefault(handler: () => void): MouseEventHandler {
+  return e => {
+    e.preventDefault();
+    handler();
+  };
 }
 
 type BootstrapPaginationProps = {
@@ -74,57 +118,3 @@ BootstrapPagination.propTypes = {
   onPageChange: PropTypes.func.isRequired,
   maxWidth: PropTypes.number,
 };
-
-/* eslint-disable jsx-a11y/anchor-is-valid */
-
-function BootstrapPaginationItem({
-  label,
-  onClick: handleClick,
-  isActive = false,
-  a11yLabel,
-  a11yHidden,
-}: BootstrapPaginationItemProps) {
-  return (
-    <li
-      className={`page-item${isActive ? ' active' : ''}${
-        !handleClick ? ' disabled' : ''
-      }`}
-      aria-hidden={a11yHidden}
-    >
-      {handleClick ? (
-        <a
-          className="page-link"
-          href="#"
-          onClick={e => {
-            e.preventDefault();
-            handleClick();
-          }}
-          aria-label={a11yLabel}
-        >
-          {getContent(label, a11yLabel)}
-        </a>
-      ) : (
-        <span className="page-link">{getContent(label, a11yLabel)}</span>
-      )}
-    </li>
-  );
-}
-
-type BootstrapPaginationItemProps = {
-  onClick?: () => void;
-  isActive?: Boolean;
-  label: string;
-  a11yLabel?: string;
-  a11yHidden?: boolean;
-};
-
-function getContent(label: string, a11yLabel?: string) {
-  return a11yLabel ? (
-    <>
-      <span aria-hidden="true">{label}</span>
-      <span className="sr-only">{a11yLabel}</span>
-    </>
-  ) : (
-    label
-  );
-}
