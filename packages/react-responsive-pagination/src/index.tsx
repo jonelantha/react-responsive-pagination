@@ -1,6 +1,7 @@
-import React, { memo, MouseEventHandler } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { usePaginationItems } from './hooks/usePaginationItems';
+import { preventDefault } from './helpers/dom';
 
 export default memo(BootstrapPagination);
 
@@ -92,13 +93,6 @@ function BootstrapPagination({
       })}
     </ul>
   );
-}
-
-function preventDefault(handler: () => void): MouseEventHandler {
-  return e => {
-    e.preventDefault();
-    handler();
-  };
 }
 
 type BootstrapPaginationProps = {
