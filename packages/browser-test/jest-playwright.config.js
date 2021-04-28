@@ -1,5 +1,5 @@
 const commonConfig = {
-  exitOnPageError: false,
+  exitOnPageError: true,
 };
 
 if (process.env.PROD_TEST) {
