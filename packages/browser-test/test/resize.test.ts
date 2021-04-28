@@ -1,6 +1,10 @@
-export {};
+import { setupThrowOnError } from './helper';
 
 const testCssClasses = ['', 'add-margin-padding', 'add-margin-padding,content-box'];
+
+beforeAll(() => {
+  setupThrowOnError(page);
+});
 
 // prettier-ignore
 const testWidths = [
