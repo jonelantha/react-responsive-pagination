@@ -7,15 +7,11 @@ import {
 } from '../../widthCalculator';
 import { getViewMetricsFromContainer } from './getViewMetrics';
 import { objectUnzip } from '../../helpers/object';
-import { useIsUnmounted } from '../useIsUnmounted';
 
 export function useWidthCalculator() {
   const [baseMetrics, setBaseMetrics] = useState<WidthCalculatorBaseMetrics | null>(
     null,
   );
-
-  const isUnmounted = useIsUnmounted();
-
   const resetCalculator = useCallback(() => setBaseMetrics(null), []);
 
   const calculatorResult = useMemo(() => {
@@ -29,7 +25,7 @@ export function useWidthCalculator() {
       renderNeeded: {
         items,
         ref(containerElement) {
-          if (containerElement && !isUnmounted()) {
+          if (containerElement) {
             setBaseMetrics(getViewMetricsFromContainer(containerElement, itemKeys));
           }
         },
