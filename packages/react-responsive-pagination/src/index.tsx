@@ -18,10 +18,7 @@ function BootstrapPagination({
   if (items.length === 0) return null;
 
   return (
-    <ul
-      className="pagination justify-content-center"
-      ref={ref as React.Ref<HTMLUListElement>}
-    >
+    <ul className="pagination justify-content-center" ref={ref}>
       {items.map(({ key, page, label, a11yLabel, active, a11yHidden }) =>
         page === undefined ? (
           <li className="page-item disabled" aria-hidden={a11yHidden} key={key}>
