@@ -9,11 +9,11 @@ export function createItemWidthCalculator({
 }: Params) {
   return function itemWidthCalculator(item: PaginationItem) {
     if (item.type === 'page') {
-      return getPageWidth(item.page!, item.active ?? false);
+      return getPageWidth(item.label, item.active ?? false);
     }
 
     if (item.type === 'previous' || item.type === 'next') {
-      return getNavWidth(item.type, item.page !== undefined);
+      return getNavWidth(item.type, item.gotoPage !== undefined);
     }
 
     if (item.type === 'ellipsis') {

@@ -19,17 +19,19 @@ function BootstrapPagination({
 
   return (
     <ul className="pagination justify-content-center" ref={ref}>
-      {items.map(({ key, page, label, a11yLabel, active, a11yHidden }) =>
-        page === undefined ? (
+      {items.map(({ key, gotoPage, label, a11yLabel, active, a11yHidden }) =>
+        gotoPage === undefined ? (
+          // non clickable item
           <li className="page-item disabled" aria-hidden={a11yHidden} key={key}>
             <span className="page-link">{getLabel(label, a11yLabel)}</span>
           </li>
         ) : (
+          // clickable item
           <li className={`page-item${active ? ' active' : ''}`} key={key}>
             <a
               className="page-link"
               href="#"
-              onClick={preventDefault(() => handlePageChange(page))}
+              onClick={preventDefault(() => handlePageChange(gotoPage))}
               aria-label={a11yLabel}
             >
               {getLabel(label, a11yLabel)}

@@ -1,6 +1,6 @@
 export function createNumberWidthCalculator(widths: Params) {
-  return function numberWidthCalculator(num: number) {
-    const numDigits = num.toString().length;
+  return function numberWidthCalculator(label: string) {
+    const numDigits = label.length;
 
     return (
       widths.singleDigit +

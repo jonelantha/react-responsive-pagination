@@ -1,7 +1,7 @@
 export type PaginationItem = {
   type: 'page' | 'ellipsis' | 'next' | 'previous';
   key: string;
-  page?: number;
+  gotoPage?: number;
   label: string;
   active?: boolean;
   a11yLabel?: string;
@@ -12,13 +12,13 @@ export type NavType = 'next' | 'previous';
 
 export type EllipsisPosition = 'left' | 'right';
 
-export function createNavItem(type: NavType, page?: number): PaginationItem {
+export function createNavItem(type: NavType, gotoPage?: number): PaginationItem {
   return {
     type,
-    key: page === undefined ? type : `${type}_disabled`,
+    key: gotoPage === undefined ? type : `${type}_disabled`,
     label: type === 'previous' ? '«' : '»',
     a11yLabel: type === 'previous' ? 'Previous' : 'Next',
-    page,
+    gotoPage,
   };
 }
 
@@ -28,7 +28,7 @@ export function createPageItem(page: number, active: boolean): PaginationItem {
     key: active ? `page_${page}` : `active_${page}`,
     label: page.toString(),
     a11yLabel: active ? '(current)' : undefined,
-    page,
+    gotoPage: page,
     active,
   };
 }
