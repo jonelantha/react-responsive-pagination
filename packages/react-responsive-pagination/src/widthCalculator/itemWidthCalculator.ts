@@ -9,7 +9,7 @@ export function createItemWidthCalculator({
 }: Params) {
   return function itemWidthCalculator(item: PaginationItem) {
     if (item.type === 'page') {
-      return getPageWidth(item.page, item.active);
+      return getPageWidth(item.page!, item.active ?? false);
     }
 
     if (item.type === 'previous' || item.type === 'next') {
