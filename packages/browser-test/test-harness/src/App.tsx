@@ -22,7 +22,7 @@ function App() {
     onSubmit: () => {},
   });
 
-  const cssExtraClassOptions = ['add-margin-padding', 'content-box'];
+  const cssExtraClassOptions = ['add-margin-padding', 'content-box', 'demo'];
 
   const [cssExtraClasses, toggleCssExtraClass] = makeToggles(
     useURLParam('css'),

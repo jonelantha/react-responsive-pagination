@@ -9,7 +9,7 @@
 
 A React pagination component which intelligently renders to the available width. Styled for Bootstrap 4
 
-![Example pagination](./pagination.png?raw=true 'React Responsive Pagination')
+<img src="./react-responsive-pagination.gif?raw=true" width="985" alt="react-responsive-pagination example" />
 
 ## How do I use it?
 
