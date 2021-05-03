@@ -7,13 +7,14 @@
 ![release](https://github.com/jonelantha/react-responsive-pagination/workflows/Release/badge.svg)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-A React pagination component which intelligently renders to the available width. Styled for Bootstrap 4
+A React pagination component which intelligently renders to the available width.  
+Styled for Bootstrap 4.
 
 <img src="./react-responsive-pagination.gif?raw=true" width="985" alt="react-responsive-pagination example" />
 
 ## How do I use it?
 
-- Make sure your project is using the [Bootstrap 4 CSS styles](https://getbootstrap.com/docs/4.3/getting-started/download/)
+- Make sure your project is either using the [Bootstrap 4 CSS styles](https://getbootstrap.com/docs/4.6/getting-started/download/) or alternatively you can provide your own styles, see [Requirements](#requirements--compatibility) below
 
 - Include the pagination component in your React project with `npm install react-responsive-pagination`
 
@@ -29,9 +30,12 @@ A React pagination component which intelligently renders to the available width.
 
 - React 16.8 (the one with hooks)
 
-- [Bootstrap 4 CSS styles](https://getbootstrap.com/docs/4.3/getting-started/download/) used in your project
+- Provide the correct styles in your project:
 
-- Modern browsers only (IE 11 is untested and unlikely to work)
+  - Either [Bootstrap 4 CSS styles](https://getbootstrap.com/docs/4.6/getting-started/download/)
+  - Or alternatively use your own styles for the following classes: [.pagination](https://github.com/twbs/bootstrap/blob/767856c7b802fe50bc68246fce248c100b563593/dist/css/bootstrap.css#L5031-L5037), [.page-item](https://github.com/twbs/bootstrap/blob/767856c7b802fe50bc68246fce248c100b563593/dist/css/bootstrap.css#L5064-L5088), [.page-link](https://github.com/twbs/bootstrap/blob/767856c7b802fe50bc68246fce248c100b563593/dist/css/bootstrap.css#L5039-L5062) & [.sr-only](https://github.com/twbs/bootstrap/blob/767856c7b802fe50bc68246fce248c100b563593/dist/css/bootstrap.css#L8064-L8074)
+
+- Modern browsers only - not suitable for IE 11
 
 ### Usage Example
 
@@ -66,9 +70,9 @@ The final thing to note is that for very narrow widths the component may exceed 
 
 ### Props
 
-| Prop name    | Type                      | Description                                                                                                                                                                                                                                 |
-| ------------ | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| current      | number                    | The current active page. Indexed from 1                                                                                                                                                                                                     |
-| total        | number                    | The total number of pages                                                                                                                                                                                                                   |
-| onPageChange | (newPage: number) => void | A callback handler which is called when the user clicks a new page, note that the active page will not change unless the `current` prop is updated to reflect the new page (as in the example above). The `newPage` value is indexed from 1 |
-| maxWidth     | number                    | The maximum width (in pixels) of the pagination component. Specify a value if you want to override the automatic sizing. Note this width may be exceeded in the case where it's not possible to output a small enough component             |
+| Prop name           | Type                      | Description                                                                                                                                                                                                                                 |
+| ------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| current             | number                    | The current active page. Indexed from 1                                                                                                                                                                                                     |
+| total               | number                    | The total number of pages                                                                                                                                                                                                                   |
+| onPageChange        | (newPage: number) => void | A callback handler which is called when the user clicks a new page, note that the active page will not change unless the `current` prop is updated to reflect the new page (as in the example above). The `newPage` value is indexed from 1 |
+| maxWidth (optional) | number                    | (optional) The maximum width (in pixels) of the pagination component. Specify a value if you want to override the automatic sizing. Note this width may be exceeded in the case where it's not possible to output a small enough component  |
