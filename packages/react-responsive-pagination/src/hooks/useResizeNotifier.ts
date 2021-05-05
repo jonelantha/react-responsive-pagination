@@ -11,15 +11,15 @@ export function useResizeNotifier(
   }, [callback]);
 
   useLayoutEffect(() => {
+    if (!element) return;
+
     const resizeObserver = new ResizeObserver(
       withResizeLoopDetection(() => {
         callBackRef.current!();
       }),
     );
 
-    if (element) {
-      resizeObserver.observe(element);
-    }
+    resizeObserver.observe(element);
 
     return () => {
       resizeObserver.disconnect();

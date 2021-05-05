@@ -1,54 +1,73 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import { narrowToWideCompositions } from './compositions';
-import { BootstrapSkin, SkinComponent } from './skins';
-import { useView, PageChangeHandler } from './view';
-import AutoWidthRenderer from './renderers/AutoWidthRenderer';
-import MaxWidthRenderer from './renderers/MaxWidthRenderer';
-import { sanatizeInteger } from './helpers/util';
+import { usePaginationItems } from './hooks/usePaginationItems';
+import { preventDefault } from './helpers/dom';
 
-export { SkinComponent };
+export default memo(BootstrapPagination);
 
-export default memo(Pagination);
+/* eslint-disable jsx-a11y/anchor-is-valid */
 
-function Pagination({
-  current: propsCurrent,
-  total: propsTotal,
+function BootstrapPagination({
+  current,
+  total,
   onPageChange: handlePageChange,
   maxWidth,
-}: Props) {
-  const total = sanatizeInteger(propsTotal);
+}: BootstrapPaginationProps) {
+  const { items, ref } = usePaginationItems(current, total, maxWidth);
 
-  const current = Math.max(1, Math.min(sanatizeInteger(propsCurrent), total));
+  if (items.length === 0) return null;
 
-  const Skin = BootstrapSkin;
-
-  const View = useView(Skin, handlePageChange);
-
-  const narrowToWideCompositionsProvider = () =>
-    narrowToWideCompositions(current, total);
-
-  if (total <= 0) {
-    return null;
-  } else if (maxWidth === undefined) {
-    return <AutoWidthRenderer {...{ narrowToWideCompositionsProvider, View }} />;
-  } else {
-    return (
-      <MaxWidthRenderer {...{ maxWidth, narrowToWideCompositionsProvider, View }} />
-    );
-  }
+  return (
+    <ul className="pagination justify-content-center" ref={ref}>
+      {items.map(item =>
+        item.gotoPage !== undefined ? (
+          // item = ClickableItem
+          <li key={item.key} className={`page-item${item.active ? ' active' : ''}`}>
+            <a
+              className="page-link"
+              href="#"
+              onClick={preventDefault(() => handlePageChange(item.gotoPage))}
+              aria-label={item.a11yLabel}
+            >
+              {getLabel(item.label, item.a11yLabel)}
+            </a>
+          </li>
+        ) : (
+          // item = NonClickableItem
+          <li
+            key={item.key}
+            className="page-item disabled"
+            aria-hidden={item.a11yHidden}
+          >
+            <span className="page-link">{getLabel(item.label, item.a11yLabel)}</span>
+          </li>
+        ),
+      )}
+    </ul>
+  );
 }
 
-type Props = {
+type BootstrapPaginationProps = {
   current: number;
   total: number;
-  onPageChange: PageChangeHandler;
+  onPageChange: (page: number) => void;
   maxWidth?: number;
 };
 
-Pagination.propTypes = {
+BootstrapPagination.propTypes = {
   current: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
   maxWidth: PropTypes.number,
 };
+
+function getLabel(label: string, a11yLabel: string | undefined) {
+  return a11yLabel ? (
+    <>
+      <span aria-hidden="true">{label}</span>
+      <span className="sr-only">{a11yLabel}</span>
+    </>
+  ) : (
+    label
+  );
+}

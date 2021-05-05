@@ -3,11 +3,24 @@ import { createItemWidthCalculator } from './itemWidthCalculator';
 import { createNavWidthCalculator } from './navWidthCalculator';
 import { createPageWidthCalculator } from './pageWidthCalculator';
 import { createNumberWidthCalculator } from './numberWidthCalculator';
+import {
+  createPageItem,
+  createEllipsisItem,
+  createNavItem,
+} from '../paginationItem';
 
-export { createGraph as createWidthCalculator };
+export function createWidthCalculator(
+  baseMetrics: WidthCalculatorBaseMetrics | null,
+) {
+  if (!baseMetrics) {
+    return { requiredBaseMetrics: baseMetricItemsToMeasure };
+  }
 
-function createGraph(rootMetrics: WidthCalculatorRootMetrics) {
-  const { itemWidths, outerFrameWidth } = rootMetrics;
+  return createGraph(baseMetrics);
+}
+
+function createGraph(baseMetrics: WidthCalculatorBaseMetrics) {
+  const { itemWidths, outerFrameWidth } = baseMetrics;
 
   return createTotalWidthCalculator({
     getItemWidth: createItemWidthCalculator({
@@ -37,7 +50,19 @@ function createGraph(rootMetrics: WidthCalculatorRootMetrics) {
   });
 }
 
-export type WidthCalculatorRootMetrics = {
+const baseMetricItemsToMeasure = {
+  normalPageSingleDigit: createPageItem(8, false),
+  normalPageDoubleDigit: createPageItem(88, false),
+  activePageSingleDigit: createPageItem(8, true),
+  activePageDoubleDigit: createPageItem(88, true),
+  navPreviousEnabled: createNavItem('previous', 0),
+  navPreviousDisabled: createNavItem('previous'),
+  navNextEnabled: createNavItem('next', 0),
+  navNextDisabled: createNavItem('next'),
+  ellipsis: createEllipsisItem('left'),
+};
+
+export type WidthCalculatorBaseMetrics = {
   outerFrameWidth: number;
   itemWidths: {
     normalPageSingleDigit: number;

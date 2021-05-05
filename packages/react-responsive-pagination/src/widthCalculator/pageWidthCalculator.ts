@@ -4,8 +4,8 @@ export function createPageWidthCalculator({
   getActivePageWidth,
   getNormalPageWidth,
 }: Params) {
-  return function pageWidthCalculator(page: number, active: boolean) {
-    return active ? getActivePageWidth(page) : getNormalPageWidth(page);
+  return function pageWidthCalculator(label: string, active: boolean) {
+    return active ? getActivePageWidth(label) : getNormalPageWidth(label);
   };
 }
 

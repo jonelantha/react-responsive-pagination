@@ -1,5 +1,5 @@
 import { useState, useLayoutEffect } from 'react';
-import { getContentWidth } from '../../../helpers/style';
+import { getContentWidth } from '../helpers/style';
 import { useResizeNotifier } from './useResizeNotifier';
 
 export function useContentWidth(element: HTMLElement | undefined) {

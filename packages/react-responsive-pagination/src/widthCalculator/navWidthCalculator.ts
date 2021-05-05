@@ -1,4 +1,4 @@
-import { NavType } from '../../../../view';
+import { NavType } from '../paginationItem';
 
 export function createNavWidthCalculator(widths: Params) {
   return function navWidthCalculator(type: NavType, enabled: boolean) {
