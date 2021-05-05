@@ -33,7 +33,9 @@ Styled for Bootstrap 4.
 - Provide the correct styles in your project:
 
   - Either [Bootstrap 4 CSS styles](https://getbootstrap.com/docs/4.6/getting-started/download/)
-  - Or alternatively use your own styles for the following classes: [.pagination](https://github.com/twbs/bootstrap/blob/767856c7b802fe50bc68246fce248c100b563593/dist/css/bootstrap.css#L5031-L5037), [.page-item](https://github.com/twbs/bootstrap/blob/767856c7b802fe50bc68246fce248c100b563593/dist/css/bootstrap.css#L5064-L5088), [.page-link](https://github.com/twbs/bootstrap/blob/767856c7b802fe50bc68246fce248c100b563593/dist/css/bootstrap.css#L5039-L5062) & [.sr-only](https://github.com/twbs/bootstrap/blob/767856c7b802fe50bc68246fce248c100b563593/dist/css/bootstrap.css#L8064-L8074)
+  - Or alternatively you can use your own styles, here are some examples:
+    - [Minimal styles](./css/min.css)
+    - [Bootstrap pagination styles](./css/minBootstrap.css)
 
 - Modern browsers only - not suitable for IE 11
 
