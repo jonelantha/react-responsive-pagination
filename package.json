@@ -10,5 +10,8 @@
     "start-test-harness": "yarn workspace browser-test start-harness",
     "test-dev": "yarn workspace browser-test test-dev",
     "test": "yarn workspace browser-test test"
+  },
+  "dependencies": {
+    "typescript": "^4.2.4"
   }
 }
