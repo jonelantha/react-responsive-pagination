@@ -1,0 +1,17 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "react-responsive-pagination-docs",
+  "private": true,
+  "dependencies": {
+    "gatsby": "^3.5.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "start": "npm run develop",
+    "clean": "gatsby clean"
+  }
+}
