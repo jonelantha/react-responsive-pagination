@@ -9,8 +9,6 @@ module.exports = {
     'gatsby-plugin-styled-components',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sitemap',
-    'gatsby-plugin-sharp',
-    'gatsby-remark-images',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -22,15 +20,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
-        gatsbyRemarkPlugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 1035,
-              sizeByPixelDensity: true,
-            },
-          },
-        ],
+        gatsbyRemarkPlugins: [],
         extensions: ['.mdx', '.md'],
       },
     },
