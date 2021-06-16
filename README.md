@@ -10,7 +10,9 @@
 A React pagination component which intelligently renders to the available width.  
 Styled for Bootstrap 4.
 
-<img src="./react-responsive-pagination.gif?raw=true" width="985" alt="react-responsive-pagination example" />
+<a href="https://react-responsive-pagination.elantha.com/live-demo/"><img src="./react-responsive-pagination.gif?raw=true" width="985" alt="react-responsive-pagination example" /></a>
+
+### ⚡️ [LIVE DEMO - try it out for yourself!](https://react-responsive-pagination.elantha.com/live-demo/) 🚀
 
 ## How do I use it?
 
