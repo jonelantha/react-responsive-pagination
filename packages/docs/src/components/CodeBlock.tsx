@@ -1,12 +1,13 @@
 import Highlight, { defaultProps, Language } from 'prism-react-renderer';
 import prismTheme from 'prism-react-renderer/themes/vsDark';
 import styled from 'styled-components';
+import { borderRadius } from './GlobalStyles';
 
 const monoFont = `SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace`;
 
 const CodeContainer = styled.div`
   overflow-y: auto;
-  border-radius: 0.4rem;
+  border-radius: ${borderRadius};
 `;
 
 const CodeStyled = styled.code`

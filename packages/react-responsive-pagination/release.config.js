@@ -47,7 +47,7 @@ function getNormalConfig() {
 function getCommitAnalyzerConfig() {
   return {
     preset: 'angular',
-    releaseRules: [{ type: 'docs', release: 'patch' }],
+    releaseRules: [{ type: 'docs', scope: 'README', release: 'patch' }],
   };
 }
 

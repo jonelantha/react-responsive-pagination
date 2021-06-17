@@ -11,6 +11,8 @@ const colorContent = '#1c1e21';
 
 export const leading = '1.25rem';
 
+export const borderRadius = '0.4rem';
+
 const GlobalStyles = createGlobalStyle`
   * {
     box-sizing: border-box;
