@@ -6,14 +6,23 @@ description: 'react-responsive-pagination live demo and examples'
 import OverrideSSR from "../../src/components/OverrideSSR"
 import BootstrapLiveDemoClass from "./BootstrapLiveDemoClass"
 import BootstrapSSR from "./BootstrapSSR"
+import ResizeContainer from "./ResizeContainer"
 
 # [react-responsive-pagination](https://www.npmjs.com/package/react-responsive-pagination)
 
 **Live Demo** - try resizing your browser to see the component automatically adjust to the available width.
 
-<OverrideSSR ssrContent={<BootstrapSSR />}>
+<OverrideSSR ssrContent={
+<ResizeContainer visibilityHidden={true}>
+<BootstrapSSR />
+</ResizeContainer>
+}>
+<ResizeContainer>
 <BootstrapLiveDemoClass />
+</ResizeContainer>
 </OverrideSSR>
+
+NOTE: the striped region illustrates the component's container, it's not part of the component 🙂
 
 ## Example: Functional Component (using hooks)
 
