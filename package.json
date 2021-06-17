@@ -9,7 +9,9 @@
     "release": "yarn workspace react-responsive-pagination release",
     "start-test-harness": "yarn workspace browser-test start-harness",
     "test-dev": "yarn workspace browser-test test-dev",
-    "test": "yarn workspace browser-test test"
+    "test": "yarn workspace browser-test test",
+    "start-docs": "yarn workspace docs develop",
+    "build-docs": "yarn workspace docs build"
   },
   "dependencies": {
     "typescript": "^4.3.2"
