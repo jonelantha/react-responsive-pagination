@@ -12,7 +12,7 @@
     "@types/styled-components": "^5.1.10",
     "babel-plugin-styled-components": "^1.12.0",
     "bootstrap": "^4.6.0",
-    "gatsby": "^3.7.1",
+    "gatsby": "^3.7.2",
     "gatsby-plugin-mdx": "^2.7.1",
     "gatsby-plugin-react-helmet": "^4.7.1",
     "gatsby-plugin-sitemap": "^4.3.1",

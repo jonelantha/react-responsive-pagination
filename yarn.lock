@@ -3880,12 +3880,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^17.0.7":
-  version: 17.0.7
-  resolution: "@types/react-dom@npm:17.0.7"
+"@types/react-dom@npm:^17.0.8":
+  version: 17.0.8
+  resolution: "@types/react-dom@npm:17.0.8"
   dependencies:
     "@types/react": "*"
-  checksum: 97df2088b5e1e1d3c6bf2ff6e4f8536bcd788cc7baeb49d912184923e4bee63d155d9821f15c4f36a6b89afe043f892d20015063a39a67aebf14dbc8998a1ccf
+  checksum: 3859a6e06ec4545319c159ea71814beb3822801f0d4c41219855258557722cbcec8b5fba84551489169ec228b8817b4c05a8ef0dc87eb2bafb4d1431d1af9608
   languageName: node
   linkType: hard
 
@@ -4151,7 +4151,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^4.15.2, @typescript-eslint/eslint-plugin@npm:^4.26.1, @typescript-eslint/eslint-plugin@npm:^4.5.0":
+"@typescript-eslint/eslint-plugin@npm:^4.15.2, @typescript-eslint/eslint-plugin@npm:^4.27.0, @typescript-eslint/eslint-plugin@npm:^4.5.0":
   version: 4.27.0
   resolution: "@typescript-eslint/eslint-plugin@npm:4.27.0"
   dependencies:
@@ -4204,7 +4204,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^4.15.2, @typescript-eslint/parser@npm:^4.26.1, @typescript-eslint/parser@npm:^4.5.0":
+"@typescript-eslint/parser@npm:^4.15.2, @typescript-eslint/parser@npm:^4.27.0, @typescript-eslint/parser@npm:^4.5.0":
   version: 4.27.0
   resolution: "@typescript-eslint/parser@npm:4.27.0"
   dependencies:
@@ -6226,7 +6226,7 @@ __metadata:
     jest-playwright-preset: ^1.6.1
     playwright: ^1.12.2
     ts-jest: ^27.0.3
-    typescript: ^4.3.2
+    typescript: ^4.3.4
   languageName: unknown
   linkType: soft
 
@@ -9013,7 +9013,7 @@ __metadata:
     "@types/styled-components": ^5.1.10
     babel-plugin-styled-components: ^1.12.0
     bootstrap: ^4.6.0
-    gatsby: ^3.7.1
+    gatsby: ^3.7.2
     gatsby-plugin-mdx: ^2.7.1
     gatsby-plugin-react-helmet: ^4.7.1
     gatsby-plugin-sitemap: ^4.3.1
@@ -11481,9 +11481,9 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"gatsby@npm:^3.7.1":
-  version: 3.7.1
-  resolution: "gatsby@npm:3.7.1"
+"gatsby@npm:^3.7.2":
+  version: 3.7.2
+  resolution: "gatsby@npm:3.7.2"
   dependencies:
     "@babel/code-frame": ^7.14.0
     "@babel/core": ^7.14.0
@@ -11643,7 +11643,7 @@ fsevents@^1.2.7:
     react-dom: ^16.9.0 || ^17.0.0
   bin:
     gatsby: ./cli.js
-  checksum: ece81f0ce02339f7ad3afd678d363c66fff68c24569f1f59a19c58c9221b50eb60fe1f7c1ea868808b4dba17e631c5ec1c907d9f0fac46c6208fc864f1c473e9
+  checksum: f5713517a67de0fa389cc7e6094676130ff39d1563bf52bd827fe733432ee12dc6faeb44cf7e9c3a596d6ec8172a80f7963b52414076debaf34221f46ba2c52a
   languageName: node
   linkType: hard
 
@@ -20918,9 +20918,9 @@ fsevents@^1.2.7:
     "@semantic-release/git": ^9.0.0
     "@types/prop-types": ^15.7.3
     "@types/react": ^17.0.11
-    "@types/react-dom": ^17.0.7
-    "@typescript-eslint/eslint-plugin": ^4.26.1
-    "@typescript-eslint/parser": ^4.26.1
+    "@types/react-dom": ^17.0.8
+    "@typescript-eslint/eslint-plugin": ^4.27.0
+    "@typescript-eslint/parser": ^4.27.0
     babel-eslint: ^10.1.0
     eslint: ^7.28.0
     eslint-config-react-app: ^6.0.0
@@ -20934,8 +20934,8 @@ fsevents@^1.2.7:
     react-dom: ^17.0.2
     resize-observer-polyfill: ^1.5.1
     rimraf: ^3.0.2
-    semantic-release: ^17.4.3
-    typescript: ^4.3.2
+    semantic-release: ^17.4.4
+    typescript: ^4.3.4
   peerDependencies:
     react: ^16.8.0 || ^17.0.0
     react-dom: ^16.8.0 || ^17.0.0
@@ -22045,7 +22045,7 @@ resolve@^2.0.0-next.3:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    typescript: ^4.3.2
+    typescript: ^4.3.4
   languageName: unknown
   linkType: soft
 
@@ -22256,9 +22256,9 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"semantic-release@npm:17.4.3, semantic-release@npm:^17.4.3":
-  version: 17.4.3
-  resolution: "semantic-release@npm:17.4.3"
+"semantic-release@npm:17.4.4, semantic-release@npm:^17.4.4":
+  version: 17.4.4
+  resolution: "semantic-release@npm:17.4.4"
   dependencies:
     "@semantic-release/commit-analyzer": ^8.0.0
     "@semantic-release/error": ^2.2.0
@@ -22290,7 +22290,7 @@ resolve@^2.0.0-next.3:
     yargs: ^16.2.0
   bin:
     semantic-release: bin/semantic-release.js
-  checksum: a670e0a551e5aa368a9fa8738334363d4931cfca3c0e490c52b926da2e0d7b7e6c7897c58b4640a4ff2c29db30bb51252bb68f8f844ceba0f54cc8a9df4db088
+  checksum: 4c78340c628c74aa2d76343086edd80f15233e25c735e924f203b22ca075bf1412488180aaf7a3e9c2d1e37a4dd0e9da7fcd59b8511e8b1fa9c1e7982d500988
   languageName: node
   linkType: hard
 
@@ -24017,7 +24017,7 @@ resolve@^2.0.0-next.3:
     "@types/jest": ^26.0.23
     "@types/node": ^14.17.3
     "@types/react": ^17.0.11
-    "@types/react-dom": ^17.0.7
+    "@types/react-dom": ^17.0.8
     "@types/react-router-dom": ^5.1.7
     bootstrap: ^4.6.0
     eslint-config-react-app: ^6.0.0
@@ -24028,7 +24028,7 @@ resolve@^2.0.0-next.3:
     react-router-dom: ^5.2.0
     react-scripts: 4.0.3
     serve: 12.0.0
-    typescript: ^4.3.2
+    typescript: ^4.3.4
   languageName: unknown
   linkType: soft
 
@@ -24618,23 +24618,23 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-typescript@^4.3.2:
-  version: 4.3.2
-  resolution: "typescript@npm:4.3.2"
+typescript@^4.3.4:
+  version: 4.3.4
+  resolution: "typescript@npm:4.3.4"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 21e1285402e32fd240f6ad3f97b6fea81b90d2591f412677d01b570a8bd93151d1e08460d58f43689fc758671a5baaebb16fa93d3c8260181612c8e619bd24f7
+  checksum: 9791c5fe98db6cb70ec0efad8d3d2eb957b9643ee600b90bff49267de69768d0d5f59c41a8fd731cfd63df1ccfb2cb25505a2015d7b39ac10ea51f605a058e16
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.3.2#builtin<compat/typescript>":
-  version: 4.3.2
-  resolution: "typescript@patch:typescript@npm%3A4.3.2#builtin<compat/typescript>::version=4.3.2&hash=ddfc1b"
+"typescript@patch:typescript@^4.3.4#builtin<compat/typescript>":
+  version: 4.3.4
+  resolution: "typescript@patch:typescript@npm%3A4.3.4#builtin<compat/typescript>::version=4.3.4&hash=ddfc1b"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 68d48dc86dacfeab59a22414ff061c976c46b679a9717a3a710051ea7bab779fd23f4edb856434da8155e8e8646c90b3912e342cc0010dfd15ed321a42cb0578
+  checksum: c8766e84a4f71e925cc059af8286cc7f41819fe821d433b90c83e9b36729cbda7a8e4be3292d8a1433cd717d529c93217d58d173418f43862290b206bd88b284
   languageName: node
   linkType: hard
 
