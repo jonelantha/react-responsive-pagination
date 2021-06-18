@@ -18,19 +18,22 @@
     "tsc-esnext": "rimraf lib/ && tsc --project ./tsconfig/esnext.json",
     "build": "yarn lint && yarn tsc-commonjs && yarn tsc-esnext",
     "start": "rimraf lib/ && tsc --project ./tsconfig/dev.json --watch",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "yarn workspace browser-test test",
     "lint": "eslint --ext .ts --ext .tsx src",
-    "prepublishOnly": "yarn copy-readme && yarn build",
-    "copy-readme": "cp '../../README.md' .",
+    "prepublishOnly": "yarn build",
     "release": "semantic-release",
     "previewReleaseNotes": "semantic-release --dry-run"
   },
   "keywords": [
     "responsive",
     "pagination",
+    "react pagination",
+    "responsive pagination",
     "react",
     "reactjs",
-    "react-component"
+    "react-component",
+    "bootstrap",
+    "react bootstrap pagination"
   ],
   "eslintConfig": {
     "extends": "react-app"
@@ -48,9 +51,9 @@
     "@semantic-release/git": "^9.0.0",
     "@types/prop-types": "^15.7.3",
     "@types/react": "^17.0.11",
-    "@types/react-dom": "^17.0.7",
-    "@typescript-eslint/eslint-plugin": "^4.26.1",
-    "@typescript-eslint/parser": "^4.26.1",
+    "@types/react-dom": "^17.0.8",
+    "@typescript-eslint/eslint-plugin": "^4.27.0",
+    "@typescript-eslint/parser": "^4.27.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.28.0",
     "eslint-config-react-app": "^6.0.0",
@@ -62,7 +65,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "rimraf": "^3.0.2",
-    "semantic-release": "^17.4.3",
-    "typescript": "^4.3.2"
+    "semantic-release": "^17.4.4",
+    "typescript": "^4.3.4"
   }
 }
