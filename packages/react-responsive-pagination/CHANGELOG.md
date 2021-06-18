@@ -1,5 +1,12 @@
 # React Responsive Pagination Changelog
 
+## [1.1.6](https://github.com/jonelantha/react-responsive-pagination/compare/v1.1.5...v1.1.6) (2021-06-18)
+
+
+### Bug Fixes
+
+* Dependency updates ([a6446ab](https://github.com/jonelantha/react-responsive-pagination/commit/a6446ab307b65264d93e3c8e8cb8a3cf1cf8c43a))
+
 ## [1.1.5](https://github.com/jonelantha/react-responsive-pagination/compare/v1.1.4...v1.1.5) (2021-06-16)
 
 
