@@ -1,0 +1,1 @@
+packages/react-responsive-pagination/README.md
