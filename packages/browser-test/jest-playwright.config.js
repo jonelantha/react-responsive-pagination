@@ -12,6 +12,7 @@ if (process.env.PROD_TEST) {
       command: 'yarn serve-harness',
       port: 5000,
       debug: true,
+      launchTimeout: 10000,
     },
   };
 } else {
