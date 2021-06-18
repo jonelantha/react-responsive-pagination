@@ -27,9 +27,13 @@
   "keywords": [
     "responsive",
     "pagination",
+    "react pagination",
+    "responsive pagination",
     "react",
     "reactjs",
-    "react-component"
+    "react-component",
+    "bootstrap",
+    "react bootstrap pagination"
   ],
   "eslintConfig": {
     "extends": "react-app"
