@@ -1,9 +1,7 @@
 import Highlight, { defaultProps, Language } from 'prism-react-renderer';
 import prismTheme from 'prism-react-renderer/themes/vsDark';
 import styled from 'styled-components';
-import { borderRadius } from './GlobalStyles';
-
-const monoFont = `SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace`;
+import { borderRadius, monoFontFamily } from './GlobalStyles';
 
 const CodeContainer = styled.div`
   overflow-y: auto;
@@ -13,7 +11,7 @@ const CodeContainer = styled.div`
 const CodeStyled = styled.code`
   float: left;
   padding: 1rem;
-  font: 90% / 1.45 ${monoFont};
+  font: 90% / 1.45 ${monoFontFamily};
 `;
 
 export default function CodeBlock({

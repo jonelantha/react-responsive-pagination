@@ -1,5 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
 
+const mainFontFamily = `system-ui, -apple-system, BlinkMacSystemFont,
+'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+'Segoe UI Emoji', 'Segoe UI Symbol'`;
+export const monoFontFamily = `SFMono-Regular, Menlo, Monaco, Consolas,
+'Liberation Mono', 'Courier New', monospace`;
+export const headingFontFamily = `Trebuchet MS`;
+
 const fontWeightBold = 700;
 export const fontWeightSemiBold = 500;
 const headingLineHeight = 1.25;
@@ -21,9 +28,7 @@ const GlobalStyles = createGlobalStyle`
   html {
     background-color: transparent;
     color: ${colorContent};
-    font: 100%/1.65 system-ui, -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol';
+    font: 100%/1.65 ${mainFontFamily};
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: transparent;
     text-rendering: optimizelegibility;
@@ -49,6 +54,7 @@ const GlobalStyles = createGlobalStyle`
   h4,
   h5,
   h6 {
+    font: 100%/1.65 ${headingFontFamily};
     color: inherit;
     font-weight: ${fontWeightBold};
     line-height: ${headingLineHeight};
