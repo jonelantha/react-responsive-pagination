@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import Pagination from 'react-responsive-pagination';
 
 export default class BootstrapLiveDemoClass extends Component {
