@@ -1,7 +1,6 @@
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import { math } from 'polished';
-import 'bootstrap/dist/css/bootstrap.css';
 
 import SEO from '../components/SEO';
 import GlobalStyles, {

@@ -1,3 +1,4 @@
+import { shade } from 'polished';
 import { createGlobalStyle } from 'styled-components';
 
 const mainFontFamily = `system-ui, -apple-system, BlinkMacSystemFont,
@@ -19,6 +20,9 @@ const colorContent = '#1c1e21';
 export const leading = '1.25rem';
 
 export const borderRadius = '0.4rem';
+
+const colorLink = '#007bff';
+const colorLinkHover = shade(0.2, colorLink);
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -48,6 +52,13 @@ const GlobalStyles = createGlobalStyle`
     margin: 0 0 ${leading};
   }
 
+  a {
+    color: ${colorLink};
+
+    &:hover {
+      color: ${colorLinkHover};
+    }
+  }
   h1,
   h2,
   h3,

@@ -4,6 +4,7 @@ description: 'react-responsive-pagination live demo and examples'
 ---
 
 import OverrideSSR from "../../src/components/OverrideSSR"
+import Bootstrap4PaginationStyles from '../../src/components/Bootstrap4PaginationStyles';
 import BootstrapLiveDemoClass from "./BootstrapLiveDemoClass"
 import BootstrapSSR from "./BootstrapSSR"
 import ResizeContainer from "./ResizeContainer"
@@ -12,6 +13,7 @@ import ResizeContainer from "./ResizeContainer"
 
 **Live Demo** - try resizing your browser to see the component automatically adjust to the available width.
 
+<Bootstrap4PaginationStyles>
 <OverrideSSR ssrContent={
 <ResizeContainer visibilityHidden={true}>
 <BootstrapSSR />
@@ -21,6 +23,7 @@ import ResizeContainer from "./ResizeContainer"
 <BootstrapLiveDemoClass />
 </ResizeContainer>
 </OverrideSSR>
+</Bootstrap4PaginationStyles>
 
 NOTE: the striped region illustrates the component's container, it's not part of the component 🙂
 
