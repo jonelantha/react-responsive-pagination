@@ -14,14 +14,12 @@ import ResizeContainer from "./ResizeContainer"
 **Live Demo** - try resizing your browser to see the component automatically adjust to the available width.
 
 <Bootstrap4PaginationStyles>
-<OverrideSSR ssrContent={
-<ResizeContainer visibilityHidden={true}>
-<BootstrapSSR />
-</ResizeContainer>
-}>
-<ResizeContainer>
-<BootstrapLiveDemoClass />
-</ResizeContainer>
+<OverrideSSR>
+{isSSR => (
+  <ResizeContainer visibilityHidden={isSSR}>
+    {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
+  </ResizeContainer>
+)}
 </OverrideSSR>
 </Bootstrap4PaginationStyles>
 

@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
-export default function OverrideSSR({ ssrContent, children }: NoSSRProps) {
-  const [isServer, setIsServer] = useState(true);
+export default function OverrideSSR({ children }: NoSSRProps) {
+  const [isSSR, setIsSSR] = useState(true);
   useEffect(() => {
-    setIsServer(false);
+    setIsSSR(false);
   }, []);
 
-  return isServer ? ssrContent : children;
+  return children(isSSR);
 }
 
-type NoSSRProps = { ssrContent: React.ReactNode; children: React.ReactNode };
+type NoSSRProps = { children: (isSSR: boolean) => React.ReactNode };
