@@ -1,7 +1,9 @@
+import CodeTag from './CodeTag';
 import CodeBlock from './CodeBlock';
 
 const mdxComponents = {
-  code: CodeBlock,
+  CodeBlock,
+  code: CodeTag,
 };
 
 export default mdxComponents;

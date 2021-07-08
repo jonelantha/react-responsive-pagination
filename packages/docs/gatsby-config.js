@@ -23,7 +23,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
-        gatsbyRemarkPlugins: [],
+        rehypePlugins: [require('rehype-slug')],
         extensions: ['.mdx', '.md'],
       },
     },

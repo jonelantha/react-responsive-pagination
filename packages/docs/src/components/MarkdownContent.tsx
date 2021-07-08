@@ -4,7 +4,15 @@ import styled from 'styled-components';
 import { math } from 'polished';
 
 import mdxComponents from './mdxComponents';
-import { leading } from './GlobalStyles';
+import {
+  leading,
+  fontWeightBold,
+  borderRadius,
+  monoFontFamily,
+} from './GlobalStyles';
+
+const tableBorderColor = '#dadde1';
+const tableStripeColor = '#f5f6f7';
 
 export const MarkdownContainer = styled.article`
   & > *:first-child {
@@ -55,6 +63,38 @@ export const MarkdownContainer = styled.article`
   & > ul,
   & > p {
     margin-bottom: ${leading};
+  }
+
+  & > table {
+    border-collapse: collapse;
+    display: block;
+    margin-bottom: ${leading};
+
+    tr:nth-child(2n) {
+      background-color: ${tableStripeColor};
+    }
+
+    th,
+    td {
+      border: 1px solid ${tableBorderColor};
+      padding: 0.5rem;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--ifm-table-head-color);
+      font-weight: ${fontWeightBold};
+    }
+  }
+
+  td > code {
+    background-color: #e6eeff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: ${borderRadius};
+    font-family: ${monoFontFamily};
+    font-size: 90%;
+    padding: 0.1rem 0.3rem;
+    vertical-align: middle;
   }
 `;
 

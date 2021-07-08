@@ -8,7 +8,7 @@ export const monoFontFamily = `SFMono-Regular, Menlo, Monaco, Consolas,
 'Liberation Mono', 'Courier New', monospace`;
 export const headingFontFamily = `Trebuchet MS`;
 
-const fontWeightBold = 700;
+export const fontWeightBold = 700;
 export const fontWeightSemiBold = 500;
 const headingLineHeight = 1.25;
 

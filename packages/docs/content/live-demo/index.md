@@ -5,9 +5,9 @@ description: 'react-responsive-pagination live demo and examples'
 
 import OverrideSSR from "../../src/components/OverrideSSR"
 import Bootstrap4PaginationStyles from '../../src/components/Bootstrap4PaginationStyles';
-import BootstrapLiveDemoClass from "./BootstrapLiveDemoClass"
-import BootstrapSSR from "./BootstrapSSR"
-import ResizeContainer from "./ResizeContainer"
+import BootstrapLiveDemoClass from "../../src/components/BootstrapLiveDemoClass"
+import BootstrapSSR from "../../src/components/BootstrapSSR"
+import ResizeContainer from "../../src/components/ResizeContainer"
 
 # [react-responsive-pagination](https://www.npmjs.com/package/react-responsive-pagination)
 
