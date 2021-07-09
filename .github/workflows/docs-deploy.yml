@@ -2,6 +2,7 @@ name: Deploy Docs
 on:
   push:
     branches: [main, docs-live, docs-beta]
+  workflow_dispatch:
 jobs:
   deploy:
     runs-on: ubuntu-latest
