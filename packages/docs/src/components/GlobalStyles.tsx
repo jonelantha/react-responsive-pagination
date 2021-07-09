@@ -59,6 +59,26 @@ const GlobalStyles = createGlobalStyle`
       color: ${colorLinkHover};
     }
   }
+
+  /* ul,
+  ol {
+    margin: 0 0 1rem;
+    padding-left: 2rem;
+
+    ol {
+      list-style-type: lower-roman;
+    }
+
+    ul,
+    ol {
+      margin: 0;
+
+      ol {
+        list-style-type: lower-alpha;
+      }
+    }
+  } */
+
   h1,
   h2,
   h3,

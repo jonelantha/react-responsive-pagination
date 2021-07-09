@@ -96,9 +96,22 @@ export const MarkdownContainer = styled.article`
     padding: 0.1rem 0.3rem;
     vertical-align: middle;
   }
+
+  /* li {
+    word-wrap: break-word;
+
+    & > p {
+      margin-top: 1rem;
+    }
+
+    & + li {
+      margin-top: 0.25rem;
+    }
+  } */
 `;
 
 export default function MarkdownContent({ compiledMdx }: { compiledMdx: string }) {
+  // check if MDXProvider location makes a difference
   return (
     <MarkdownContainer>
       <MDXProvider components={mdxComponents}>
