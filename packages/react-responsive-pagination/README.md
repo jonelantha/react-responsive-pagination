@@ -40,7 +40,7 @@ A React pagination component which intelligently renders to the available width.
 
 ### Usage Example
 
-- The [Bootstrap 4 CSS styles](https://getbootstrap.com/docs/4.3/getting-started/download/) needs to be included in the project for this example to work
+- This example relies on suitable css styles bring included in the project (see requirements above)
 
 ```jsx
 import React, { useState } from 'react';
