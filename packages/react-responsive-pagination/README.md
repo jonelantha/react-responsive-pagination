@@ -3,12 +3,11 @@
 ![npm version](https://img.shields.io/npm/v/react-responsive-pagination.svg?style=flat)
 ![minzipped size](https://img.shields.io/bundlephobia/minzip/react-responsive-pagination)
 ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
-![test](https://github.com/jonelantha/react-responsive-pagination/workflows/Test/badge.svg)
-![release](https://github.com/jonelantha/react-responsive-pagination/workflows/Release/badge.svg)
+[![Test](https://github.com/jonelantha/react-responsive-pagination/actions/workflows/test.yml/badge.svg)](https://github.com/jonelantha/react-responsive-pagination/actions/workflows/test.yml)
+[![Release](https://github.com/jonelantha/react-responsive-pagination/actions/workflows/release.yml/badge.svg)](https://github.com/jonelantha/react-responsive-pagination/actions/workflows/release.yml)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-A React pagination component which intelligently renders to the available width.  
-Styled for Bootstrap 4.
+A React pagination component which intelligently renders to the available width.
 
 <a href="https://react-responsive-pagination.elantha.com/live-demo/"><img src="./react-responsive-pagination.gif?raw=true" width="985" alt="react-responsive-pagination example" /></a>
 
@@ -16,7 +15,7 @@ Styled for Bootstrap 4.
 
 ## How do I use it?
 
-- Make sure your project is either using the [Bootstrap 4 CSS styles](https://getbootstrap.com/docs/4.6/getting-started/download/) or alternatively you can provide your own styles, see [Requirements](#requirements--compatibility) below
+- Works out of the box with [Bootstrap 4 CSS styles](https://getbootstrap.com/docs/4.6/getting-started/download/) or alternatively you can provide your own styles, see [Custom Styles Guide](https://react-responsive-pagination.elantha.com/custom-styled-pagination/) for more information
 
 - Include the pagination component in your React project with `npm install react-responsive-pagination`
 
@@ -35,15 +34,13 @@ Styled for Bootstrap 4.
 - Provide the correct styles in your project:
 
   - Either [Bootstrap 4 CSS styles](https://getbootstrap.com/docs/4.6/getting-started/download/)
-  - Or alternatively you can use your own styles, here are some examples:
-    - [Minimal styles](./css/min.css)
-    - [Bootstrap pagination styles](./css/minBootstrap.css)
+  - Or use custom styles, see [Custom Styles Guide](https://react-responsive-pagination.elantha.com/custom-styled-pagination/) for more details
 
 - Modern browsers only - not suitable for IE 11
 
 ### Usage Example
 
-- The [Bootstrap 4 CSS styles](https://getbootstrap.com/docs/4.3/getting-started/download/) needs to be included in the project for this example to work
+- This example relies on suitable css styles bring included in the project (see requirements above)
 
 ```jsx
 import React, { useState } from 'react';

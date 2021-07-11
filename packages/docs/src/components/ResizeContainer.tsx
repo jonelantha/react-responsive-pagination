@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { borderRadius, leading } from '../../src/components/GlobalStyles';
+import { borderRadius, leading } from './GlobalStyles';
 
 const ResizeContainer = styled.div`
   border: 1px solid #eeeeee;

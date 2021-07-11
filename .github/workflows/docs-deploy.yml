@@ -2,6 +2,12 @@ name: Deploy Docs
 on:
   push:
     branches: [main, docs-live, docs-beta]
+  workflow_dispatch:
+    inputs:
+      docsEnv:
+        description: 'Docs Environment'
+        required: true
+        default: 'dev'
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -35,14 +41,14 @@ jobs:
           aws-region: eu-west-2
       - name: Deploy Dev
         uses: jonelantha/gatsby-s3-action@v1
-        if: ${{ github.ref == 'refs/heads/docs-beta' && success() }}
+        if: ${{ (github.event.inputs.docsEnv == 'dev' || github.ref == 'refs/heads/docs-beta') && success() }}
         with:
           dest-s3-bucket: ${{ secrets.DOCS_DEV_BUCKET }}
           cloudfront-id-to-invalidate: ${{ secrets.DOCS_DEV_CLOUDFRONT }}
           public-source-path: ./packages/docs/public
       - name: Deploy Live
         uses: jonelantha/gatsby-s3-action@v1
-        if: ${{ (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/docs-live') && success() }}
+        if: ${{ (github.event.inputs.docsEnv == 'live' || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/docs-live') && success() }}
         with:
           dest-s3-bucket: ${{ secrets.DOCS_LIVE_BUCKET }}
           cloudfront-id-to-invalidate: ${{ secrets.DOCS_LIVE_CLOUDFRONT }}

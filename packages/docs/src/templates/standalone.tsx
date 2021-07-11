@@ -1,9 +1,8 @@
 import { graphql } from 'gatsby';
-import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { math } from 'polished';
-import 'bootstrap/dist/css/bootstrap.css';
 
+import SEO from '../components/SEO';
 import GlobalStyles, {
   spacingHorizontal,
   spacingVertical,
@@ -17,7 +16,12 @@ const Container = styled.div`
 export default function DocTemplate({ data }: { data: any }) {
   return (
     <>
-      <Helmet title={data.mdx.frontmatter.title} />
+      <SEO
+        title={data.mdx.frontmatter.title}
+        description={
+          data.mdx.frontmatter.description || data.mdx.frontmatter.excerpt
+        }
+      />
       <GlobalStyles />
       <Container>
         <MarkdownContent compiledMdx={data.mdx.body} />

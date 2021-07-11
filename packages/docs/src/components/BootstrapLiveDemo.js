@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Pagination from 'react-responsive-pagination';
 
 export default function BootstrapLiveDemo() {

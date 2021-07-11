@@ -1,0 +1,31 @@
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/vendor/rfs';
+@import 'bootstrap/scss/mixins/lists';
+@import 'bootstrap/scss/mixins/hover';
+@import 'bootstrap/scss/mixins/breakpoints';
+@import 'bootstrap/scss/mixins/screen-reader';
+@import 'bootstrap/scss/mixins/border-radius';
+@import 'bootstrap/scss/mixins/pagination';
+@import 'bootstrap/scss/utilities/flex';
+@import 'bootstrap/scss/utilities/screenreaders';
+
+ol,
+ul,
+dl {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: $link-color;
+  text-decoration: $link-decoration;
+  background-color: transparent; // Remove the gray background on active links in IE 10.
+
+  @include hover() {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+}
+
+@import 'bootstrap/scss/pagination';

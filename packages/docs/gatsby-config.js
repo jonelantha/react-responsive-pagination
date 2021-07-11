@@ -3,6 +3,9 @@ module.exports = {
     DEV_SSR: true,
   },
   siteMetadata: {
+    title: 'react-responsive-pagination',
+    description: 'Responsive React pagination component',
+    author: '@jonelantha',
     siteUrl: 'https://test.elantha.com',
   },
   plugins: [
@@ -20,7 +23,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
-        gatsbyRemarkPlugins: [],
+        rehypePlugins: [require('rehype-slug')],
         extensions: ['.mdx', '.md'],
       },
     },
