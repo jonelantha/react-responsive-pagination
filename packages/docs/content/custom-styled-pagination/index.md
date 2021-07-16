@@ -10,15 +10,13 @@ import BootstrapLiveDemoClass from "../../src/components/BootstrapLiveDemoClass"
 import BootstrapSSR from "../../src/components/BootstrapSSR"
 import ResizeContainer from "../../src/components/ResizeContainer"
 
-# [react-responsive-pagination](https://www.npmjs.com/package/react-responsive-pagination)
-
-## Custom Styles Guide
+# Custom Styles Guide
 
 The css examples below show how custom styles can be created for [react-responsive-pagination](https://www.npmjs.com/package/react-responsive-pagination) - these examples should make a good starting point for custom styles.
 
 For a full list of suggested css selectors to target, see [Selector Reference](#selector-reference)
 
-### Example 1 - Basic Pagination
+## Example 1 - Basic Pagination
 
 <OverrideSSR>
 {isSSR => (
@@ -28,13 +26,13 @@ For a full list of suggested css selectors to target, see [Selector Reference](#
 )}
 </OverrideSSR>
 
-#### Pagination css:
+**Pagination css:**
 
 <CodeBlock code={customStyles1} language='css' />
 
 _(also see [App Code Example](#app-code-example))_
 
-### Example 2 - Classic Pagination
+## Example 2 - Classic Pagination
 
 <OverrideSSR>
 {isSSR => (
@@ -44,13 +42,13 @@ _(also see [App Code Example](#app-code-example))_
 )}
 </OverrideSSR>
 
-#### Pagination css:
+**Pagination css:**
 
 <CodeBlock code={customStyles2} language='css' />
 
 _(also see [App Code Example](#app-code-example))_
 
-### Example 3 - Advanced Pagination
+## Example 3 - Advanced Pagination
 
 <OverrideSSR>
 {isSSR => (
@@ -60,13 +58,13 @@ _(also see [App Code Example](#app-code-example))_
 )}
 </OverrideSSR>
 
-#### Pagination css:
+**Pagination css:**
 
 <CodeBlock code={customStyles3} language='css' />
 
 _(also see [App Code Example](#app-code-example))_
 
-### Example 4 - Standalone Bootstrap 4 Styles
+## Example 4 - Standalone Bootstrap 4 Styles
 
 <OverrideSSR>
 {isSSR => (
@@ -76,13 +74,13 @@ _(also see [App Code Example](#app-code-example))_
 )}
 </OverrideSSR>
 
-#### Pagination css:
+**Pagination css:**
 
 <CodeBlock code={minimumBootstrap4Styles} language='css' />
 
 _(for an example of the App code, see below)_
 
-### App Code Example
+## App Code Example
 
 ```jsx title=index.js
 import React, { useState } from 'react';

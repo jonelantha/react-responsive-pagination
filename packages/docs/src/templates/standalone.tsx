@@ -1,17 +1,40 @@
 import { graphql } from 'gatsby';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { math } from 'polished';
 
 import SEO from '../components/SEO';
 import GlobalStyles, {
   spacingHorizontal,
   spacingVertical,
+  headingFontFamily,
+  fontWeightBold,
 } from '../components/GlobalStyles';
 import MarkdownContent from '../components/MarkdownContent';
 
-const Container = styled.div`
-  padding: ${spacingVertical} ${math(`${spacingHorizontal} + 0.5rem`)};
+const StandalonePageStyles = createGlobalStyle`
+  body {
+    padding: ${spacingVertical} ${math(`${spacingHorizontal} + 0.5rem`)};
+  }
 `;
+
+const Header = styled.header`
+  font-family: ${headingFontFamily};
+  font-size: 1.5rem;
+  font-weight: ${fontWeightBold};
+  margin-bottom: 1rem;
+`;
+
+const Main = styled.main``;
+
+function StandaloneHeader() {
+  return (
+    <Header>
+      <a href="https://www.npmjs.com/package/react-responsive-pagination">
+        react-responsive-pagination
+      </a>
+    </Header>
+  );
+}
 
 export default function DocTemplate({ data }: { data: any }) {
   return (
@@ -23,9 +46,11 @@ export default function DocTemplate({ data }: { data: any }) {
         }
       />
       <GlobalStyles />
-      <Container>
+      <StandalonePageStyles />
+      <StandaloneHeader />
+      <Main>
         <MarkdownContent compiledMdx={data.mdx.body} />
-      </Container>
+      </Main>
     </>
   );
 }

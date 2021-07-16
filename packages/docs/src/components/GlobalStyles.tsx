@@ -85,10 +85,10 @@ const GlobalStyles = createGlobalStyle`
   h4,
   h5,
   h6 {
-    font: 100%/1.65 ${headingFontFamily};
-    color: inherit;
+    font-family: ${headingFontFamily};
     font-weight: ${fontWeightBold};
     line-height: ${headingLineHeight};
+    color: inherit;
     margin: 0 0 ${spacingVertical} 0;
   }
 `;
