@@ -59,7 +59,7 @@ export const MarkdownContainer = styled.article`
     margin-bottom: ${leading};
   }
 
-  & > pre,
+  & > figure,
   & > ul,
   & > p {
     margin-bottom: ${leading};
