@@ -1,5 +1,5 @@
 ---
-title: 'react-responsive-pagination live demo and examples'
+title: 'Live demo and examples'
 description: 'react-responsive-pagination live demo and examples'
 ---
 

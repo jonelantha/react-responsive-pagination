@@ -19,7 +19,7 @@ export default function SEO({ description, title }: SEOPropTypes) {
 }
 
 interface SEOPropTypes {
-  description: string;
+  description?: string;
   title: string;
 }
 
