@@ -23,7 +23,7 @@ A React pagination component which intelligently renders to the available width.
 
 - Use the component with `<Pagination current={currentPage} total={totalPages} onPageChange={pageChangeHandler} />` (see [Usage Example](#usage-example) for a more detailed example)
 
-- See the [About Auto Sizing](https://react-responsive-pagination.elantha.com/faq/#about-auto-sizing) in the FAQ for info on some limitations of the auto sizing algorithm.
+- See [About Auto Sizing](https://react-responsive-pagination.elantha.com/faq/#about-auto-sizing) in the FAQ for info on some limitations of the auto sizing algorithm.
 
 ## More details...
 
@@ -63,7 +63,7 @@ function MyApp() {
 
 ### About Auto Sizing
 
-More info in the [FAQ](https://react-responsive-pagination.elantha.com/faq/#about-auto-
+More info in the [FAQ](https://react-responsive-pagination.elantha.com/faq/#about-auto-sizing)
 
 ### Props
 
