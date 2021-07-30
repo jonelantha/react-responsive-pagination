@@ -44,7 +44,7 @@ const GlobalStyles = createGlobalStyle`
     word-wrap: break-word;
   }
 
-  html, body, #___gatsby, #gatsby-focus-wrapper {
+  html, #___gatsby, #gatsby-focus-wrapper {
     height: 100%;
   }
 
@@ -59,25 +59,6 @@ const GlobalStyles = createGlobalStyle`
       color: ${colorLinkHover};
     }
   }
-
-  /* ul,
-  ol {
-    margin: 0 0 1rem;
-    padding-left: 2rem;
-
-    ol {
-      list-style-type: lower-roman;
-    }
-
-    ul,
-    ol {
-      margin: 0;
-
-      ol {
-        list-style-type: lower-alpha;
-      }
-    }
-  } */
 
   h1,
   h2,

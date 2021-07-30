@@ -1,6 +1,6 @@
 ---
 title: 'Custom Styles Guide'
-description: 'react-responsive-pagination guide for custom styling'
+description: 'Responsive pagination component with custom styling'
 ---
 
 import OverrideSSR from "../../src/components/OverrideSSR"
@@ -8,7 +8,6 @@ import CustomPaginationContainer from "../../src/components/CustomPaginationCont
 import { customStyles1, customStyles2, customStyles3, minimumBootstrap4Styles } from './customPaginationStyles';
 import BootstrapLiveDemoClass from "../../src/components/BootstrapLiveDemoClass"
 import BootstrapSSR from "../../src/components/BootstrapSSR"
-import ResizeContainer from "../../src/components/ResizeContainer"
 
 # Custom Styles Guide
 

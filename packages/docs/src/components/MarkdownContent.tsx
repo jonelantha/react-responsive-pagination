@@ -59,6 +59,25 @@ export const MarkdownContainer = styled.article`
     margin-bottom: ${leading};
   }
 
+  & > ul,
+  & > ol {
+    margin: 0 0 1rem;
+    padding-left: 2rem;
+
+    ol {
+      list-style-type: lower-roman;
+    }
+
+    ul,
+    ol {
+      margin: 0;
+
+      ol {
+        list-style-type: lower-alpha;
+      }
+    }
+  }
+
   & > figure,
   & > ul,
   & > p {
