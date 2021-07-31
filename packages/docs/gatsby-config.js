@@ -6,7 +6,7 @@ module.exports = {
     title: 'react-responsive-pagination',
     description: 'Responsive React pagination component',
     author: '@jonelantha',
-    siteUrl: 'https://test.elantha.com',
+    siteUrl: 'https://react-responsive-pagination.elantha.com',
   },
   plugins: [
     'gatsby-plugin-styled-components',
