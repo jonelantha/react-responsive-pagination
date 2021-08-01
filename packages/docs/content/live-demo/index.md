@@ -1,5 +1,5 @@
 ---
-title: 'react-responsive-pagination live demo and examples'
+title: 'Live demo and examples'
 description: 'react-responsive-pagination live demo and examples'
 ---
 
@@ -8,8 +8,6 @@ import Bootstrap4PaginationStyles from '../../src/components/Bootstrap4Paginatio
 import BootstrapLiveDemoClass from "../../src/components/BootstrapLiveDemoClass"
 import BootstrapSSR from "../../src/components/BootstrapSSR"
 import ResizeContainer from "../../src/components/ResizeContainer"
-
-# [react-responsive-pagination](https://www.npmjs.com/package/react-responsive-pagination)
 
 **Live Demo** - try resizing your browser to see the component automatically adjust to the available width.
 

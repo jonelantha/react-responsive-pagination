@@ -23,7 +23,7 @@ A React pagination component which intelligently renders to the available width.
 
 - Use the component with `<Pagination current={currentPage} total={totalPages} onPageChange={pageChangeHandler} />` (see [Usage Example](#usage-example) for a more detailed example)
 
-- See the [About Auto Sizing](#about-auto-sizing) section below for info on some limitations of the auto sizing algorithm.
+- See [About Auto Sizing](https://react-responsive-pagination.elantha.com/faq/#about-auto-sizing) in the FAQ for info on some limitations of the auto sizing algorithm.
 
 ## More details...
 
@@ -63,11 +63,7 @@ function MyApp() {
 
 ### About Auto Sizing
 
-Auto sizing uses the width of the immediate parent element. For best results make sure the parent element isn't intrinsically sized; that means the width of the parent element shouldn't depend on its contents. If your layout is intrinsic then the pagination component should still fill the space correctly but you may occasionally see inconsistant results or additional renders.
-
-You can choose to override the auto sizing by specifying the `maxWidth` prop (see [Props](#props) section below).
-
-The final thing to note is that for very narrow widths the component may exceed the available space - this is to ensure that there's always a usable pagination component.
+More info in the [FAQ](https://react-responsive-pagination.elantha.com/faq/#about-auto-sizing)
 
 ### Props
 

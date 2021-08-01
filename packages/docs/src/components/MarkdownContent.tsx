@@ -59,7 +59,7 @@ export const MarkdownContainer = styled.article`
     margin-bottom: ${leading};
   }
 
-  & > pre,
+  & > figure,
   & > ul,
   & > p {
     margin-bottom: ${leading};
@@ -87,7 +87,8 @@ export const MarkdownContainer = styled.article`
     }
   }
 
-  td > code {
+  td > code,
+  p > code {
     background-color: #e6eeff;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: ${borderRadius};
