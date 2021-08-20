@@ -27,7 +27,7 @@ For a full list of suggested css selectors to target, see [Selector Reference](#
 
 **Pagination css:**
 
-<CodeBlock code={customStyles1} language='css' />
+<CodeBlock code={customStyles1} language='css' previewSize={6}/>
 
 _(also see [App Code Example](#app-code-example))_
 
@@ -43,7 +43,7 @@ _(also see [App Code Example](#app-code-example))_
 
 **Pagination css:**
 
-<CodeBlock code={customStyles2} language='css' />
+<CodeBlock code={customStyles2} language='css' previewSize={6}/>
 
 _(also see [App Code Example](#app-code-example))_
 
@@ -59,7 +59,7 @@ _(also see [App Code Example](#app-code-example))_
 
 **Pagination css:**
 
-<CodeBlock code={customStyles3} language='css' />
+<CodeBlock code={customStyles3} language='css' previewSize={6}/>
 
 _(also see [App Code Example](#app-code-example))_
 
@@ -75,7 +75,7 @@ _(also see [App Code Example](#app-code-example))_
 
 **Pagination css:**
 
-<CodeBlock code={minimumBootstrap4Styles} language='css' />
+<CodeBlock code={minimumBootstrap4Styles} language='css' previewSize={7} />
 
 _(for an example of the App code, see below)_
 
