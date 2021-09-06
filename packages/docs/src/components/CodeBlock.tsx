@@ -24,16 +24,17 @@ export default function CodeBlock({
   title,
   previewSize,
 }: CodeBlockProps) {
+  const [copyMessage, setCopyMessage] = useState('Copy');
   const [showSummary, setShowSummary] = useState(true);
   const [expanded, setExpanded] = useState(false);
 
-  function onSummaryTouchEnd(event: TouchEvent<HTMLElement>) {
+  function handleSummaryTouchEnd(event: TouchEvent<HTMLElement>) {
     event.preventDefault();
     setExpanded(true);
     setShowSummary(false);
   }
 
-  function onSummaryClick(event: MouseEvent<HTMLElement>) {
+  function handleSummaryClick(event: MouseEvent<HTMLElement>) {
     event.preventDefault();
     const fromKeyboard = event.detail === 0;
 
@@ -43,6 +44,18 @@ export default function CodeBlock({
     } else {
       setExpanded(false);
     }
+  }
+
+  function handleCopyClick() {
+    try {
+      navigator.clipboard.writeText(code.trim());
+      setCopyMessage('Copied');
+    } catch {
+      setCopyMessage('Error');
+    }
+
+    // could be unmounted, but unlikely
+    setTimeout(() => setCopyMessage('Copy'), 2000);
   }
 
   return (
@@ -74,8 +87,8 @@ export default function CodeBlock({
                   <>
                     <Details open={expanded}>
                       <Summary
-                        onClick={onSummaryClick}
-                        onTouchEnd={onSummaryTouchEnd}
+                        onClick={handleSummaryClick}
+                        onTouchEnd={handleSummaryTouchEnd}
                         style={{ display: showSummary ? 'initial' : 'none' }}
                       >
                         {expanded
@@ -97,6 +110,12 @@ export default function CodeBlock({
                   </>
                 )}
               </Code>
+              <CopyButton
+                aria-label="Copy code to clipboard"
+                onClick={handleCopyClick}
+              >
+                {copyMessage}
+              </CopyButton>
             </Pre>
           </Figure>
         );
@@ -109,6 +128,7 @@ const codeBlockPadding = '1rem';
 const buttonPadding = { x: '0.4rem', y: '0.5rem' };
 const buttonFont = `0.8rem/1.45 ${mainFontFamily}`;
 const zigZagHeight = '10px';
+const copyButtonInset = '0.5rem';
 
 const Figure = styled.figure`
   border-radius: ${borderRadius};
@@ -214,6 +234,14 @@ const Summary = styled.summary`
 
   ${moreButtonPositionStyles}
   ${buttonStyles}
+`;
+
+const CopyButton = styled.button`
+  ${buttonStyles}
+
+  position: absolute;
+  right: ${copyButtonInset};
+  top: ${copyButtonInset};
 `;
 
 function splitLines<T>(lines: T[], size: number | undefined) {
