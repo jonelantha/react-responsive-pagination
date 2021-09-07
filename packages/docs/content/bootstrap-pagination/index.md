@@ -25,7 +25,7 @@ import { PropsTable, PropDef } from "../../src/components/PropsTable"
 
 ## Installation
 
-You can install **react-responsive-pagination** from npm:
+Install **react-responsive-pagination** from npm:
 
 ```bash
 npm install react-responsive-pagination
@@ -40,7 +40,7 @@ npm install react-responsive-pagination
 
 **react-responsive-pagination** is styled for [Bootstrap 4.x](https://getbootstrap.com/docs/4.6/). If you don't already have Bootstrap styles see the [Bootstrap 4.x Download Guide](https://getbootstrap.com/docs/4.6/getting-started/download/)
 
-Don't want to use Bootstrap? No problem, see the [Custom Style Guide](./custom-styled-pagination)
+Don't want to use Bootstrap? No problem, see the [Custom Styled Pagination](./custom-styled-pagination) guide
 
 ## Quick Start - Functional Components / Hooks
 
