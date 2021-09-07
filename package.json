@@ -12,9 +12,9 @@
     "test": "yarn workspace browser-test test",
     "start-docs": "yarn workspace docs develop",
     "build-docs": "yarn workspace docs build",
-    "update-yarn-ts": "yarn dlx @yarnpkg/pnpify --sdk vscode"
+    "update-yarn-ts": "yarn dlx @yarnpkg/sdks vscode"
   },
   "dependencies": {
-    "typescript": "^4.3.5"
+    "typescript": "^4.4.2"
   }
 }
