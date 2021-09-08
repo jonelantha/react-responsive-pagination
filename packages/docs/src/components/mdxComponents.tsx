@@ -13,8 +13,16 @@ const mdxComponents = {
     const language = codeTagProps.className?.split('-')[1];
     const code = codeTagProps.children;
     const title = codeTagProps.title;
+    const previewSize = codeTagProps.previewSize;
 
-    return <CodeBlock code={code} language={language} title={title} />;
+    return (
+      <CodeBlock
+        code={code}
+        language={language}
+        title={title}
+        previewSize={previewSize}
+      />
+    );
   },
 };
 

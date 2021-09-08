@@ -7,42 +7,28 @@
 [![Release](https://github.com/jonelantha/react-responsive-pagination/actions/workflows/release.yml/badge.svg)](https://github.com/jonelantha/react-responsive-pagination/actions/workflows/release.yml)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-A React pagination component which intelligently renders to the available width.
+A responsive React pagination component which intelligently renders to the available width
 
 <a href="https://react-responsive-pagination.elantha.com/live-demo/"><img src="./react-responsive-pagination.gif?raw=true" width="985" alt="react-responsive-pagination example" /></a>
 
 ### ⚡️ [LIVE DEMO - try it out for yourself!](https://react-responsive-pagination.elantha.com/live-demo/) 🚀
 
-## How do I use it?
+## 🥾 Works out of the box with Bootstrap 4.x
 
-- Works out of the box with [Bootstrap 4 CSS styles](https://getbootstrap.com/docs/4.6/getting-started/download/) or alternatively you can provide your own styles, see [Custom Styles Guide](https://react-responsive-pagination.elantha.com/custom-styled-pagination/) for more information
+Using Bootstrap? See the [Bootstrap 4 Getting Started Guide](https://react-responsive-pagination.elantha.com/bootstrap-pagination/)
 
-- Include the pagination component in your React project with `npm install react-responsive-pagination`
+## 🎨 Supports custom styling
 
-- Import the component with `import Pagination from 'react-responsive-pagination'`
+Custom styles? No problem - see the [Custom Styles Guide](https://react-responsive-pagination.elantha.com/custom-styled-pagination/)
 
-- Use the component with `<Pagination current={currentPage} total={totalPages} onPageChange={pageChangeHandler} />` (see [Usage Example](#usage-example) for a more detailed example)
+## ⏳ Quick Start
 
-- See [About Auto Sizing](https://react-responsive-pagination.elantha.com/faq/#about-auto-sizing) in the FAQ for info on some limitations of the auto sizing algorithm.
-
-## More details...
-
-### Requirements / Compatibility
-
-- React 16.8 (the one with hooks)
-
-- Provide the correct styles in your project:
-
-  - Either [Bootstrap 4 CSS styles](https://getbootstrap.com/docs/4.6/getting-started/download/)
-  - Or use custom styles, see [Custom Styles Guide](https://react-responsive-pagination.elantha.com/custom-styled-pagination/) for more details
-
-- Modern browsers only - not suitable for IE 11
-
-### Usage Example
-
-- This example relies on suitable css styles bring included in the project (see requirements above)
+```bash
+npm install react-responsive-pagination
+```
 
 ```jsx
+// ... make sure appropriate css is in the project (see guides above)
 import React, { useState } from 'react';
 import Pagination from 'react-responsive-pagination';
 
@@ -61,11 +47,12 @@ function MyApp() {
 }
 ```
 
-### About Auto Sizing
+## ✔︎ Requirements / Compatibility
 
-More info in the [FAQ](https://react-responsive-pagination.elantha.com/faq/#about-auto-sizing)
+- React 16.8 (the one with hooks)
+- Modern browsers only - not suitable for IE 11
 
-### Props
+## 🔧 Props
 
 | Prop name           | Type                      | Description                                                                                                                                                                                                                                 |
 | ------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -73,3 +60,7 @@ More info in the [FAQ](https://react-responsive-pagination.elantha.com/faq/#abou
 | total               | number                    | The total number of pages                                                                                                                                                                                                                   |
 | onPageChange        | (newPage: number) => void | A callback handler which is called when the user clicks a new page, note that the active page will not change unless the `current` prop is updated to reflect the new page (as in the example above). The `newPage` value is indexed from 1 |
 | maxWidth (optional) | number                    | (optional) The maximum width (in pixels) of the pagination component. Specify a value if you want to override the automatic sizing. Note this width may be exceeded in the case where it's not possible to output a small enough component  |
+
+## ℹ About Auto Sizing
+
+More info in the [FAQ](https://react-responsive-pagination.elantha.com/faq/#about-auto-sizing)

@@ -1,7 +1,7 @@
 import { shade } from 'polished';
 import { createGlobalStyle } from 'styled-components';
 
-const mainFontFamily = `system-ui, -apple-system, BlinkMacSystemFont,
+export const mainFontFamily = `system-ui, -apple-system, BlinkMacSystemFont,
 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
 'Segoe UI Emoji', 'Segoe UI Symbol'`;
 export const monoFontFamily = `SFMono-Regular, Menlo, Monaco, Consolas,
@@ -21,7 +21,7 @@ export const leading = '1.25rem';
 
 export const borderRadius = '0.4rem';
 
-const colorLink = '#007bff';
+export const colorLink = '#007bff';
 const colorLinkHover = shade(0.2, colorLink);
 
 const GlobalStyles = createGlobalStyle`
@@ -44,7 +44,7 @@ const GlobalStyles = createGlobalStyle`
     word-wrap: break-word;
   }
 
-  html, body, #___gatsby, #gatsby-focus-wrapper {
+  html, #___gatsby, #gatsby-focus-wrapper {
     height: 100%;
   }
 
@@ -59,25 +59,6 @@ const GlobalStyles = createGlobalStyle`
       color: ${colorLinkHover};
     }
   }
-
-  /* ul,
-  ol {
-    margin: 0 0 1rem;
-    padding-left: 2rem;
-
-    ol {
-      list-style-type: lower-roman;
-    }
-
-    ul,
-    ol {
-      margin: 0;
-
-      ol {
-        list-style-type: lower-alpha;
-      }
-    }
-  } */
 
   h1,
   h2,

@@ -1,20 +1,56 @@
 ---
 title: 'Custom Styles Guide'
-description: 'react-responsive-pagination guide for custom styling'
+description: 'Responsive pagination component with custom styling'
 ---
 
 import OverrideSSR from "../../src/components/OverrideSSR"
 import CustomPaginationContainer from "../../src/components/CustomPaginationContainer"
-import { customStyles1, customStyles2, customStyles3, minimumBootstrap4Styles } from './customPaginationStyles';
+import { customStyles1, customStyles2, customStyles3, minimumBootstrap4Styles, exampleAppCode } from './customPaginationStyles';
 import BootstrapLiveDemoClass from "../../src/components/BootstrapLiveDemoClass"
 import BootstrapSSR from "../../src/components/BootstrapSSR"
-import ResizeContainer from "../../src/components/ResizeContainer"
+import { PropsTable, PropDef } from "../../src/components/PropsTable"
 
-# Custom Styles Guide
+# Styled Responsive Pagination
 
-The css examples below show how custom styles can be created for [react-responsive-pagination](https://www.npmjs.com/package/react-responsive-pagination) - these examples should make a good starting point for custom styles.
+**react-responsive-pagination** is an easy to use responsive pagination component:
 
-For a full list of suggested css selectors to target, see [Selector Reference](#selector-reference)
+- Truly responsive - always outputs the right number of pagination elements for the width available, no guesswork needed
+- Easy to style, just include the necessary css in your project (see examples below)
+
+<OverrideSSR>
+{isSSR => (
+  <CustomPaginationContainer customStyles={customStyles1}>
+    {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
+  </CustomPaginationContainer>
+)}
+</OverrideSSR>
+
+## Installation
+
+Install **react-responsive-pagination** from npm:
+
+```bash
+npm install react-responsive-pagination
+```
+
+## Compatibility
+
+- React 16.8 or later
+- Modern browsers only - not suitable for IE 11
+
+## Quick Start - Functional Components / Hooks
+
+_(for a class component example see [here](./bootstrap-pagination#quick-start---class-components))_
+
+<CodeBlock code={exampleAppCode} language='jsx' title='MyApp.js'/>
+
+_(see below for **pagination.css** examples, for more information on Props, see [Props Reference](#props-reference))_
+
+## Custom Styling
+
+To create custom styles for **react-responsive-pagination** simply include some custom css - the four examples below should provide a good starting point. For a full list of suggested css selectors to target, see [Selector Reference](#selector-reference)
+
+Using Bootstrap 4.x? No problem, see the [Bootstrap Pagination](./bootstrap-pagination) guide.
 
 ## Example 1 - Basic Pagination
 
@@ -26,11 +62,9 @@ For a full list of suggested css selectors to target, see [Selector Reference](#
 )}
 </OverrideSSR>
 
-**Pagination css:**
+<CodeBlock code={customStyles1} language='css' previewSize={6} title='pagination.css'/>
 
-<CodeBlock code={customStyles1} language='css' />
-
-_(also see [App Code Example](#app-code-example))_
+_For a full list of suggested css selectors to target, see [Selector Reference](#selector-reference)_
 
 ## Example 2 - Classic Pagination
 
@@ -42,11 +76,9 @@ _(also see [App Code Example](#app-code-example))_
 )}
 </OverrideSSR>
 
-**Pagination css:**
+<CodeBlock code={customStyles2} language='css' previewSize={6} title='pagination.css'/>
 
-<CodeBlock code={customStyles2} language='css' />
-
-_(also see [App Code Example](#app-code-example))_
+_For a full list of suggested css selectors to target, see [Selector Reference](#selector-reference)_
 
 ## Example 3 - Advanced Pagination
 
@@ -58,11 +90,9 @@ _(also see [App Code Example](#app-code-example))_
 )}
 </OverrideSSR>
 
-**Pagination css:**
+<CodeBlock code={customStyles3} language='css' previewSize={6} title='pagination.css'/>
 
-<CodeBlock code={customStyles3} language='css' />
-
-_(also see [App Code Example](#app-code-example))_
+_For a full list of suggested css selectors to target, see [Selector Reference](#selector-reference)_
 
 ## Example 4 - Standalone Bootstrap 4 Styles
 
@@ -76,36 +106,9 @@ _(also see [App Code Example](#app-code-example))_
 
 **Pagination css:**
 
-<CodeBlock code={minimumBootstrap4Styles} language='css' />
+<CodeBlock code={minimumBootstrap4Styles} language='css' previewSize={7} title='pagination.css' />
 
-_(for an example of the App code, see below)_
-
-## App Code Example
-
-```jsx title=index.js
-import React, { useState } from 'react';
-import Pagination from 'react-responsive-pagination';
-import './pagination-styles.css';
-
-function MyApp() {
-  const totalPages = 120;
-
-  const [currentPage, setCurrentPage] = useState(1);
-
-  function handlePageChange(page) {
-    setCurrentPage(page);
-    // ... do something with `page`
-  }
-
-  return (
-    <Pagination
-      total={totalPages}
-      current={currentPage}
-      onPageChange={page => handlePageChange(page)}
-    />
-  );
-}
-```
+_For a full list of suggested css selectors to target, see the next section_
 
 ## Selector Reference
 
@@ -118,6 +121,27 @@ function MyApp() {
 | `.page-item.active .page-link`   | **Active page link** _(<a\> tags)_<br />CSS should highlight this element (see examples below)                                                                                                                                |
 | `.page-item.disabled .page-link` | **Disabled items** _(<span\> tags)_<br />Includes '...' or disabled nav buttons. CSS should show grey out these elements (see examples below)                                                                                 |
 | `.sr-only`                       | **Screen reader only elements** _(<span\> tags)_<br />Required for accessibility. These elements not be visible, use CSS to visually hide these elements in a way screen readers can still read the text (see examples below) |
+
+## Props Reference
+
+<PropsTable>
+<PropDef name='current' type='number'>
+The current active page. Indexed from 1
+</PropDef>
+<PropDef name='total' type='number' >
+The total number of pages
+</PropDef>
+<PropDef name='onPageChange' type='(newPage: number) => void' >
+
+A callback handler which is called when the user clicks a new page. The `newPage` parameter is indexed from 1
+
+Note that the active page will not change unless the `current` prop is updated to reflect the new page (as in the example above)
+
+</PropDef>
+<PropDef name='maxWidth' type='number' defaultValue='undefined'>
+The maximum width (in pixels) of the pagination component. Use this prop if you want to override the automatic sizing. Note the width may be exceeded if it's not possible a component to the specified width
+</PropDef>
+</PropsTable>
 
 ## Further Details
 
