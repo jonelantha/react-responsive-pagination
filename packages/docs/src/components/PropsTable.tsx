@@ -49,10 +49,13 @@ function formatDescription(children: ReactNode) {
     return children.props.children;
   } else if (Array.isArray(children)) {
     let description: ReactNode[] = [];
+
     React.Children.forEach(children, (child, index) => {
-      index > 0 && description.push(<br />);
+      index > 0 && description.push(<br key={`br_${index}`} />);
+
       description.push(isValidElement(child) ? child.props.children : child);
     });
+
     return description;
   } else {
     return children;

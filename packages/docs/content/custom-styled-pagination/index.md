@@ -5,7 +5,7 @@ description: 'Responsive pagination component with custom styling'
 
 import OverrideSSR from "../../src/components/OverrideSSR"
 import CustomPaginationContainer from "../../src/components/CustomPaginationContainer"
-import { customStyles1, customStyles2, customStyles3, minimumBootstrap4Styles } from './customPaginationStyles';
+import { customStyles1, customStyles2, customStyles3, minimumBootstrap4Styles, exampleAppCode } from './customPaginationStyles';
 import BootstrapLiveDemoClass from "../../src/components/BootstrapLiveDemoClass"
 import BootstrapSSR from "../../src/components/BootstrapSSR"
 import { PropsTable, PropDef } from "../../src/components/PropsTable"
@@ -38,13 +38,21 @@ npm install react-responsive-pagination
 - React 16.8 or later
 - Modern browsers only - not suitable for IE 11
 
+## Quick Start - Functional Components / Hooks
+
+_(for a class component example see [here](./bootstrap-pagination#quick-start---class-components))_
+
+<CodeBlock code={exampleAppCode} language='jsx' title='MyApp.js'/>
+
+_(see below for **pagination.css** examples, for more information on Props, see [Props Reference](#props-reference))_
+
 ## Custom Styling
 
-To create custom styles for [react-responsive-pagination](https://www.npmjs.com/package/react-responsive-pagination) simply include some custom css - the four examples below should provide a good starting point. For a full list of suggested css selectors to target, see [Selector Reference](#selector-reference)
+To create custom styles for **react-responsive-pagination** simply include some custom css - the four examples below should provide a good starting point. For a full list of suggested css selectors to target, see [Selector Reference](#selector-reference)
 
-Using Bootstrap 4.x? No problem, see the [Bootstrap Pagination](./bootstrap-pagination) guide
+Using Bootstrap 4.x? No problem, see the [Bootstrap Pagination](./bootstrap-pagination) guide.
 
-## Example 1 - Quick Start (Basic Pagination)
+## Example 1 - Basic Pagination
 
 <OverrideSSR>
 {isSSR => (
@@ -53,35 +61,6 @@ Using Bootstrap 4.x? No problem, see the [Bootstrap Pagination](./bootstrap-pagi
   </CustomPaginationContainer>
 )}
 </OverrideSSR>
-
-_(Functional Component example below, for a Class Component example see [here](./bootstrap-pagination#quick-start---class-components))_
-
-```jsx title=App.js
-import React, { useState } from 'react';
-import Pagination from 'react-responsive-pagination';
-import './pagination.css'; // see below
-
-export default function MyApp() {
-  const totalPages = 120;
-
-  const [currentPage, setCurrentPage] = useState(1);
-
-  function handlePageChange(page) {
-    setCurrentPage(page);
-    // ... do something with `page`
-  }
-
-  return (
-    <Pagination
-      total={totalPages}
-      current={currentPage}
-      onPageChange={page => handlePageChange(page)}
-    />
-  );
-}
-```
-
-_(for more information on Props, see [Props Reference](#props-reference))_
 
 <CodeBlock code={customStyles1} language='css' previewSize={6} title='pagination.css'/>
 
