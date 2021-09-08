@@ -78,8 +78,6 @@ _For a full list of suggested css selectors to target, see [Selector Reference](
 
 <CodeBlock code={customStyles2} language='css' previewSize={6} title='pagination.css'/>
 
-_See [Example 1](example-1---quick-start-basic-pagination) for an example of the React app code_
-
 _For a full list of suggested css selectors to target, see [Selector Reference](#selector-reference)_
 
 ## Example 3 - Advanced Pagination
@@ -93,8 +91,6 @@ _For a full list of suggested css selectors to target, see [Selector Reference](
 </OverrideSSR>
 
 <CodeBlock code={customStyles3} language='css' previewSize={6} title='pagination.css'/>
-
-_See [Example 1](example-1---quick-start-basic-pagination) for an example of the React app code_
 
 _For a full list of suggested css selectors to target, see [Selector Reference](#selector-reference)_
 
@@ -111,8 +107,6 @@ _For a full list of suggested css selectors to target, see [Selector Reference](
 **Pagination css:**
 
 <CodeBlock code={minimumBootstrap4Styles} language='css' previewSize={7} title='pagination.css' />
-
-_See [Example 1](example-1---quick-start-basic-pagination) for an example of the React app code_
 
 _For a full list of suggested css selectors to target, see the next section_
 
