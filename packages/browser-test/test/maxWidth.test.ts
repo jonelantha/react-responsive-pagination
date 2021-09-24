@@ -18,7 +18,7 @@ describe('Pagination maxWidth', () => {
 
       await page.evaluate(() => new Promise(requestAnimationFrame));
 
-      const paginationHtml = await page.$eval('ul.pagination', ul => ul.innerHTML);
+      const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
 
       expect(paginationHtml).toMatchSnapshot();
     },
