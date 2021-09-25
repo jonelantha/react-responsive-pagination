@@ -37,7 +37,6 @@ function App() {
   const maxWidth = tryJsonParse(formik.values.maxWidthAsJson);
   const current = tryJsonParse(formik.values.currentPageAsJson);
   const extraClassName = tryJsonParse(formik.values.extraClassNameAsJson);
-  console.log(extraClassName);
 
   return (
     <>
