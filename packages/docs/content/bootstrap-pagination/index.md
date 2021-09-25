@@ -103,17 +103,15 @@ export default class MyApp extends React.Component {
 
 ## Justify Options
 
-Change how the pagination control is positioned by using the `extraClassName` prop:
+Change how the pagination is positioned by setting the `extraClassName` prop to one of the [Bootstrap justify content options](https://getbootstrap.com/docs/4.6/utilities/flex/#justify-content). Here are some suitable values:
 
-| extraClassName Value     | Alignment          |
+| Value                    | Alignment          |
 | ------------------------ | ------------------ |
 | `justify-content-start`  | Left               |
 | `justify-content-end`    | Right              |
 | `justify-content-center` | Center _(default)_ |
 
-See [Bootstrap justify content options](https://getbootstrap.com/docs/4.6/utilities/flex/#justify-content) for a full list of values
-
-**Example - justify pagination left:**
+**Example - align pagination left:**
 
 ```jsx
 <Pagination ... extraClassName="justify-content-start" />
