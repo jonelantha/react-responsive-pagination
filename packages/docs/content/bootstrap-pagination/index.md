@@ -5,7 +5,7 @@ description: 'Responsive Bootstrap React Pagination Component'
 
 import OverrideSSR from "../../src/components/OverrideSSR"
 import Bootstrap4PaginationStyles from '../../src/components/Bootstrap4PaginationStyles';
-import BootstrapLiveDemoClass from "../../src/components/BootstrapLiveDemoClass"
+import BootstrapLiveDemo from "../../src/components/BootstrapLiveDemo"
 import BootstrapSSR from "../../src/components/BootstrapSSR"
 
 import { PropsTable, PropDef } from "../../src/components/PropsTable"
@@ -19,7 +19,7 @@ import { PropsTable, PropDef } from "../../src/components/PropsTable"
 
 <Bootstrap4PaginationStyles>
 <OverrideSSR>
-{isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
+{isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo />}
 </OverrideSSR>
 </Bootstrap4PaginationStyles>
 
@@ -72,7 +72,7 @@ function MyApp() {
 
 ## Quick Start - Class Components
 
-```jsx
+```jsx previewSize=10
 import React from 'react';
 import Pagination from 'react-responsive-pagination';
 // Bootstrap 4.x styles included somewhere in the project
@@ -101,6 +101,30 @@ export default class MyApp extends React.Component {
 }
 ```
 
+## Justify Options
+
+Change how the pagination control is positioned by using the `extraClassName` prop:
+
+| extraClassName Value     | Alignment          |
+| ------------------------ | ------------------ |
+| `justify-content-start`  | Left               |
+| `justify-content-end`    | Right              |
+| `justify-content-center` | Center _(default)_ |
+
+See [Bootstrap justify content options](https://getbootstrap.com/docs/4.6/utilities/flex/#justify-content) for a full list of values
+
+**Example - justify pagination left:**
+
+```jsx
+<Pagination ... extraClassName="justify-content-start" />
+```
+
+<Bootstrap4PaginationStyles>
+<OverrideSSR>
+{isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo extraClassName="justify-content-start" />}
+</OverrideSSR>
+</Bootstrap4PaginationStyles>
+
 ## Props Reference
 
 <PropsTable>
@@ -120,6 +144,14 @@ Note that the active page will not change unless the `current` prop is updated t
 <PropDef name='maxWidth' type='number' defaultValue='undefined'>
 The maximum width (in pixels) of the pagination component. Use this prop if you want to override the automatic sizing. Note the width may be exceeded if it's not possible a component to the specified width
 </PropDef>
+<PropDef name='extraClassName' type='string' defaultValue='justify-content-center'>
+
+Extra classes to be added to the top level `<ul\>` element, defaults to `justify-content-center`
+
+Use this prop to override the default justify value - for example to align elements to the start of the page use: `extraClassName='justify-content-start'`
+
+</PropDef>
+
 </PropsTable>
 
 ## Further Details

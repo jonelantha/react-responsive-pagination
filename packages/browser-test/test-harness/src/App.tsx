@@ -11,6 +11,7 @@ function App() {
     totalAsJson: 'Total Pages (JSON)',
     maxWidthAsJson: 'Max Width (JSON)',
     currentPageAsJson: 'Current Page (JSON)',
+    extraClassNameAsJson: 'Extra Class (JSON)',
   };
 
   const formik = useFormik({
@@ -18,6 +19,7 @@ function App() {
       totalAsJson: '100',
       maxWidthAsJson: '',
       currentPageAsJson: '0',
+      extraClassNameAsJson: 'undefined',
     },
     onSubmit: () => {},
   });
@@ -34,6 +36,8 @@ function App() {
   const total = tryJsonParse(formik.values.totalAsJson);
   const maxWidth = tryJsonParse(formik.values.maxWidthAsJson);
   const current = tryJsonParse(formik.values.currentPageAsJson);
+  const extraClassName = tryJsonParse(formik.values.extraClassNameAsJson);
+  console.log(extraClassName);
 
   return (
     <>
@@ -43,6 +47,7 @@ function App() {
           maxWidth={maxWidth}
           total={total}
           onPageChange={page => formik.setFieldValue('currentPageAsJson', page)}
+          extraClassName={extraClassName}
         />
       </div>
       <div className="container">

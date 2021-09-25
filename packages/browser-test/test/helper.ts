@@ -31,3 +31,7 @@ async function getConsoleText(message: ConsoleMessage) {
 
   return message.text().replace(/%s/g, () => args[argCounter++]);
 }
+
+export function stringifyWithUndefined(value: any) {
+  return value === undefined ? 'undefined' : JSON.stringify(value);
+}
