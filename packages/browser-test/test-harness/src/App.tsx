@@ -12,6 +12,8 @@ function App() {
     maxWidthAsJson: 'Max Width (JSON)',
     currentPageAsJson: 'Current Page (JSON)',
     extraClassNameAsJson: 'Extra Class (JSON)',
+    previousLabelAsJson: 'Previous Label (JSON)',
+    nextLabelAsJson: 'Next Label (JSON)',
   };
 
   const formik = useFormik({
@@ -20,6 +22,8 @@ function App() {
       maxWidthAsJson: '',
       currentPageAsJson: '0',
       extraClassNameAsJson: 'undefined',
+      previousLabelAsJson: 'undefined',
+      nextLabelAsJson: 'undefined',
     },
     onSubmit: () => {},
   });
@@ -37,6 +41,8 @@ function App() {
   const maxWidth = tryJsonParse(formik.values.maxWidthAsJson);
   const current = tryJsonParse(formik.values.currentPageAsJson);
   const extraClassName = tryJsonParse(formik.values.extraClassNameAsJson);
+  const previousLabel = tryJsonParse(formik.values.previousLabelAsJson);
+  const nextLabel = tryJsonParse(formik.values.nextLabelAsJson);
 
   return (
     <>
@@ -47,6 +53,8 @@ function App() {
           total={total}
           onPageChange={page => formik.setFieldValue('currentPageAsJson', page)}
           extraClassName={extraClassName}
+          previousLabel={previousLabel}
+          nextLabel={nextLabel}
         />
       </div>
       <div className="container">

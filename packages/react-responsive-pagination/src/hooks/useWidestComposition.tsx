@@ -16,10 +16,11 @@ export function useWidestComposition(
 
   const width = maxWidth ?? availableWidth ?? 0;
 
-  const { items, ref: widestCompositionRef } = useWidestCompositionForWidth(
-    narrowToWideCompositionsProvider,
-    width,
-  );
+  const {
+    items,
+    ref: widestCompositionRef,
+    clearCache,
+  } = useWidestCompositionForWidth(narrowToWideCompositionsProvider, width);
 
   const ref = useCallback(
     (element: HTMLElement | null) => {
@@ -32,5 +33,6 @@ export function useWidestComposition(
   return {
     items,
     ref,
+    clearCache,
   };
 }
