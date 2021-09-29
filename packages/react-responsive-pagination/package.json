@@ -9,10 +9,6 @@
   "main": "lib.cjs/index.js",
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
-  "files": [
-    "/lib",
-    "/lib.cjs"
-  ],
   "scripts": {
     "tsc-commonjs": "rimraf lib.cjs/ && tsc --project ./tsconfig/commonjs.json",
     "tsc-esnext": "rimraf lib/ && tsc --project ./tsconfig/esnext.json",
