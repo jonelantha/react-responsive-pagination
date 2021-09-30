@@ -1,5 +1,12 @@
 # React Responsive Pagination Changelog
 
+# [1.2.0-beta.1](https://github.com/jonelantha/react-responsive-pagination/compare/v1.1.9...v1.2.0-beta.1) (2021-09-30)
+
+
+### Features
+
+* Override Bootstrap justify class ([b9ebc16](https://github.com/jonelantha/react-responsive-pagination/commit/b9ebc164a1b50d4260cac962cad7e51715ebce56))
+
 ## [1.1.9](https://github.com/jonelantha/react-responsive-pagination/compare/v1.1.8...v1.1.9) (2021-09-08)
 
 
