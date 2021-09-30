@@ -1,5 +1,7 @@
 # React Responsive Pagination Changelog
 
+# [1.2.0-beta.2](https://github.com/jonelantha/react-responsive-pagination/compare/v1.2.0-beta.1...v1.2.0-beta.2) (2021-09-30)
+
 # [1.2.0-beta.1](https://github.com/jonelantha/react-responsive-pagination/compare/v1.1.9...v1.2.0-beta.1) (2021-09-30)
 
 
