@@ -63,4 +63,4 @@ function MyApp() {
 
 ## ℹ About Auto Sizing
 
-More info in the [FAQ](https://react-responsive-pagination.elantha.com/faq/#about-auto-sizing)
+More info in the [FAQ](https://react-responsive-pagination.elantha.com/faq/#about-auto-sizing).
