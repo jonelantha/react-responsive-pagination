@@ -24,7 +24,7 @@ describe('Pagination navigation', () => {
     async (linkToClick, expectedCurrentPage) => {
       await page.click(`text="${linkToClick}"`);
 
-      const paginationHtml = await page.$eval('ul.pagination', ul => ul.innerHTML);
+      const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
 
       expect(paginationHtml).toMatchSnapshot();
 
@@ -42,7 +42,7 @@ describe('Pagination navigation', () => {
     async programmaticCurrentPage => {
       await page.fill('#currentPageAsJson', JSON.stringify(programmaticCurrentPage));
 
-      const paginationHtml = await page.$eval('ul.pagination', ul => ul.innerHTML);
+      const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
       expect(paginationHtml).toMatchSnapshot();
     },
   );

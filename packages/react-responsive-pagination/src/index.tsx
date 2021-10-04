@@ -12,13 +12,19 @@ function BootstrapPagination({
   total,
   onPageChange: handlePageChange,
   maxWidth,
+  extraClassName = 'justify-content-center',
 }: BootstrapPaginationProps) {
   const { items, ref } = usePaginationItems(current, total, maxWidth);
 
   if (items.length === 0) return null;
 
+  let className = 'pagination';
+  if (extraClassName) {
+    className += ' ' + extraClassName;
+  }
+
   return (
-    <ul className="pagination justify-content-center" ref={ref}>
+    <ul className={className} ref={ref}>
       {items.map(item =>
         item.gotoPage !== undefined ? (
           // item = ClickableItem
@@ -52,6 +58,7 @@ type BootstrapPaginationProps = {
   total: number;
   onPageChange: (page: number) => void;
   maxWidth?: number;
+  extraClassName?: string;
 };
 
 BootstrapPagination.propTypes = {
@@ -59,6 +66,7 @@ BootstrapPagination.propTypes = {
   total: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
   maxWidth: PropTypes.number,
+  extraClassName: PropTypes.string,
 };
 
 function getLabel(label: string, a11yLabel: string | undefined) {
