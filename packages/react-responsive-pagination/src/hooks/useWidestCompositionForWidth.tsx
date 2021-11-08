@@ -10,6 +10,7 @@ export function useWidestCompositionForWidth(
 ): {
   items: PaginationItem[];
   ref: ForwardedRef<HTMLElement | null>;
+  clearCache: () => void;
 } {
   const widthCalculator = useWidthCalculator();
 
@@ -29,6 +30,7 @@ export function useWidestCompositionForWidth(
         widthCalculator.renderNeeded.ref(containerElement);
         containerElementRef.current = containerElement;
       },
+      clearCache,
     };
   } else {
     return {
@@ -38,6 +40,7 @@ export function useWidestCompositionForWidth(
         maxWidth,
       ),
       ref: containerElementRef,
+      clearCache,
     };
   }
 }

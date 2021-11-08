@@ -18,6 +18,7 @@ export default class BootstrapLiveDemoClass extends Component {
         total={this.state.totalPages}
         current={this.state.currentPage}
         onPageChange={page => this.handlePageChange(page)}
+        {...this.props}
       />
     );
   }

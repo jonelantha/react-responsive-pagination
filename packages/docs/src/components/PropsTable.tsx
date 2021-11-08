@@ -26,7 +26,13 @@ export function PropDef({ name, type, defaultValue, children }: PropDefProps) {
       <td>
         <PropName>{name}</PropName>
         <br />
-        <em>{formatDefault(defaultValue)}</em>
+        <em>{defaultValue ? '(optional)' : '(required)'}</em>
+        {defaultValue && (
+          <>
+            <br />
+            Default: <code>{defaultValue}</code>
+          </>
+        )}
       </td>
       <td>
         <code title="type">{type}</code>
@@ -59,15 +65,5 @@ function formatDescription(children: ReactNode) {
     return description;
   } else {
     return children;
-  }
-}
-
-function formatDefault(defaultValue: string | undefined) {
-  if (defaultValue === 'undefined') {
-    return '(optional)';
-  } else if (defaultValue) {
-    return `(optional - default ${defaultValue})`;
-  } else {
-    return '(required)';
   }
 }

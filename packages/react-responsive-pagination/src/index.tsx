@@ -13,8 +13,13 @@ function BootstrapPagination({
   onPageChange: handlePageChange,
   maxWidth,
   extraClassName = 'justify-content-center',
+  previousLabel,
+  nextLabel,
 }: BootstrapPaginationProps) {
-  const { items, ref } = usePaginationItems(current, total, maxWidth);
+  const { items, ref } = usePaginationItems(current, total, maxWidth, {
+    previousLabel,
+    nextLabel,
+  });
 
   if (items.length === 0) return null;
 
@@ -59,6 +64,8 @@ type BootstrapPaginationProps = {
   onPageChange: (page: number) => void;
   maxWidth?: number;
   extraClassName?: string;
+  previousLabel?: string;
+  nextLabel?: string;
 };
 
 BootstrapPagination.propTypes = {
@@ -67,6 +74,8 @@ BootstrapPagination.propTypes = {
   onPageChange: PropTypes.func.isRequired,
   maxWidth: PropTypes.number,
   extraClassName: PropTypes.string,
+  previousLabel: PropTypes.string,
+  nextLabel: PropTypes.string,
 };
 
 function getLabel(label: string, a11yLabel: string | undefined) {

@@ -101,7 +101,37 @@ export default class MyApp extends React.Component {
 }
 ```
 
-## Justify Options
+## Options
+
+### Previous and Next Labels
+
+Change the default labels for the previous and next buttons by setting the `previousLabel` and `nextLabel` props:
+
+**Example - Text labels**
+
+<Bootstrap4PaginationStyles>
+<OverrideSSR>
+{isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo previousLabel="Previous" nextLabel="Next" />}
+</OverrideSSR>
+</Bootstrap4PaginationStyles>
+
+```jsx
+<Pagination ... previousLabel="Previous" nextLabel="Next" />
+```
+
+**Example - Single arrow labels**
+
+<Bootstrap4PaginationStyles>
+<OverrideSSR>
+{isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo previousLabel="‹" nextLabel="›" />}
+</OverrideSSR>
+</Bootstrap4PaginationStyles>
+
+```jsx
+<Pagination ... previousLabel="‹" nextLabel="›" />
+```
+
+### Alignment / Justify
 
 Change how the pagination is positioned by setting the `extraClassName` prop to one of the [Bootstrap justify content options](https://getbootstrap.com/docs/4.6/utilities/flex/#justify-content). Here are some suitable values:
 
@@ -113,15 +143,15 @@ Change how the pagination is positioned by setting the `extraClassName` prop to 
 
 **Example - align pagination left:**
 
-```jsx
-<Pagination ... extraClassName="justify-content-start" />
-```
-
 <Bootstrap4PaginationStyles>
 <OverrideSSR>
 {isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo extraClassName="justify-content-start" />}
 </OverrideSSR>
 </Bootstrap4PaginationStyles>
+
+```jsx
+<Pagination ... extraClassName="justify-content-start" />
+```
 
 ## Props Reference
 
@@ -142,11 +172,21 @@ Note that the active page will not change unless the `current` prop is updated t
 <PropDef name='maxWidth' type='number' defaultValue='undefined'>
 The maximum width (in pixels) of the pagination component. Use this prop if you want to override the automatic sizing. Note the width may be exceeded if it's not possible a component to the specified width
 </PropDef>
+<PropDef name='previousLabel' type='string' defaultValue='«'>
+
+The label for the previous button, default value is `«`
+
+</PropDef>
+<PropDef name='nextLabel' type='string' defaultValue='»'>
+
+The label for the next button, default value is `»`
+
+</PropDef>
 <PropDef name='extraClassName' type='string' defaultValue='justify-content-center'>
 
 Extra classes to be added to the top level `<ul\>` element, defaults to `justify-content-center`
 
-Use this prop to override the default justify value - for example to align elements to the start of the page use: `extraClassName='justify-content-start'`
+Use this prop to override the default justify value - for example to align elements to the start of the page use: `justify-content-start`
 
 </PropDef>
 

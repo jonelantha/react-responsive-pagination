@@ -7,6 +7,7 @@ import OverrideSSR from "../../src/components/OverrideSSR"
 import CustomPaginationContainer from "../../src/components/CustomPaginationContainer"
 import { customStyles1, customStyles2, customStyles3, minimumBootstrap4Styles, exampleAppCode } from './customPaginationStyles';
 import BootstrapLiveDemoClass from "../../src/components/BootstrapLiveDemoClass"
+import Bootstrap4PaginationStyles from '../../src/components/Bootstrap4PaginationStyles';
 import BootstrapSSR from "../../src/components/BootstrapSSR"
 import { PropsTable, PropDef } from "../../src/components/PropsTable"
 
@@ -122,6 +123,24 @@ _For a full list of suggested css selectors to target, see the next section_
 | `.page-item.disabled .page-link` | **Disabled items** _(<span\> tags)_<br />Includes '...' or disabled nav buttons. CSS should show grey out these elements (see examples below)                                                                                 |
 | `.sr-only`                       | **Screen reader only elements** _(<span\> tags)_<br />Required for accessibility. These elements not be visible, use CSS to visually hide these elements in a way screen readers can still read the text (see examples below) |
 
+## Other Options
+
+### Previous and Next Labels
+
+Change the default labels for the previous and next buttons by setting the `previousLabel` and `nextLabel` props:
+
+**Example - Text labels**
+
+<Bootstrap4PaginationStyles>
+<OverrideSSR>
+{isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass previousLabel="Previous" nextLabel="Next" />}
+</OverrideSSR>
+</Bootstrap4PaginationStyles>
+
+```jsx
+<Pagination ... previousLabel="Previous" nextLabel="Next" />
+```
+
 ## Props Reference
 
 <PropsTable>
@@ -140,6 +159,16 @@ Note that the active page will not change unless the `current` prop is updated t
 </PropDef>
 <PropDef name='maxWidth' type='number' defaultValue='undefined'>
 The maximum width (in pixels) of the pagination component. Use this prop if you want to override the automatic sizing. Note the width may be exceeded if it's not possible a component to the specified width
+</PropDef>
+<PropDef name='previousLabel' type='string' defaultValue='«'>
+
+The label for the previous button, default value is `«`
+
+</PropDef>
+<PropDef name='nextLabel' type='string' defaultValue='»'>
+
+The label for the next button, default value is `»`
+
 </PropDef>
 </PropsTable>
 
