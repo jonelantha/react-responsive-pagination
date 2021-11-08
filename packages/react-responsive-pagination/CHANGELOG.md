@@ -1,5 +1,12 @@
 # React Responsive Pagination Changelog
 
+# [1.3.0](https://github.com/jonelantha/react-responsive-pagination/compare/v1.2.0...v1.3.0) (2021-11-08)
+
+
+### Features
+
+* Added props to override previous/next buttons ([abb60a8](https://github.com/jonelantha/react-responsive-pagination/commit/abb60a8fd4693596754261d26ec54a4d049d3c9c))
+
 # [1.2.0](https://github.com/jonelantha/react-responsive-pagination/compare/v1.1.9...v1.2.0) (2021-10-04)
 
 
