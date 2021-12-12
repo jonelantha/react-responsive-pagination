@@ -107,6 +107,7 @@ function App() {
                   type="text"
                   className="form-control"
                   id={field}
+                  spellCheck="false"
                   {...formik.getFieldProps(field)}
                 />
               </div>
