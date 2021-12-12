@@ -3987,17 +3987,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:>=10.0.0":
+"@types/node@npm:*, @types/node@npm:>=10.0.0, @types/node@npm:^16.11.12":
   version: 16.11.12
   resolution: "@types/node@npm:16.11.12"
   checksum: a3feb346d61a56f5a137c29bb8c63cfa3cc02e184b9dffdc18ef1528dcce55596e570575215a2e39e6ce69343eeb2a5ba71c271938f1dc8db4cc393902855412
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^14.18.0":
-  version: 14.18.0
-  resolution: "@types/node@npm:14.18.0"
-  checksum: b120c26fe5f30bc358e861db8d7e401e419d14bd9dd25c022f3c2ea8b0b429d4c9efd77ad5d6d2a8bde61702a6786fb74d409f1b2cbb61c79133e2a65aab4fb1
   languageName: node
   linkType: hard
 
@@ -6485,7 +6478,7 @@ __metadata:
   resolution: "browser-test@workspace:packages/browser-test"
   dependencies:
     "@types/jest": ^27.0.3
-    "@types/node": ^14.18.0
+    "@types/node": ^16.11.12
     expect-playwright: ^0.8.0
     jest: ^27.4.4
     jest-circus: ^27.4.4
@@ -24331,7 +24324,7 @@ __metadata:
   resolution: "test-harness@workspace:packages/browser-test/test-harness"
   dependencies:
     "@types/jest": ^27.0.3
-    "@types/node": ^14.18.0
+    "@types/node": ^16.11.12
     "@types/react": ^17.0.37
     "@types/react-dom": ^17.0.11
     bootstrap: ^4.6.1
