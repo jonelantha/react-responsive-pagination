@@ -10,7 +10,7 @@ if (process.env.PROD_TEST) {
       : ['chromium', 'firefox', 'webkit'],
     serverOptions: {
       command: 'yarn serve-harness',
-      port: 5000,
+      port: 3000,
       debug: true,
       launchTimeout: 10000,
     },

@@ -43,17 +43,17 @@
     "react-dom": "^16.8.0 || ^17.0.0"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "^5.0.1",
-    "@semantic-release/git": "^9.0.1",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
     "@types/prop-types": "^15.7.4",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
-    "@typescript-eslint/eslint-plugin": "^4.33.0",
-    "@typescript-eslint/parser": "^4.33.0",
+    "@typescript-eslint/eslint-plugin": "^5.6.0",
+    "@typescript-eslint/parser": "^5.6.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.32.0",
+    "eslint": "^8.4.1",
     "eslint-config-react-app": "^6.0.0",
-    "eslint-plugin-flowtype": "^5.10.0",
+    "eslint-plugin-flowtype": "^8.0.3",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.27.1",
@@ -61,7 +61,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "rimraf": "^3.0.2",
-    "semantic-release": "^17.4.7",
+    "semantic-release": "^18.0.1",
     "typescript": "^4.5.3"
   }
 }
