@@ -36,7 +36,6 @@ function BootstrapPagination({
           <li key={item.key} className={`page-item${item.active ? ' active' : ''}`}>
             <a
               className="page-link"
-              href="#"
               onClick={preventDefault(() => handlePageChange(item.gotoPage))}
               aria-label={item.a11yLabel}
             >
