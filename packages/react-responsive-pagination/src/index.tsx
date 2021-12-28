@@ -90,7 +90,6 @@ function BootstrapPagination({
           >
             <a
               className={pageLinkClassName}
-              href="#"
               onClick={preventDefault(() => handlePageChange(item.gotoPage))}
               aria-label={item.a11yLabel}
             >
