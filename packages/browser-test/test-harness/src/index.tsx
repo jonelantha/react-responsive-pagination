@@ -4,7 +4,11 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import App from './App';
 
-document.fonts.load('16px Roboto').then(() => {
+async function run() {
+  await windowLoadPromise();
+
+  await document.fonts.load('16px Roboto');
+
   ReactDOM.render(
     <React.StrictMode>
       <Router>
@@ -13,4 +17,18 @@ document.fonts.load('16px Roboto').then(() => {
     </React.StrictMode>,
     document.getElementById('root'),
   );
-});
+}
+
+run();
+
+function windowLoadPromise() {
+  return new Promise<void>(resolve => {
+    if (document.readyState === 'complete') {
+      resolve();
+    } else {
+      window.addEventListener('load', () => {
+        resolve();
+      });
+    }
+  });
+}
