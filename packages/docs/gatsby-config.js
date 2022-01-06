@@ -1,7 +1,5 @@
 module.exports = {
-  flags: {
-    DEV_SSR: true,
-  },
+  flags: {},
   siteMetadata: {
     title: 'react-responsive-pagination',
     description: 'Responsive React pagination component',

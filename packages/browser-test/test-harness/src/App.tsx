@@ -1,5 +1,5 @@
 import Pagination from 'react-responsive-pagination';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -107,6 +107,7 @@ function App() {
                   type="text"
                   className="form-control"
                   id={field}
+                  spellCheck="false"
                   {...formik.getFieldProps(field)}
                 />
               </div>
@@ -124,7 +125,7 @@ function useURLParam(
   name: string,
 ): [value: string | undefined, set: (newValue: string) => void] {
   const location = useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const query = new URLSearchParams(location.search);
 
@@ -133,7 +134,7 @@ function useURLParam(
 
     function set(newValue) {
       query.set(name, newValue);
-      history.push(`?${query.toString()}`);
+      navigate(`?${query.toString()}`);
     },
   ];
 }

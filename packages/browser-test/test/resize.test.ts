@@ -16,6 +16,8 @@ describe.each(testCssClasses.map(cssClasses => [cssClasses]))(
   'Auto sizing with %p classes',
   cssClasses => {
     beforeAll(async () => {
+      await page.goto('about:blank');
+
       await page.goto(`${harnessUrl}?css=${cssClasses}`);
 
       await page.fill('#totalAsJson', '100');
