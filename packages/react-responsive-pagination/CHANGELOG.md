@@ -1,5 +1,15 @@
 # React Responsive Pagination Changelog
 
+## [1.3.1](https://github.com/jonelantha/react-responsive-pagination/compare/v1.3.0...v1.3.1) (2022-01-06)
+
+
+### Bug Fixes
+
+* Bump more package dependencies ([a06e753](https://github.com/jonelantha/react-responsive-pagination/commit/a06e7534d3c6ce4a645735d44688e3c840c2777c))
+* Bump package dependencies ([dcce75a](https://github.com/jonelantha/react-responsive-pagination/commit/dcce75a4df52a863f8ab0d666ec71287b01a1603))
+* Bump packages ([b1b406f](https://github.com/jonelantha/react-responsive-pagination/commit/b1b406f7c695341d3474b801fd0ddd1a287e26e2))
+* Bump test-harness to create react app 5 ([a23eac9](https://github.com/jonelantha/react-responsive-pagination/commit/a23eac95397dfa9941fbd542b88887958d3ae44c))
+
 # [1.3.0](https://github.com/jonelantha/react-responsive-pagination/compare/v1.2.0...v1.3.0) (2021-11-08)
 
 
