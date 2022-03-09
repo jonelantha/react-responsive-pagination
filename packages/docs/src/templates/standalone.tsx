@@ -6,6 +6,7 @@ import GlobalStyles, {
   spacingVertical,
   headingFontFamily,
   fontWeightBold,
+  getDynamicHPadding,
 } from '../components/GlobalStyles';
 import MarkdownContent from '../components/MarkdownContent';
 
@@ -55,25 +56,9 @@ export function StandaloneLayout({
   );
 }
 
-const baseHPadding = '0.5rem';
-
-const extraHPaddingStartPx = 500;
-const extraHPaddingEndPx = 800;
-const extraHPaddingSizePx = 16;
-
-// padding = width * gradient + constant
-// padding = width * padding / (end - start) - padding * end * / (end - start)
-// (* 100 to turn the gradient into vw units)
-const extraHPaddingGradientVw =
-  (extraHPaddingSizePx / (extraHPaddingEndPx - extraHPaddingStartPx)) * 100;
-const extraHPaddingConstantPx =
-  -(extraHPaddingSizePx * extraHPaddingStartPx) /
-  (extraHPaddingEndPx - extraHPaddingStartPx);
-
 const StandalonePageStyles = createGlobalStyle`
   body {
-    --extra-h-padding: clamp(0px, ${extraHPaddingGradientVw}vw + ${extraHPaddingConstantPx}px, ${extraHPaddingSizePx}px);
-    padding: ${spacingVertical} calc(${baseHPadding} + var(--extra-h-padding));
+    padding: ${spacingVertical} ${getDynamicHPadding()};
   }
 `;
 
