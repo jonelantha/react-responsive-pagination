@@ -15,7 +15,7 @@ const headingLineHeight = 1.25;
 const globalSpacing = '1rem';
 export const spacingVertical = globalSpacing;
 export const spacingHorizontal = globalSpacing;
-const colorContent = '#1c1e21';
+export const colorContent = '#1c1e21';
 
 export const leading = '1.25rem';
 
@@ -23,6 +23,12 @@ export const borderRadius = '0.4rem';
 
 export const colorLink = '#007bff';
 const colorLinkHover = shade(0.2, colorLink);
+
+export const colorNavBgHover = '#eeeeee';
+
+export const footerBg = '#eeeeee';
+export const colorFooterLink = '#333333';
+export const colorFooterLinkHover = shade(0.2, colorFooterLink);
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -73,5 +79,30 @@ const GlobalStyles = createGlobalStyle`
     margin: 0 0 ${spacingVertical} 0;
   }
 `;
+
+export function getDynamicHPadding() {
+  const baseHPadding = '0.5rem';
+
+  const extraHPaddingStartPx = 500;
+  const extraHPaddingEndPx = 800;
+  const extraHPaddingSizePx = 16;
+
+  // padding = width * gradient + constant
+  // padding = width * padding / (end - start) - padding * end * / (end - start)
+  // (* 100 to turn the gradient into vw units)
+  const extraHPaddingGradientVw =
+    (extraHPaddingSizePx / (extraHPaddingEndPx - extraHPaddingStartPx)) * 100;
+  const extraHPaddingConstantPx =
+    -(extraHPaddingSizePx * extraHPaddingStartPx) /
+    (extraHPaddingEndPx - extraHPaddingStartPx);
+
+  return `
+    calc(${baseHPadding} + clamp(
+      0px,
+      ${extraHPaddingGradientVw}vw + ${extraHPaddingConstantPx}px,
+      ${extraHPaddingSizePx}px
+    ))
+  `;
+}
 
 export default GlobalStyles;

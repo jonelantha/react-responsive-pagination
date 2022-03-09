@@ -16,6 +16,7 @@ exports.createPages = async ({ graphql, actions }) => {
               }
               frontmatter {
                 title
+                template
               }
             }
           }
@@ -32,9 +33,10 @@ exports.createPages = async ({ graphql, actions }) => {
   const posts = result.data.allMdx.edges;
 
   posts.forEach((post, index) => {
+    const template = post.node.frontmatter.template ?? 'docs';
     createPage({
       path: post.node.fields.slug,
-      component: path.resolve('./src/templates/standalone.tsx'),
+      component: path.resolve(`./src/templates/${template}.tsx`),
       context: {
         slug: post.node.fields.slug,
       },

@@ -1,6 +1,7 @@
 ---
 title: 'Live demo and examples'
 description: 'react-responsive-pagination live demo and examples'
+template: standalone
 ---
 
 import OverrideSSR from "../../src/components/OverrideSSR"
