@@ -3459,6 +3459,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/github-slugger@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "@types/github-slugger@npm:1.3.0"
+  checksum: 6561f26814d7c6bf619b1abfba07930ddc2f71e1e1d58a03c20852fd4086ec17f8ee98a44a8ac77ba917c0ff7052cd3fe74071fba59bd526dff8a3a980e2e528
+  languageName: node
+  linkType: hard
+
 "@types/glob@npm:*, @types/glob@npm:^7.1.1":
   version: 7.2.0
   resolution: "@types/glob@npm:7.2.0"
@@ -7987,6 +7994,7 @@ __metadata:
   dependencies:
     "@mdx-js/mdx": ^1.6.22
     "@mdx-js/react": ^1.6.22
+    "@types/github-slugger": ^1.3.0
     "@types/mdx-js__react": ^1.5.5
     "@types/react": ^17.0.39
     "@types/react-helmet": ^6.1.5
@@ -7999,6 +8007,7 @@ __metadata:
     gatsby-plugin-sitemap: ^5.7.0
     gatsby-plugin-styled-components: ^5.7.0
     gatsby-source-filesystem: ^4.7.0
+    github-slugger: ^1.4.0
     polished: ^4.1.4
     prism-react-renderer: ^1.3.1
     react: ^17.0.2
@@ -10601,7 +10610,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"github-slugger@npm:^1.1.1, github-slugger@npm:^1.2.1":
+"github-slugger@npm:^1.1.1, github-slugger@npm:^1.2.1, github-slugger@npm:^1.4.0":
   version: 1.4.0
   resolution: "github-slugger@npm:1.4.0"
   checksum: 4f52e7a21f5c6a4c5328f01fe4fe13ae8881fea78bfe31f9e72c4038f97e3e70d52fb85aa7633a52c501dc2486874474d9abd22aa61cbe9b113099a495551c6b

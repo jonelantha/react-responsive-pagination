@@ -1,6 +1,11 @@
 ---
 title: 'Custom Styles Guide'
 description: 'Responsive pagination component with custom styling'
+navTitle: 'Custom Styles'
+topNavOrder: 3
+footerNavOrder: 3
+sideNavOrder: 3
+addOverview: true
 ---
 
 import OverrideSSR from "../../src/components/OverrideSSR"
@@ -11,7 +16,7 @@ import Bootstrap4PaginationStyles from '../../src/components/Bootstrap4Paginatio
 import BootstrapSSR from "../../src/components/BootstrapSSR"
 import { PropsTable, PropDef } from "../../src/components/PropsTable"
 
-# Styled Responsive Pagination
+# Custom Styles
 
 **react-responsive-pagination** is an easy to use responsive pagination component:
 
@@ -41,7 +46,7 @@ npm install react-responsive-pagination
 
 ## Quick Start - Functional Components / Hooks
 
-_(for a class component example see [here](./bootstrap-pagination#quick-start---class-components))_
+_(for a class component example see [here](/bootstrap-pagination#quick-start---class-components))_
 
 <CodeBlock code={exampleAppCode} language='jsx' title='MyApp.js'/>
 
@@ -51,7 +56,7 @@ _(see below for **pagination.css** examples, for more information on Props, see 
 
 To create custom styles for **react-responsive-pagination** simply include some custom css - the four examples below should provide a good starting point. For a full list of suggested css selectors to target, see [Selector Reference](#selector-reference)
 
-Using Bootstrap 4.x? No problem, see the [Bootstrap Pagination](./bootstrap-pagination) guide.
+Using Bootstrap 4.x? No problem, see the [Bootstrap Pagination](/bootstrap-pagination) guide.
 
 ## Example 1 - Basic Pagination
 

@@ -1,9 +1,17 @@
+import { Link } from 'gatsby';
 import { ReactElement } from 'react';
 import CodeBlock from './CodeBlock';
 import CTALink from './CTALink';
 import TickList from './TickList';
 
 const mdxComponents = {
+  a: ({ href, ...props }: { href: string }) => {
+    if (!href.startsWith('http')) {
+      return <Link to={href} {...props} />;
+    } else {
+      return <a href={href} {...props} />;
+    }
+  },
   CodeBlock,
   CTALink,
   TickList,
