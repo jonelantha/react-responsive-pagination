@@ -1,9 +1,9 @@
 import React from 'react';
-import DocsLayout from './src/templates/docs-layout';
+import DocLayout from './src/components/DocLayout';
 
 export const wrapPageElement = ({ element, props }) => {
   if (props.pageContext.template === 'docs') {
-    return <DocsLayout activeSlug={props.pageContext.slug}>{element}</DocsLayout>;
+    return <DocLayout activeSlug={props.pageContext.slug}>{element}</DocLayout>;
   } else {
     return element;
   }

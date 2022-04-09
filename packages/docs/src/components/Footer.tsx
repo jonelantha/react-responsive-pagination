@@ -1,5 +1,5 @@
 import { Link } from 'gatsby';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { NavItem } from '../utils/useNavItems';
 import {
   footerBg,
@@ -7,7 +7,7 @@ import {
   colorFooterLinkHover,
   mainFontFamily,
 } from '../components/GlobalStyles';
-import ExternalIcon from '../components/ExternalIcon';
+import { external } from './icons';
 
 type FooterProps = { items: NavItem[] };
 
@@ -16,32 +16,29 @@ export default function Footer({ items }: FooterProps) {
     <FooterStyles>
       <section>
         <h1>Useful Links</h1>
-        <a
+        <ExternalLink
           href="https://www.npmjs.com/package/react-responsive-pagination"
           rel="noopener noreferrer"
         >
           README
-          <ExternalIcon />
-        </a>
+        </ExternalLink>
         {items.map(({ slug, url, title }) => (
-          <Link to={url} key={slug}>
+          <GatsbyLink to={url} key={slug}>
             {title}
-          </Link>
+          </GatsbyLink>
         ))}
-        <a
+        <ExternalLink
           href="https://www.github.com/jonelantha/react-responsive-pagination"
           rel="noopener noreferrer"
         >
           GitHub
-          <ExternalIcon />
-        </a>
-        <a
+        </ExternalLink>
+        <ExternalLink
           href="https://www.npmjs.com/package/react-responsive-pagination"
           rel="noopener noreferrer"
         >
           NPM Package
-          <ExternalIcon />
-        </a>
+        </ExternalLink>
       </section>
       <small>
         Copyright &copy; 2019-{new Date().getFullYear()} &nbsp; jonelantha
@@ -69,24 +66,38 @@ export const FooterStyles = styled.footer`
       margin-bottom: 0.5em;
       font-family: ${mainFontFamily};
     }
-
-    a {
-      color: ${colorFooterLink};
-
-      &:hover {
-        color: ${colorFooterLinkHover};
-      }
-
-      svg {
-        margin-left: 0.4em;
-        width: 0.8em;
-        height: 0.8em;
-      }
-    }
   }
 
   small {
     font-size: 1em;
     margin-top: 1em;
+  }
+`;
+
+const LinkStyles = css`
+  color: ${colorFooterLink};
+
+  :hover {
+    color: ${colorFooterLinkHover};
+  }
+`;
+
+const GatsbyLink = styled(Link)`
+  ${LinkStyles}
+`;
+
+const ExternalLink = styled.a`
+  ${LinkStyles}
+
+  ::after {
+    content: ${external(colorFooterLink)};
+    display: inline-block;
+    margin-left: 0.4em;
+    width: 0.8em;
+    height: 0.8em;
+  }
+
+  :hover::after {
+    content: ${external(colorFooterLinkHover)};
   }
 `;

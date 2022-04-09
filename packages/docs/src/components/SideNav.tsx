@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { NavItem } from '../utils/useNavItems';
 import Reveal from '../components/Reveal';
 import {
@@ -8,173 +7,235 @@ import {
   borderRadius,
   fontWeightSemiBold,
   colorNavBgHover,
-  footerBg,
   colorHighlightedBackground,
 } from '../components/GlobalStyles';
+import { staticNavMediaQuery } from './DocLayoutBreakpoints';
+import { chevron, close, external } from './icons';
 
 type SideNavProps = {
   items: NavItem[];
-  activeSlug: string;
+  activeSlug: string | undefined;
+  onClose: () => void;
+  onActiveSlugChange: (slug: string | undefined) => void;
 };
 
-export default function SideNav({ items, activeSlug }: SideNavProps) {
-  const [openSideItem, setOpenSideItem] = useState<string | undefined>(activeSlug);
-  useEffect(() => {
-    setOpenSideItem(activeSlug);
-  }, [activeSlug]);
-
-  function toggleSideNav(slug: string) {
-    if (openSideItem === slug) {
-      setOpenSideItem(undefined);
-    } else {
-      setOpenSideItem(slug);
+export default function SideNav({
+  items,
+  activeSlug,
+  onActiveSlugChange: setActiveSlug,
+  onClose: close,
+}: SideNavProps) {
+  function handleTopLevelLinkClicked(clickedSlug: string) {
+    if (clickedSlug !== activeSlug) {
+      // expand section if not already expanded
+      setActiveSlug(clickedSlug);
+    } else if (clickedSlug === activeSlug && window.location.hash === '') {
+      // close section if already expanded
+      setActiveSlug(undefined);
     }
+    close();
   }
 
-  function sideNavTopLevelClicked(slug: string) {
-    if (slug !== openSideItem) {
-      setOpenSideItem(slug);
-    } else if (slug === openSideItem && window.location.hash === '') {
-      setOpenSideItem(undefined);
-    }
+  function handleExpanderClicked(clickedSlug: string) {
+    // toggle
+    setActiveSlug(activeSlug !== clickedSlug ? clickedSlug : undefined);
+  }
+
+  function handleLinkClicked() {
+    close();
   }
 
   return (
     <Nav>
-      <ul>
+      <SideNavTopBar>
+        react-responsive-pagination
+        <CloseButton aria-label="Close navigation menu" onClick={close} />
+      </SideNavTopBar>
+      <RootUL>
         {items.map(({ slug, url, title, sections }, index) => (
           <li key={slug}>
-            <div
-              className={
-                (activeSlug === slug ? 'active ' : '') +
-                (openSideItem === slug ? 'expanded' : '')
-              }
-            >
-              <Link to={url} onClick={() => sideNavTopLevelClicked(slug)}>
+            <SectionHead>
+              <GatsbyLink
+                to={url}
+                $active={activeSlug === slug}
+                onClick={() => handleTopLevelLinkClicked(slug)}
+              >
                 {title}
-              </Link>
-              <button
+              </GatsbyLink>
+              <ExpandButton
+                expanded={activeSlug === slug}
                 aria-label={`${
-                  openSideItem === slug ? 'Hide' : 'Show'
+                  activeSlug === slug ? 'Hide' : 'Show'
                 } '${title}' sections`}
-                aria-expanded={openSideItem === slug ? 'true' : 'false'}
+                aria-expanded={activeSlug === slug ? 'true' : 'false'}
                 aria-controls={`sections_${index}`}
-                onClick={() => toggleSideNav(slug)}
+                onClick={() => handleExpanderClicked(slug)}
               />
-            </div>
-            <Reveal<HTMLUListElement> expanded={openSideItem === slug}>
+            </SectionHead>
+            <Reveal<HTMLUListElement> open={activeSlug === slug}>
               {props => (
-                <ul {...props} id={`sections_${index}`}>
+                <NestedUL {...props} id={`sections_${index}`}>
                   {sections.map(({ slug, url, title }) => (
                     <li key={slug}>
-                      <Link to={url}>{title}</Link>
+                      <GatsbyLink to={url} onClick={handleLinkClicked}>
+                        {title}
+                      </GatsbyLink>
                     </li>
                   ))}
-                </ul>
+                </NestedUL>
               )}
             </Reveal>
           </li>
         ))}
-      </ul>
+        <li className="popup-only">
+          <GatsbyLink to="/live-demo/">Live Demo</GatsbyLink>
+        </li>
+        <li className="popup-only">
+          <ExternalLink
+            href="https://www.github.com/jonelantha/react-responsive-pagination"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </ExternalLink>
+        </li>
+      </RootUL>
     </Nav>
   );
 }
 
-const chevron = `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24"><path fill="${encodeURIComponent(
-  colorContent,
-)}" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" /></svg>')`;
+const SideNavTopBar = styled.div`
+  padding-left: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  font-weight: ${fontWeightSemiBold};
+
+  @media ${staticNavMediaQuery} {
+    display: none;
+  }
+`;
+
+const CloseButton = styled.button`
+  cursor: pointer;
+  font-size: inherit;
+  margin: 0.5em;
+  padding: 0;
+  width: 2em;
+  height: 2em;
+  border: 0;
+  line-height: 1;
+  border-radius: ${borderRadius};
+
+  background: no-repeat ${close(colorContent)} 50% / 1rem 1rem;
+
+  :is(:hover, :focus-visible) {
+    background-color: ${colorNavBgHover};
+  }
+`;
 
 const Nav = styled.nav`
   background: white;
-  top: var(--header-height);
-  height: calc(100vh - var(--header-height));
-  position: sticky;
   overflow: auto;
-  padding: 0.5em;
-  border-right: 1px solid ${footerBg};
 
-  ul {
-    list-style: none;
-    margin: 0;
-    padding-left: 0;
-
-    li {
-      div {
-        display: flex;
-        flex-flow: row nowrap;
-        align-items: center;
-        position: relative;
-      }
-
-      a {
-        color: ${colorContent};
-        display: block;
-        text-decoration: none;
-        padding: 0.4em 0.5em 0.4em 1em;
-        flex: 1 0 0;
-
-        line-height: 1.3;
-
-        border-radius: ${borderRadius};
-
-        :is(.active > *) {
-          background-color: ${colorHighlightedBackground};
-        }
-
-        :is(:hover, :focus-visible) {
-          background-color: ${colorNavBgHover};
-        }
-
-        :not(ul ul a) {
-          // <a> is not nested in two uls, must be at top level
-          font-weight: ${fontWeightSemiBold};
-          padding-right: 2.5em;
-        }
-      }
-
-      button {
-        cursor: pointer;
-        background: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        position: absolute;
-        right: 0;
-        height: 100%;
-        min-width: 2rem;
-
-        border: none;
-        border-radius: 0 ${borderRadius} ${borderRadius} 0;
-
-        :is(:hover, :focus-visible) {
-          background-color: ${colorNavBgHover};
-        }
-
-        ::after {
-          content: '';
-          display: block;
-          transform: rotate(90deg);
-          transition: transform 200ms;
-          height: 1.25rem;
-          width: 1.25rem;
-          background: ${chevron} 50% / 2rem 2rem;
-        }
-
-        :is(div.expanded > button) {
-          ::after {
-            transform: rotate(180deg);
-          }
-        }
-      }
-
-      // nested ul
-      ul {
-        margin-left: 1em;
-      }
+  @media ${staticNavMediaQuery} {
+    .popup-only {
+      display: none;
     }
+  }
+`;
+
+const RootUL = styled.ul`
+  list-style: none;
+  padding: 0.5em;
+  margin: 0;
+`;
+
+const NestedUL = styled.ul`
+  list-style: none;
+  margin-left: 1em;
+  padding: 0;
+`;
+
+const LinkStyles = css`
+  color: ${colorContent};
+  display: block;
+  text-decoration: none;
+  padding: 0.4em 0.5em 0.4em 1em;
+
+  line-height: 1.3;
+
+  border-radius: ${borderRadius};
+
+  :is(:hover, :focus-visible) {
+    background-color: ${colorNavBgHover};
+    color: inherit;
+  }
+`;
+
+const ExternalLink = styled.a`
+  ${LinkStyles}
+
+  ::after {
+    content: ${external(colorContent)};
+    display: inline-block;
+    margin-left: 0.4em;
+    width: 0.8em;
+    height: 0.8em;
+  }
+`;
+
+const GatsbyLink = styled(Link)<{ $active?: boolean }>`
+  ${LinkStyles}
+
+  ${({ $active }) => $active && `background-color: ${colorHighlightedBackground};`}
+`;
+
+const SectionHead = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  position: relative;
+
+  ${GatsbyLink} {
+    font-weight: ${fontWeightSemiBold};
+    padding-right: 2.5em;
+    flex: 1 0 0;
+  }
+`;
+
+const ExpandButton = styled.button<{ expanded: boolean }>`
+  cursor: pointer;
+  background: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  right: 0;
+  height: 100%;
+  min-width: 2rem;
+
+  border: none;
+  border-radius: 0 ${borderRadius} ${borderRadius} 0;
+
+  :is(:hover, :focus-visible) {
+    background-color: ${colorNavBgHover};
+  }
+
+  ::after {
+    content: ${chevron(colorContent)};
+    display: block;
+    height: 2rem;
+    width: 2rem;
+    transition: transform 200ms;
+    transform: rotate(${({ expanded }) => (expanded ? '180deg' : '90deg')});
   }
 `;
 

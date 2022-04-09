@@ -1,41 +1,61 @@
-import React, { useState, useCallback, useLayoutEffect, useRef } from 'react';
-import styled from 'styled-components';
-
-type State = 'open' | 'close';
-type Phase = 'start-pos' | 'animate' | 'complete';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
+import styled, { css } from 'styled-components';
 
 export default function Reveal<T extends HTMLElement>({
   children: render,
-  expanded,
+  open,
 }: RevealProps<T>) {
   const ref = useRef<T>(null);
 
-  const [state, setState] = useState<State>(expanded ? 'open' : 'close');
-  const [phase, setPhase] = useState<Phase>('complete');
+  const [animationType, setAnimationType] = useState<'open' | 'close'>(
+    open ? 'open' : 'close',
+  );
+  const [phase, setPhase] = useState<
+    { type: 'animate-from' | 'animate-to'; height: number } | { type: 'complete' }
+  >({ type: 'complete' });
 
-  useLayoutEffect(() => {
-    if (expanded && state === 'close') {
-      setState('open');
-      setPhase('start-pos');
-    } else if (!expanded && state === 'open') {
-      setState('close');
-      setPhase('start-pos');
+  useEffect(() => {
+    // open prop changed, start new animation
+    if (open && animationType === 'close') {
+      setAnimationType('open');
+      setPhase({ type: 'animate-from', height: 0 });
+    } else if (!open && animationType === 'open') {
+      setAnimationType('close');
+      setPhase(
+        ref.current?.scrollHeight
+          ? { type: 'animate-from', height: ref.current.scrollHeight }
+          : { type: 'complete' },
+      );
     }
+  }, [open, animationType]);
 
-    if (phase === 'start-pos') {
-      setPhase('animate');
+  useEffect(() => {
+    if (phase.type === 'animate-from') {
+      // when animate-from has just been rendered
+      // accessing scrollHeight for all cases forces reflow
+      // necessary for animation-from state to be committed
+      const elementScrollHeight = ref.current?.scrollHeight;
+
+      if (animationType === 'open') {
+        setPhase(
+          elementScrollHeight
+            ? { type: 'animate-to', height: elementScrollHeight }
+            : { type: 'complete' },
+        );
+      } else {
+        setPhase({ type: 'animate-to', height: 0 });
+      }
     }
-  }, [expanded, state, phase]);
+  }, [animationType, phase.type]);
 
   const onTransitionEnd = useCallback(() => {
-    setPhase('complete');
+    setPhase({ type: 'complete' });
   }, []);
 
   return (
     <RevealContainer
-      state={state}
-      phase={phase}
-      elementScrollHeight={ref.current?.scrollHeight}
+      animateHeight={phase.type === 'complete' ? undefined : phase.height}
+      displayNone={phase.type === 'complete' && animationType === 'close'}
       render={className => render({ className, ref, onTransitionEnd })}
     />
   );
@@ -43,7 +63,7 @@ export default function Reveal<T extends HTMLElement>({
 
 type RevealProps<T> = {
   children: RenderFn<T>;
-  expanded: boolean;
+  open: boolean;
 };
 
 type RenderFn<T> = (props: {
@@ -53,35 +73,20 @@ type RenderFn<T> = (props: {
 }) => JSX.Element;
 
 const RevealContainer = styled(RevealChild)<{
-  state: State;
-  phase: Phase;
-  elementScrollHeight: number | undefined;
+  animateHeight: number | undefined;
+  displayNone: boolean;
 }>`
   will-change: height;
 
-  ${({ state, phase, elementScrollHeight }) =>
-    ({
-      'open-start-pos': `
-          height: 0;
-          overflow: hidden;
-        `,
-      'open-animate': `
-          transition: height 350ms ease-in-out;
-          height: ${elementScrollHeight}px;
-          overflow: hidden;
-        `,
-      'open-complete': undefined,
-      'close-start-pos': `
-          height: ${elementScrollHeight}px;
-          overflow: hidden;
-        `,
-      'close-animate': `
-          transition: height 350ms ease-in-out;
-          height: 0;
-          overflow: hidden;
-        `,
-      'close-complete': 'display: none',
-    }[`${state}-${phase}`])}
+  ${({ displayNone }) => displayNone && 'display: none;'}
+
+  ${({ animateHeight }) =>
+    animateHeight !== undefined &&
+    css`
+      transition: height 350ms ease-in-out;
+      height: ${animateHeight}px;
+      overflow: hidden;
+    `}}
 `;
 
 function RevealChild({ render, className }: RevealChildProps) {

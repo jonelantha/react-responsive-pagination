@@ -1,6 +1,7 @@
 import { Link } from 'gatsby';
 import { forwardRef } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { math } from 'polished';
 import {
   colorContent,
   borderRadius,
@@ -8,122 +9,138 @@ import {
   colorNavBgHover,
 } from '../components/GlobalStyles';
 import { NavItem } from '../utils/useNavItems';
-import ExternalIcon from '../components/ExternalIcon';
+import { hamburger, external } from './icons';
 
-type TopNavProps = { items: NavItem[] };
+type TopNavProps = { items: NavItem[]; onMenuClicked: () => void };
 
-const TopNav = forwardRef<HTMLElement, TopNavProps>(({ items }, ref) => {
-  return (
-    <Nav ref={ref}>
-      <a
-        href="https://www.npmjs.com/package/react-responsive-pagination"
-        rel="noopener noreferrer"
-        className="logo-link"
-        aria-hidden="true"
-      >
-        <span>📐📖</span>
-      </a>
-      <a
-        href="https://www.npmjs.com/package/react-responsive-pagination"
-        rel="noopener noreferrer"
-        className="project-link"
-      >
-        react-responsive-pagination
-      </a>
-      {items.map(({ url, slug, title }) => (
-        <Link to={url} key={slug}>
-          {title}
-        </Link>
-      ))}
-      <a
-        href="https://www.github.com/jonelantha/react-responsive-pagination"
-        rel="noopener noreferrer"
-        className="github-link"
-      >
-        <img src="/GitHub-Mark-64px.png" aria-hidden="true" />
-        <span>
+const TopNav = forwardRef<HTMLElement, TopNavProps>(
+  ({ items, onMenuClicked }, ref) => {
+    return (
+      <Nav ref={ref}>
+        <HamburgerButton aria-label="Open navigation menu" onClick={onMenuClicked} />
+        <ProjectLink
+          href="https://www.npmjs.com/package/react-responsive-pagination"
+          rel="noopener noreferrer"
+        >
+          <span aria-hidden="true">📐📖</span>
+          react-responsive-pagination
+        </ProjectLink>
+        {items.map(({ url, slug, title }) => (
+          <GatsbyLink to={url} key={slug}>
+            {title}
+          </GatsbyLink>
+        ))}
+        <GitHubLink
+          href="https://www.github.com/jonelantha/react-responsive-pagination"
+          rel="noopener noreferrer"
+        >
+          <img src="/GitHub-Mark-64px.png" aria-hidden="true" />
           GitHub
-          <ExternalIcon />
-        </span>
-      </a>
-    </Nav>
-  );
-});
+        </GitHubLink>
+      </Nav>
+    );
+  },
+);
+
+export const topNavFullWidthBreakPoint = '900px';
+export const topNavNoLinksBreakPoint = '760px';
+
+const hPadding = '0.4em';
+const hItemLeftMargin = '0.5em';
+
+const HamburgerButton = styled.button`
+  cursor: pointer;
+  font-size: inherit;
+  box-sizing: content-box;
+  padding: 0;
+  min-height: 2em;
+  width: 1.75em;
+  margin: 0 0 0 ${hItemLeftMargin};
+  border: 0;
+  border-radius: ${borderRadius};
+  padding: 0 ${hPadding};
+  background: no-repeat ${hamburger(colorContent)} 50% / 1.75rem 1.75rem;
+
+  :is(:hover, :focus-visible) {
+    background-color: ${colorNavBgHover};
+  }
+`;
+
+const LinkStyles = css`
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 2em;
+  margin: 0 0 0 ${hItemLeftMargin};
+  font-weight: ${fontWeightSemiBold};
+  text-decoration: none;
+  padding: 0 ${hPadding};
+  color: ${colorContent};
+  border-radius: ${borderRadius};
+
+  :is(:hover, :focus-visible) {
+    color: initial;
+    background: ${colorNavBgHover};
+  }
+`;
+
+const GatsbyLink = styled(Link)`
+  ${LinkStyles}
+`;
+
+const NavLink = styled.a`
+  ${LinkStyles}
+`;
+
+const ProjectLink = styled(NavLink)`
+  padding-left: ${math(`${hPadding} - 0.1em`)};
+
+  span {
+    font-size: 1.6em;
+    line-height: 1;
+    margin-right: 0.25em;
+  }
+`;
+
+const GitHubLink = styled(NavLink)`
+  img {
+    width: 1.25em;
+    height: 1.25em;
+    margin-right: 0.4em;
+  }
+
+  ::after {
+    content: ${external(colorContent)};
+    display: inline-block;
+    line-height: 1;
+    margin-left: 0.4em;
+    width: 0.8em;
+    height: 0.8em;
+  }
+`;
 
 const Nav = styled.nav`
   background: white;
-  position: sticky;
-  top: 0;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
-  z-index: 5;
-  width: 100%;
-  font-size: 1em;
-  padding: 0.6em 0.5em;
+  padding: 0.5em 0;
 
   display: flex;
   flex-flow: row wrap;
   align-items: stretch;
 
-  > * {
-    display: inline-flex;
-    align-items: center;
-    margin: 0 0.3em;
-  }
-
-  a {
-    font-weight: ${fontWeightSemiBold};
-    text-decoration: none;
-    padding: 0.2em 0.5em;
-    color: ${colorContent};
-    border-radius: ${borderRadius};
-
-    :is(:hover, :focus-visible) {
-      background: ${colorNavBgHover};
-    }
-
-    svg {
-      margin-left: 0.4em;
-      width: 0.8em;
-      height: 0.8em;
-    }
-  }
-
-  .logo-link {
-    margin: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-right: 0;
-
-    span {
-      font-size: 1.5em;
-      line-height: 1;
-    }
-
-    :hover {
-      background: inherit;
-    }
-  }
-
-  .project-link {
-    margin-left: 0;
-  }
-
-  .github-link {
-    img {
-      width: 1.25em;
-      height: 1.25em;
-      margin-right: 0.4em;
-    }
-  }
-
-  @media screen and (max-width: 920px) {
-    .github-link {
+  @media not screen and (max-width: ${topNavFullWidthBreakPoint}) {
+    ${HamburgerButton} {
       display: none;
     }
   }
 
-  @media screen and (max-width: 760px) {
-    .project-link ~ a {
+  @media screen and (max-width: ${topNavFullWidthBreakPoint}) {
+    ${GitHubLink} {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: ${topNavNoLinksBreakPoint}) {
+    ${ProjectLink} ~ a {
       display: none;
     }
   }
