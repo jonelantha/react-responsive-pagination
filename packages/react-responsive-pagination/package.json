@@ -17,8 +17,8 @@
     "test": "yarn workspace browser-test test",
     "lint": "eslint --ext .ts --ext .tsx src",
     "prepublishOnly": "yarn build",
-    "release": "semantic-release",
-    "previewReleaseNotes": "semantic-release --dry-run"
+    "release": "rm ../../package.json && semantic-release",
+    "previewReleaseNotes": "rm ../../package.json && semantic-release --dry-run"
   },
   "keywords": [
     "responsive",
