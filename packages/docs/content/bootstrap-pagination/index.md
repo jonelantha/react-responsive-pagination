@@ -1,6 +1,11 @@
 ---
 title: 'Responsive Bootstrap Pagination Component'
 description: 'Responsive Bootstrap React Pagination Component'
+navTitle: 'Bootstrap Usage'
+topNavOrder: 2
+footerNavOrder: 2
+sideNavOrder: 2
+addOverview: true
 ---
 
 import OverrideSSR from "../../src/components/OverrideSSR"
@@ -10,7 +15,7 @@ import BootstrapSSR from "../../src/components/BootstrapSSR"
 
 import { PropsTable, PropDef } from "../../src/components/PropsTable"
 
-# Responsive Bootstrap Pagination
+# Bootstrap Usage
 
 **react-responsive-pagination** is an easy to use responsive pagination component:
 
@@ -40,7 +45,7 @@ npm install react-responsive-pagination
 
 **react-responsive-pagination** is styled for [Bootstrap 4.x](https://getbootstrap.com/docs/4.6/). If you don't already have Bootstrap styles see the [Bootstrap 4.x Download Guide](https://getbootstrap.com/docs/4.6/getting-started/download/)
 
-Don't want to use Bootstrap? No problem, see the [Custom Styled Pagination](./custom-styled-pagination) guide
+Don't want to use Bootstrap? No problem, see the [Custom Styled Pagination](/custom-styled-pagination) guide
 
 ## Quick Start - Functional Components / Hooks
 

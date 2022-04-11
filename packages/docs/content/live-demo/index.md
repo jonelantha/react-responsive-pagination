@@ -1,7 +1,10 @@
 ---
 title: 'Live demo and examples'
 description: 'react-responsive-pagination live demo and examples'
+navTitle: 'Live Demo'
 template: standalone
+topNavOrder: 1
+footerNavOrder: 1
 ---
 
 import OverrideSSR from "../../src/components/OverrideSSR"

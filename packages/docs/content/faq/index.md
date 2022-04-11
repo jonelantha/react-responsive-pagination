@@ -1,9 +1,13 @@
 ---
 title: 'Frequently asked questions'
 description: 'react-responsive-pagination frequently asked questions'
+navTitle: 'FAQ'
+topNavOrder: 4
+footerNavOrder: 4
+sideNavOrder: 4
 ---
 
-# Frequently Asked Questions
+# FAQ
 
 ## About Auto Sizing
 

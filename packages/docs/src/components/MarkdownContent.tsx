@@ -9,6 +9,7 @@ import {
   fontWeightBold,
   borderRadius,
   monoFontFamily,
+  colorHighlightedBackground,
 } from './GlobalStyles';
 
 const tableBorderColor = '#dadde1';
@@ -108,7 +109,7 @@ export const MarkdownContainer = styled.article`
 
   td > code,
   p > code {
-    background-color: #e6eeff;
+    background-color: ${colorHighlightedBackground};
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: ${borderRadius};
     font-family: ${monoFontFamily};

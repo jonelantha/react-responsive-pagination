@@ -26,6 +26,8 @@ const colorLinkHover = shade(0.2, colorLink);
 
 export const colorNavBgHover = '#eeeeee';
 
+export const colorHighlightedBackground = '#e6eeff';
+
 export const footerBg = '#eeeeee';
 export const colorFooterLink = '#333333';
 export const colorFooterLinkHover = shade(0.2, colorFooterLink);
