@@ -9,7 +9,7 @@ if (process.env.PROD_TEST) {
       ? [process.env.BROWSER]
       : ['chromium', 'firefox', 'webkit'],
     serverOptions: {
-      command: 'yarn serve-harness',
+      command: process.env.SERVE_COMMAND,
       port: 3000,
       debug: true,
       launchTimeout: 10000,
