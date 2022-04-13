@@ -9,6 +9,8 @@
 
 A responsive React pagination component which intelligently renders to the available width
 
+🌟 Just updated for React 18 🌟
+
 <a href="https://react-responsive-pagination.elantha.com/live-demo/"><img src="./react-responsive-pagination.gif?raw=true" width="985" alt="react-responsive-pagination example" /></a>
 
 ### ⚡️ [LIVE DEMO - try it out for yourself!](https://react-responsive-pagination.elantha.com/live-demo/) 🚀
@@ -49,7 +51,7 @@ function MyApp() {
 
 ## ✔︎ Requirements / Compatibility
 
-- React 16.8 (the one with hooks)
+- React 18, 17 and 16.8 upwards
 - Modern browsers only - not suitable for IE 11
 
 ## 🔧 Props
