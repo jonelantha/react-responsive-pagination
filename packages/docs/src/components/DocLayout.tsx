@@ -5,7 +5,7 @@ import GlobalStyles, {
   getDynamicHPadding,
   footerBg,
 } from './GlobalStyles';
-import TopNav, { TopNavStyles } from './TopNav';
+import TopNav, { TopNavStyles, topNavMinHeight } from './TopNav';
 import SideNav, { SideNavStyles } from './SideNav';
 import Footer, { FooterStyles } from './Footer';
 import { MarkdownContainer } from './MarkdownContent';
@@ -108,7 +108,7 @@ const Layout = styled.main<{ popupSideNavVisible: boolean }>`
     grid-template-rows: auto 1fr auto;
   }
 
-  --header-height: var(--root-header-height, 51px);
+  --header-height: var(--root-header-height, ${topNavMinHeight});
 
   ${TopNavStyles} {
     grid-area: top-nav;
