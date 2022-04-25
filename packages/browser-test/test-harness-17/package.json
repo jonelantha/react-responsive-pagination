@@ -1,15 +1,16 @@
 {
-  "name": "test-harness",
+  "name": "test-harness-17",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^6.4.3",
     "@types/node": "^16.11.26",
-    "@types/react": "^18.0.1",
-    "@types/react-dom": "^18.0.0",
+    "@types/react": "^17.0.1",
+    "@types/react-dom": "^17.0.0",
     "bootstrap": "^4.6.1",
     "formik": "^2.2.9",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
     "react-responsive-pagination": "workspace:packages/react-responsive-pagination",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.0",
@@ -17,8 +18,8 @@
     "typescript": "^4.6.3"
   },
   "scripts": {
-    "start": "PORT=3001 react-scripts start",
-    "build": "react-scripts build",
+    "start": "PORT=3001 craco start",
+    "build": "craco build",
     "serve": "serve -s build",
     "eject": "react-scripts eject"
   },

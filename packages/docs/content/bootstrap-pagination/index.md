@@ -38,7 +38,7 @@ npm install react-responsive-pagination
 
 ## Compatibility
 
-- React 16.8 or later
+- React 18, 17 and ^16.8
 - Modern browsers only - not suitable for IE 11
 
 ## Bootstrap 4.x Styles

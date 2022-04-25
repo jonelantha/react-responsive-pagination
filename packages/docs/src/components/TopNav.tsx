@@ -42,6 +42,8 @@ const TopNav = forwardRef<HTMLElement, TopNavProps>(
   },
 );
 
+export const topNavMinHeight = '48px';
+
 export const topNavFullWidthBreakPoint = '900px';
 export const topNavNoLinksBreakPoint = '760px';
 
@@ -126,6 +128,8 @@ const Nav = styled.nav`
   display: flex;
   flex-flow: row wrap;
   align-items: stretch;
+
+  min-height: ${topNavMinHeight};
 
   @media not screen and (max-width: ${topNavFullWidthBreakPoint}) {
     ${HamburgerButton} {

@@ -17,7 +17,11 @@
     "start-harness": "yarn workspace test-harness start",
     "build-harness": "yarn workspace test-harness build",
     "serve-harness": "yarn workspace test-harness serve",
+    "start-harness-17": "yarn workspace test-harness-17 start",
+    "build-harness-17": "yarn workspace test-harness-17 build",
+    "serve-harness-17": "yarn workspace test-harness-17 serve",
     "test-dev": "jest",
-    "test": "yarn build-harness && PROD_TEST=1 jest"
+    "test": "yarn build-harness && PROD_TEST=1 SERVE_COMMAND='yarn serve-harness' jest",
+    "test-17": "yarn build-harness-17 && PROD_TEST=1 SERVE_COMMAND='yarn serve-harness-17' jest"
   }
 }

@@ -1568,6 +1568,40 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@craco/craco@npm:^6.4.3":
+  version: 6.4.3
+  resolution: "@craco/craco@npm:6.4.3"
+  dependencies:
+    cosmiconfig: ^7.0.1
+    cosmiconfig-typescript-loader: ^1.0.0
+    cross-spawn: ^7.0.0
+    lodash: ^4.17.15
+    semver: ^7.3.2
+    webpack-merge: ^4.2.2
+  peerDependencies:
+    react-scripts: ^4.0.0
+  bin:
+    craco: bin/craco.js
+  checksum: f177f0c15c32cb80ed5c25a62af7e0754268580bfdf2790f48f3d0399ae33288630ddcf3823e3f29b9f0010fef231eb48c91ba0371af6bac75ebc9e0e04b5a01
+  languageName: node
+  linkType: hard
+
+"@cspotcode/source-map-consumer@npm:0.8.0":
+  version: 0.8.0
+  resolution: "@cspotcode/source-map-consumer@npm:0.8.0"
+  checksum: c0c16ca3d2f58898f1bd74c4f41a189dbcc202e642e60e489cbcc2e52419c4e89bdead02c886a12fb13ea37798ede9e562b2321df997ebc210ae9bd881561b4e
+  languageName: node
+  linkType: hard
+
+"@cspotcode/source-map-support@npm:0.7.0":
+  version: 0.7.0
+  resolution: "@cspotcode/source-map-support@npm:0.7.0"
+  dependencies:
+    "@cspotcode/source-map-consumer": 0.8.0
+  checksum: 9faddda7757cd778b5fd6812137b2cc265810043680d6399acc20441668fafcdc874053be9dccd0d9110087287bfad27eb3bf342f72bceca9aa9059f5d0c4be8
+  languageName: node
+  linkType: hard
+
 "@csstools/normalize.css@npm:*":
   version: 12.0.0
   resolution: "@csstools/normalize.css@npm:12.0.0"
@@ -3871,6 +3905,34 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tsconfig/node10@npm:^1.0.7":
+  version: 1.0.8
+  resolution: "@tsconfig/node10@npm:1.0.8"
+  checksum: b8d5fffbc6b17ef64ef74f7fdbccee02a809a063ade785c3648dae59406bc207f70ea2c4296f92749b33019fa36a5ae716e42e49cc7f1bbf0fd147be0d6b970a
+  languageName: node
+  linkType: hard
+
+"@tsconfig/node12@npm:^1.0.7":
+  version: 1.0.9
+  resolution: "@tsconfig/node12@npm:1.0.9"
+  checksum: a01b2400ab3582b86b589c6d31dcd0c0656f333adecde85d6d7d4086adb059808b82692380bb169546d189bf771ae21d02544a75b57bd6da4a5dd95f8567bec9
+  languageName: node
+  linkType: hard
+
+"@tsconfig/node14@npm:^1.0.0":
+  version: 1.0.1
+  resolution: "@tsconfig/node14@npm:1.0.1"
+  checksum: 976345e896c0f059867f94f8d0f6ddb8b1844fb62bf36b727de8a9a68f024857e5db97ed51d3325e23e0616a5e48c034ff51a8d595b3fe7e955f3587540489be
+  languageName: node
+  linkType: hard
+
+"@tsconfig/node16@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@tsconfig/node16@npm:1.0.2"
+  checksum: ca94d3639714672bbfd55f03521d3f56bb6a25479bd425da81faf21f13e1e9d15f40f97377dedbbf477a5841c5b0c8f4cd1b391f33553d750b9202c54c2c07aa
+  languageName: node
+  linkType: hard
+
 "@turist/fetch@npm:^7.1.7":
   version: 7.2.0
   resolution: "@turist/fetch@npm:7.2.0"
@@ -4390,12 +4452,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^17.0.15":
+"@types/react-dom@npm:^17.0.0":
   version: 17.0.15
   resolution: "@types/react-dom@npm:17.0.15"
   dependencies:
     "@types/react": ^17
   checksum: 7b90372bd7207d3860e1043ebfe10fd21fbd9ec3417a29593ca14359774830c888ba4ebb25cf0510628607496f8d35b09d23d329ea709b9311f5866185c5fd67
+  languageName: node
+  linkType: hard
+
+"@types/react-dom@npm:^18.0.0":
+  version: 18.0.0
+  resolution: "@types/react-dom@npm:18.0.0"
+  dependencies:
+    "@types/react": "*"
+  checksum: 0d8c9cb3e72aefe0dd2b58a49845a200369f01ae92f3f11f642e04efc95dfd1c9380b6592d4273dd6113fb8707947d15b66d56c75c41f39f28bd897f0c08dfa9
   languageName: node
   linkType: hard
 
@@ -4408,7 +4479,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*":
+"@types/react@npm:*, @types/react@npm:^18.0.1":
   version: 18.0.1
   resolution: "@types/react@npm:18.0.1"
   dependencies:
@@ -4419,7 +4490,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^17, @types/react@npm:^17.0.44":
+"@types/react@npm:^17, @types/react@npm:^17.0.1":
   version: 17.0.44
   resolution: "@types/react@npm:17.0.44"
   dependencies:
@@ -5139,6 +5210,13 @@ __metadata:
   version: 7.2.0
   resolution: "acorn-walk@npm:7.2.0"
   checksum: 9252158a79b9d92f1bc0dd6acc0fcfb87a67339e84bcc301bb33d6078936d27e35d606b4d35626d2962cd43c256d6f27717e70cbe15c04fff999ab0b2260b21f
+  languageName: node
+  linkType: hard
+
+"acorn-walk@npm:^8.1.1":
+  version: 8.2.0
+  resolution: "acorn-walk@npm:8.2.0"
+  checksum: 1715e76c01dd7b2d4ca472f9c58968516a4899378a63ad5b6c2d668bba8da21a71976c14ec5f5b75f887b6317c4ae0b897ab141c831d741dc76024d8745f1ad1
   languageName: node
   linkType: hard
 
@@ -7664,6 +7742,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cosmiconfig-typescript-loader@npm:^1.0.0":
+  version: 1.0.9
+  resolution: "cosmiconfig-typescript-loader@npm:1.0.9"
+  dependencies:
+    cosmiconfig: ^7
+    ts-node: ^10.7.0
+  peerDependencies:
+    "@types/node": "*"
+    cosmiconfig: ">=7"
+    typescript: ">=3"
+  checksum: 26a0198e03e81a9e7e1a6ce880d7309fdd056c7a3a23b587253e6d1d1224154d3f9edf727d9c0310628e89752353211b75de151b705298b4d0741fa1740c661e
+  languageName: node
+  linkType: hard
+
 "cosmiconfig@npm:7.0.0":
   version: 7.0.0
   resolution: "cosmiconfig@npm:7.0.0"
@@ -7690,7 +7782,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cosmiconfig@npm:^7.0.0, cosmiconfig@npm:^7.0.1":
+"cosmiconfig@npm:^7, cosmiconfig@npm:^7.0.0, cosmiconfig@npm:^7.0.1":
   version: 7.0.1
   resolution: "cosmiconfig@npm:7.0.1"
   dependencies:
@@ -8677,7 +8769,7 @@ __metadata:
     "@mdx-js/react": ^1.6.22
     "@types/github-slugger": ^1.3.0
     "@types/mdx-js__react": ^1.5.5
-    "@types/react": ^17.0.44
+    "@types/react": ^18.0.1
     "@types/react-helmet": ^6.1.5
     "@types/styled-components": ^5.1.25
     babel-plugin-styled-components: ^2.0.7
@@ -8691,8 +8783,8 @@ __metadata:
     github-slugger: ^1.4.0
     polished: ^4.2.2
     prism-react-renderer: ^1.3.1
-    react: ^17.0.2
-    react-dom: ^17.0.2
+    react: ^18.0.0
+    react-dom: ^18.0.0
     react-helmet: ^6.1.0
     react-responsive-pagination: "workspace:packages/react-responsive-pagination"
     rehype-slug: ^4.0.1
@@ -18799,7 +18891,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^17.0.2":
+"react-dom@npm:^17.0.0":
   version: 17.0.2
   resolution: "react-dom@npm:17.0.2"
   dependencies:
@@ -18809,6 +18901,18 @@ __metadata:
   peerDependencies:
     react: 17.0.2
   checksum: 1c1eaa3bca7c7228d24b70932e3d7c99e70d1d04e13bb0843bbf321582bc25d7961d6b8a6978a58a598af2af496d1cedcfb1bf65f6b0960a0a8161cb8dab743c
+  languageName: node
+  linkType: hard
+
+"react-dom@npm:^18.0.0":
+  version: 18.0.0
+  resolution: "react-dom@npm:18.0.0"
+  dependencies:
+    loose-envify: ^1.1.0
+    scheduler: ^0.21.0
+  peerDependencies:
+    react: ^18.0.0
+  checksum: dd0ba9f2f31dd728076c892a95b2f5a8dfe79136431b0289afb46eec39d0ca6b6f0f40a60fd8aa6ef702c98ce7c26100d3d4dbc35c7c9e87429cd04f84cb58bd
   languageName: node
   linkType: hard
 
@@ -18896,8 +19000,8 @@ __metadata:
     "@semantic-release/changelog": ^6.0.1
     "@semantic-release/git": ^10.0.1
     "@types/prop-types": ^15.7.5
-    "@types/react": ^17.0.44
-    "@types/react-dom": ^17.0.15
+    "@types/react": ^18.0.1
+    "@types/react-dom": ^18.0.0
     "@typescript-eslint/eslint-plugin": ^5.18.0
     "@typescript-eslint/parser": ^5.18.0
     babel-eslint: ^10.1.0
@@ -18909,15 +19013,15 @@ __metadata:
     eslint-plugin-react: ^7.29.4
     eslint-plugin-react-hooks: ^4.4.0
     prop-types: ^15.8.1
-    react: ^17.0.2
-    react-dom: ^17.0.2
+    react: ^18.0.0
+    react-dom: ^18.0.0
     resize-observer-polyfill: ^1.5.1
     rimraf: ^3.0.2
     semantic-release: ^19.0.2
     typescript: ^4.6.3
   peerDependencies:
-    react: ^16.8.0 || ^17.0.0
-    react-dom: ^16.8.0 || ^17.0.0
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
   languageName: unknown
   linkType: soft
 
@@ -19021,13 +19125,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^17.0.2":
+"react@npm:^17.0.0":
   version: 17.0.2
   resolution: "react@npm:17.0.2"
   dependencies:
     loose-envify: ^1.1.0
     object-assign: ^4.1.1
   checksum: b254cc17ce3011788330f7bbf383ab653c6848902d7936a87b09d835d091e3f295f7e9dd1597c6daac5dc80f90e778c8230218ba8ad599f74adcc11e33b9d61b
+  languageName: node
+  linkType: hard
+
+"react@npm:^18.0.0":
+  version: 18.0.0
+  resolution: "react@npm:18.0.0"
+  dependencies:
+    loose-envify: ^1.1.0
+  checksum: 293020b96536b3c7113ee57ca5c990a3f25649d1751b1c7a3aabd16dff0691fe9f1eed1206616d0906d05933536052037340a0c8d0941ff870b0eb469a2f975b
   languageName: node
   linkType: hard
 
@@ -19949,6 +20062,15 @@ __metadata:
     loose-envify: ^1.1.0
     object-assign: ^4.1.1
   checksum: c4b35cf967c8f0d3e65753252d0f260271f81a81e427241295c5a7b783abf4ea9e905f22f815ab66676f5313be0a25f47be582254db8f9241b259213e999b8fc
+  languageName: node
+  linkType: hard
+
+"scheduler@npm:^0.21.0":
+  version: 0.21.0
+  resolution: "scheduler@npm:0.21.0"
+  dependencies:
+    loose-envify: ^1.1.0
+  checksum: 4f8285076041ed2c81acdd1faa987f1655fdbd30554bc667c1ea64743fc74fb3a04ca7d27454b3d678735df5a230137a3b84756061b43dc5796e80701b66d124
   languageName: node
   linkType: hard
 
@@ -21679,18 +21801,37 @@ __metadata:
   languageName: node
   linkType: hard
 
+"test-harness-17@workspace:packages/browser-test/test-harness-17":
+  version: 0.0.0-use.local
+  resolution: "test-harness-17@workspace:packages/browser-test/test-harness-17"
+  dependencies:
+    "@craco/craco": ^6.4.3
+    "@types/node": ^16.11.26
+    "@types/react": ^17.0.1
+    "@types/react-dom": ^17.0.0
+    bootstrap: ^4.6.1
+    formik: ^2.2.9
+    react: ^17.0.0
+    react-dom: ^17.0.0
+    react-responsive-pagination: "workspace:packages/react-responsive-pagination"
+    react-router-dom: ^6.3.0
+    react-scripts: ^5.0.0
+    serve: 13.0.2
+    typescript: ^4.6.3
+  languageName: unknown
+  linkType: soft
+
 "test-harness@workspace:packages/browser-test/test-harness":
   version: 0.0.0-use.local
   resolution: "test-harness@workspace:packages/browser-test/test-harness"
   dependencies:
-    "@types/jest": ^27.4.1
     "@types/node": ^16.11.26
-    "@types/react": ^17.0.44
-    "@types/react-dom": ^17.0.15
+    "@types/react": ^18.0.1
+    "@types/react-dom": ^18.0.0
     bootstrap: ^4.6.1
     formik: ^2.2.9
-    react: ^17.0.2
-    react-dom: ^17.0.2
+    react: ^18.0.0
+    react-dom: ^18.0.0
     react-responsive-pagination: "workspace:packages/react-responsive-pagination"
     react-router-dom: ^6.3.0
     react-scripts: ^5.0.0
@@ -22028,6 +22169,44 @@ __metadata:
   bin:
     ts-jest: cli.js
   checksum: d2cc2719ed2884a880ab50d2c14c311834be9c88bc79d0064fa0189afce5c296d7676314d26cc3f7e82ddd52df272c2d4137a832c89616f30cbe8f43e30f9a29
+  languageName: node
+  linkType: hard
+
+"ts-node@npm:^10.7.0":
+  version: 10.7.0
+  resolution: "ts-node@npm:10.7.0"
+  dependencies:
+    "@cspotcode/source-map-support": 0.7.0
+    "@tsconfig/node10": ^1.0.7
+    "@tsconfig/node12": ^1.0.7
+    "@tsconfig/node14": ^1.0.0
+    "@tsconfig/node16": ^1.0.2
+    acorn: ^8.4.1
+    acorn-walk: ^8.1.1
+    arg: ^4.1.0
+    create-require: ^1.1.0
+    diff: ^4.0.1
+    make-error: ^1.1.1
+    v8-compile-cache-lib: ^3.0.0
+    yn: 3.1.1
+  peerDependencies:
+    "@swc/core": ">=1.2.50"
+    "@swc/wasm": ">=1.2.50"
+    "@types/node": "*"
+    typescript: ">=2.7"
+  peerDependenciesMeta:
+    "@swc/core":
+      optional: true
+    "@swc/wasm":
+      optional: true
+  bin:
+    ts-node: dist/bin.js
+    ts-node-cwd: dist/bin-cwd.js
+    ts-node-esm: dist/bin-esm.js
+    ts-node-script: dist/bin-script.js
+    ts-node-transpile-only: dist/bin-transpile.js
+    ts-script: dist/bin-script-deprecated.js
+  checksum: 2a379e43f7478d0b79e1e63af91fe222d83857727957df4bd3bdf3c0a884de5097b12feb9bbf530074526b8874c0338b0e6328cf334f3a5e2c49c71e837273f7
   languageName: node
   linkType: hard
 
@@ -22812,6 +22991,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"v8-compile-cache-lib@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "v8-compile-cache-lib@npm:3.0.0"
+  checksum: 674e312bbca796584b61dc915f33c7e7dc4e06d196e0048cb772c8964493a1ec723f1dd014d9419fd55c24a6eae148f60769da23f622e05cd13268063fa1ed6b
+  languageName: node
+  linkType: hard
+
 "v8-compile-cache@npm:^2.0.3":
   version: 2.3.0
   resolution: "v8-compile-cache@npm:2.3.0"
@@ -23150,6 +23336,15 @@ __metadata:
   peerDependencies:
     webpack: ^4.44.2 || ^5.47.0
   checksum: 426982030d3b0ef26432d98960ee1fa33889d8f0ed79b3d2c8e37be9b4e4beba7524c60631297ea557c642a340b76d70b0eb6a1e08b86a769409037185795038
+  languageName: node
+  linkType: hard
+
+"webpack-merge@npm:^4.2.2":
+  version: 4.2.2
+  resolution: "webpack-merge@npm:4.2.2"
+  dependencies:
+    lodash: ^4.17.15
+  checksum: ce58bc8ab53a3dd5d9a0df65684571349eef53372bf8f224521072110485391335b26ab097c5f07829b88d0c146056944149566e5a953f05997b0fe2cbaf8dd6
   languageName: node
   linkType: hard
 
