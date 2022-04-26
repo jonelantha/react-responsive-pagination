@@ -7,10 +7,12 @@ type NavItemsQueryNode = {
   };
   frontmatter: {
     navTitle: string;
+    footerNavTitle?: string;
     topNavOrder?: number;
     sideNavOrder?: number;
     footerNavOrder?: number;
     addOverview?: boolean;
+    path?: string;
   };
   headings: {
     depth: number;
@@ -28,7 +30,9 @@ export function useNavItems() {
               slug
             }
             frontmatter {
+              path
               navTitle
+              footerNavTitle
               topNavOrder
               sideNavOrder
               footerNavOrder
@@ -47,29 +51,45 @@ export function useNavItems() {
   const nodes = result.allMdx.nodes;
 
   return {
-    top: extractNavItems(nodes, node => node.frontmatter.topNavOrder),
-    side: extractNavItems(nodes, node => node.frontmatter.sideNavOrder),
-    footer: extractNavItems(nodes, node => node.frontmatter.footerNavOrder),
+    top: extractNavItems(
+      nodes,
+      node => node.frontmatter.topNavOrder,
+      node => node.frontmatter.navTitle,
+    ),
+    side: extractNavItems(
+      nodes,
+      node => node.frontmatter.sideNavOrder,
+      node => node.frontmatter.navTitle,
+    ),
+    footer: extractNavItems(
+      nodes,
+      node => node.frontmatter.footerNavOrder,
+      node => node.frontmatter.footerNavTitle ?? node.frontmatter.navTitle,
+    ),
   };
 }
 
 function extractNavItems(
   nodes: NavItemsQueryNode[],
   orderFn: (node: NavItemsQueryNode) => number | undefined,
+  titleFn: (node: NavItemsQueryNode) => string,
 ) {
   return nodes
     .filter(orderFn)
     .sort((a, b) => orderFn(a)! - orderFn(b)!)
-    .map(getNavItem);
+    .map(node => getNavItem(node, titleFn));
 }
 
 export type NavItem = ReturnType<typeof getNavItem>;
 
-function getNavItem(page: NavItemsQueryNode) {
+function getNavItem(
+  page: NavItemsQueryNode,
+  titleFn: (node: NavItemsQueryNode) => string,
+) {
   return {
     slug: page.fields.slug,
-    url: page.fields.slug,
-    title: page.frontmatter.navTitle,
+    url: getPagePath(page),
+    title: titleFn(page),
     sections: getPageSections(page),
   };
 }
@@ -80,7 +100,7 @@ function getPageSections(page: NavItemsQueryNode) {
         {
           slug: page.fields.slug,
           title: 'Overview',
-          url: page.fields.slug,
+          url: getPagePath(page),
         },
       ]
     : [];
@@ -92,7 +112,11 @@ function getPageSections(page: NavItemsQueryNode) {
       .map(({ value }) => ({
         slug: GithubSlugger.slug(value),
         title: value,
-        url: page.fields.slug + '#' + GithubSlugger.slug(value),
+        url: getPagePath(page) + '#' + GithubSlugger.slug(value),
       })),
   ];
+}
+
+function getPagePath(page: NavItemsQueryNode) {
+  return page.frontmatter.path ?? page.fields.slug;
 }

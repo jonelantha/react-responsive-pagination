@@ -18,10 +18,7 @@ const TopNav = forwardRef<HTMLElement, TopNavProps>(
     return (
       <Nav ref={ref}>
         <HamburgerButton aria-label="Open navigation menu" onClick={onMenuClicked} />
-        <ProjectLink
-          href="https://www.npmjs.com/package/react-responsive-pagination"
-          rel="noopener noreferrer"
-        >
+        <ProjectLink to="/">
           <span aria-hidden="true">📐📖</span>
           react-responsive-pagination
         </ProjectLink>
@@ -45,7 +42,7 @@ const TopNav = forwardRef<HTMLElement, TopNavProps>(
 export const topNavMinHeight = '48px';
 
 export const topNavFullWidthBreakPoint = '900px';
-export const topNavNoLinksBreakPoint = '760px';
+export const topNavNoLinksBreakPoint = '780px';
 
 const hPadding = '0.4em';
 const hItemLeftMargin = '0.5em';
@@ -94,7 +91,7 @@ const NavLink = styled.a`
   ${LinkStyles}
 `;
 
-const ProjectLink = styled(NavLink)`
+const ProjectLink = styled(GatsbyLink)`
   padding-left: ${math(`${hPadding} - 0.1em`)};
 
   span {

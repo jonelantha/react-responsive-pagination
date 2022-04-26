@@ -1,6 +1,7 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { boxBorder, borderRadius, leading } from './GlobalStyles';
 
-const Bootstrap4PaginationStyles = styled.div`
+const Bootstrap4PaginationContainer = styled.div<{ noBorder: boolean }>`
   /* adapted from Bootstrap */
   .page-link {
     text-decoration: none;
@@ -190,6 +191,16 @@ const Bootstrap4PaginationStyles = styled.div`
     border-top-right-radius: 0.2rem;
     border-bottom-right-radius: 0.2rem;
   }
+
+  ${({ noBorder }) =>
+    !noBorder &&
+    css`
+      /* container border */
+      padding-top: 1rem;
+      border: ${boxBorder};
+      border-radius: ${borderRadius};
+      margin-bottom: ${leading};
+    `}
 `;
 
-export default Bootstrap4PaginationStyles;
+export default Bootstrap4PaginationContainer;

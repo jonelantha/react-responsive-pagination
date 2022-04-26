@@ -11,9 +11,11 @@ A responsive React pagination component which intelligently renders to the avail
 
 🌟 Just updated for React 18 🌟
 
-<a href="https://react-responsive-pagination.elantha.com/live-demo/"><img src="./react-responsive-pagination.gif?raw=true" width="985" alt="react-responsive-pagination example" /></a>
+<a href="https://react-responsive-pagination.elantha.com/"><img src="./react-responsive-pagination.gif?raw=true" width="985" alt="react-responsive-pagination example" /></a>
 
-### ⚡️ [LIVE DEMO - try it out for yourself!](https://react-responsive-pagination.elantha.com/live-demo/) 🚀
+### ⚡️ [LIVE DEMO - try it out for yourself!](https://react-responsive-pagination.elantha.com/live-demo/) ⚡️
+
+### 📕 Visit [https://react-responsive-pagination.elantha.com](https://react-responsive-pagination.elantha.com) to get started 🚀
 
 ## 🥾 Works out of the box with Bootstrap 4.x
 
@@ -64,6 +66,8 @@ function MyApp() {
 | maxWidth (optional)      | number                    | (optional) The maximum width (in pixels) of the pagination component. Specify a value if you want to override the automatic sizing. Note this width may be exceeded in the case where it's not possible to output a small enough component  |
 | previousLabel (optional) | string                    | (optional) The label for the previous button, default value is `«`                                                                                                                                                                          |
 | nextLabel (optional)     | string                    | (optional) The label for the next button, default value is `»`                                                                                                                                                                              |
+
+See [Props Reference](https://react-responsive-pagination.elantha.com/props) for the full list
 
 ## ℹ About Auto Sizing
 

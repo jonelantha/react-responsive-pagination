@@ -1,3 +1,5 @@
+import { makeCustomPaginationContainer } from '../../src/components/CustomPaginationContainer';
+
 export const customStyles1 = `
 .pagination {
   justify-content: center;
@@ -35,6 +37,8 @@ export const customStyles1 = `
   white-space: nowrap;
   border: 0;
 }`;
+
+export const CustomStyleContainer1 = makeCustomPaginationContainer(customStyles1);
 
 export const customStyles2 = `
 .pagination {
@@ -82,6 +86,8 @@ export const customStyles2 = `
   border: 0;
 }
 `;
+
+export const CustomStyleContainer2 = makeCustomPaginationContainer(customStyles2);
 
 export const customStyles3 = `
 .pagination {
@@ -131,6 +137,8 @@ export const customStyles3 = `
   white-space: nowrap;
   border: 0;
 }`;
+
+export const CustomStyleContainer3 = makeCustomPaginationContainer(customStyles3);
 
 export const minimumBootstrap4Styles = `
 .pagination {
@@ -208,6 +216,10 @@ export const minimumBootstrap4Styles = `
   border: 0;
 }
 `;
+
+export const MinimumBootstrapContainer = makeCustomPaginationContainer(
+  minimumBootstrap4Styles,
+);
 
 export const exampleAppCode = `
 import React, { useState } from 'react';

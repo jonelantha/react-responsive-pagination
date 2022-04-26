@@ -4,18 +4,18 @@ description: 'react-responsive-pagination live demo and examples'
 navTitle: 'Live Demo'
 template: standalone
 topNavOrder: 1
-footerNavOrder: 1
+footerNavOrder: 2
 ---
 
 import OverrideSSR from "../../src/components/OverrideSSR"
-import Bootstrap4PaginationStyles from '../../src/components/Bootstrap4PaginationStyles';
+import Bootstrap4PaginationContainer from '../../src/components/Bootstrap4PaginationContainer';
 import BootstrapLiveDemoClass from "../../src/components/BootstrapLiveDemoClass"
 import BootstrapSSR from "../../src/components/BootstrapSSR"
 import ResizeContainer from "../../src/components/ResizeContainer"
 
 **Live Demo** - try resizing your browser to see the component automatically adjust to the available width.
 
-<Bootstrap4PaginationStyles>
+<Bootstrap4PaginationContainer>
 <OverrideSSR>
 {isSSR => (
   <ResizeContainer visibilityHidden={isSSR}>
@@ -23,7 +23,7 @@ import ResizeContainer from "../../src/components/ResizeContainer"
   </ResizeContainer>
 )}
 </OverrideSSR>
-</Bootstrap4PaginationStyles>
+</Bootstrap4PaginationContainer>
 
 NOTE: the striped region illustrates the component's container, it's not part of the component 🙂
 
@@ -86,4 +86,4 @@ export default class MyApp extends React.Component {
 
 ## Further Details
 
-For further details, see the [react-responsive-pagination README](https://www.npmjs.com/package/react-responsive-pagination)
+For further details, see the [react-responsive-pagination documentation](/)

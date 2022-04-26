@@ -223,7 +223,7 @@ const ExpandButton = styled.button<{ expanded: boolean }>`
   min-width: 2rem;
 
   border: none;
-  border-radius: 0 ${borderRadius} ${borderRadius} 0;
+  border-radius: ${borderRadius};
 
   :is(:hover, :focus-visible) {
     background-color: ${colorNavBgHover};

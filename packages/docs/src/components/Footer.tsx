@@ -16,12 +16,6 @@ export default function Footer({ items }: FooterProps) {
     <FooterStyles>
       <section>
         <h1>Useful Links</h1>
-        <ExternalLink
-          href="https://www.npmjs.com/package/react-responsive-pagination"
-          rel="noopener noreferrer"
-        >
-          README
-        </ExternalLink>
         {items.map(({ slug, url, title }) => (
           <GatsbyLink to={url} key={slug}>
             {title}

@@ -1,6 +1,8 @@
-export const chevron = (colour: string) =>
+export const chevron = (colour: string, clipped = false) =>
   toDataUrl(
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${
+      clipped ? '6 6 12 12' : '0 0 24 24'
+    }">
       <path
         fill="${encodeURIComponent(colour)}"
         d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"

@@ -1,9 +1,14 @@
-import { StandaloneLayout } from '../templates/standalone';
+import DocLayout from '../components/DocLayout';
+import { MarkdownContainer } from '../components/MarkdownContent';
+import SEO from '../components/SEO';
 
 export default function NotFoundPage() {
   return (
-    <StandaloneLayout title="404 not found">
-      <h1>404 not found</h1>
-    </StandaloneLayout>
+    <DocLayout activeSlug="">
+      <SEO title="404 not found" />
+      <MarkdownContainer>
+        <h1>404 - Page Not Found</h1>
+      </MarkdownContainer>
+    </DocLayout>
   );
 }
