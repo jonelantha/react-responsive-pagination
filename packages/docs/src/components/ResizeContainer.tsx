@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { borderRadius, leading } from './GlobalStyles';
+import { borderRadius, leading, boxBorder, boxShadow } from './GlobalStyles';
 
-const ResizeContainer = styled.div`
-  border: 1px solid #eeeeee;
+const ResizeContainer = styled.div<{ visibilityHidden: boolean }>`
+  border: ${boxBorder};
   border-radius: ${borderRadius};
   padding-top: 1rem; // balances bootstrap bottom-margin
   margin-bottom: ${leading};
@@ -13,7 +13,8 @@ const ResizeContainer = styled.div`
     #ffffff 10px,
     #ffffff 20px
   );
-  ${(props: any) => props.visibilityHidden && 'visibility: hidden'}
+  box-shadow: ${boxShadow};
+  ${({ visibilityHidden }) => visibilityHidden && 'visibility: hidden'}
 `;
 
 export default ResizeContainer;

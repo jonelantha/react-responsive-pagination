@@ -1,5 +1,6 @@
 import { graphql } from 'gatsby';
 import styled, { createGlobalStyle } from 'styled-components';
+import { Link } from 'gatsby';
 
 import SEO from '../components/SEO';
 import GlobalStyles, {
@@ -74,9 +75,7 @@ const Main = styled.main``;
 function StandaloneHeader() {
   return (
     <Header>
-      <a href="https://www.npmjs.com/package/react-responsive-pagination">
-        react-responsive-pagination
-      </a>
+      <Link to="/">react-responsive-pagination</Link>
     </Header>
   );
 }

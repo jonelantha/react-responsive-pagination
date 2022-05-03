@@ -26,13 +26,13 @@ export const MarkdownContainer = styled.article`
 
   & > h1 {
     font-size: 3rem;
-    margin-top: ${math(`3 * ${leading}`)};
+    margin-top: ${math(`1.5 * ${leading}`)};
     margin-bottom: ${math(`1.25 * ${leading}`)};
   }
 
   & > h2 {
     font-size: 2rem;
-    margin-top: ${math(`2 * ${leading}`)};
+    margin-top: ${math(`1.5 * ${leading}`)};
     margin-bottom: ${leading};
   }
 

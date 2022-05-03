@@ -28,9 +28,15 @@ export const colorNavBgHover = '#eeeeee';
 
 export const colorHighlightedBackground = '#e6eeff';
 
+export const blockBg = '#eeeeee';
+
 export const footerBg = '#eeeeee';
 export const colorFooterLink = '#333333';
 export const colorFooterLinkHover = shade(0.2, colorFooterLink);
+
+export const boxShadow =
+  '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)';
+export const boxBorder = '1px solid #eeeeee';
 
 const GlobalStyles = createGlobalStyle`
   * {

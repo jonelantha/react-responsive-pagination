@@ -9,7 +9,7 @@ const mdxComponents = {
     if (!href.startsWith('http')) {
       return <Link to={href} {...props} />;
     } else {
-      return <a href={href} {...props} />;
+      return <a href={href} rel="noopener noreferrer" {...props} />;
     }
   },
   CodeBlock,

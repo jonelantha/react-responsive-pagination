@@ -1,15 +1,15 @@
 ---
 title: 'Responsive Bootstrap Pagination Component'
-description: 'Responsive Bootstrap React Pagination Component'
+description: 'React npm responsive Bootstrap pagination component'
 navTitle: 'Bootstrap Usage'
 topNavOrder: 2
-footerNavOrder: 2
-sideNavOrder: 2
+sideNavOrder: 3
+footerNavOrder: 4
 addOverview: true
 ---
 
 import OverrideSSR from "../../src/components/OverrideSSR"
-import Bootstrap4PaginationStyles from '../../src/components/Bootstrap4PaginationStyles';
+import Bootstrap4PaginationContainer from '../../src/components/Bootstrap4PaginationContainer';
 import BootstrapLiveDemo from "../../src/components/BootstrapLiveDemo"
 import BootstrapSSR from "../../src/components/BootstrapSSR"
 
@@ -17,16 +17,17 @@ import { PropsTable, PropDef } from "../../src/components/PropsTable"
 
 # Bootstrap Usage
 
-**react-responsive-pagination** is an easy to use responsive pagination component:
+**react-responsive-pagination** is an easy to use React responsive pagination component which always outputs the right number of pagination elements for the width available, no guesswork needed
 
-- Truly responsive - always outputs the right number of pagination elements for the width available, no guesswork needed
-- Ready to go with Bootstrap 4.x styles, just include the component in your Bootstrap 4.x project
+Ready to go with [Bootstrap 4.x](https://getbootstrap.com/docs/4.6/) styles - just include the component in your Bootstrap 4.x project
 
-<Bootstrap4PaginationStyles>
+<Bootstrap4PaginationContainer>
 <OverrideSSR>
 {isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo />}
 </OverrideSSR>
-</Bootstrap4PaginationStyles>
+</Bootstrap4PaginationContainer>
+
+Don't want to use Bootstrap? No problem, see the [Custom Styled Pagination](/custom-styled-pagination) guide
 
 ## Installation
 
@@ -36,16 +37,7 @@ Install **react-responsive-pagination** from npm:
 npm install react-responsive-pagination
 ```
 
-## Compatibility
-
-- React 18, 17 and ^16.8
-- Modern browsers only - not suitable for IE 11
-
-## Bootstrap 4.x Styles
-
-**react-responsive-pagination** is styled for [Bootstrap 4.x](https://getbootstrap.com/docs/4.6/). If you don't already have Bootstrap styles see the [Bootstrap 4.x Download Guide](https://getbootstrap.com/docs/4.6/getting-started/download/)
-
-Don't want to use Bootstrap? No problem, see the [Custom Styled Pagination](/custom-styled-pagination) guide
+To install Bootstrap styles, see the [Bootstrap 4.x Download Guide](https://getbootstrap.com/docs/4.6/getting-started/download/)
 
 ## Quick Start - Functional Components / Hooks
 
@@ -114,11 +106,11 @@ Change the default labels for the previous and next buttons by setting the `prev
 
 **Example - Text labels**
 
-<Bootstrap4PaginationStyles>
+<Bootstrap4PaginationContainer>
 <OverrideSSR>
 {isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo previousLabel="Previous" nextLabel="Next" />}
 </OverrideSSR>
-</Bootstrap4PaginationStyles>
+</Bootstrap4PaginationContainer>
 
 ```jsx
 <Pagination ... previousLabel="Previous" nextLabel="Next" />
@@ -126,11 +118,11 @@ Change the default labels for the previous and next buttons by setting the `prev
 
 **Example - Single arrow labels**
 
-<Bootstrap4PaginationStyles>
+<Bootstrap4PaginationContainer>
 <OverrideSSR>
 {isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo previousLabel="‹" nextLabel="›" />}
 </OverrideSSR>
-</Bootstrap4PaginationStyles>
+</Bootstrap4PaginationContainer>
 
 ```jsx
 <Pagination ... previousLabel="‹" nextLabel="›" />
@@ -148,11 +140,11 @@ Change how the pagination is positioned by setting the `extraClassName` prop to 
 
 **Example - align pagination left:**
 
-<Bootstrap4PaginationStyles>
+<Bootstrap4PaginationContainer noBorder>
 <OverrideSSR>
 {isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo extraClassName="justify-content-start" />}
 </OverrideSSR>
-</Bootstrap4PaginationStyles>
+</Bootstrap4PaginationContainer>
 
 ```jsx
 <Pagination ... extraClassName="justify-content-start" />
@@ -189,14 +181,10 @@ The label for the next button, default value is `»`
 </PropDef>
 <PropDef name='extraClassName' type='string' defaultValue='justify-content-center'>
 
-Extra classes to be added to the top level `<ul\>` element, defaults to `justify-content-center`
+Extra classes to be added to the top level `<ul>` element, defaults to `justify-content-center`
 
 Use this prop to override the default justify value - for example to align elements to the start of the page use: `justify-content-start`
 
 </PropDef>
 
 </PropsTable>
-
-## Further Details
-
-For further details, see the [react-responsive-pagination README](https://www.npmjs.com/package/react-responsive-pagination)

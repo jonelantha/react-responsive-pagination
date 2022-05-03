@@ -1,33 +1,31 @@
 ---
 title: 'Custom Styles Guide'
-description: 'Responsive pagination component with custom styling'
+description: 'React npm responsive pagination component with custom styling'
 navTitle: 'Custom Styles'
 topNavOrder: 3
-footerNavOrder: 3
-sideNavOrder: 3
+sideNavOrder: 4
+footerNavOrder: 5
 addOverview: true
 ---
 
 import OverrideSSR from "../../src/components/OverrideSSR"
-import CustomPaginationContainer from "../../src/components/CustomPaginationContainer"
-import { customStyles1, customStyles2, customStyles3, minimumBootstrap4Styles, exampleAppCode } from './customPaginationStyles';
+import { CustomStyleContainer1, customStyles1, CustomStyleContainer2, customStyles2, CustomStyleContainer3, customStyles3, MinimumBootstrapContainer, minimumBootstrap4Styles, exampleAppCode } from './customPaginationStyles';
 import BootstrapLiveDemoClass from "../../src/components/BootstrapLiveDemoClass"
-import Bootstrap4PaginationStyles from '../../src/components/Bootstrap4PaginationStyles';
+import Bootstrap4PaginationContainer from '../../src/components/Bootstrap4PaginationContainer';
 import BootstrapSSR from "../../src/components/BootstrapSSR"
 import { PropsTable, PropDef } from "../../src/components/PropsTable"
 
 # Custom Styles
 
-**react-responsive-pagination** is an easy to use responsive pagination component:
+**react-responsive-pagination** is an easy to use React responsive pagination component which always outputs the right number of pagination elements for the width available, no guesswork needed
 
-- Truly responsive - always outputs the right number of pagination elements for the width available, no guesswork needed
-- Easy to style, just include the necessary css in your project (see examples below)
+Easy to style, just include the necessary css in your project (see examples below)
 
 <OverrideSSR>
 {isSSR => (
-  <CustomPaginationContainer customStyles={customStyles1}>
+  <CustomStyleContainer1>
     {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
-  </CustomPaginationContainer>
+  </CustomStyleContainer1>
 )}
 </OverrideSSR>
 
@@ -38,11 +36,6 @@ Install **react-responsive-pagination** from npm:
 ```bash
 npm install react-responsive-pagination
 ```
-
-## Compatibility
-
-- React 18, 17 and ^16.8
-- Modern browsers only - not suitable for IE 11
 
 ## Quick Start - Functional Components / Hooks
 
@@ -62,9 +55,9 @@ Using Bootstrap 4.x? No problem, see the [Bootstrap Pagination](/bootstrap-pagin
 
 <OverrideSSR>
 {isSSR => (
-  <CustomPaginationContainer customStyles={customStyles1}>
+  <CustomStyleContainer1>
     {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
-  </CustomPaginationContainer>
+  </CustomStyleContainer1>
 )}
 </OverrideSSR>
 
@@ -76,9 +69,9 @@ _For a full list of suggested css selectors to target, see [Selector Reference](
 
 <OverrideSSR>
 {isSSR => (
-  <CustomPaginationContainer customStyles={customStyles2}>
+  <CustomStyleContainer2>
     {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
-  </CustomPaginationContainer>
+  </CustomStyleContainer2>
 )}
 </OverrideSSR>
 
@@ -90,9 +83,9 @@ _For a full list of suggested css selectors to target, see [Selector Reference](
 
 <OverrideSSR>
 {isSSR => (
-  <CustomPaginationContainer customStyles={customStyles3}>
+  <CustomStyleContainer3>
     {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
-  </CustomPaginationContainer>
+  </CustomStyleContainer3>
 )}
 </OverrideSSR>
 
@@ -104,9 +97,9 @@ _For a full list of suggested css selectors to target, see [Selector Reference](
 
 <OverrideSSR>
 {isSSR => (
-  <CustomPaginationContainer customStyles={minimumBootstrap4Styles}>
+  <MinimumBootstrapContainer>
     {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
-  </CustomPaginationContainer>
+  </MinimumBootstrapContainer>
 )}
 </OverrideSSR>
 
@@ -136,11 +129,11 @@ Change the default labels for the previous and next buttons by setting the `prev
 
 **Example - Text labels**
 
-<Bootstrap4PaginationStyles>
+<Bootstrap4PaginationContainer>
 <OverrideSSR>
 {isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass previousLabel="Previous" nextLabel="Next" />}
 </OverrideSSR>
-</Bootstrap4PaginationStyles>
+</Bootstrap4PaginationContainer>
 
 ```jsx
 <Pagination ... previousLabel="Previous" nextLabel="Next" />
@@ -176,7 +169,3 @@ The label for the next button, default value is `»`
 
 </PropDef>
 </PropsTable>
-
-## Further Details
-
-For further details, see the [react-responsive-pagination README](https://www.npmjs.com/package/react-responsive-pagination)

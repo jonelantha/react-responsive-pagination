@@ -1,15 +1,18 @@
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-import { borderRadius } from './GlobalStyles';
+import { borderRadius, colorLink, boxShadow } from './GlobalStyles';
+import { chevron } from './icons';
 
 const CTALink = styled(Link)`
-  display: inline-block;
+  display: flex;
+  align-items: center;
   font-size: 1rem;
-  background: rgb(28, 100, 242);
-  padding: 0.75rem 1rem;
+  background: ${colorLink};
+  padding: 0.5rem 0.75rem;
   color: #ffffff;
   border-radius: ${borderRadius};
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: ${boxShadow};
+  text-decoration: none;
 
   &:hover {
     text-decoration: none;
@@ -18,8 +21,13 @@ const CTALink = styled(Link)`
   }
 
   &::after {
-    content: '►';
-    margin-left: 0.75rem;
+    content: ${chevron('#ffffff', true)};
+    display: inline-block;
+    line-height: 1;
+    margin-left: 0.5rem;
+    height: 1rem;
+    width: 1rem;
+    transform: rotate(90deg);
   }
 `;
 
