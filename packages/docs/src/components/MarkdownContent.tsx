@@ -24,42 +24,6 @@ export const MarkdownContainer = styled.article`
     margin-bottom: 0 !important;
   }
 
-  & > h1 {
-    font-size: 3rem;
-    margin-top: ${math(`1.5 * ${leading}`)};
-    margin-bottom: ${math(`1.25 * ${leading}`)};
-  }
-
-  & > h2 {
-    font-size: 2rem;
-    margin-top: ${math(`1.5 * ${leading}`)};
-    margin-bottom: ${leading};
-  }
-
-  & > h3 {
-    font-size: 1.5rem;
-    margin-top: ${math(`1.5 * ${leading}`)};
-    margin-bottom: ${leading};
-  }
-
-  & > h4 {
-    font-size: 1rem;
-    margin-top: ${math(`1.25 * ${leading}`)};
-    margin-bottom: ${leading};
-  }
-
-  & > h5 {
-    font-size: 0.875rem;
-    margin-top: ${math(`1.25 * ${leading}`)};
-    margin-bottom: ${leading};
-  }
-
-  & > h6 {
-    font-size: 0.85rem;
-    margin-top: ${math(`1.25 * ${leading}`)};
-    margin-bottom: ${leading};
-  }
-
   & > ul,
   & > ol {
     margin: 0 0 1rem;
@@ -87,10 +51,9 @@ export const MarkdownContainer = styled.article`
 
   & > table {
     border-collapse: collapse;
-    display: block;
     margin-bottom: ${leading};
 
-    tr:nth-child(2n) {
+    tr:nth-child(even) td {
       background-color: ${tableStripeColor};
     }
 
@@ -99,10 +62,13 @@ export const MarkdownContainer = styled.article`
       border: 1px solid ${tableBorderColor};
       padding: 0.5rem;
       vertical-align: top;
+
+      & > *:last-child {
+        margin-bottom: 0 !important;
+      }
     }
 
     th {
-      color: var(--ifm-table-head-color);
       font-weight: ${fontWeightBold};
     }
   }

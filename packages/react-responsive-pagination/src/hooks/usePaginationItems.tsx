@@ -45,5 +45,5 @@ export function usePaginationItems(
     }
   });
 
-  return { items: amendedItems, ref };
+  return { items: amendedItems, ref, clearCache };
 }

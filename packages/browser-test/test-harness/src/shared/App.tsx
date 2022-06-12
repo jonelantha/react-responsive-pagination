@@ -11,7 +11,13 @@ function App() {
     totalAsJson: 'Total Pages (JSON)',
     maxWidthAsJson: 'Max Width (JSON)',
     currentPageAsJson: 'Current Page (JSON)',
+    classNameAsJson: 'className (JSON)',
     extraClassNameAsJson: 'Extra Class (JSON)',
+    pageItemClassNameAsJson: 'Page item className (JSON)',
+    pageLinkClassNameAsJson: 'Page link className (JSON)',
+    activeItemClassNameAsJson: 'Active className (JSON)',
+    disabledItemClassNameAsJson: 'Disabled item className (JSON)',
+    srOnlyClassNameAsJson: 'SR Only className (JSON)',
     previousLabelAsJson: 'Previous Label (JSON)',
     nextLabelAsJson: 'Next Label (JSON)',
   };
@@ -21,7 +27,13 @@ function App() {
       totalAsJson: '100',
       maxWidthAsJson: '',
       currentPageAsJson: '0',
+      classNameAsJson: 'undefined',
       extraClassNameAsJson: 'undefined',
+      pageItemClassNameAsJson: 'undefined',
+      pageLinkClassNameAsJson: 'undefined',
+      activeItemClassNameAsJson: 'undefined',
+      disabledItemClassNameAsJson: 'undefined',
+      srOnlyClassNameAsJson: 'undefined',
       previousLabelAsJson: 'undefined',
       nextLabelAsJson: 'undefined',
     },
@@ -40,7 +52,15 @@ function App() {
   const total = tryJsonParse(formik.values.totalAsJson);
   const maxWidth = tryJsonParse(formik.values.maxWidthAsJson);
   const current = tryJsonParse(formik.values.currentPageAsJson);
+  const className = tryJsonParse(formik.values.classNameAsJson);
   const extraClassName = tryJsonParse(formik.values.extraClassNameAsJson);
+  const pageItemClassName = tryJsonParse(formik.values.pageItemClassNameAsJson);
+  const pageLinkClassName = tryJsonParse(formik.values.pageLinkClassNameAsJson);
+  const activeItemClassName = tryJsonParse(formik.values.activeItemClassNameAsJson);
+  const disabledItemClassName = tryJsonParse(
+    formik.values.disabledItemClassNameAsJson,
+  );
+  const srOnlyClassName = tryJsonParse(formik.values.srOnlyClassNameAsJson);
   const previousLabel = tryJsonParse(formik.values.previousLabelAsJson);
   const nextLabel = tryJsonParse(formik.values.nextLabelAsJson);
 
@@ -52,7 +72,13 @@ function App() {
           maxWidth={maxWidth}
           total={total}
           onPageChange={page => formik.setFieldValue('currentPageAsJson', page)}
+          className={className}
           extraClassName={extraClassName}
+          pageItemClassName={pageItemClassName}
+          pageLinkClassName={pageLinkClassName}
+          activeItemClassName={activeItemClassName}
+          disabledItemClassName={disabledItemClassName}
+          srOnlyClassName={srOnlyClassName}
           previousLabel={previousLabel}
           nextLabel={nextLabel}
         />
