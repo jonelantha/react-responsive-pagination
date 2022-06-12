@@ -30,6 +30,7 @@
 /* Alternative classNames */
 
 .alt-pagination {
+  font-family: 'Roboto';
   justify-content: center;
   display: flex;
   padding-left: 0;
