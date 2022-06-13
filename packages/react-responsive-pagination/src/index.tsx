@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { usePaginationItems } from './hooks/usePaginationItems';
 import { preventDefault } from './helpers/dom';
@@ -12,30 +12,69 @@ function BootstrapPagination({
   total,
   onPageChange: handlePageChange,
   maxWidth,
+  className,
   extraClassName = 'justify-content-center',
+  pageItemClassName = 'page-item',
+  pageLinkClassName = 'page-link',
+  activeItemClassName = 'active',
+  disabledItemClassName = 'disabled',
+  srOnlyClassName = 'sr-only',
   previousLabel,
   nextLabel,
 }: BootstrapPaginationProps) {
-  const { items, ref } = usePaginationItems(current, total, maxWidth, {
+  const { items, ref, clearCache } = usePaginationItems(current, total, maxWidth, {
     previousLabel,
     nextLabel,
   });
 
+  useEffect(() => {
+    return () => clearCache();
+  }, [
+    clearCache,
+    className,
+    pageItemClassName,
+    pageLinkClassName,
+    activeItemClassName,
+    disabledItemClassName,
+    srOnlyClassName,
+  ]);
+
   if (items.length === 0) return null;
 
-  let className = 'pagination';
-  if (extraClassName) {
-    className += ' ' + extraClassName;
+  function getContainerClassName() {
+    if (className !== undefined) {
+      return className;
+    } else if (extraClassName) {
+      return `pagination ${extraClassName}`;
+    } else {
+      return 'pagination';
+    }
+  }
+
+  function getLabel(label: string, a11yLabel: string | undefined) {
+    return a11yLabel ? (
+      <>
+        <span aria-hidden="true">{label}</span>
+        <span className={srOnlyClassName}>{a11yLabel}</span>
+      </>
+    ) : (
+      label
+    );
   }
 
   return (
-    <ul className={className} ref={ref}>
+    <ul className={getContainerClassName()} ref={ref}>
       {items.map(item =>
         item.gotoPage !== undefined ? (
           // item = ClickableItem
-          <li key={item.key} className={`page-item${item.active ? ' active' : ''}`}>
+          <li
+            key={item.key}
+            className={`${pageItemClassName}${
+              item.active && activeItemClassName ? ' ' + activeItemClassName : ''
+            }`}
+          >
             <a
-              className="page-link"
+              className={pageLinkClassName}
               href="#"
               onClick={preventDefault(() => handlePageChange(item.gotoPage))}
               aria-label={item.a11yLabel}
@@ -47,10 +86,12 @@ function BootstrapPagination({
           // item = NonClickableItem
           <li
             key={item.key}
-            className="page-item disabled"
+            className={`${pageItemClassName} ${disabledItemClassName}`}
             aria-hidden={item.a11yHidden}
           >
-            <span className="page-link">{getLabel(item.label, item.a11yLabel)}</span>
+            <span className={pageLinkClassName}>
+              {getLabel(item.label, item.a11yLabel)}
+            </span>
           </li>
         ),
       )}
@@ -63,7 +104,14 @@ type BootstrapPaginationProps = {
   total: number;
   onPageChange: (page: number) => void;
   maxWidth?: number;
+  className?: string;
   extraClassName?: string;
+  pageItemClassName?: string;
+  pageLinkClassName?: string;
+  activeItemClassName?: string;
+  disabledItemClassName?: string;
+  disabledLinkClassName?: string;
+  srOnlyClassName?: string;
   previousLabel?: string;
   nextLabel?: string;
 };
@@ -73,18 +121,14 @@ BootstrapPagination.propTypes = {
   total: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
   maxWidth: PropTypes.number,
+  className: PropTypes.string,
   extraClassName: PropTypes.string,
+  pageItemClassName: PropTypes.string,
+  pageLinkClassName: PropTypes.string,
+  activeItemClassName: PropTypes.string,
+  disabledItemClassName: PropTypes.string,
+  disabledLinkClassName: PropTypes.string,
+  srOnlyClassName: PropTypes.string,
   previousLabel: PropTypes.string,
   nextLabel: PropTypes.string,
 };
-
-function getLabel(label: string, a11yLabel: string | undefined) {
-  return a11yLabel ? (
-    <>
-      <span aria-hidden="true">{label}</span>
-      <span className="sr-only">{a11yLabel}</span>
-    </>
-  ) : (
-    label
-  );
-}

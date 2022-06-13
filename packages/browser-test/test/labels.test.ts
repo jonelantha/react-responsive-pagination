@@ -8,7 +8,7 @@ beforeAll(async () => {
   await page.setViewportSize({ width: 700, height: 700 });
 });
 
-describe('Options', () => {
+describe('Labels', () => {
   beforeEach(async () => {
     await page.fill('#previousLabelAsJson', 'undefined');
 

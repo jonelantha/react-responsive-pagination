@@ -52,7 +52,7 @@ export const FooterStyles = styled.footer`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
     margin: 0.5em;
-    width: min(47em, calc(100% - 1em));
+    width: min(47em, 100% - 1em);
 
     h1 {
       grid-column: 1 / -1;

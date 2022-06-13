@@ -11,9 +11,9 @@ A responsive React pagination component which intelligently renders to the avail
 
 🌟 Just updated for React 18 🌟
 
-<a href="https://react-responsive-pagination.elantha.com/"><img src="./react-responsive-pagination.gif?raw=true" width="985" alt="react-responsive-pagination example" /></a>
-
 ### ⚡️ [LIVE DEMO - try it out for yourself!](https://react-responsive-pagination.elantha.com/live-demo/) ⚡️
+
+<a href="https://react-responsive-pagination.elantha.com/"><img src="./react-responsive-pagination.gif?raw=true" width="985" alt="react-responsive-pagination example" /></a>
 
 ### 📕 Visit [https://react-responsive-pagination.elantha.com](https://react-responsive-pagination.elantha.com) to get started 🚀
 
@@ -58,14 +58,35 @@ function MyApp() {
 
 ## 🔧 Props
 
-| Prop name                | Type                      | Description                                                                                                                                                                                                                                 |
-| ------------------------ | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| current                  | number                    | The current active page. Indexed from 1                                                                                                                                                                                                     |
-| total                    | number                    | The total number of pages                                                                                                                                                                                                                   |
-| onPageChange             | (newPage: number) => void | A callback handler which is called when the user clicks a new page, note that the active page will not change unless the `current` prop is updated to reflect the new page (as in the example above). The `newPage` value is indexed from 1 |
-| maxWidth (optional)      | number                    | (optional) The maximum width (in pixels) of the pagination component. Specify a value if you want to override the automatic sizing. Note this width may be exceeded in the case where it's not possible to output a small enough component  |
-| previousLabel (optional) | string                    | (optional) The label for the previous button, default value is `«`                                                                                                                                                                          |
-| nextLabel (optional)     | string                    | (optional) The label for the next button, default value is `»`                                                                                                                                                                              |
+### Common Props
+
+| Prop                                                              | Description                                                                                                                                                                                                                                 |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **current**<br />`number`<br />(required)                         | The current active page. Indexed from 1                                                                                                                                                                                                     |
+| **total**<br />`number`<br />(required)                           | The total number of pages                                                                                                                                                                                                                   |
+| **onPageChange**<br />`(newPage: number) => void`<br />(required) | A callback handler which is called when the user clicks a new page, note that the active page will not change unless the `current` prop is updated to reflect the new page (as in the example above). The `newPage` value is indexed from 1 |
+| **maxWidth**<br />`number`<br />(optional)                        | The maximum width (in pixels) of the pagination component. Specify a value if you want to override the automatic sizing. Note this width may be exceeded in the case where it's not possible to output a small enough component             |
+
+### ClassName Props
+
+See [Overriding default classNames](https://react-responsive-pagination.elantha.com/custom-styled-pagination/#overriding-default-classnames) for more information
+
+| Prop                                                    | Description                                                                                                                                                                                                                                                                                                                                     |
+| ------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **className**<br />`string`<br />(optional)             | Class name for the top level **<ul\>** container<br />Defaults to `pagination`, overrides **extraClassName** prop (below)                                                                                                                                                                                                                       |
+| **extraClassName**<br />`string`<br />(optional)        | Useful when using Bootstrap styles, extra classNames to be added to the top level **<ul\>** container. Use this prop to override the default justify value - for example to align elements to the start of the page use: `justify-content-start`<br />Defaults to `justify-content-center`, not applicable if **className** prop (above) is set |
+| **pageItemClassName**<br />`string`<br />(optional)     | Class name for all the **<li\>** elements<br />Defaults to `page-item`                                                                                                                                                                                                                                                                          |
+| **pageLinkClassName**<br />`string`<br />(optional)     | Class name for **<a\>** or **<span\>** child elements within an **<li\>** element: <br />`<li ...><a class='page-link'>1</a></li>`<br />Defaults to `page-link`                                                                                                                                                                                 |
+| **activeItemClassName**<br />`string`<br />(optional)   | Appended to **<li\>** class name for the active element:<br />`<li class='page-item active'><a class='page-link'>1</a></li>`<br />Defaults to `active`                                                                                                                                                                                          |
+| **disabledItemClassName**<br />`string`<br />(optional) | Appended to **<li\>** class name for non-clickable elements (disabled nav buttons and the break/ellipsis):<br />`<li class='page-item disabled'><span class='page-link'>...</span></li>`<br />Defaults to `disabled`                                                                                                                            |
+| **srOnlyClassName**<br />`string`<br />(optional)       | Class for screen reader only content (which should be visually hidden) - see [an example of typical css](https://react-responsive-pagination.elantha.com/custom-styled-pagination/#screen-reader-only-sr-only-styles) for this purpose<br />Defaults to `sr-only`                                                                               |
+
+### Label Props
+
+| Prop                                            | Description                                        |
+| ----------------------------------------------- | -------------------------------------------------- |
+| **previousLabel**<br />`string`<br />(optional) | The label for the previous button, defaults to `«` |
+| **nextLabel**<br />`string`<br />(optional)     | The label for the next button, defaults to `»`     |
 
 See [Props Reference](https://react-responsive-pagination.elantha.com/props) for the full list
 

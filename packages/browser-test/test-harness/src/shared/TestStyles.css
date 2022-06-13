@@ -26,3 +26,44 @@
 .demo .pagination.justify-content-center {
   justify-content: flex-start !important;
 }
+
+/* Alternative classNames */
+
+.alt-pagination {
+  font-family: 'Roboto';
+  justify-content: center;
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+}
+
+.alt-page-link {
+  position: relative;
+  display: block;
+  margin: 0 10px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.alt-active > * {
+  font-weight: bold;
+}
+
+.alt-disabled > * {
+  color: #6c757d;
+  pointer-events: none;
+  cursor: auto;
+}
+
+.alt-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+

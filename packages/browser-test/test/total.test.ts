@@ -15,7 +15,7 @@ describe('Pagination total pages', () => {
       await page.fill('#totalAsJson', JSON.stringify(programmaticTotal));
 
       await expect(page).not.toHaveSelector('ul.pagination', {
-        timeout: 100,
+        timeout: 200,
       });
     },
   );

@@ -1,4 +1,4 @@
-import { shade } from 'polished';
+import { math, shade } from 'polished';
 import { createGlobalStyle } from 'styled-components';
 
 export const mainFontFamily = `system-ui, -apple-system, BlinkMacSystemFont,
@@ -84,7 +84,41 @@ const GlobalStyles = createGlobalStyle`
     font-weight: ${fontWeightBold};
     line-height: ${headingLineHeight};
     color: inherit;
-    margin: 0 0 ${spacingVertical} 0;
+    margin-bottom: ${leading};
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-top: ${math(`1.5 * ${leading}`)};
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    margin-top: ${math(`1.5 * ${leading}`)};
+  }
+
+  h1 + h2 {
+    margin-top: ${leading};
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    margin-top: ${math(`1.25 * ${leading}`)};
+  }
+
+  h4 {
+    font-size: 1rem;
+    margin-top: ${math(`1.25 * ${leading}`)};
+  }
+
+  h5 {
+    font-size: 0.875rem;
+    margin-top: ${math(`1.25 * ${leading}`)};
+  }
+
+  h6 {
+    font-size: 0.85rem;
+    margin-top: ${math(`1.25 * ${leading}`)};
   }
 `;
 

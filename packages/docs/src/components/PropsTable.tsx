@@ -2,9 +2,21 @@ import React, { isValidElement, ReactNode } from 'react';
 import { fontWeightBold } from './GlobalStyles';
 import styled from 'styled-components';
 
+const PropsTableStyles = styled.table`
+  table-layout: fixed;
+  width: 100%;
+`;
+
+const PropColumnStyles = styled.col`
+  width: 13rem;
+`;
+
 export function PropsTable({ children }: { children: ReactNode }) {
   return (
-    <table>
+    <PropsTableStyles>
+      <colgroup>
+        <PropColumnStyles />
+      </colgroup>
       <thead>
         <tr>
           <th>Prop</th>
@@ -12,11 +24,11 @@ export function PropsTable({ children }: { children: ReactNode }) {
         </tr>
       </thead>
       <tbody>{children}</tbody>
-    </table>
+    </PropsTableStyles>
   );
 }
 
-const PropName = styled.span`
+const PropName = styled.div`
   font-weight: ${fontWeightBold};
 `;
 
@@ -25,20 +37,11 @@ export function PropDef({ name, type, defaultValue, children }: PropDefProps) {
     <tr>
       <td>
         <PropName>{name}</PropName>
+        <code>{type}</code>
         <br />
         <em>{defaultValue ? '(optional)' : '(required)'}</em>
-        {defaultValue && (
-          <>
-            <br />
-            Default: <code>{defaultValue}</code>
-          </>
-        )}
       </td>
-      <td>
-        <code title="type">{type}</code>
-        <br />
-        {formatDescription(children)}
-      </td>
+      <td>{children}</td>
     </tr>
   );
 }
@@ -49,21 +52,3 @@ type PropDefProps = {
   defaultValue?: string;
   children: ReactNode;
 };
-
-function formatDescription(children: ReactNode) {
-  if (isValidElement(children)) {
-    return children.props.children;
-  } else if (Array.isArray(children)) {
-    let description: ReactNode[] = [];
-
-    React.Children.forEach(children, (child, index) => {
-      index > 0 && description.push(<br key={`br_${index}`} />);
-
-      description.push(isValidElement(child) ? child.props.children : child);
-    });
-
-    return description;
-  } else {
-    return children;
-  }
-}

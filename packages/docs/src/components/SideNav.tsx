@@ -15,30 +15,32 @@ import { chevron, close, external } from './icons';
 type SideNavProps = {
   items: NavItem[];
   activeSlug: string | undefined;
+  expandedSlug: string | undefined;
   onClose: () => void;
-  onActiveSlugChange: (slug: string | undefined) => void;
+  onExpandedSlugChange: (slug: string | undefined) => void;
 };
 
 export default function SideNav({
   items,
   activeSlug,
-  onActiveSlugChange: setActiveSlug,
+  expandedSlug,
+  onExpandedSlugChange: setExpandedSlug,
   onClose: close,
 }: SideNavProps) {
   function handleTopLevelLinkClicked(clickedSlug: string) {
-    if (clickedSlug !== activeSlug) {
+    if (clickedSlug !== expandedSlug) {
       // expand section if not already expanded
-      setActiveSlug(clickedSlug);
-    } else if (clickedSlug === activeSlug && window.location.hash === '') {
+      setExpandedSlug(clickedSlug);
+    } else if (clickedSlug === expandedSlug && window.location.hash === '') {
       // close section if already expanded
-      setActiveSlug(undefined);
+      setExpandedSlug(undefined);
     }
     close();
   }
 
   function handleExpanderClicked(clickedSlug: string) {
     // toggle
-    setActiveSlug(activeSlug !== clickedSlug ? clickedSlug : undefined);
+    setExpandedSlug(expandedSlug !== clickedSlug ? clickedSlug : undefined);
   }
 
   function handleLinkClicked() {
@@ -63,16 +65,16 @@ export default function SideNav({
                 {title}
               </GatsbyLink>
               <ExpandButton
-                expanded={activeSlug === slug}
+                expanded={expandedSlug === slug}
                 aria-label={`${
-                  activeSlug === slug ? 'Hide' : 'Show'
+                  expandedSlug === slug ? 'Hide' : 'Show'
                 } '${title}' sections`}
-                aria-expanded={activeSlug === slug ? 'true' : 'false'}
+                aria-expanded={expandedSlug === slug ? 'true' : 'false'}
                 aria-controls={`sections_${index}`}
                 onClick={() => handleExpanderClicked(slug)}
               />
             </SectionHead>
-            <Reveal<HTMLUListElement> open={activeSlug === slug}>
+            <Reveal<HTMLUListElement> open={expandedSlug === slug}>
               {props => (
                 <NestedUL {...props} id={`sections_${index}`}>
                   {sections.map(({ slug, url, title }) => (
