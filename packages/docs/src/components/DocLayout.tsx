@@ -22,12 +22,12 @@ type DocTemplateProps = {
 export default function DocLayout({ children, activeSlug }: DocTemplateProps) {
   const navItems = useNavItems();
   const [popupSideNavVisible, setPopupSideNavVisible] = useState(false);
-  const [sideBarActiveSlug, setSideBarActiveSlug] = useState<string | undefined>(
+  const [sideBarExpandedSlug, setSideBarExpandedSlug] = useState<string | undefined>(
     activeSlug,
   );
 
   useEffect(() => {
-    setSideBarActiveSlug(activeSlug);
+    setSideBarExpandedSlug(activeSlug);
   }, [activeSlug]);
 
   const isStaticNav = useMediaQueryMatch(staticNavMediaQuery);
@@ -55,8 +55,9 @@ export default function DocLayout({ children, activeSlug }: DocTemplateProps) {
       />
       <SideNav
         items={navItems.side}
-        activeSlug={sideBarActiveSlug}
-        onActiveSlugChange={setSideBarActiveSlug}
+        activeSlug={activeSlug}
+        expandedSlug={sideBarExpandedSlug}
+        onExpandedSlugChange={setSideBarExpandedSlug}
         onClose={() => setPopupSideNavVisible(false)}
       />
       {popupSideNavVisible && (
