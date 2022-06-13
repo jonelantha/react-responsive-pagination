@@ -1,5 +1,17 @@
 # React Responsive Pagination Changelog
 
+# [1.5.0](https://github.com/jonelantha/react-responsive-pagination/compare/v1.4.1...v1.5.0) (2022-06-13)
+
+
+### Bug Fixes
+
+* Package updates ([0b537b1](https://github.com/jonelantha/react-responsive-pagination/commit/0b537b1a391446f1f3fec3d218e9ac389a055574))
+
+
+### Features
+
+* Props for overriding classNames ([606a22b](https://github.com/jonelantha/react-responsive-pagination/commit/606a22bcdb07b38fc8a5e660ab78b5a08f8006ac))
+
 ## [1.4.1](https://github.com/jonelantha/react-responsive-pagination/compare/v1.4.0...v1.4.1) (2022-05-03)
 
 
