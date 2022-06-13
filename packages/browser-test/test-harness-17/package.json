@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "PORT=3001 craco start",
-    "build": "craco build",
+    "build": "CI=false craco build",
     "serve": "serve -s build",
     "eject": "react-scripts eject"
   },
