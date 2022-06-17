@@ -1,4 +1,5 @@
-import { makeCustomPaginationContainer } from '../../src/components/CustomPaginationContainer';
+import styled from 'styled-components';
+import { CustomPaginationContainer } from '../../src/components/CustomPaginationContainer';
 
 export const customStyles1 = `
 .pagination {
@@ -38,7 +39,9 @@ export const customStyles1 = `
   border: 0;
 }`;
 
-export const CustomStyleContainer1 = makeCustomPaginationContainer(customStyles1);
+export const CustomStyleContainer1 = styled(CustomPaginationContainer)`
+  ${customStyles1}
+`;
 
 export const customStyles2 = `
 .pagination {
@@ -87,7 +90,9 @@ export const customStyles2 = `
 }
 `;
 
-export const CustomStyleContainer2 = makeCustomPaginationContainer(customStyles2);
+export const CustomStyleContainer2 = styled(CustomPaginationContainer)`
+  ${customStyles2}
+`;
 
 export const customStyles3 = `
 .pagination {
@@ -138,7 +143,9 @@ export const customStyles3 = `
   border: 0;
 }`;
 
-export const CustomStyleContainer3 = makeCustomPaginationContainer(customStyles3);
+export const CustomStyleContainer3 = styled(CustomPaginationContainer)`
+  ${customStyles3}
+`;
 
 export const minimumBootstrap4Styles = `
 .pagination {
@@ -217,9 +224,9 @@ export const minimumBootstrap4Styles = `
 }
 `;
 
-export const MinimumBootstrapContainer = makeCustomPaginationContainer(
-  minimumBootstrap4Styles,
-);
+export const MinimumBootstrapContainer = styled(CustomPaginationContainer)`
+  ${minimumBootstrap4Styles}
+`;
 
 export const exampleAppCode = `
 import React, { useState } from 'react';
