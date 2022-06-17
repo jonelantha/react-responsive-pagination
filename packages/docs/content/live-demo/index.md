@@ -15,7 +15,7 @@ import ResizeContainer from "../../src/components/ResizeContainer"
 
 **Live Demo** - try resizing your browser to see the component automatically adjust to the available width.
 
-<Bootstrap4PaginationContainer>
+<Bootstrap4PaginationContainer noBorder>
 <OverrideSSR>
 {isSSR => (
   <ResizeContainer visibilityHidden={isSSR}>
