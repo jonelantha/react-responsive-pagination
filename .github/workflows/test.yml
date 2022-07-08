@@ -28,7 +28,9 @@ jobs:
         run: npx playwright install-deps
       - name: Build
         run: yarn build
-      - name: Test
+      - name: Unit Tests
         run: yarn test
+      - name: Test React 18
+        run: yarn browser-test-18
       - name: Test React 17
-        run: yarn test-17
+        run: yarn browser-test-17

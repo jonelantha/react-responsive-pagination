@@ -14,7 +14,7 @@
     "tsc-esnext": "rimraf lib/ && tsc --project ./tsconfig/esnext.json",
     "build": "yarn lint && yarn tsc-commonjs && yarn tsc-esnext",
     "start": "rimraf lib/ && tsc --project ./tsconfig/dev.json --watch",
-    "test": "yarn workspace browser-test test",
+    "test": "jest",
     "lint": "eslint --ext .ts --ext .tsx src",
     "prepublishOnly": "yarn build",
     "release": "rm ../../package.json && semantic-release",
@@ -45,6 +45,7 @@
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
+    "@types/jest": "27",
     "@types/prop-types": "^15.7.5",
     "@types/react": "^18.0.12",
     "@types/react-dom": "^18.0.5",
@@ -58,10 +59,12 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-react-hooks": "^4.5.0",
+    "jest": "27",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "rimraf": "^3.0.2",
     "semantic-release": "^19.0.3",
+    "ts-jest": "27",
     "typescript": "^4.7.3"
   }
 }
