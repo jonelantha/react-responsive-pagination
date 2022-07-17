@@ -1,5 +1,17 @@
 # React Responsive Pagination Changelog
 
+# [1.6.0](https://github.com/jonelantha/react-responsive-pagination/compare/v1.5.0...v1.6.0) (2022-07-17)
+
+
+### Bug Fixes
+
+* Package updates ([7009bdf](https://github.com/jonelantha/react-responsive-pagination/commit/7009bdf9e4636375447c0ab1878773b43cbcda73))
+
+
+### Features
+
+* narrowStrategy prop for improved handling of narrow pagination ([c9f0225](https://github.com/jonelantha/react-responsive-pagination/commit/c9f02250b7676d668d15d70a4118a037f40fae0c))
+
 # [1.5.0](https://github.com/jonelantha/react-responsive-pagination/compare/v1.4.1...v1.5.0) (2022-06-13)
 
 
