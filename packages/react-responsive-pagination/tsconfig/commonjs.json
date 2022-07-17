@@ -4,5 +4,6 @@
     "outDir": "../lib.cjs",
     "esModuleInterop": true,
     "module": "commonjs"
-  }
+  },
+  "exclude": ["../src/**/*.test.ts"]
 }

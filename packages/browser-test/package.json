@@ -3,25 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/jest": "^27.4.1",
-    "@types/node": "^16.11.39",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.11.45",
     "expect-playwright": "^0.8.0",
     "jest": "^27.5.1",
     "jest-circus": "^27.5.1",
     "jest-playwright-preset": "^1.7.2",
-    "playwright": "^1.22.2",
+    "playwright": "^1.23.4",
     "ts-jest": "^27.1.5",
-    "typescript": "^4.7.3"
+    "typescript": "^4.7.4"
   },
   "scripts": {
-    "start-harness": "yarn workspace test-harness start",
-    "build-harness": "yarn workspace test-harness build",
-    "serve-harness": "yarn workspace test-harness serve",
+    "start-harness-18": "yarn workspace test-harness start",
+    "build-harness-18": "yarn workspace test-harness build",
+    "serve-harness-18": "yarn workspace test-harness serve",
     "start-harness-17": "yarn workspace test-harness-17 start",
     "build-harness-17": "yarn workspace test-harness-17 build",
     "serve-harness-17": "yarn workspace test-harness-17 serve",
     "test-dev": "jest",
-    "test": "yarn build-harness && PROD_TEST=1 SERVE_COMMAND='yarn serve-harness' jest",
+    "test-18": "yarn build-harness-18 && PROD_TEST=1 SERVE_COMMAND='yarn serve-harness-18' jest",
     "test-17": "yarn build-harness-17 && PROD_TEST=1 SERVE_COMMAND='yarn serve-harness-17' jest"
   }
 }

@@ -1,5 +1,4 @@
 import { useState, useCallback, useMemo } from 'react';
-import { PaginationItem } from '../../paginationItem';
 import {
   createWidthCalculator,
   WidthCalculator,
@@ -7,6 +6,7 @@ import {
 } from '../../widthCalculator';
 import { getViewMetricsFromContainer } from './getViewMetrics';
 import { objectUnzip } from '../../helpers/object';
+import { CompositionItem } from '../../compositionItem';
 
 export function useWidthCalculator() {
   const [baseMetrics, setBaseMetrics] = useState<WidthCalculatorBaseMetrics | null>(
@@ -42,7 +42,7 @@ export function useWidthCalculator() {
 
 type RenderNeededResult = {
   renderNeeded: {
-    items: PaginationItem[];
+    items: CompositionItem[];
     ref: (element: HTMLElement | null) => void;
   };
   clearCache: () => void;

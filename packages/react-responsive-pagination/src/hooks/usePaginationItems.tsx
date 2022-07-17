@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import { narrowToWideCompositions } from '../compositions';
+import { NarrowStrategy, narrowToWideCompositions } from '../compositions';
 import { sanatizeInteger } from '../helpers/util';
+import { compositionToPaginationItems } from '../paginationItem';
 import { useWidestComposition } from './useWidestComposition';
 
 export function usePaginationItems(
@@ -10,6 +11,7 @@ export function usePaginationItems(
   options?: {
     nextLabel?: string;
     previousLabel?: string;
+    narrowStrategy?: NarrowStrategy | NarrowStrategy[];
   },
 ) {
   const total = sanatizeInteger(inputTotal);
@@ -17,33 +19,30 @@ export function usePaginationItems(
   const current =
     total < 1 ? null : Math.max(1, Math.min(sanatizeInteger(inputCurrent), total));
 
-  const narrowToWideCompositionsProvider = () =>
-    narrowToWideCompositions(current, total);
+  const narrowStrategies = sanatizeNarrowStrategies(options?.narrowStrategy);
 
-  const { items, ref, clearCache } = useWidestComposition(
-    narrowToWideCompositionsProvider,
-    maxWidth,
-  );
+  const narrowToWideCompositionsProvider = () =>
+    narrowToWideCompositions(current, total, narrowStrategies);
+
+  const {
+    items: compositionItems,
+    ref,
+    clearCache,
+  } = useWidestComposition(narrowToWideCompositionsProvider, maxWidth);
 
   useEffect(() => {
     return () => clearCache();
   }, [clearCache, options?.previousLabel, options?.nextLabel]);
 
-  const amendedItems = items.map(item => {
-    if (item.type === 'next' && options?.nextLabel) {
-      return {
-        ...item,
-        label: options?.nextLabel,
-      };
-    } else if (item.type === 'previous' && options?.previousLabel) {
-      return {
-        ...item,
-        label: options?.previousLabel,
-      };
-    } else {
-      return item;
-    }
-  });
+  const items = compositionToPaginationItems(compositionItems, options);
 
-  return { items: amendedItems, ref, clearCache };
+  return { items, ref, clearCache };
+}
+
+function sanatizeNarrowStrategies(inputNarrowStrategies: unknown): NarrowStrategy[] {
+  return (
+    Array.isArray(inputNarrowStrategies)
+      ? inputNarrowStrategies
+      : [inputNarrowStrategies]
+  ).filter(strategy => strategy === 'dropEllipsis' || strategy === 'dropNav');
 }

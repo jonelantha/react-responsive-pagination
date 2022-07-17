@@ -17,6 +17,7 @@ import { PropsTable, PropDef } from "../../src/components/PropsTable"
 import CommonProps from "../props/commonProps.md"
 import ExtraClassNameProp from "../props/extraClassNameProp.md"
 import LabelProps from "../props/labelProps.md"
+import NarrowProps from "../props/narrowProps.md"
 
 # Bootstrap Usage
 
@@ -161,4 +162,5 @@ A selection of props which may be helpful when using Bootstrap styles - for the 
 <CommonProps />
 <LabelProps />
 <ExtraClassNameProp />
+<NarrowProps />
 </PropsTable>

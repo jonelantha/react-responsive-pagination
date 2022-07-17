@@ -16,6 +16,7 @@ import BootstrapSSR from "../../src/components/BootstrapSSR"
 import { PropsTable, PropDef } from "../../src/components/PropsTable"
 import ClassNameProps from "../props/classNameProps.md"
 import LabelProps from "../props/labelProps.md"
+import NarrowProps from "../props/narrowProps.md"
 
 # Custom Styles
 
@@ -218,4 +219,5 @@ A selection of props which may be helpful when using custom styles - for the ful
 <PropsTable>
 <ClassNameProps />
 <LabelProps />
+<NarrowProps />
 </PropsTable>

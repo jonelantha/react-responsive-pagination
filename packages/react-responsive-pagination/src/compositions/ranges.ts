@@ -1,30 +1,28 @@
-import {
-  createEllipsisItem,
-  createPageItem,
-  EllipsisPosition,
-} from '../paginationItem';
+import { createEllipsis, createPage } from '../compositionItem';
 
 export { narrowToWidePaginationItemRanges as narrowToWideRanges };
 
 function* narrowToWidePaginationItemRanges(
   start: number,
   end: number,
-  ellipsisPos: EllipsisPosition,
+  collapsePos: 'L' | 'R',
 ) {
-  for (const range of narrowToWideNumberRanges(start, end, ellipsisPos)) {
-    yield toPaginationItems(range, ellipsisPos);
+  for (const range of narrowToWideNumberRanges(start, end, collapsePos)) {
+    yield range.map(item =>
+      item === '…' ? createEllipsis(collapsePos) : createPage(item),
+    );
   }
 }
 
 function* narrowToWideNumberRanges(
   first: number,
   last: number,
-  ellipsisPos: EllipsisPosition,
+  collapsePos: 'L' | 'R',
 ) {
-  const fullWidth = getInclusiveWidth(first, last);
+  const fullWidth = last - first + 1;
 
   for (let iterationWidth = 1; iterationWidth < fullWidth; iterationWidth++) {
-    const range = getCollapsedRange(first, last, iterationWidth, ellipsisPos);
+    const range = getCollapsedRange(first, last, iterationWidth, collapsePos);
 
     if (range) yield range;
   }
@@ -36,27 +34,15 @@ function getCollapsedRange(
   first: number,
   last: number,
   requiredWidth: number,
-  ellipsisPos: EllipsisPosition,
+  collapsePos: 'L' | 'R',
 ): NumberRange | undefined {
   if (requiredWidth < 3) return;
 
   const widthOfRange = requiredWidth - 2;
 
-  return ellipsisPos === 'left'
-    ? [first, '...', ...getFullRange(last - (widthOfRange - 1), last)]
-    : [...getFullRange(first, first + (widthOfRange - 1)), '...', last];
-}
-
-function getInclusiveWidth(first: number, last: number) {
-  return last - first + 1;
-}
-
-function toPaginationItems(numberRange: NumberRange, ellipsisPos: EllipsisPosition) {
-  return numberRange.map(number => {
-    if (number === '...') return createEllipsisItem(ellipsisPos);
-
-    return createPageItem(number, false);
-  });
+  return collapsePos === 'L'
+    ? [first, '…', ...getFullRange(last - (widthOfRange - 1), last)]
+    : [...getFullRange(first, first + (widthOfRange - 1)), '…', last];
 }
 
 function getFullRange(start: number, end: number) {
@@ -67,4 +53,4 @@ function getFullRange(start: number, end: number) {
 
 type NumberRange = NumberRangeItem[];
 
-type NumberRangeItem = number | '...';
+type NumberRangeItem = number | '…';
