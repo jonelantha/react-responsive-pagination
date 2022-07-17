@@ -1,23 +1,31 @@
-import { setupThrowOnError } from './helper';
-
-const testCssClasses = ['', 'add-margin-padding', 'add-margin-padding,content-box'];
+import { setupThrowOnError, stringifyWithUndefined } from './helper';
 
 beforeAll(() => {
   setupThrowOnError(page);
 });
 
-const testWidths = [
-  1000, 900, 800, 700, 600, 500, 400, 300, 200, 100, 250, 350, 450, 550, 650, 750,
-  850, 950,
+const testWidths = [150, 200, 250];
+
+const narrowStrategies = [
+  undefined,
+  'dropNav',
+  'dropEllipsis',
+  ['dropNav', 'dropEllipsis'],
+  ['dropEllipsis', 'dropNav'],
 ];
 
-describe.each(testCssClasses.map(cssClasses => [cssClasses]))(
-  'Auto sizing with %p classes',
-  cssClasses => {
+describe.each(narrowStrategies.map(narrowStrategy => [narrowStrategy]))(
+  'Auto sizing with narrowStrategy %p',
+  narrowStrategy => {
     beforeAll(async () => {
       await page.goto('about:blank');
 
-      await page.goto(`${harnessUrl}?css=${cssClasses}`);
+      await page.goto(harnessUrl);
+
+      await page.fill(
+        '#narrowStrategyAsJson',
+        stringifyWithUndefined(narrowStrategy),
+      );
 
       await page.fill('#totalAsJson', '100');
     });
