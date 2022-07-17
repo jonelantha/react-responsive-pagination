@@ -4987,7 +4987,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:27, @types/jest@npm:^27.4.1":
+"@types/jest@npm:^27.0.0, @types/jest@npm:^27.4.1":
   version: 27.5.2
   resolution: "@types/jest@npm:27.5.2"
   dependencies:
@@ -19635,7 +19635,7 @@ __metadata:
   dependencies:
     "@semantic-release/changelog": ^6.0.1
     "@semantic-release/git": ^10.0.1
-    "@types/jest": 27
+    "@types/jest": ^27.0.0
     "@types/prop-types": ^15.7.5
     "@types/react": ^18.0.12
     "@types/react-dom": ^18.0.5

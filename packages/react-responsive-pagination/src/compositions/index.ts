@@ -1,29 +1,81 @@
+import {
+  CompositionItem,
+  createActivePage,
+  createNavNext,
+  createNavPrevious,
+  isEllipsis,
+  isNav,
+} from '../compositionItem';
 import { zipIterators } from '../helpers/iterator';
 import { narrowToWideRanges } from './ranges';
-import { createNavItem, createPageItem, PaginationItem } from '../paginationItem';
 
-export function* narrowToWideCompositions(current: number | null, total: number) {
+export type NarrowStrategy = 'dropEllipsis' | 'dropNav';
+
+export function* narrowToWideCompositions(
+  current: number | null,
+  total: number,
+  narrowStrategies: NarrowStrategy[],
+) {
   if (current === null) return;
 
-  const leftRanges = narrowToWideRanges(1, current - 1, 'left');
-  const rightRanges = narrowToWideRanges(current + 1, total, 'right');
+  const compositions = narrowToWideCompositionsUnfiltered(current, total);
 
-  const staggeredPairs = staggeredIterationRightFirst(leftRanges, rightRanges);
+  if (narrowStrategies.length > 0) {
+    const { value: initialComposition, done } = compositions.next();
 
-  for (const { leftRange, rightRange } of staggeredPairs) {
-    yield [
-      navPrevious(current),
-      ...leftRange,
-      activePage(current),
-      ...rightRange,
-      navNext(current, total),
-    ];
+    if (done) return;
+
+    yield* initialReducedCompositions(initialComposition, narrowStrategies);
+
+    yield initialComposition;
+  }
+
+  yield* compositions;
+}
+
+function* initialReducedCompositions(
+  initialComposition: CompositionItem[],
+  narrowStrategies: NarrowStrategy[],
+) {
+  const hasEllipsis = initialComposition.some(isEllipsis);
+
+  const applicableStrategies = narrowStrategies.filter(
+    strategy => strategy !== 'dropEllipsis' || hasEllipsis,
+  );
+
+  while (applicableStrategies.length > 0) {
+    const dropEllipsis = applicableStrategies.includes('dropEllipsis');
+    const dropNav = applicableStrategies.includes('dropNav');
+
+    yield initialComposition.filter(
+      item => (!dropEllipsis || !isEllipsis(item)) && (!dropNav || !isNav(item)),
+    );
+
+    applicableStrategies.pop();
   }
 }
 
-function* staggeredIterationRightFirst(
-  leftRanges: IterableIterator<PaginationItem[]>,
-  rightRanges: IterableIterator<PaginationItem[]>,
+export function* narrowToWideCompositionsUnfiltered(
+  current: number,
+  total: number,
+): Generator<CompositionItem[]> {
+  const navPrevious = createNavPrevious(current > 1 ? current - 1 : undefined);
+  const navNext = createNavNext(current < total ? current + 1 : undefined);
+  const activePage = createActivePage(current);
+
+  const leftRanges = narrowToWideRanges(1, current - 1, 'L');
+  const rightRanges = narrowToWideRanges(current + 1, total, 'R');
+
+  const staggeredPairs = staggeredIterationRightRangeFirst(leftRanges, rightRanges);
+
+  for (const { leftRange, rightRange } of staggeredPairs) {
+    yield [navPrevious, ...leftRange, activePage, ...rightRange, navNext];
+  }
+}
+
+function* staggeredIterationRightRangeFirst(
+  leftRanges: IterableIterator<CompositionItem[]>,
+  rightRanges: IterableIterator<CompositionItem[]>,
 ) {
   const zippedRanges = zipIterators(leftRanges, rightRanges);
 
@@ -46,16 +98,4 @@ function* staggeredIterationRightFirst(
       yield { leftRange, rightRange };
     }
   }
-}
-
-function activePage(current: number) {
-  return createPageItem(current, true);
-}
-
-function navPrevious(current: number) {
-  return createNavItem('previous', current > 1 ? current - 1 : undefined);
-}
-
-function navNext(current: number, total: number) {
-  return createNavItem('next', current < total ? current + 1 : undefined);
 }

@@ -1,11 +1,11 @@
 import { useCallback, useState } from 'react';
+import { CompositionItem } from '../compositionItem';
 import { setRefValue } from '../helpers/ref';
-import { PaginationItem } from '../paginationItem';
 import { useAvailableWidth } from './useAvailableWidth';
 import { useWidestCompositionForWidth } from './useWidestCompositionForWidth';
 
 export function useWidestComposition(
-  narrowToWideCompositionsProvider: () => IterableIterator<PaginationItem[]>,
+  narrowToWideCompositionsProvider: () => IterableIterator<CompositionItem[]>,
   maxWidth?: number,
 ) {
   const [containerElement, setContainerElement] = useState<HTMLElement | null>(null);

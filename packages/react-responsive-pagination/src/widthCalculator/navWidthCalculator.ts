@@ -1,19 +1,17 @@
-import { NavType } from '../paginationItem';
-
 export function createNavWidthCalculator(widths: Params) {
-  return function navWidthCalculator(type: NavType, enabled: boolean) {
+  return function navWidthCalculator(type: '<' | '>', enabled: boolean) {
     const widthsForType = widths[type];
 
-    return enabled ? widthsForType.disabled : widthsForType.disabled;
+    return enabled ? widthsForType.enabled : widthsForType.disabled;
   };
 }
 
 type Params = {
-  previous: {
+  '<': {
     enabled: number;
     disabled: number;
   };
-  next: {
+  '>': {
     enabled: number;
     disabled: number;
   };

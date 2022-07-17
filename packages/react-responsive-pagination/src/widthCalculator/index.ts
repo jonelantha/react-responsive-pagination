@@ -4,10 +4,12 @@ import { createNavWidthCalculator } from './navWidthCalculator';
 import { createPageWidthCalculator } from './pageWidthCalculator';
 import { createNumberWidthCalculator } from './numberWidthCalculator';
 import {
-  createPageItem,
-  createEllipsisItem,
-  createNavItem,
-} from '../paginationItem';
+  createActivePage,
+  createEllipsis,
+  createNavNext,
+  createNavPrevious,
+  createPage,
+} from '../compositionItem';
 
 export function createWidthCalculator(
   baseMetrics: WidthCalculatorBaseMetrics | null,
@@ -35,11 +37,11 @@ function createGraph(baseMetrics: WidthCalculatorBaseMetrics) {
         }),
       }),
       getNavWidth: createNavWidthCalculator({
-        previous: {
+        '<': {
           enabled: itemWidths.navPreviousEnabled,
           disabled: itemWidths.navPreviousDisabled,
         },
-        next: {
+        '>': {
           enabled: itemWidths.navNextEnabled,
           disabled: itemWidths.navNextDisabled,
         },
@@ -51,15 +53,15 @@ function createGraph(baseMetrics: WidthCalculatorBaseMetrics) {
 }
 
 const baseMetricItemsToMeasure = {
-  normalPageSingleDigit: createPageItem(8, false),
-  normalPageDoubleDigit: createPageItem(88, false),
-  activePageSingleDigit: createPageItem(8, true),
-  activePageDoubleDigit: createPageItem(88, true),
-  navPreviousEnabled: createNavItem('previous', 0),
-  navPreviousDisabled: createNavItem('previous'),
-  navNextEnabled: createNavItem('next', 0),
-  navNextDisabled: createNavItem('next'),
-  ellipsis: createEllipsisItem('left'),
+  normalPageSingleDigit: createPage(8),
+  normalPageDoubleDigit: createPage(88),
+  activePageSingleDigit: createActivePage(8),
+  activePageDoubleDigit: createActivePage(88),
+  navPreviousEnabled: createNavPrevious(0),
+  navPreviousDisabled: createNavPrevious(undefined),
+  navNextEnabled: createNavNext(0),
+  navNextDisabled: createNavNext(undefined),
+  ellipsis: createEllipsis('L'),
 };
 
 export type WidthCalculatorBaseMetrics = {

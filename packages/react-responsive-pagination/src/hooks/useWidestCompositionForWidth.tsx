@@ -1,14 +1,14 @@
 import { ForwardedRef, useRef } from 'react';
-import { PaginationItem } from '../paginationItem';
 import { lastWhere, iteratorNext } from '../helpers/iterator';
 import { useWidthCalculator } from './useWidthCalculator';
 import { useFoutDetector } from './useFoutDetector';
+import { CompositionItem } from '../compositionItem';
 
 export function useWidestCompositionForWidth(
-  narrowToWideCompositionsProvider: () => IterableIterator<PaginationItem[]>,
+  narrowToWideCompositionsProvider: () => IterableIterator<CompositionItem[]>,
   maxWidth: number,
 ): {
-  items: PaginationItem[];
+  items: CompositionItem[];
   ref: ForwardedRef<HTMLElement | null>;
   clearCache: () => void;
 } {
@@ -46,15 +46,15 @@ export function useWidestCompositionForWidth(
 }
 
 function getLargestFittingCompositionWithFallback(
-  getNarrowToWideCompositions: () => IterableIterator<PaginationItem[]>,
-  getCompositionWidth: (items: PaginationItem[]) => number,
+  getNarrowToWideCompositions: () => IterableIterator<CompositionItem[]>,
+  getCompositionWidth: (items: CompositionItem[]) => number,
   maxWidth: number,
 ) {
   const narrowToWideCompositions = getNarrowToWideCompositions();
 
   const firstComposition = iteratorNext(narrowToWideCompositions) ?? [];
 
-  const doesCompositionFit = (composition: PaginationItem[]) => {
+  const doesCompositionFit = (composition: CompositionItem[]) => {
     return getCompositionWidth(composition) < maxWidth;
   };
 

@@ -2,6 +2,7 @@ import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { usePaginationItems } from './hooks/usePaginationItems';
 import { preventDefault } from './helpers/dom';
+import { NarrowStrategy } from './compositions';
 
 export default memo(BootstrapPagination);
 
@@ -12,6 +13,7 @@ function BootstrapPagination({
   total,
   onPageChange: handlePageChange,
   maxWidth,
+  narrowStrategy,
   className,
   extraClassName = 'justify-content-center',
   pageItemClassName = 'page-item',
@@ -23,6 +25,7 @@ function BootstrapPagination({
   nextLabel,
 }: BootstrapPaginationProps) {
   const { items, ref, clearCache } = usePaginationItems(current, total, maxWidth, {
+    narrowStrategy,
     previousLabel,
     nextLabel,
   });
@@ -104,6 +107,7 @@ type BootstrapPaginationProps = {
   total: number;
   onPageChange: (page: number) => void;
   maxWidth?: number;
+  narrowStrategy?: NarrowStrategy | NarrowStrategy[];
   className?: string;
   extraClassName?: string;
   pageItemClassName?: string;
@@ -121,6 +125,10 @@ BootstrapPagination.propTypes = {
   total: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
   maxWidth: PropTypes.number,
+  narrowStrategy: PropTypes.oneOfType([
+    PropTypes.oneOf(['dropEllipsis', 'dropNav']),
+    PropTypes.arrayOf(PropTypes.oneOf(['dropEllipsis', 'dropNav']).isRequired),
+  ]),
   className: PropTypes.string,
   extraClassName: PropTypes.string,
   pageItemClassName: PropTypes.string,

@@ -1,26 +1,27 @@
-import { PaginationItem } from '../paginationItem';
 import { GetPageWidth } from './pageWidthCalculator';
 import { GetNavWidth } from './navWidthCalculator';
+import { CompositionItem } from '../compositionItem';
 
 export function createItemWidthCalculator({
   getPageWidth,
   getNavWidth,
   ellipsisWidth,
 }: Params) {
-  return function itemWidthCalculator(item: PaginationItem) {
-    if (item.type === 'page') {
-      return getPageWidth(item.label, item.active ?? false);
+  return function itemWidthCalculator({ type, page }: CompositionItem) {
+    if (type === 'page' || type === 'active') {
+      return getPageWidth(page.toString(), type === 'active');
     }
 
-    if (item.type === 'previous' || item.type === 'next') {
-      return getNavWidth(item.type, item.gotoPage !== undefined);
+    if (type === '<' || type === '>') {
+      return getNavWidth(type, page !== undefined);
     }
 
-    if (item.type === 'ellipsis') {
+    if (type === '…L' || type === '…R') {
       return ellipsisWidth;
     }
 
-    throw Error(`unknown item: ${item.type}`);
+    const _exCheck: never = type;
+    return _exCheck;
   };
 }
 
