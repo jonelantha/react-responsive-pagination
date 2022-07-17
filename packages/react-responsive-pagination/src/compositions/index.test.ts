@@ -225,6 +225,8 @@ function shorthandOf(received: CompositionItem[] | void) {
       case '…L':
       case '…R':
         return type;
+      default:
+        throw Error(`Type "${type}" not recognised`);
     }
   });
 }
