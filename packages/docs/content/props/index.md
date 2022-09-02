@@ -17,7 +17,7 @@ import NarrowProps from "./narrowProps.md"
 ## Common Props
 
 <PropsTable>
-<CommonProps />
+  <CommonProps />
 </PropsTable>
 
 ## ClassName Props
@@ -25,17 +25,17 @@ import NarrowProps from "./narrowProps.md"
 See [Overriding default classNames](/custom-styled-pagination/#overriding-default-classnames) for more information
 
 <PropsTable>
-<ClassNameProps />
+  <ClassNameProps />
 </PropsTable>
 
 ## Label Props
 
 <PropsTable>
-<LabelProps />
+  <LabelProps />
 </PropsTable>
 
 ## Misc Props
 
 <PropsTable>
-<NarrowProps />
+  <NarrowProps />
 </PropsTable>

@@ -1,6 +1,7 @@
 import { graphql } from 'gatsby';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Link } from 'gatsby';
+import React, { ReactNode } from 'react';
 
 import SEO from '../components/SEO';
 import GlobalStyles, {
@@ -11,13 +12,21 @@ import GlobalStyles, {
 } from '../components/GlobalStyles';
 import MarkdownContent from '../components/MarkdownContent';
 
-export default function StandaloneTemplate({ data }: { data: any }) {
+type StandaloneTemplateProps = {
+  data: any;
+  children: ReactNode;
+};
+
+export default function StandaloneTemplate({
+  data,
+  children,
+}: StandaloneTemplateProps) {
   return (
     <StandaloneLayout
       title={data.mdx.frontmatter.title}
       description={data.mdx.frontmatter.description || data.mdx.frontmatter.excerpt}
     >
-      <MarkdownContent compiledMdx={data.mdx.body} />
+      <MarkdownContent>{children}</MarkdownContent>
     </StandaloneLayout>
   );
 }
@@ -26,7 +35,6 @@ export const pageQuery = graphql`
   query ($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
       id
-      body
       frontmatter {
         title
         description

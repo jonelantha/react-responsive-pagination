@@ -1,8 +1,14 @@
+import React, { ReactNode } from 'react';
 import { graphql } from 'gatsby';
 import MarkdownContent from '../components/MarkdownContent';
 import SEO from '../components/SEO';
 
-export default function Doc({ data }: { data: any }) {
+type DocTemplateProps = {
+  data: any;
+  children: ReactNode;
+};
+
+export default function DocTemplate({ data, children }: DocTemplateProps) {
   return (
     <>
       <SEO
@@ -11,7 +17,7 @@ export default function Doc({ data }: { data: any }) {
           data.mdx.frontmatter.description || data.mdx.frontmatter.excerpt
         }
       />
-      <MarkdownContent compiledMdx={data.mdx.body} />
+      <MarkdownContent>{children}</MarkdownContent>
     </>
   );
 }
@@ -20,7 +26,6 @@ export const pageQuery = graphql`
   query ($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
       id
-      body
       frontmatter {
         title
         description

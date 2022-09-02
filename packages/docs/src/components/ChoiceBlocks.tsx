@@ -14,6 +14,10 @@ export const ChoiceBlock = styled.section`
   border: ${boxBorder};
   box-shadow: ${boxShadow};
   padding: 1rem;
+
+  & > *:first-child {
+    margin-top: 0 !important;
+  }
 `;
 
 export const ChoiceBlockCTA = styled.div`

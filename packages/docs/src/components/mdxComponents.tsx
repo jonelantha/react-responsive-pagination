@@ -1,12 +1,14 @@
 import { Link } from 'gatsby';
-import { ReactElement } from 'react';
+import { ReactNode, isValidElement } from 'react';
 import CodeBlock from './CodeBlock';
 import CTALink from './CTALink';
 import TickList from './TickList';
 
 const mdxComponents = {
-  a: ({ href, ...props }: { href: string }) => {
-    if (!href.startsWith('http')) {
+  a: ({ href, ...props }: { href?: string }) => {
+    if (!href) {
+      return <a {...props} />;
+    } else if (!href.startsWith('http')) {
       return <Link to={href} {...props} />;
     } else {
       return <a href={href} rel="noopener noreferrer" {...props} />;
@@ -15,7 +17,9 @@ const mdxComponents = {
   CodeBlock,
   CTALink,
   TickList,
-  pre: ({ children: codeTag }: { children: ReactElement }) => {
+  pre: ({ children: codeTag }: { children?: ReactNode }) => {
+    if (!isValidElement(codeTag)) throw new Error();
+
     const codeTagProps = codeTag.props;
 
     const language = codeTagProps.className?.split('-')[1];
