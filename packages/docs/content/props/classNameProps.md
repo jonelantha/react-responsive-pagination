@@ -43,6 +43,8 @@ import ExtraClassNameProp from './extraClassNameProp.md';
   <PropDef name='srOnlyClassName' type='string' defaultValue='sr-only'>
     Class for screen reader only content (which should be visually hidden) - see [an example of typical css](/custom-styled-pagination/#screen-reader-only-sr-only-styles) for this purpose
 
+    Setting this prop to `''` will turn off all the **\<span>** based screen reader labels (this should be fine in most cases as screen readers will still be able to read the `aria-label` attributes)
+
     Defaults to `sr-only`
 
   </PropDef>

@@ -58,7 +58,7 @@ function BootstrapPagination({
     return a11yLabel ? (
       <>
         <span aria-hidden="true">{label}</span>
-        <span className={srOnlyClassName}>{a11yLabel}</span>
+        {srOnlyClassName && <span className={srOnlyClassName}>{a11yLabel}</span>}
       </>
     ) : (
       label

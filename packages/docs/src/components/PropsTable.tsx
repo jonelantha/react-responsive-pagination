@@ -28,7 +28,7 @@ export function PropsTable({ children }: { children: ReactNode }) {
   );
 }
 
-const PropName = styled.div`
+export const PropName = styled.div`
   font-weight: ${fontWeightBold};
 `;
 
@@ -36,7 +36,7 @@ export function PropDef({ name, type, defaultValue, children }: PropDefProps) {
   return (
     <tr>
       <td>
-        <PropName>{name}</PropName>
+        <PropName id={name}>{name}</PropName>
         <code>{type}</code>
         <br />
         <em>{defaultValue ? '(optional)' : '(required)'}</em>
