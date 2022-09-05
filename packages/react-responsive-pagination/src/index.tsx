@@ -92,7 +92,7 @@ function BootstrapPagination({
             className={`${pageItemClassName} ${disabledItemClassName}`}
             aria-hidden={item.a11yHidden}
           >
-            <span className={pageLinkClassName}>
+            <span className={pageLinkClassName} aria-label={item.a11yLabel}>
               {getLabel(item.label, item.a11yLabel)}
             </span>
           </li>
