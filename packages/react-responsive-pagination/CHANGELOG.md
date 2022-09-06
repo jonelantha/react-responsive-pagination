@@ -1,5 +1,20 @@
 # React Responsive Pagination Changelog
 
+# [1.7.0-beta.1](https://github.com/jonelantha/react-responsive-pagination/compare/v1.6.0...v1.7.0-beta.1) (2022-09-06)
+
+
+### Bug Fixes
+
+* Added missing aria-label for disabled elements ([e1d2cc1](https://github.com/jonelantha/react-responsive-pagination/commit/e1d2cc140d892f8a21aeeefb42769f2fda2f2fa0))
+* Non-docs package updates ([2ec3686](https://github.com/jonelantha/react-responsive-pagination/commit/2ec3686f7fdf022ae5c7d03bec91ef45fe9751aa))
+
+
+### Features
+
+* Add ariaCurrentAttr for including aria-current attribute on active page ([1c4e185](https://github.com/jonelantha/react-responsive-pagination/commit/1c4e185835f34e839d07ad4653018d57bdc1be3d))
+* Added a11yActiveLabel prop for controlling a11y label on active link ([ae7ea23](https://github.com/jonelantha/react-responsive-pagination/commit/ae7ea23700361e88c26d4b6aa96e92e0a42bc5f7))
+* srOnlyClassName='' hides .sr-only elements ([5af0c41](https://github.com/jonelantha/react-responsive-pagination/commit/5af0c418764d1cef53c459ede875d46ff022ba75))
+
 # [1.6.0](https://github.com/jonelantha/react-responsive-pagination/compare/v1.5.0...v1.6.0) (2022-07-17)
 
 
