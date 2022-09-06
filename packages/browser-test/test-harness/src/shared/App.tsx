@@ -22,6 +22,7 @@ function App() {
     previousLabelAsJson: 'Previous Label (JSON)',
     nextLabelAsJson: 'Next Label (JSON)',
     a11yActiveLabelAsJson: 'a11y Active Label (JSON)',
+    ariaCurrentAttrAsJson: 'ariaCurrent Attr (JSON)',
   };
 
   const formik = useFormik({
@@ -40,6 +41,7 @@ function App() {
       previousLabelAsJson: 'undefined',
       nextLabelAsJson: 'undefined',
       a11yActiveLabelAsJson: 'undefined',
+      ariaCurrentAttrAsJson: 'undefined',
     },
     onSubmit: () => {},
   });
@@ -69,6 +71,7 @@ function App() {
   const previousLabel = tryJsonParse(formik.values.previousLabelAsJson);
   const nextLabel = tryJsonParse(formik.values.nextLabelAsJson);
   const a11yActiveLabel = tryJsonParse(formik.values.a11yActiveLabelAsJson);
+  const ariaCurrentAttr = tryJsonParse(formik.values.ariaCurrentAttrAsJson);
 
   return (
     <>
@@ -89,6 +92,7 @@ function App() {
           previousLabel={previousLabel}
           nextLabel={nextLabel}
           a11yActiveLabel={a11yActiveLabel}
+          ariaCurrentAttr={ariaCurrentAttr}
         />
       </div>
       <div className="container">

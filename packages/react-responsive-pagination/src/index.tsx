@@ -24,6 +24,7 @@ function BootstrapPagination({
   previousLabel,
   nextLabel,
   a11yActiveLabel = '(current)',
+  ariaCurrentAttr,
 }: BootstrapPaginationProps) {
   const { items, ref, clearCache } = usePaginationItems(current, total, maxWidth, {
     narrowStrategy,
@@ -77,6 +78,7 @@ function BootstrapPagination({
             className={`${pageItemClassName}${
               item.active && activeItemClassName ? ' ' + activeItemClassName : ''
             }`}
+            aria-current={item.active && ariaCurrentAttr ? 'page' : undefined}
           >
             <a
               className={pageLinkClassName}
@@ -121,6 +123,7 @@ type BootstrapPaginationProps = {
   previousLabel?: string;
   nextLabel?: string;
   a11yActiveLabel?: string;
+  ariaCurrentAttr?: boolean;
 };
 
 BootstrapPagination.propTypes = {
@@ -143,4 +146,5 @@ BootstrapPagination.propTypes = {
   previousLabel: PropTypes.string,
   nextLabel: PropTypes.string,
   a11yActiveLabel: PropTypes.string,
+  ariaCurrentAttr: PropTypes.bool,
 };
