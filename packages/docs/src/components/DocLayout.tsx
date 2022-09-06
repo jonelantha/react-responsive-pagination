@@ -13,6 +13,7 @@ import { useHeightListener } from '../utils/useHeightListener';
 import { useMediaQueryMatch } from '../utils/useMediaQueryMatch';
 import { useNavItems } from '../utils/useNavItems';
 import { popupNavMediaQuery, staticNavMediaQuery } from './DocLayoutBreakpoints';
+import { PropName } from './PropsTable';
 
 type DocTemplateProps = {
   children: React.ReactNode;
@@ -157,7 +158,8 @@ const Layout = styled.main<{ popupSideNavVisible: boolean }>`
     min-width: 100px;
 
     h1,
-    h2 {
+    h2,
+    ${PropName} {
       scroll-margin-top: calc(var(--header-height) + 10px);
     }
   }

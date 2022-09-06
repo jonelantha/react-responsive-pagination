@@ -1,3 +1,5 @@
+const rehypeSetCodeAttributes = require('./rehype-set-code-attributes');
+
 module.exports = {
   flags: {},
   siteMetadata: {
@@ -14,16 +16,29 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'pages',
-        path: './content',
+        path: `${__dirname}/content`,
       },
       __key: 'pages',
     },
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
-        rehypePlugins: [require('rehype-slug')],
         extensions: ['.mdx', '.md'],
+        mdxOptions: {
+          remarkPlugins: [require('remark-gfm')],
+          rehypePlugins: [wrapESMPlugin('rehype-slug'), rehypeSetCodeAttributes],
+        },
       },
     },
   ],
 };
+
+function wrapESMPlugin(name) {
+  return function wrapESM(opts) {
+    return async (...args) => {
+      const mod = await import(name);
+      const plugin = mod.default(opts);
+      return plugin(...args);
+    };
+  };
+}

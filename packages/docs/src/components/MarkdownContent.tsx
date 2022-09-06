@@ -1,7 +1,6 @@
-import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { MDXProvider } from '@mdx-js/react';
 import styled from 'styled-components';
-import { math } from 'polished';
+import { ReactNode } from 'react';
 
 import mdxComponents from './mdxComponents';
 import {
@@ -97,13 +96,10 @@ export const MarkdownContainer = styled.article`
   } */
 `;
 
-export default function MarkdownContent({ compiledMdx }: { compiledMdx: string }) {
-  // check if MDXProvider location makes a difference
+export default function MarkdownContent({ children }: { children: ReactNode }) {
   return (
     <MarkdownContainer>
-      <MDXProvider components={mdxComponents}>
-        <MDXRenderer>{compiledMdx}</MDXRenderer>
-      </MDXProvider>
+      <MDXProvider components={mdxComponents}>{children}</MDXProvider>
     </MarkdownContainer>
   );
 }

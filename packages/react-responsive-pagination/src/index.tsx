@@ -23,11 +23,14 @@ function BootstrapPagination({
   srOnlyClassName = 'sr-only',
   previousLabel,
   nextLabel,
+  a11yActiveLabel = '(current)',
+  ariaCurrentAttr,
 }: BootstrapPaginationProps) {
   const { items, ref, clearCache } = usePaginationItems(current, total, maxWidth, {
     narrowStrategy,
     previousLabel,
     nextLabel,
+    a11yActiveLabel,
   });
 
   useEffect(() => {
@@ -58,7 +61,7 @@ function BootstrapPagination({
     return a11yLabel ? (
       <>
         <span aria-hidden="true">{label}</span>
-        <span className={srOnlyClassName}>{a11yLabel}</span>
+        {srOnlyClassName && <span className={srOnlyClassName}>{a11yLabel}</span>}
       </>
     ) : (
       label
@@ -75,6 +78,7 @@ function BootstrapPagination({
             className={`${pageItemClassName}${
               item.active && activeItemClassName ? ' ' + activeItemClassName : ''
             }`}
+            aria-current={item.active && ariaCurrentAttr ? 'page' : undefined}
           >
             <a
               className={pageLinkClassName}
@@ -92,7 +96,7 @@ function BootstrapPagination({
             className={`${pageItemClassName} ${disabledItemClassName}`}
             aria-hidden={item.a11yHidden}
           >
-            <span className={pageLinkClassName}>
+            <span className={pageLinkClassName} aria-label={item.a11yLabel}>
               {getLabel(item.label, item.a11yLabel)}
             </span>
           </li>
@@ -118,6 +122,8 @@ type BootstrapPaginationProps = {
   srOnlyClassName?: string;
   previousLabel?: string;
   nextLabel?: string;
+  a11yActiveLabel?: string;
+  ariaCurrentAttr?: boolean;
 };
 
 BootstrapPagination.propTypes = {
@@ -139,4 +145,6 @@ BootstrapPagination.propTypes = {
   srOnlyClassName: PropTypes.string,
   previousLabel: PropTypes.string,
   nextLabel: PropTypes.string,
+  a11yActiveLabel: PropTypes.string,
+  ariaCurrentAttr: PropTypes.bool,
 };

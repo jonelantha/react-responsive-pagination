@@ -48,4 +48,11 @@ describe('classNames', () => {
     const paginationHtml = await page.$eval('ul', ul => ul.outerHTML);
     expect(paginationHtml).toMatchSnapshot();
   });
+
+  test('setting "srOnlyClassName" to "" removes screen reader spans', async () => {
+    await page.fill(`#srOnlyClassNameAsJson`, JSON.stringify(''));
+
+    const paginationHtml = await page.$eval('ul', ul => ul.outerHTML);
+    expect(paginationHtml).toMatchSnapshot();
+  });
 });

@@ -1,7 +1,5 @@
 import { createEllipsis, createPage } from '../compositionItem';
 
-export { narrowToWidePaginationItemRanges as narrowToWideRanges };
-
 function* narrowToWidePaginationItemRanges(
   start: number,
   end: number,
@@ -13,6 +11,8 @@ function* narrowToWidePaginationItemRanges(
     );
   }
 }
+
+export { narrowToWidePaginationItemRanges as narrowToWideRanges };
 
 function* narrowToWideNumberRanges(
   first: number,

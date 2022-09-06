@@ -9,6 +9,7 @@ addOverview: true
 ---
 
 import OverrideSSR from "../../src/components/OverrideSSR"
+import CodeBlock from '../../src/components/CodeBlock';
 import { CustomStyleContainer1, customStyles1, CustomStyleContainer2, customStyles2, CustomStyleContainer3, customStyles3, MinimumBootstrapContainer, minimumBootstrap4Styles, exampleAppCode } from './customPaginationStyles';
 import BootstrapLiveDemoClass from "../../src/components/BootstrapLiveDemoClass"
 import Bootstrap4PaginationContainer from '../../src/components/Bootstrap4PaginationContainer';
@@ -25,11 +26,11 @@ import NarrowProps from "../props/narrowProps.md"
 Easy to style, just include the necessary css in your project (see examples below)
 
 <OverrideSSR>
-{isSSR => (
-  <CustomStyleContainer1>
-    {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
-  </CustomStyleContainer1>
-)}
+  {isSSR => (
+    <CustomStyleContainer1>
+      {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
+    </CustomStyleContainer1>
+  )}
 </OverrideSSR>
 
 ## Installation
@@ -57,11 +58,11 @@ Using Bootstrap 4.x? No problem, see the [Bootstrap Pagination](/bootstrap-pagin
 ## Example 1 - Basic Pagination
 
 <OverrideSSR>
-{isSSR => (
-  <CustomStyleContainer1>
-    {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
-  </CustomStyleContainer1>
-)}
+  {isSSR => (
+    <CustomStyleContainer1>
+      {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
+    </CustomStyleContainer1>
+  )}
 </OverrideSSR>
 
 <CodeBlock code={customStyles1} language='css' previewSize={6} title='pagination.css'/>
@@ -71,11 +72,11 @@ _For a full list of suggested css selectors to target, see [Selector Reference](
 ## Example 2 - Classic Pagination
 
 <OverrideSSR>
-{isSSR => (
-  <CustomStyleContainer2>
-    {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
-  </CustomStyleContainer2>
-)}
+  {isSSR => (
+    <CustomStyleContainer2>
+      {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
+    </CustomStyleContainer2>
+  )}
 </OverrideSSR>
 
 <CodeBlock code={customStyles2} language='css' previewSize={6} title='pagination.css'/>
@@ -85,11 +86,11 @@ _For a full list of suggested css selectors to target, see [Selector Reference](
 ## Example 3 - Advanced Pagination
 
 <OverrideSSR>
-{isSSR => (
-  <CustomStyleContainer3>
-    {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
-  </CustomStyleContainer3>
-)}
+  {isSSR => (
+    <CustomStyleContainer3>
+      {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
+    </CustomStyleContainer3>
+  )}
 </OverrideSSR>
 
 <CodeBlock code={customStyles3} language='css' previewSize={6} title='pagination.css'/>
@@ -99,11 +100,11 @@ _For a full list of suggested css selectors to target, see [Selector Reference](
 ## Example 4 - Standalone Bootstrap 4 Styles
 
 <OverrideSSR>
-{isSSR => (
-  <MinimumBootstrapContainer>
-    {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
-  </MinimumBootstrapContainer>
-)}
+  {isSSR => (
+    <MinimumBootstrapContainer>
+      {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
+    </MinimumBootstrapContainer>
+  )}
 </OverrideSSR>
 
 **Pagination css:**
@@ -114,15 +115,15 @@ _For a full list of suggested css selectors to target, see the next section_
 
 ## Selector Reference
 
-| Selector                         | Notes                                                                                                                                                                                                                               |
-| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `.pagination`                    | **Pagination container** _(<ul\> tag)_<br />The recommended style is a horizontal flexbox (see examples above)                                                                                                                      |
-| `.page-item`                     | **Item containers** _(<li\> tags)_<br />Styles may not be needed for this selector, see selector below                                                                                                                              |
-| `.page-item .page-link`          | **Item elements** _(<a\> or <span\> tags)_<br />Includes links and static labels. Style as a block element with appropriate font, margin and border (see examples above)                                                            |
-| `.page-item a.page-link`         | **Clickable item elements** _(<a\> tags)_<br />Page links or the next/previous buttons (if they are clickable)                                                                                                                      |
-| `.page-item.active .page-link`   | **Active page link** _(<a\> tags)_<br />CSS should highlight this element (see examples above)                                                                                                                                      |
-| `.page-item.disabled .page-link` | **Disabled items** _(<span\> tags)_<br />Includes '...' or disabled nav buttons. CSS should show grey out these elements (see examples above)                                                                                       |
-| `.sr-only`                       | **Screen reader only elements** _(<span\> tags)_<br />Required for accessibility. These elements not be visible, use CSS to visually hide these elements in a way screen readers can still read the text (see below for an example) |
+| Selector                         | Notes                                                                                                                                                                                                                                                                                                                                                                                              |
+| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.pagination`                    | **Pagination container** _(\<ul> tag)_<br />The recommended style is a horizontal flexbox (see examples above)                                                                                                                                                                                                                                                                                     |
+| `.page-item`                     | **Item containers** _(\<li> tags)_<br />Styles may not be needed for this selector, see selector below                                                                                                                                                                                                                                                                                             |
+| `.page-item .page-link`          | **Item elements** _(\<a> or \<span> tags)_<br />Includes links and static labels. Style as a block element with appropriate font, margin and border (see examples above)                                                                                                                                                                                                                           |
+| `.page-item a.page-link`         | **Clickable item elements** _(\<a> tags)_<br />Page links or the next/previous buttons (if they are clickable)                                                                                                                                                                                                                                                                                     |
+| `.page-item.active .page-link`   | **Active page link** _(\<a> tags)_<br />CSS should highlight this element (see examples above)                                                                                                                                                                                                                                                                                                     |
+| `.page-item.disabled .page-link` | **Disabled items** _(\<span> tags)_<br />Includes '...' or disabled nav buttons. CSS should show grey out these elements (see examples above)                                                                                                                                                                                                                                                      |
+| `.sr-only`                       | **Screen reader only elements** _(\<span> tags)_<br />Used for accessibility. These elements should not be visible, use CSS to visually hide these elements in a way screen readers can still read the text (see section below for an example)<br /><br />Note these elements can be turned off by setting the `srOnlyClassName` prop to `''` (see [srOnlyClassName](#srOnlyClassName) prop below) |
 
 ## Screen reader only (.sr-only) styles
 
@@ -150,14 +151,14 @@ _(this css included in the css examples above)_
 
 If needed, you can easily override the default class names by adding the following props:
 
-| className Prop          | Description                                                                                                                                          |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `className`             | Class name for the top level **<ul\>** container                                                                                                     |
-| `pageItemClassName`     | Class name for all the **<li\>** elements                                                                                                            |
-| `pageLinkClassName`     | Class name for **<a\>** or **<span\>** child elements within an **<li\>** element                                                                    |
-| `activeItemClassName`   | Appended to **<li\>** class name for the active element                                                                                              |
-| `disabledItemClassName` | Appended to **<li\>** class name for non-clickable elements (disabled nav buttons and the break/ellipsis)                                            |
-| `srOnlyClassName`       | Class for screen reader only content (which should be visually hidden). See an example of typical [.sr-only css](#screen-reader-only-sr-only-styles) |
+| className Prop          | Description                                                                                                                                                                                                                                                                      |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `className`             | Class name for the top level **\<ul>** container                                                                                                                                                                                                                                 |
+| `pageItemClassName`     | Class name for all the **\<li>** elements                                                                                                                                                                                                                                        |
+| `pageLinkClassName`     | Class name for **\<a>** or **\<span>** child elements within an **\<li>** element                                                                                                                                                                                                |
+| `activeItemClassName`   | Appended to **\<li>** class name for the active element                                                                                                                                                                                                                          |
+| `disabledItemClassName` | Appended to **\<li>** class name for non-clickable elements (disabled nav buttons and the break/ellipsis)                                                                                                                                                                        |
+| `srOnlyClassName`       | Class for screen reader only content (which should be visually hidden). See an example of typical [.sr-only css](#screen-reader-only-sr-only-styles)<br /><br />Setting this prop to `''` will disable screen reader only content (`aria-label` attributes will still be output) |
 
 ### Example - overriding default class names
 
@@ -203,9 +204,9 @@ Change the default labels for the previous and next buttons by setting the `prev
 **Example - Text labels**
 
 <Bootstrap4PaginationContainer>
-<OverrideSSR>
-{isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass previousLabel="Previous" nextLabel="Next" />}
-</OverrideSSR>
+  <OverrideSSR>
+    {isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass previousLabel="Previous" nextLabel="Next" />}
+  </OverrideSSR>
 </Bootstrap4PaginationContainer>
 
 ```jsx
@@ -217,7 +218,7 @@ Change the default labels for the previous and next buttons by setting the `prev
 A selection of props which may be helpful when using custom styles - for the full list of props see [Props Reference](/props)
 
 <PropsTable>
-<ClassNameProps />
-<LabelProps />
-<NarrowProps />
+  <ClassNameProps />
+  <LabelProps />
+  <NarrowProps />
 </PropsTable>

@@ -26,9 +26,9 @@ import NarrowProps from "../props/narrowProps.md"
 Ready to go with [Bootstrap 4.x](https://getbootstrap.com/docs/4.6/) styles - just include the component in your Bootstrap 4.x project
 
 <Bootstrap4PaginationContainer>
-<OverrideSSR>
-{isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo />}
-</OverrideSSR>
+  <OverrideSSR>
+    {isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo />}
+  </OverrideSSR>
 </Bootstrap4PaginationContainer>
 
 Don't want to use Bootstrap? No problem, see the [Custom Styled Pagination](/custom-styled-pagination) guide
@@ -111,9 +111,9 @@ Change the default labels for the previous and next buttons by setting the `prev
 **Example - Text labels**
 
 <Bootstrap4PaginationContainer>
-<OverrideSSR>
-{isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo previousLabel="Previous" nextLabel="Next" />}
-</OverrideSSR>
+  <OverrideSSR>
+    {isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo previousLabel="Previous" nextLabel="Next" />}
+  </OverrideSSR>
 </Bootstrap4PaginationContainer>
 
 ```jsx
@@ -123,9 +123,9 @@ Change the default labels for the previous and next buttons by setting the `prev
 **Example - Single arrow labels**
 
 <Bootstrap4PaginationContainer>
-<OverrideSSR>
-{isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo previousLabel="‹" nextLabel="›" />}
-</OverrideSSR>
+  <OverrideSSR>
+    {isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo previousLabel="‹" nextLabel="›" />}
+  </OverrideSSR>
 </Bootstrap4PaginationContainer>
 
 ```jsx
@@ -145,9 +145,9 @@ Change how the pagination is positioned by setting the `extraClassName` prop to 
 **Example - align pagination left:**
 
 <Bootstrap4PaginationContainer noBorder>
-<OverrideSSR>
-{isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo extraClassName="justify-content-start" />}
-</OverrideSSR>
+  <OverrideSSR>
+    {isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo extraClassName="justify-content-start" />}
+  </OverrideSSR>
 </Bootstrap4PaginationContainer>
 
 ```jsx
@@ -159,8 +159,8 @@ Change how the pagination is positioned by setting the `extraClassName` prop to 
 A selection of props which may be helpful when using Bootstrap styles - for the full list of props see [Props Reference](/props)
 
 <PropsTable>
-<CommonProps />
-<LabelProps />
-<ExtraClassNameProp />
-<NarrowProps />
+  <CommonProps />
+  <LabelProps />
+  <ExtraClassNameProp />
+  <NarrowProps />
 </PropsTable>

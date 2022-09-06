@@ -11,6 +11,7 @@ export function usePaginationItems(
   options?: {
     nextLabel?: string;
     previousLabel?: string;
+    a11yActiveLabel: string;
     narrowStrategy?: NarrowStrategy | NarrowStrategy[];
   },
 ) {
