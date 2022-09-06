@@ -23,11 +23,13 @@ function BootstrapPagination({
   srOnlyClassName = 'sr-only',
   previousLabel,
   nextLabel,
+  a11yActiveLabel = '(current)',
 }: BootstrapPaginationProps) {
   const { items, ref, clearCache } = usePaginationItems(current, total, maxWidth, {
     narrowStrategy,
     previousLabel,
     nextLabel,
+    a11yActiveLabel,
   });
 
   useEffect(() => {
@@ -118,6 +120,7 @@ type BootstrapPaginationProps = {
   srOnlyClassName?: string;
   previousLabel?: string;
   nextLabel?: string;
+  a11yActiveLabel?: string;
 };
 
 BootstrapPagination.propTypes = {
@@ -139,4 +142,5 @@ BootstrapPagination.propTypes = {
   srOnlyClassName: PropTypes.string,
   previousLabel: PropTypes.string,
   nextLabel: PropTypes.string,
+  a11yActiveLabel: PropTypes.string,
 };

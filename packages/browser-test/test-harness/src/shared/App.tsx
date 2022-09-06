@@ -21,6 +21,7 @@ function App() {
     srOnlyClassNameAsJson: 'SR Only className (JSON)',
     previousLabelAsJson: 'Previous Label (JSON)',
     nextLabelAsJson: 'Next Label (JSON)',
+    a11yActiveLabelAsJson: 'a11y Active Label (JSON)',
   };
 
   const formik = useFormik({
@@ -38,6 +39,7 @@ function App() {
       srOnlyClassNameAsJson: 'undefined',
       previousLabelAsJson: 'undefined',
       nextLabelAsJson: 'undefined',
+      a11yActiveLabelAsJson: 'undefined',
     },
     onSubmit: () => {},
   });
@@ -66,6 +68,7 @@ function App() {
   const srOnlyClassName = tryJsonParse(formik.values.srOnlyClassNameAsJson);
   const previousLabel = tryJsonParse(formik.values.previousLabelAsJson);
   const nextLabel = tryJsonParse(formik.values.nextLabelAsJson);
+  const a11yActiveLabel = tryJsonParse(formik.values.a11yActiveLabelAsJson);
 
   return (
     <>
@@ -85,6 +88,7 @@ function App() {
           srOnlyClassName={srOnlyClassName}
           previousLabel={previousLabel}
           nextLabel={nextLabel}
+          a11yActiveLabel={a11yActiveLabel}
         />
       </div>
       <div className="container">

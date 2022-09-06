@@ -42,6 +42,7 @@ export function compositionToPaginationItems(
   options?: {
     nextLabel?: string;
     previousLabel?: string;
+    a11yActiveLabel: string;
   },
 ): PaginationItem[] {
   return compositionItems.map(({ type, page }) => {
@@ -76,7 +77,7 @@ export function compositionToPaginationItems(
           type: 'page',
           key: `${type}_${page}`,
           label: page.toString(),
-          a11yLabel: type === 'active' ? '(current)' : undefined,
+          a11yLabel: (type === 'active' && options?.a11yActiveLabel) || undefined,
           gotoPage: page,
           active: type === 'active',
         };
