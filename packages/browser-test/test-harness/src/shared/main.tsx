@@ -1,5 +1,5 @@
-import React, { ReactElement } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import React, { ReactElement, Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import App from './App';
 
@@ -14,9 +14,14 @@ export async function start(
 
   reactMount(
     <React.StrictMode>
-      <Router>
-        <App />
-      </Router>
+      <Suspense fallback={null}>
+        <Router>
+          <Routes>
+            <Route path="/:frameworkId" element={<App />} />
+            <Route index element={<Navigate to="/bootstrap4" replace />} />
+          </Routes>
+        </Router>
+      </Suspense>
     </React.StrictMode>,
     document.getElementById('root')!,
   );

@@ -55,6 +55,7 @@ export const FooterStyles = styled.footer`
     width: min(47em, 100% - 1em);
 
     h1 {
+      margin-top: 0;
       grid-column: 1 / -1;
       font-size: 1em;
       margin-bottom: 0.5em;

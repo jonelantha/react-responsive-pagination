@@ -7,9 +7,7 @@
 [![Release](https://github.com/jonelantha/react-responsive-pagination/actions/workflows/release.yml/badge.svg)](https://github.com/jonelantha/react-responsive-pagination/actions/workflows/release.yml)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-A responsive React pagination component which intelligently renders to the available width
-
-🌟 Just updated for React 18 🌟
+A responsive React pagination component which intelligently renders to the available width - for React 16, 17 or 18
 
 ### ⚡️ [LIVE DEMO - try it out for yourself!](https://react-responsive-pagination.elantha.com/live-demo/) ⚡️
 
@@ -17,9 +15,9 @@ A responsive React pagination component which intelligently renders to the avail
 
 ### 📕 Visit [https://react-responsive-pagination.elantha.com](https://react-responsive-pagination.elantha.com) to get started 🚀
 
-## 🥾 Works out of the box with Bootstrap 4.x
+## 🥾 Works out of the box with Bootstrap 4.x or 5.x
 
-Using Bootstrap? See the [Bootstrap 4 Getting Started Guide](https://react-responsive-pagination.elantha.com/bootstrap-pagination/)
+Using Bootstrap? See the [Bootstrap Getting Started Guide](https://react-responsive-pagination.elantha.com/bootstrap-pagination/)
 
 ## 🎨 Supports custom styling
 
@@ -31,6 +29,10 @@ Custom styles? No problem - see the [Custom Styles Guide](https://react-responsi
 npm install react-responsive-pagination
 ```
 
+### Custom styles or Bootstrap 4
+
+_(see below for Bootstrap 5 example)_
+
 ```jsx
 // ... make sure appropriate css is in the project (see guides above)
 import React, { useState } from 'react';
@@ -38,11 +40,31 @@ import Pagination from 'react-responsive-pagination';
 
 function MyApp() {
   const [currentPage, setCurrentPage] = useState(4);
-
   const totalPages = 17;
 
   return (
     <Pagination
+      current={currentPage}
+      total={totalPages}
+      onPageChange={setCurrentPage}
+    />
+  );
+}
+```
+
+### Bootstrap 5
+
+```jsx
+import React, { useState } from 'react';
+import Pagination, { bootstrap5PaginationPreset } from 'react-responsive-pagination';
+
+function MyBootstrap5App() {
+  const [currentPage, setCurrentPage] = useState(4);
+  const totalPages = 17;
+
+  return (
+    <Pagination
+      {...bootstrap5PaginationPreset}
       current={currentPage}
       total={totalPages}
       onPageChange={setCurrentPage}

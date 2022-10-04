@@ -7,11 +7,11 @@ const rate = 2;
 jest.setTimeout(30000);
 
 beforeAll(async () => {
-  await page.goto(`${harnessUrl}?css=demo`);
+  await page.goto(`${harnessUrl}bootstrap4?css=demo`);
 
   await page.setViewportSize({ width: startWidth, height: 200 });
 
-  await page.fill('#currentPageAsJson', '8');
+  await page.fill('#currentAsJson', '8');
 
   await page.fill('#totalAsJson', '20');
 

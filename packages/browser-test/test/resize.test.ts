@@ -17,7 +17,7 @@ describe.each(testCssClasses.map(cssClasses => [cssClasses]))(
     beforeAll(async () => {
       await page.goto('about:blank');
 
-      await page.goto(`${harnessUrl}?css=${cssClasses}`);
+      await page.goto(`${harnessUrl}bootstrap4?css=${cssClasses}`);
 
       await page.fill('#totalAsJson', '100');
     });

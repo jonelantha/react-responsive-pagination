@@ -20,7 +20,7 @@ describe.each(narrowStrategies.map(narrowStrategy => [narrowStrategy]))(
     beforeAll(async () => {
       await page.goto('about:blank');
 
-      await page.goto(harnessUrl);
+      await page.goto(`${harnessUrl}bootstrap4`);
 
       await page.fill(
         '#narrowStrategyAsJson',

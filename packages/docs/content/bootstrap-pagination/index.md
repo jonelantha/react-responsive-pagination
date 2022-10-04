@@ -23,7 +23,7 @@ import NarrowProps from "../props/narrowProps.md"
 
 **react-responsive-pagination** is an easy to use React responsive pagination component which always outputs the right number of pagination elements for the width available, no guesswork needed
 
-Ready to go with [Bootstrap 4.x](https://getbootstrap.com/docs/4.6/) styles - just include the component in your Bootstrap 4.x project
+Ready to go with Bootstrap styles - see examples below for [Bootstrap 5.x](#bootstrap-5x-example) and [Bootstrap 4.x](#bootstrap-4x-example)
 
 <Bootstrap4PaginationContainer>
   <OverrideSSR>
@@ -41,17 +41,49 @@ Install **react-responsive-pagination** from npm:
 npm install react-responsive-pagination
 ```
 
-To install Bootstrap styles, see the [Bootstrap 4.x Download Guide](https://getbootstrap.com/docs/4.6/getting-started/download/)
+To install Bootstrap styles, see the [Bootstrap 5.x Download Guide](https://getbootstrap.com/docs/5.2/getting-started/download/)
 
-## Quick Start - Functional Components / Hooks
+## Bootstrap 5.x example
+
+To use with Bootstrap 5 you need to include the Bootstrap 5 preset - see example
 
 ```jsx
+// Bootstrap 5.x styles included somewhere in the project
+// (alternatively for Bootstrap 4.x example, see next section)
 import React, { useState } from 'react';
-import Pagination from 'react-responsive-pagination';
-// Bootstrap 4.x styles included somewhere in the project
+import Pagination, { bootstrap5PaginationPreset } from 'react-responsive-pagination';
 import 'bootstrap/dist/css/bootstrap.css';
 
-function MyApp() {
+function MyBootstrap5App() {
+  const totalPages = 120;
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  function handlePageChange(page) {
+    setCurrentPage(page);
+    // ... do something with `page`
+  }
+
+  return (
+    <Pagination
+      {...bootstrap5PaginationPreset} // include Bootstrap 5 preset
+      total={totalPages}
+      current={currentPage}
+      onPageChange={page => handlePageChange(page)}
+    />
+  );
+}
+```
+
+## Bootstrap 4.x example
+
+```jsx
+// Bootstrap 4.x styles included somewhere in the project
+import React, { useState } from 'react';
+import Pagination from 'react-responsive-pagination';
+import 'bootstrap/dist/css/bootstrap.css';
+
+function MyBootstrap4App() {
   const totalPages = 120;
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -68,37 +100,6 @@ function MyApp() {
       onPageChange={page => handlePageChange(page)}
     />
   );
-}
-```
-
-## Quick Start - Class Components
-
-```jsx previewSize=10
-import React from 'react';
-import Pagination from 'react-responsive-pagination';
-// Bootstrap 4.x styles included somewhere in the project
-import 'bootstrap/dist/css/bootstrap.css';
-
-export default class MyApp extends React.Component {
-  state = {
-    totalPages: 120,
-    currentPage: 1,
-  };
-
-  handlePageChange(page) {
-    this.setState({ currentPage: page });
-    // ... do something with `page`
-  }
-
-  render() {
-    return (
-      <Pagination
-        total={this.state.totalPages}
-        current={this.state.currentPage}
-        onPageChange={page => this.handlePageChange(page)}
-      />
-    );
-  }
 }
 ```
 
