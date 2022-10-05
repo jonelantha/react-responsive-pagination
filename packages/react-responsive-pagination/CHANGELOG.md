@@ -1,5 +1,17 @@
 # React Responsive Pagination Changelog
 
+# [1.8.0-beta.1](https://github.com/jonelantha/react-responsive-pagination/compare/v1.7.0...v1.8.0-beta.1) (2022-10-05)
+
+
+### Bug Fixes
+
+* Package updates ([cba192a](https://github.com/jonelantha/react-responsive-pagination/commit/cba192af2dd025c865cb7a6e5770365f65905ce3))
+
+
+### Features
+
+* Bootstrap 5 preset ([f3635b4](https://github.com/jonelantha/react-responsive-pagination/commit/f3635b4f8dc543f3547d6ad750c9276cdf43ea8a))
+
 # [1.7.0](https://github.com/jonelantha/react-responsive-pagination/compare/v1.6.0...v1.7.0) (2022-09-06)
 
 
