@@ -10,5 +10,9 @@ export const frameworkIds = Object.keys(frameworkStyles);
 export function getFrameworkStyles(frameworkId: string | undefined) {
   return frameworkId !== undefined && frameworkId in frameworkStyles
     ? frameworkStyles[frameworkId as keyof typeof frameworkStyles]
-    : undefined;
+    : NullStyles;
+}
+
+export default function NullStyles({ children }: { children: JSX.Element }) {
+  return children;
 }
