@@ -3,13 +3,13 @@ import { setupThrowOnError } from './helper';
 beforeAll(async () => {
   setupThrowOnError(page);
 
-  await page.goto(harnessUrl);
+  await page.goto(`${harnessUrl}bootstrap4`);
 
   await page.setViewportSize({ width: 500, height: 700 });
 
   await page.fill('#totalAsJson', '100');
 
-  await page.fill('#currentPageAsJson', '50');
+  await page.fill('#currentAsJson', '50');
 });
 
 describe('Pagination style change detection', () => {

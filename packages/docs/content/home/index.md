@@ -35,7 +35,7 @@ _Try it for yourself, resize the window (or change the orientation of your devic
 
 <TickList>
   - Truly responsive, always outputs the right number of pagination elements for the width available
-  - Supports Bootstrap 4.x
+  - Supports Bootstrap 5.x and 4.x
   - Supports custom styles
   - High performance, no unnecessary renders
   - Built for tree-shaking = minimum impact on the bundle

@@ -1,200 +1,244 @@
 import Pagination from 'react-responsive-pagination';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useFormik } from 'formik';
+import { useParams, useSearchParams } from 'react-router-dom';
+import { Field, Formik } from 'formik';
+import { frameworkIds, getFrameworkStyles } from './frameworkStyles';
+import { PresetId, presets } from './presets';
 
-import 'bootstrap/dist/css/bootstrap.css';
 import './TestStyles.css';
 import './App.css';
 
+const propFields = {
+  total: 'Total Pages',
+  maxWidth: 'Max Width',
+  current: 'Current Page',
+  narrowStrategy: 'Narrow Strategy',
+  className: 'className',
+  extraClassName: 'Extra Class',
+  pageItemClassName: 'Page item className',
+  pageLinkClassName: 'Page link className',
+  activeItemClassName: 'Active className',
+  disabledItemClassName: 'Disabled item className',
+  srOnlyClassName: 'SR Only className',
+  previousLabel: 'Previous Label',
+  nextLabel: 'Next Label',
+  a11yActiveLabel: 'a11y Active Label',
+  ariaCurrentAttr: 'ariaCurrent Attr',
+};
+
+type PropFieldName = keyof typeof propFields;
+
+const initialValues = {
+  presetId: 'none' as PresetId,
+  propsAsJson: {
+    total: '100',
+    maxWidth: '',
+    current: '0',
+    narrowStrategy: 'undefined',
+    className: 'undefined',
+    extraClassName: 'undefined',
+    pageItemClassName: 'undefined',
+    pageLinkClassName: 'undefined',
+    activeItemClassName: 'undefined',
+    disabledItemClassName: 'undefined',
+    srOnlyClassName: 'undefined',
+    previousLabel: 'undefined',
+    nextLabel: 'undefined',
+    a11yActiveLabel: 'undefined',
+    ariaCurrentAttr: 'undefined',
+  },
+};
+
+const cssExtraClassOptions = ['add-margin-padding', 'content-box', 'demo'];
+
+const initialStyle = '.pagination { font-size: inherit; }';
+
 function App() {
-  const fields = {
-    totalAsJson: 'Total Pages (JSON)',
-    maxWidthAsJson: 'Max Width (JSON)',
-    currentPageAsJson: 'Current Page (JSON)',
-    narrowStrategyAsJson: 'Narrow Strategy (JSON)',
-    classNameAsJson: 'className (JSON)',
-    extraClassNameAsJson: 'Extra Class (JSON)',
-    pageItemClassNameAsJson: 'Page item className (JSON)',
-    pageLinkClassNameAsJson: 'Page link className (JSON)',
-    activeItemClassNameAsJson: 'Active className (JSON)',
-    disabledItemClassNameAsJson: 'Disabled item className (JSON)',
-    srOnlyClassNameAsJson: 'SR Only className (JSON)',
-    previousLabelAsJson: 'Previous Label (JSON)',
-    nextLabelAsJson: 'Next Label (JSON)',
-    a11yActiveLabelAsJson: 'a11y Active Label (JSON)',
-    ariaCurrentAttrAsJson: 'ariaCurrent Attr (JSON)',
-  };
+  const { frameworkId: activeFrameworkId } = useParams<'frameworkId'>();
 
-  const formik = useFormik({
-    initialValues: {
-      totalAsJson: '100',
-      maxWidthAsJson: '',
-      currentPageAsJson: '0',
-      narrowStrategyAsJson: 'undefined',
-      classNameAsJson: 'undefined',
-      extraClassNameAsJson: 'undefined',
-      pageItemClassNameAsJson: 'undefined',
-      pageLinkClassNameAsJson: 'undefined',
-      activeItemClassNameAsJson: 'undefined',
-      disabledItemClassNameAsJson: 'undefined',
-      srOnlyClassNameAsJson: 'undefined',
-      previousLabelAsJson: 'undefined',
-      nextLabelAsJson: 'undefined',
-      a11yActiveLabelAsJson: 'undefined',
-      ariaCurrentAttrAsJson: 'undefined',
-    },
-    onSubmit: () => {},
-  });
+  const FrameworkStyles = getFrameworkStyles(activeFrameworkId);
 
-  const cssExtraClassOptions = ['add-margin-padding', 'content-box', 'demo'];
-
-  const [cssExtraClasses, toggleCssExtraClass] = makeToggles(
-    useURLParam('css'),
+  const [cssExtraClasses, toggleCssExtraClass] = useUrlQueryToggles(
+    'css',
     cssExtraClassOptions,
   );
 
-  const initialStyle = '.pagination { font-size: inherit; }';
-
-  const total = tryJsonParse(formik.values.totalAsJson);
-  const maxWidth = tryJsonParse(formik.values.maxWidthAsJson);
-  const current = tryJsonParse(formik.values.currentPageAsJson);
-  const narrowStrategy = tryJsonParse(formik.values.narrowStrategyAsJson);
-  const className = tryJsonParse(formik.values.classNameAsJson);
-  const extraClassName = tryJsonParse(formik.values.extraClassNameAsJson);
-  const pageItemClassName = tryJsonParse(formik.values.pageItemClassNameAsJson);
-  const pageLinkClassName = tryJsonParse(formik.values.pageLinkClassNameAsJson);
-  const activeItemClassName = tryJsonParse(formik.values.activeItemClassNameAsJson);
-  const disabledItemClassName = tryJsonParse(
-    formik.values.disabledItemClassNameAsJson,
-  );
-  const srOnlyClassName = tryJsonParse(formik.values.srOnlyClassNameAsJson);
-  const previousLabel = tryJsonParse(formik.values.previousLabelAsJson);
-  const nextLabel = tryJsonParse(formik.values.nextLabelAsJson);
-  const a11yActiveLabel = tryJsonParse(formik.values.a11yActiveLabelAsJson);
-  const ariaCurrentAttr = tryJsonParse(formik.values.ariaCurrentAttrAsJson);
-
   return (
-    <>
-      <div className={cssExtraClasses.join(' ')}>
-        <Pagination
-          current={current}
-          maxWidth={maxWidth}
-          total={total}
-          onPageChange={page => formik.setFieldValue('currentPageAsJson', page)}
-          narrowStrategy={narrowStrategy}
-          className={className}
-          extraClassName={extraClassName}
-          pageItemClassName={pageItemClassName}
-          pageLinkClassName={pageLinkClassName}
-          activeItemClassName={activeItemClassName}
-          disabledItemClassName={disabledItemClassName}
-          srOnlyClassName={srOnlyClassName}
-          previousLabel={previousLabel}
-          nextLabel={nextLabel}
-          a11yActiveLabel={a11yActiveLabel}
-          ariaCurrentAttr={ariaCurrentAttr}
-        />
-      </div>
-      <div className="container">
-        <form>
-          <div className="form-group row">
-            <label className="col-sm-4 col-form-label">Style (non-React)</label>
-            <div className="col-sm-8">
-              <style
-                id="editable-style-block"
-                className="form-control"
-                scoped
-                contentEditable
-                suppressContentEditableWarning
-              >
-                {initialStyle}
-              </style>
+    <FrameworkStyles>
+      <Formik initialValues={initialValues} onSubmit={() => {}}>
+        {formik => (
+          <>
+            <div className={cssExtraClasses.join(' ')}>
+              <Pagination
+                {...presets[formik.values.presetId]}
+                onPageChange={page =>
+                  formik.setFieldValue('propsAsJson.current', JSON.stringify(page))
+                }
+                {...getPropsFromJsonFields(formik.values.propsAsJson)}
+              />
             </div>
-          </div>
-          <div className="form-group row">
-            <label className="col-sm-4 col-form-label">
-              Additional Pagination CSS (React)
-            </label>
-            <div className="col-sm-8">
-              {cssExtraClassOptions.map(value => (
-                <div className="form-check form-check-inline" key={value}>
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id={value}
-                    value={value}
-                    checked={cssExtraClasses.includes(value)}
-                    onChange={event =>
-                      toggleCssExtraClass(value, event.target.checked)
-                    }
-                  />
-                  <label className="form-check-label" htmlFor={value}>
-                    {value}
-                  </label>
+            <div className="container">
+              <form>
+                <div className="mb-1 row">
+                  <label className="col-sm-4 col-form-label">CSS Framework</label>
+                  <div className="col-sm-8">
+                    {frameworkIds.map(frameworkId => (
+                      <div
+                        className="form-check form-check-inline align-middle"
+                        key={frameworkId}
+                      >
+                        <input
+                          type="radio"
+                          className="form-check-input"
+                          id={frameworkId}
+                          checked={frameworkId === activeFrameworkId}
+                          onChange={() => {
+                            window.location.href = frameworkId;
+                          }}
+                        />
+                        <label className="form-check-label" htmlFor={frameworkId}>
+                          {frameworkId}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
+                <div className="mb-1 row">
+                  <label className="col-sm-4 col-form-label">Preset</label>
+                  <div className="col-sm-8">
+                    {Object.keys(presets).map(presetName => (
+                      <div
+                        className="form-check form-check-inline align-middle"
+                        key={presetName}
+                      >
+                        <Field
+                          type="radio"
+                          name="presetId"
+                          id={`preset_${presetName}`}
+                          className="form-check-input"
+                          value={presetName}
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor={`preset_${presetName}`}
+                        >
+                          {presetName}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="mb-1 row">
+                  <label className="col-sm-4 col-form-label">
+                    Style (non-React)
+                  </label>
+                  <div className="col-sm-8">
+                    <style
+                      id="editable-style-block"
+                      className="form-control"
+                      scoped
+                      contentEditable
+                      suppressContentEditableWarning
+                    >
+                      {initialStyle}
+                    </style>
+                  </div>
+                </div>
+                <div className="mb-1 row">
+                  <label className="col-sm-4 col-form-label">
+                    Additional Pagination CSS (React)
+                  </label>
+                  <div className="col-sm-8">
+                    {cssExtraClassOptions.map(value => (
+                      <div
+                        className="form-check form-check-inline align-middle"
+                        key={value}
+                      >
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          id={value}
+                          value={value}
+                          checked={cssExtraClasses.includes(value)}
+                          onChange={event =>
+                            toggleCssExtraClass(value, event.target.checked)
+                          }
+                        />
+                        <label className="form-check-label" htmlFor={value}>
+                          {value}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                {Object.entries(propFields).map(([field, title]) => (
+                  <div className="mb-1 row" key={field}>
+                    <label
+                      htmlFor={`${field}AsJson`}
+                      className="col-sm-4 col-form-label"
+                    >
+                      {title} (JSON)
+                    </label>
+                    <div className="col-sm-2">
+                      <Field
+                        name={`propsAsJson.${field}`}
+                        type="text"
+                        className="form-control"
+                        id={`${field}AsJson`}
+                        spellCheck="false"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </form>
             </div>
-          </div>
-          {Object.entries(fields).map(([field, title]) => (
-            <div className="form-group row" key={field}>
-              <label htmlFor={field} className="col-sm-4 col-form-label">
-                {title}
-              </label>
-              <div className="col-sm-2">
-                <input
-                  type="text"
-                  className="form-control"
-                  id={field}
-                  spellCheck="false"
-                  {...formik.getFieldProps(field)}
-                />
-              </div>
-            </div>
-          ))}
-        </form>
-      </div>
-    </>
+          </>
+        )}
+      </Formik>
+    </FrameworkStyles>
   );
 }
 
 export default App;
 
-function useURLParam(
-  name: string,
-): [value: string | undefined, set: (newValue: string) => void] {
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  const query = new URLSearchParams(location.search);
-
-  return [
-    query.get(name) ?? undefined,
-
-    function set(newValue) {
-      query.set(name, newValue);
-      navigate(`?${query.toString()}`);
-    },
-  ];
-}
-
-function makeToggles(
-  [rawState, setState]: [string | undefined, (state: string) => void],
+function useUrlQueryToggles(
+  field: string,
   validValues: string[],
 ): [activeValues: string[], toggleValue: (value: string, toggle: boolean) => void] {
-  let activeValues = (rawState?.split(',') ?? []).filter(value =>
-    validValues.includes(value),
-  );
+  const [search, setSearch] = useSearchParams();
+
+  const activeValues =
+    search
+      .get(field)
+      ?.split(',')
+      .filter(value => validValues.includes(value)) ?? [];
 
   function toggleValue(value: string, toggle: boolean) {
-    if (toggle && !activeValues.includes(value)) {
-      activeValues = [...activeValues, value];
-    } else if (!toggle && activeValues.includes(value)) {
-      activeValues = activeValues.filter(existingValue => existingValue !== value);
+    const newActiveValues = new Set(activeValues);
+    if (toggle) {
+      newActiveValues.add(value);
+    } else {
+      newActiveValues.delete(value);
     }
-    setState(activeValues.join(','));
+
+    setSearch({ [field]: [...newActiveValues].join(',') });
   }
 
   return [activeValues, toggleValue];
+}
+
+function getPropsFromJsonFields(propFieldJsonValues: {
+  [key in PropFieldName]: string;
+}) {
+  const props = {} as { [key in PropFieldName]: any };
+
+  (Object.keys(propFields) as PropFieldName[]).forEach(field => {
+    const value = tryJsonParse(propFieldJsonValues[field]);
+    if (value !== undefined) {
+      props[field] = value;
+    }
+  });
+
+  return props;
 }
 
 function tryJsonParse(str: string) {

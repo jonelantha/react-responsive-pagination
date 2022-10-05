@@ -3,7 +3,7 @@ import { setupThrowOnError } from './helper';
 beforeAll(async () => {
   setupThrowOnError(page);
 
-  await page.goto(harnessUrl);
+  await page.goto(`${harnessUrl}bootstrap4`);
 
   await page.setViewportSize({ width: 600, height: 700 });
 

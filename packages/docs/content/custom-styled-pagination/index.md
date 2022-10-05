@@ -10,7 +10,7 @@ addOverview: true
 
 import OverrideSSR from "../../src/components/OverrideSSR"
 import CodeBlock from '../../src/components/CodeBlock';
-import { CustomStyleContainer1, customStyles1, CustomStyleContainer2, customStyles2, CustomStyleContainer3, customStyles3, MinimumBootstrapContainer, minimumBootstrap4Styles, exampleAppCode } from './customPaginationStyles';
+import { CustomStyleContainer1, customStyles1, CustomStyleContainer2, customStyles2, CustomStyleContainer3, customStyles3, MinimumBootstrap4Container, MinimumBootstrap5Container, minimumBootstrap4Styles, minimumBootstrap5Styles, exampleAppCode } from './customPaginationStyles';
 import BootstrapLiveDemoClass from "../../src/components/BootstrapLiveDemoClass"
 import Bootstrap4PaginationContainer from '../../src/components/Bootstrap4PaginationContainer';
 import BootstrapSSR from "../../src/components/BootstrapSSR"
@@ -47,13 +47,13 @@ npm install react-responsive-pagination
 
 See below for **pagination.css** examples
 
-_(for more information on Props, see [Props Reference](/props), for a class component example see [here](/bootstrap-pagination#quick-start---class-components))_
+_(for more information on Props, see [Props Reference](/props))_
 
 ## Custom Styling
 
-To create custom styles for **react-responsive-pagination** simply include some custom css - the four examples below should provide a good starting point. For a full list of suggested css selectors to target, see [Selector Reference](#selector-reference)
+To create custom styles for **react-responsive-pagination** simply include some custom css - the five examples below should provide a good starting point. For a full list of suggested css selectors to target, see [Selector Reference](#selector-reference)
 
-Using Bootstrap 4.x? No problem, see the [Bootstrap Pagination](/bootstrap-pagination) guide.
+Using Bootstrap 5.x or 4.x? No problem, see the [Bootstrap Pagination](/bootstrap-pagination) guide.
 
 ## Example 1 - Basic Pagination
 
@@ -101,15 +101,27 @@ _For a full list of suggested css selectors to target, see [Selector Reference](
 
 <OverrideSSR>
   {isSSR => (
-    <MinimumBootstrapContainer>
+    <MinimumBootstrap4Container>
       {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
-    </MinimumBootstrapContainer>
+    </MinimumBootstrap4Container>
   )}
 </OverrideSSR>
 
-**Pagination css:**
-
 <CodeBlock code={minimumBootstrap4Styles} language='css' previewSize={7} title='pagination.css' />
+
+_For a full list of suggested css selectors to target, see [Selector Reference](#selector-reference)_
+
+## Example 5 - Standalone Bootstrap 5 Styles
+
+<OverrideSSR>
+  {isSSR => (
+    <MinimumBootstrap5Container>
+      {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
+    </MinimumBootstrap5Container>
+  )}
+</OverrideSSR>
+
+<CodeBlock code={minimumBootstrap5Styles} language='css' previewSize={7} title='pagination.css' />
 
 _For a full list of suggested css selectors to target, see the next section_
 

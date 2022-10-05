@@ -4,6 +4,14 @@ import { usePaginationItems } from './hooks/usePaginationItems';
 import { preventDefault } from './helpers/dom';
 import { NarrowStrategy } from './compositions';
 
+export const bootstrap4PaginationPreset = {};
+
+export const bootstrap5PaginationPreset = {
+  ariaCurrentAttr: true,
+  a11yActiveLabel: '',
+  srOnlyClassName: '',
+};
+
 export default memo(BootstrapPagination);
 
 /* eslint-disable jsx-a11y/anchor-is-valid */

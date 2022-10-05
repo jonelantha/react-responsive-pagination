@@ -3,7 +3,7 @@ import { setupThrowOnError } from './helper';
 beforeAll(async () => {
   setupThrowOnError(page, { ignoreInvalidPropTypes: true });
 
-  await page.goto(harnessUrl);
+  await page.goto(`${harnessUrl}bootstrap4`);
 
   await page.setViewportSize({ width: 500, height: 700 });
 });

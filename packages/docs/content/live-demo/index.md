@@ -29,6 +29,8 @@ NOTE: the striped region illustrates the component's container, it's not part of
 
 ## Example: Functional Component (using hooks)
 
+_(examples below are using Bootstrap 4.x styles - for Bootstrap 5.x, see the [Bootstrap Usage Guide](/bootstrap-pagination/))_
+
 ```jsx
 import React, { useState } from 'react';
 import Pagination from 'react-responsive-pagination';
