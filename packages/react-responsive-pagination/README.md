@@ -31,7 +31,7 @@ npm install react-responsive-pagination
 
 ### Custom styles or Bootstrap 4
 
-_(see below for Bootstrap 5 example)_
+_(see below for a Bootstrap 5 example)_
 
 ```jsx
 // ... make sure appropriate css is in the project (see guides above)
