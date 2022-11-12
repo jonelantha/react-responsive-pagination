@@ -1,6 +1,8 @@
 import { useStaticQuery, graphql } from 'gatsby';
 import GithubSlugger from 'github-slugger';
 
+const slugger = new GithubSlugger();
+
 type NavItemsQueryNode = {
   fields: {
     slug: string;
@@ -110,9 +112,9 @@ function getPageSections(page: NavItemsQueryNode) {
     ...page.headings
       .filter(({ depth }) => depth === 2)
       .map(({ value }) => ({
-        slug: GithubSlugger.slug(value),
+        slug: slugger.slug(value),
         title: value,
-        url: getPagePath(page) + '#' + GithubSlugger.slug(value),
+        url: getPagePath(page) + '#' + slugger.slug(value),
       })),
   ];
 }
