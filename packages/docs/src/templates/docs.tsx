@@ -1,25 +1,27 @@
 import React, { ReactNode } from 'react';
 import { graphql } from 'gatsby';
 import MarkdownContent from '../components/MarkdownContent';
-import SEO from '../components/SEO';
+import HeadContents from '../components/HeadContents';
+
+type DocTemplateHeadProps = {
+  data: any;
+};
+
+export function Head({ data }: DocTemplateHeadProps) {
+  return (
+    <HeadContents
+      title={data.mdx.frontmatter.title}
+      description={data.mdx.frontmatter.description || data.mdx.frontmatter.excerpt}
+    />
+  );
+}
 
 type DocTemplateProps = {
-  data: any;
   children: ReactNode;
 };
 
-export default function DocTemplate({ data, children }: DocTemplateProps) {
-  return (
-    <>
-      <SEO
-        title={data.mdx.frontmatter.title}
-        description={
-          data.mdx.frontmatter.description || data.mdx.frontmatter.excerpt
-        }
-      />
-      <MarkdownContent>{children}</MarkdownContent>
-    </>
-  );
+export default function DocTemplate({ children }: DocTemplateProps) {
+  return <MarkdownContent>{children}</MarkdownContent>;
 }
 
 export const pageQuery = graphql`

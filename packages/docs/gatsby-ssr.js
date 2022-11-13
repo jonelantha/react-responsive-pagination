@@ -8,3 +8,7 @@ export const wrapPageElement = ({ element, props }) => {
     return element;
   }
 };
+
+export function onRenderBody({ setHtmlAttributes }) {
+  setHtmlAttributes({ lang: 'en' });
+}
