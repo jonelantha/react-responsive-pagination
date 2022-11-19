@@ -1,4 +1,4 @@
-import { graphql } from 'gatsby';
+import { graphql, HeadProps } from 'gatsby';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Link } from 'gatsby';
 import React, { ReactNode } from 'react';
@@ -12,21 +12,16 @@ import GlobalStyles, {
 } from '../components/GlobalStyles';
 import MarkdownContent from '../components/MarkdownContent';
 
-type StandaloneTemplateHeadProps = {
-  data: any;
-};
-
-export function Head({ data }: StandaloneTemplateHeadProps) {
+export function Head({ data }: HeadProps<Queries.StandaloneQuery>) {
   return (
     <HeadContents
-      title={data.mdx.frontmatter.title}
-      description={data.mdx.frontmatter.description || data.mdx.frontmatter.excerpt}
+      title={data.mdx?.frontmatter?.title ?? ''}
+      description={data.mdx?.frontmatter?.description ?? ''}
     />
   );
 }
 
 type StandaloneTemplateProps = {
-  data: any;
   children: ReactNode;
 };
 
@@ -39,7 +34,7 @@ export default function StandaloneTemplate({ children }: StandaloneTemplateProps
 }
 
 export const pageQuery = graphql`
-  query ($slug: String!) {
+  query Standalone($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
       id
       frontmatter {

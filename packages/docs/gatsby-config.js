@@ -8,6 +8,7 @@ module.exports = {
     author: '@jonelantha',
     siteUrl: 'https://react-responsive-pagination.elantha.com',
   },
+  graphqlTypegen: true,
   plugins: [
     'gatsby-plugin-styled-components',
     'gatsby-plugin-sitemap',
@@ -15,7 +16,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'pages',
-        path: `${__dirname}/content`,
+        path: './content',
       },
       __key: 'pages',
     },

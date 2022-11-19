@@ -1,15 +1,16 @@
 {
   "extends": "../../tsconfig",
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6",
+    "module": "esnext",
+    "target": "esnext",
     "jsx": "preserve",
-    "lib": ["dom", "es2017"],
+    "lib": ["dom", "esnext"],
+    "moduleResolution": "node",
     "strict": true,
     "noEmit": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
+    "skipLibCheck": true
   },
-  "include": ["./src/**/*", "./content/**/*"]
+  "include": ["./src/**/*", "./content/**/*", "./gatsby-node.ts"]
 }
