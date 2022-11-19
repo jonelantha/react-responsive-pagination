@@ -1,9 +1,9 @@
-import { graphql } from 'gatsby';
+import { graphql, HeadProps } from 'gatsby';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Link } from 'gatsby';
 import React, { ReactNode } from 'react';
 
-import SEO from '../components/SEO';
+import HeadContents from '../components/HeadContents';
 import GlobalStyles, {
   spacingVertical,
   headingFontFamily,
@@ -12,27 +12,29 @@ import GlobalStyles, {
 } from '../components/GlobalStyles';
 import MarkdownContent from '../components/MarkdownContent';
 
+export function Head({ data }: HeadProps<Queries.StandaloneQuery>) {
+  return (
+    <HeadContents
+      title={data.mdx?.frontmatter?.title ?? ''}
+      description={data.mdx?.frontmatter?.description ?? ''}
+    />
+  );
+}
+
 type StandaloneTemplateProps = {
-  data: any;
   children: ReactNode;
 };
 
-export default function StandaloneTemplate({
-  data,
-  children,
-}: StandaloneTemplateProps) {
+export default function StandaloneTemplate({ children }: StandaloneTemplateProps) {
   return (
-    <StandaloneLayout
-      title={data.mdx.frontmatter.title}
-      description={data.mdx.frontmatter.description || data.mdx.frontmatter.excerpt}
-    >
+    <StandaloneLayout>
       <MarkdownContent>{children}</MarkdownContent>
     </StandaloneLayout>
   );
 }
 
 export const pageQuery = graphql`
-  query ($slug: String!) {
+  query Standalone($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
       id
       frontmatter {
@@ -45,18 +47,11 @@ export const pageQuery = graphql`
 
 interface StandaloneLayoutProps {
   children: React.ReactNode;
-  title: string;
-  description?: string;
 }
 
-export function StandaloneLayout({
-  children: content,
-  title,
-  description,
-}: StandaloneLayoutProps) {
+export function StandaloneLayout({ children: content }: StandaloneLayoutProps) {
   return (
     <>
-      <SEO title={title} description={description} />
       <GlobalStyles />
       <StandalonePageStyles />
       <StandaloneHeader />

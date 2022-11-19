@@ -1,9 +1,9 @@
 import { useStaticQuery, graphql } from 'gatsby';
 
 export function useSiteMetaData() {
-  const result = useStaticQuery(
+  const result = useStaticQuery<Queries.SiteMetaDataQuery>(
     graphql`
-      query {
+      query SiteMetaData {
         site {
           siteMetadata {
             title
@@ -15,9 +15,5 @@ export function useSiteMetaData() {
     `,
   );
 
-  return result.site.siteMetadata as {
-    title: string;
-    description: string;
-    author: string;
-  };
+  return result.site!.siteMetadata;
 }

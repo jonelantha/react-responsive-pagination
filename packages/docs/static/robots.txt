@@ -1,1 +1,1 @@
-Sitemap: https://react-responsive-pagination.elantha.com/sitemap/sitemap-index.xml
+Sitemap: https://react-responsive-pagination.elantha.com/sitemap-index.xml

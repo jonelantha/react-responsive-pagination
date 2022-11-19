@@ -3,20 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@craco/craco": "^6.4.5",
-    "@types/node": "^16.11.64",
-    "@types/react": "^17.0.50",
-    "@types/react-dom": "^17.0.17",
+    "@craco/craco": "^7.0.0",
+    "@types/node": "^18.11.9",
+    "@types/react": "^17.0.52",
+    "@types/react-dom": "^17.0.18",
     "bootstrap4": "npm:bootstrap@^4.6.2",
-    "bootstrap5": "npm:bootstrap@^5.2.1",
+    "bootstrap5": "npm:bootstrap@^5.2.2",
     "formik": "^2.2.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-responsive-pagination": "workspace:packages/react-responsive-pagination",
-    "react-router-dom": "^6.4.1",
+    "react-router-dom": "^6.4.3",
     "react-scripts": "^5.0.1",
-    "serve": "14.0.1",
-    "typescript": "^4.8.2"
+    "serve": "14.1.1",
+    "typescript": "^4.8.4"
   },
   "scripts": {
     "start": "PORT=3001 craco start",

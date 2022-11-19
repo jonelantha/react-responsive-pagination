@@ -11,7 +11,7 @@ if (process.env.PROD_TEST) {
     serverOptions: {
       command: process.env.SERVE_COMMAND,
       port: 3000,
-      debug: true,
+      debug: false,
       launchTimeout: 10000,
     },
   };

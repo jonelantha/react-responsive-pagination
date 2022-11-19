@@ -1,29 +1,27 @@
 import React, { ReactNode } from 'react';
-import { graphql } from 'gatsby';
+import { graphql, HeadProps } from 'gatsby';
 import MarkdownContent from '../components/MarkdownContent';
-import SEO from '../components/SEO';
+import HeadContents from '../components/HeadContents';
 
-type DocTemplateProps = {
-  data: any;
-  children: ReactNode;
-};
-
-export default function DocTemplate({ data, children }: DocTemplateProps) {
+export function Head({ data }: HeadProps<Queries.DocQuery>) {
   return (
-    <>
-      <SEO
-        title={data.mdx.frontmatter.title}
-        description={
-          data.mdx.frontmatter.description || data.mdx.frontmatter.excerpt
-        }
-      />
-      <MarkdownContent>{children}</MarkdownContent>
-    </>
+    <HeadContents
+      title={data.mdx?.frontmatter?.title ?? ''}
+      description={data.mdx?.frontmatter?.description ?? ''}
+    />
   );
 }
 
+type DocTemplateProps = {
+  children: ReactNode;
+};
+
+export default function DocTemplate({ children }: DocTemplateProps) {
+  return <MarkdownContent>{children}</MarkdownContent>;
+}
+
 export const pageQuery = graphql`
-  query ($slug: String!) {
+  query Doc($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
       id
       frontmatter {
