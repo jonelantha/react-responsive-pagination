@@ -38,6 +38,7 @@ function getNormalConfig() {
         '@semantic-release/git',
         {
           assets: ['CHANGELOG.md', 'package.json'],
+          successComment: false,
         },
       ],
     ],
