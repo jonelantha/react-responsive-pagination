@@ -1,5 +1,17 @@
 # React Responsive Pagination Changelog
 
+# [1.9.0-beta.1](https://github.com/jonelantha/react-responsive-pagination/compare/v1.8.1...v1.9.0-beta.1) (2022-11-20)
+
+
+### Bug Fixes
+
+* Remove href attribute ([8a38c8a](https://github.com/jonelantha/react-responsive-pagination/commit/8a38c8a29bfa36db81527942150e009bbcd69b0a))
+
+
+### Features
+
+* linkHref prop to omit href from a tags ([f5b0567](https://github.com/jonelantha/react-responsive-pagination/commit/f5b0567ca2b2935b8d2a0b47a404f34a21f52f62))
+
 ## [1.8.1](https://github.com/jonelantha/react-responsive-pagination/compare/v1.8.0...v1.8.1) (2022-11-19)
 
 
