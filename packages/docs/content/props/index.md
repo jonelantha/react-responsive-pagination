@@ -11,6 +11,7 @@ import CommonProps from "./commonProps.md"
 import ClassNameProps from "./classNameProps.md"
 import LabelProps from "./labelProps.md"
 import NarrowProps from "./narrowProps.md"
+import LinkHref from "./linkHrefProps.md"
 
 # Props Reference
 
@@ -38,4 +39,5 @@ See [Overriding default classNames](/custom-styled-pagination/#overriding-defaul
 
 <PropsTable>
   <NarrowProps />
+  <LinkHref />
 </PropsTable>
