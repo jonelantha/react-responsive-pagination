@@ -29,6 +29,13 @@ describe('narrowToWideCompositions smallest compositions', () => {
     const expected = ['<3', 1, 2, 3, '*4', 5, 6, 7, '>5'];
     expect(shorthandOf(narrowestComposition)).toEqual(expected);
   });
+
+  test('will not render nav', () => {
+    const narrowestComposition = narrowToWideCompositions(2, 6, [], false).next().value;
+
+    const expected = [1, '*2', 3, '…R', 6];
+    expect(shorthandOf(narrowestComposition)).toEqual(expected);
+  });
 });
 
 describe('narrowToWideCompositions small ranges compositions', () => {

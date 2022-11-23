@@ -21,6 +21,7 @@ const propFields = {
   srOnlyClassName: 'SR Only className',
   previousLabel: 'Previous Label',
   nextLabel: 'Next Label',
+  renderNav: 'Render Navigation',
   a11yActiveLabel: 'a11y Active Label',
   ariaCurrentAttr: 'ariaCurrent Attr',
 };
@@ -43,6 +44,7 @@ const initialValues = {
     srOnlyClassName: 'undefined',
     previousLabel: 'undefined',
     nextLabel: 'undefined',
+    renderNav: 'true',
     a11yActiveLabel: 'undefined',
     ariaCurrentAttr: 'undefined',
   },

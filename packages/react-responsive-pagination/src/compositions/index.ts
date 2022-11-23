@@ -15,10 +15,11 @@ export function* narrowToWideCompositions(
   current: number | null,
   total: number,
   narrowStrategies: NarrowStrategy[],
+  renderNav: boolean = true,
 ) {
   if (current === null) return;
 
-  const compositions = narrowToWideCompositionsUnfiltered(current, total);
+  const compositions = narrowToWideCompositionsUnfiltered(current, total, renderNav);
 
   if (narrowStrategies.length > 0) {
     const { value: initialComposition, done } = compositions.next();
@@ -58,6 +59,7 @@ function* initialReducedCompositions(
 export function* narrowToWideCompositionsUnfiltered(
   current: number,
   total: number,
+  renderNav: boolean = true,
 ): Generator<CompositionItem[]> {
   const navPrevious = createNavPrevious(current > 1 ? current - 1 : undefined);
   const navNext = createNavNext(current < total ? current + 1 : undefined);
@@ -69,7 +71,12 @@ export function* narrowToWideCompositionsUnfiltered(
   const staggeredPairs = staggeredIterationRightRangeFirst(leftRanges, rightRanges);
 
   for (const { leftRange, rightRange } of staggeredPairs) {
-    yield [navPrevious, ...leftRange, activePage, ...rightRange, navNext];
+    if (renderNav) {
+      yield [navPrevious, ...leftRange, activePage, ...rightRange, navNext];
+    }
+    else {
+      yield [...leftRange, activePage, ...rightRange];
+    }
   }
 }
 
