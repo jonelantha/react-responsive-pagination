@@ -45,7 +45,7 @@ const initialValues = {
     srOnlyClassName: 'undefined',
     previousLabel: 'undefined',
     nextLabel: 'undefined',
-    renderNav: 'true',
+    renderNav: 'undefined',
     a11yActiveLabel: 'undefined',
     ariaCurrentAttr: 'undefined',
     linkHref: 'undefined',
