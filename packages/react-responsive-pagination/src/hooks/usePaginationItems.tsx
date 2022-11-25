@@ -11,6 +11,7 @@ export function usePaginationItems(
   options?: {
     nextLabel?: string;
     previousLabel?: string;
+    renderNav?: boolean;
     a11yActiveLabel: string;
     narrowStrategy?: NarrowStrategy | NarrowStrategy[];
   },
@@ -23,7 +24,7 @@ export function usePaginationItems(
   const narrowStrategies = sanatizeNarrowStrategies(options?.narrowStrategy);
 
   const narrowToWideCompositionsProvider = () =>
-    narrowToWideCompositions(current, total, narrowStrategies);
+    narrowToWideCompositions(current, total, narrowStrategies, options?.renderNav);
 
   const {
     items: compositionItems,

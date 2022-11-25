@@ -42,6 +42,7 @@ export function compositionToPaginationItems(
   options?: {
     nextLabel?: string;
     previousLabel?: string;
+    renderNav?: boolean;
     a11yActiveLabel: string;
   },
 ): PaginationItem[] {
