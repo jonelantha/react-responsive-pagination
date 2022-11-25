@@ -11,27 +11,36 @@ import { narrowToWideRanges } from './ranges';
 
 export type NarrowStrategy = 'dropEllipsis' | 'dropNav';
 
-export function* narrowToWideCompositions(
-  current: number | null,
-  total: number,
-  narrowStrategies: NarrowStrategy[],
-  renderNav: boolean = true,
-) {
-  if (current === null) return;
+export function* narrowToWideCompositions({
+  current,
+  total,
+  narrowStrategies,
+  renderNav,
+}: {
+  current: number;
+  total: number;
+  narrowStrategies: NarrowStrategy[];
+  renderNav: boolean;
+}) {
+  if (total < 1) return;
 
-  const compositions = narrowToWideCompositionsUnfiltered(current, total, renderNav);
+  const clampedCurrent = Math.max(1, Math.min(current, total));
 
-  if (narrowStrategies.length > 0) {
-    const { value: initialComposition, done } = compositions.next();
+  const compositions = narrowToWideCompositionsUnfiltered(
+    clampedCurrent,
+    total,
+    renderNav,
+  );
 
-    if (done) return;
-
-    yield* initialReducedCompositions(initialComposition, narrowStrategies);
+  for (const initialComposition of compositions) {
+    if (narrowStrategies.length > 0) {
+      yield* initialReducedCompositions(initialComposition, narrowStrategies);
+    }
 
     yield initialComposition;
-  }
 
-  yield* compositions;
+    yield* compositions;
+  }
 }
 
 function* initialReducedCompositions(
@@ -59,7 +68,7 @@ function* initialReducedCompositions(
 export function* narrowToWideCompositionsUnfiltered(
   current: number,
   total: number,
-  renderNav: boolean = true,
+  renderNav: boolean,
 ): Generator<CompositionItem[]> {
   const navPrevious = createNavPrevious(current > 1 ? current - 1 : undefined);
   const navNext = createNavNext(current < total ? current + 1 : undefined);
@@ -73,8 +82,7 @@ export function* narrowToWideCompositionsUnfiltered(
   for (const { leftRange, rightRange } of staggeredPairs) {
     if (renderNav) {
       yield [navPrevious, ...leftRange, activePage, ...rightRange, navNext];
-    }
-    else {
+    } else {
       yield [...leftRange, activePage, ...rightRange];
     }
   }

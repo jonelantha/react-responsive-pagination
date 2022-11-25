@@ -6,8 +6,12 @@ export function sum(items: number[]) {
   return items.reduce((acc, width) => acc + width, 0);
 }
 
-export function sanatizeInteger(maybeInteger: any) {
+export function sanatizeInteger(maybeInteger: unknown) {
   return typeof maybeInteger === 'number' && Number.isInteger(maybeInteger)
     ? maybeInteger
-    : 0;
+    : undefined;
+}
+
+export function sanatizeBoolean(maybeBoolean: unknown) {
+  return typeof maybeBoolean === 'boolean' ? maybeBoolean : undefined;
 }
