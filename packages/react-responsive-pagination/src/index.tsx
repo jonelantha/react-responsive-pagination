@@ -34,6 +34,7 @@ function BootstrapPagination({
   renderNav = true,
   a11yActiveLabel = '(current)',
   ariaCurrentAttr,
+  linkHref = 'hash',
 }: BootstrapPaginationProps) {
   const { items, ref, clearCache } = usePaginationItems(current, total, maxWidth, {
     narrowStrategy,
@@ -92,7 +93,7 @@ function BootstrapPagination({
           >
             <a
               className={pageLinkClassName}
-              href="#"
+              href={linkHref === 'hash' ? '#' : undefined}
               onClick={preventDefault(() => handlePageChange(item.gotoPage))}
               aria-label={item.a11yLabel}
             >
@@ -135,6 +136,7 @@ type BootstrapPaginationProps = {
   renderNav?: boolean;
   a11yActiveLabel?: string;
   ariaCurrentAttr?: boolean;
+  linkHref?: 'hash' | 'omit';
 };
 
 BootstrapPagination.propTypes = {
@@ -159,4 +161,5 @@ BootstrapPagination.propTypes = {
   renderNav: PropTypes.bool,
   a11yActiveLabel: PropTypes.string,
   ariaCurrentAttr: PropTypes.bool,
+  linkHref: PropTypes.oneOf(['hash', 'omit']),
 };

@@ -24,6 +24,7 @@ const propFields = {
   renderNav: 'Render Navigation',
   a11yActiveLabel: 'a11y Active Label',
   ariaCurrentAttr: 'ariaCurrent Attr',
+  linkHref: 'linkHref',
 };
 
 type PropFieldName = keyof typeof propFields;
@@ -47,6 +48,7 @@ const initialValues = {
     renderNav: 'true',
     a11yActiveLabel: 'undefined',
     ariaCurrentAttr: 'undefined',
+    linkHref: 'undefined',
   },
 };
 
