@@ -23,6 +23,7 @@ const propFields = {
   nextLabel: 'Next Label',
   a11yActiveLabel: 'a11y Active Label',
   ariaCurrentAttr: 'ariaCurrent Attr',
+  linkHref: 'linkHref',
 };
 
 type PropFieldName = keyof typeof propFields;
@@ -45,6 +46,7 @@ const initialValues = {
     nextLabel: 'undefined',
     a11yActiveLabel: 'undefined',
     ariaCurrentAttr: 'undefined',
+    linkHref: 'undefined',
   },
 };
 
