@@ -17,6 +17,7 @@ import { PropsTable, PropDef } from "../../src/components/PropsTable"
 import CommonProps from "../props/commonProps.md"
 import ExtraClassNameProp from "../props/extraClassNameProp.md"
 import LabelProps from "../props/labelProps.md"
+import RenderNavProps from "../props/renderNavProps.md"
 import NarrowProps from "../props/narrowProps.md"
 
 # Bootstrap Usage
@@ -133,6 +134,22 @@ Change the default labels for the previous and next buttons by setting the `prev
 <Pagination ... previousLabel="‹" nextLabel="›" />
 ```
 
+### No navigation buttons
+
+Don't include the navigation buttons by setting `renderNav` to **false**:
+
+**Example - No navigation buttons**
+
+<Bootstrap4PaginationContainer>
+  <OverrideSSR>
+    {isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo renderNav={false} />}
+  </OverrideSSR>
+</Bootstrap4PaginationContainer>
+
+```jsx
+<Pagination ... renderNav={false} />
+```
+
 ### Alignment / Justify
 
 Change how the pagination is positioned by setting the `extraClassName` prop to one of the [Bootstrap justify content options](https://getbootstrap.com/docs/4.6/utilities/flex/#justify-content). Here are some suitable values:
@@ -163,5 +180,6 @@ A selection of props which may be helpful when using Bootstrap styles - for the 
   <CommonProps />
   <LabelProps />
   <ExtraClassNameProp />
+  <RenderNavProps />
   <NarrowProps />
 </PropsTable>
