@@ -1,5 +1,12 @@
 # React Responsive Pagination Changelog
 
+# [1.10.0-beta.1](https://github.com/jonelantha/react-responsive-pagination/compare/v1.9.0...v1.10.0-beta.1) (2022-11-25)
+
+
+### Features
+
+* renderNav prop ([e32e15d](https://github.com/jonelantha/react-responsive-pagination/commit/e32e15daa1bd0a91997e8bef354e3bc00d8fab10))
+
 # [1.9.0](https://github.com/jonelantha/react-responsive-pagination/compare/v1.8.1...v1.9.0) (2022-11-25)
 
 
