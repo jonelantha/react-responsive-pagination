@@ -9,14 +9,12 @@ beforeAll(async () => {
 });
 
 describe('linkHref', () => {
-  beforeEach(async () => {
-    await page.fill('#linkHrefAsJson', 'undefined');
-  });
-
   test.each([undefined, 'hash', 'omit'].map(linkHref => [linkHref]))(
     'Setting linkHref to %p',
     async previousLabel => {
       await page.fill('#linkHrefAsJson', stringifyWithUndefined(previousLabel));
+
+      await page.evaluate(() => new Promise(requestAnimationFrame));
 
       const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
 

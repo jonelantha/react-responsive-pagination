@@ -20,6 +20,8 @@ describe('Labels', () => {
     async previousLabel => {
       await page.fill('#previousLabelAsJson', stringifyWithUndefined(previousLabel));
 
+      await page.evaluate(() => new Promise(requestAnimationFrame));
+
       const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
 
       expect(paginationHtml).toMatchSnapshot();
@@ -30,6 +32,8 @@ describe('Labels', () => {
     'Setting nextLabel to %p',
     async nextLabel => {
       await page.fill('#nextLabelAsJson', stringifyWithUndefined(nextLabel));
+
+      await page.evaluate(() => new Promise(requestAnimationFrame));
 
       const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
 
@@ -45,6 +49,8 @@ describe('Labels', () => {
         stringifyWithUndefined(a11yActiveLabel),
       );
 
+      await page.evaluate(() => new Promise(requestAnimationFrame));
+
       const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
 
       expect(paginationHtml).toMatchSnapshot();
@@ -58,6 +64,8 @@ describe('Labels', () => {
         '#ariaCurrentAttrAsJson',
         stringifyWithUndefined(ariaCurrentAttr),
       );
+
+      await page.evaluate(() => new Promise(requestAnimationFrame));
 
       const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
 
