@@ -3,7 +3,43 @@ import { CompositionItem } from '../compositionItem';
 
 const defaultParams = { narrowStrategies: [], renderNav: true };
 
-describe('narrowToWideCompositions smallest compositions', () => {
+describe('narrowToWideCompositions - total', () => {
+  test('outputs nothing for total < 1', () => {
+    const compositions = narrowToWideCompositions({
+      ...defaultParams,
+      current: 5,
+      total: 0,
+    });
+
+    expect(compositions.next().done).toBe(true);
+  });
+});
+
+describe('narrowToWideCompositions - current', () => {
+  test('clamps current up to 1', () => {
+    const narrowestComposition = narrowToWideCompositions({
+      ...defaultParams,
+      current: 0,
+      total: 5,
+    }).next().value;
+
+    const expected = ['<', '*1', 2, '…R', 5, '>2'];
+    expect(shorthandOf(narrowestComposition)).toEqual(expected);
+  });
+
+  test('clamps current down to total', () => {
+    const narrowestComposition = narrowToWideCompositions({
+      ...defaultParams,
+      current: 7,
+      total: 5,
+    }).next().value;
+
+    const expected = ['<4', 1, '…L', 4, '*5', '>'];
+    expect(shorthandOf(narrowestComposition)).toEqual(expected);
+  });
+});
+
+describe('narrowToWideCompositions - smallest compositions', () => {
   test('outputs a number either side of the active number', () => {
     const narrowestComposition = narrowToWideCompositions({
       ...defaultParams,
@@ -49,7 +85,7 @@ describe('narrowToWideCompositions smallest compositions', () => {
   });
 });
 
-describe('narrowToWideCompositions small ranges compositions', () => {
+describe('narrowToWideCompositions - small range compositions', () => {
   test('handles 1 page correctly', () => {
     const narrowestComposition = narrowToWideCompositions({
       ...defaultParams,
@@ -81,7 +117,7 @@ describe('narrowToWideCompositions small ranges compositions', () => {
   });
 });
 
-describe('narrowToWideCompositions widening compositions', () => {
+describe('narrowToWideCompositions - widening compositions', () => {
   test('will expand evenly starting on right', () => {
     const compositions = narrowToWideCompositions({
       ...defaultParams,
@@ -149,7 +185,7 @@ describe('narrowToWideCompositions widening compositions', () => {
   });
 });
 
-describe('narrowToWideCompositions narrowStrategy', () => {
+describe('narrowToWideCompositions - narrowStrategy', () => {
   test('will initially drop nav if required', () => {
     const compositions = narrowToWideCompositions({
       ...defaultParams,
@@ -284,7 +320,7 @@ describe('narrowToWideCompositions narrowStrategy', () => {
   );
 });
 
-describe('narrowToWideCompositions renderNav', () => {
+describe('narrowToWideCompositions - renderNav', () => {
   test('will not render nav when false', () => {
     const narrowestComposition = narrowToWideCompositions({
       ...defaultParams,
