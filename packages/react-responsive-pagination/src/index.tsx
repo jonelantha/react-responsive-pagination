@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { usePaginationItems } from './hooks/usePaginationItems';
 import { preventDefault } from './helpers/dom';
 import { NarrowStrategy } from './compositions';
+import { A11yLabel } from './paginationItem';
 
 export const bootstrap4PaginationPreset = {};
 
@@ -68,11 +69,17 @@ function BootstrapPagination({
     }
   }
 
-  function getLabel(label: string, a11yLabel: string | undefined) {
+  function getLabel(label: string, a11yLabel: A11yLabel | undefined) {
     return a11yLabel ? (
       <>
-        <span aria-hidden="true">{label}</span>
-        {srOnlyClassName && <span className={srOnlyClassName}>{a11yLabel}</span>}
+        {a11yLabel.mode === 'replace' ? (
+          <span aria-hidden="true">{label}</span>
+        ) : (
+          label + (srOnlyClassName ? ' ' : '')
+        )}
+        {srOnlyClassName && (
+          <span className={srOnlyClassName}>{a11yLabel.label}</span>
+        )}
       </>
     ) : (
       label
@@ -95,7 +102,7 @@ function BootstrapPagination({
               className={pageLinkClassName}
               href={linkHref === 'hash' ? '#' : undefined}
               onClick={preventDefault(() => handlePageChange(item.gotoPage))}
-              aria-label={item.a11yLabel}
+              aria-label={item.a11yLabel?.label}
             >
               {getLabel(item.label, item.a11yLabel)}
             </a>
@@ -107,7 +114,7 @@ function BootstrapPagination({
             className={`${pageItemClassName} ${disabledItemClassName}`}
             aria-hidden={item.a11yHidden}
           >
-            <span className={pageLinkClassName} aria-label={item.a11yLabel}>
+            <span className={pageLinkClassName} aria-label={item.a11yLabel?.label}>
               {getLabel(item.label, item.a11yLabel)}
             </span>
           </li>

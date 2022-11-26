@@ -4,7 +4,7 @@ type BaseItem = {
   type: string;
   key: string;
   label: string;
-  a11yLabel?: string;
+  a11yLabel?: A11yLabel;
 };
 
 type ClickableItem = BaseItem & {
@@ -37,6 +37,8 @@ export type PaginationItem = NavItem | NavDisabledItem | EllipsisItem | PageItem
 
 export type NavType = 'next' | 'previous';
 
+export type A11yLabel = { label: string; mode: 'replace' | 'additional' };
+
 export function compositionToPaginationItems(
   compositionItems: CompositionItem[],
   options?: {
@@ -52,7 +54,7 @@ export function compositionToPaginationItems(
           type: 'previous',
           key: `previous${page === undefined ? '_disabled' : ''}`,
           label: options?.previousLabel || '«',
-          a11yLabel: 'Previous',
+          a11yLabel: { label: 'Previous', mode: 'replace' },
           gotoPage: page,
         };
       case '>':
@@ -60,7 +62,7 @@ export function compositionToPaginationItems(
           type: 'next',
           key: `next${page === undefined ? '_disabled' : ''}`,
           label: options?.nextLabel || '»',
-          a11yLabel: 'Next',
+          a11yLabel: { label: 'Next', mode: 'replace' },
           gotoPage: page,
         };
       case '…L':
@@ -77,7 +79,10 @@ export function compositionToPaginationItems(
           type: 'page',
           key: `${type}_${page}`,
           label: page.toString(),
-          a11yLabel: (type === 'active' && options?.a11yActiveLabel) || undefined,
+          a11yLabel:
+            type === 'active' && options?.a11yActiveLabel
+              ? { label: options?.a11yActiveLabel, mode: 'additional' }
+              : undefined,
           gotoPage: page,
           active: type === 'active',
         };
