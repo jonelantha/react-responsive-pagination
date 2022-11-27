@@ -1,5 +1,12 @@
 # React Responsive Pagination Changelog
 
+# [1.10.0-beta.4](https://github.com/jonelantha/react-responsive-pagination/compare/v1.10.0-beta.3...v1.10.0-beta.4) (2022-11-27)
+
+
+### Bug Fixes
+
+* Remove incorrect aria-label for current page and move space into srOnly ([c3b142d](https://github.com/jonelantha/react-responsive-pagination/commit/c3b142dd758c6a3cb670391ee4d97a99c1838d54))
+
 # [1.10.0-beta.3](https://github.com/jonelantha/react-responsive-pagination/compare/v1.10.0-beta.2...v1.10.0-beta.3) (2022-11-27)
 
 
