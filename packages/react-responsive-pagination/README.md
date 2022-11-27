@@ -105,10 +105,12 @@ See [Overriding default classNames](https://react-responsive-pagination.elantha.
 
 ### Label Props
 
-| Prop                                            | Description                                        |
-| ----------------------------------------------- | -------------------------------------------------- |
-| **previousLabel**<br />`string`<br />(optional) | The label for the previous button, defaults to `«` |
-| **nextLabel**<br />`string`<br />(optional)     | The label for the next button, defaults to `»`     |
+| Prop                                                | Description                                                                  |
+| --------------------------------------------------- | ---------------------------------------------------------------------------- |
+| **previousLabel**<br />`string`<br />(optional)     | The label for the previous button, defaults to `«`                           |
+| **nextLabel**<br />`string`<br />(optional)         | The label for the next button, defaults to `»`                               |
+| **ariaPreviousLabel**<br />`string`<br />(optional) | The accessibility ARIA label for the previous button, defaults to `Previous` |
+| **ariaNextLabel**<br />`string`<br />(optional)     | The accessibility ARIA label for the next button, defaults to `Next`         |
 
 ### Misc Props
 

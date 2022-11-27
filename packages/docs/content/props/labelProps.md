@@ -8,6 +8,12 @@ import { PropsTable, PropDef } from "../../src/components/PropsTable"
   <PropDef name='nextLabel' type='string' defaultValue='»'>
     The label for the next button, defaults to `»`
   </PropDef>
+  <PropDef name='ariaPreviousLabel' type='string' defaultValue='Previous'>
+    The accessibility ARIA label for the previous button, defaults to `Previous`
+  </PropDef>
+  <PropDef name='ariaNextLabel' type='string' defaultValue='Next'>
+    The accessibility ARIA label for the next button, defaults to `Next`
+  </PropDef>
   <PropDef name='a11yActiveLabel' type='string' defaultValue='(current)'>
     The accessibility label for the active page link, defaults to `(current)`
 

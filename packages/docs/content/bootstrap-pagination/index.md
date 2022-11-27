@@ -108,7 +108,9 @@ function MyBootstrap4App() {
 
 ### Previous and Next Labels
 
-Change the default labels for the previous and next buttons by setting the `previousLabel` and `nextLabel` props:
+Change the default labels for the previous and next buttons by setting the `previousLabel` and `nextLabel` props, see examples below
+
+If needed, the ARIA labels can also be changed by setting the `ariaPreviousLabel` and `ariaNextLabel` props, please see [Props Reference](#props-reference) below
 
 **Example - Text labels**
 

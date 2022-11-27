@@ -11,8 +11,10 @@ export function usePaginationItems(
   options?: {
     nextLabel?: string;
     previousLabel?: string;
+    ariaNextLabel?: string;
+    ariaPreviousLabel?: string;
     renderNav?: boolean;
-    a11yActiveLabel: string;
+    a11yActiveLabel?: string;
     narrowStrategy?: NarrowStrategy | NarrowStrategy[];
   },
 ) {
