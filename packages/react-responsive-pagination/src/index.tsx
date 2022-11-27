@@ -32,16 +32,20 @@ function BootstrapPagination({
   srOnlyClassName = 'sr-only',
   previousLabel,
   nextLabel,
+  ariaPreviousLabel,
+  ariaNextLabel,
   renderNav = true,
-  a11yActiveLabel = '(current)',
+  a11yActiveLabel,
   ariaCurrentAttr,
   linkHref = 'hash',
 }: BootstrapPaginationProps) {
   const { items, ref, clearCache } = usePaginationItems(current, total, maxWidth, {
     narrowStrategy,
     previousLabel,
-    renderNav,
     nextLabel,
+    ariaPreviousLabel,
+    ariaNextLabel,
+    renderNav,
     a11yActiveLabel,
   });
 
@@ -140,6 +144,8 @@ type BootstrapPaginationProps = {
   srOnlyClassName?: string;
   previousLabel?: string;
   nextLabel?: string;
+  ariaPreviousLabel?: string;
+  ariaNextLabel?: string;
   renderNav?: boolean;
   a11yActiveLabel?: string;
   ariaCurrentAttr?: boolean;
@@ -165,6 +171,8 @@ BootstrapPagination.propTypes = {
   srOnlyClassName: PropTypes.string,
   previousLabel: PropTypes.string,
   nextLabel: PropTypes.string,
+  ariaPreviousLabel: PropTypes.string,
+  ariaNextLabel: PropTypes.string,
   renderNav: PropTypes.bool,
   a11yActiveLabel: PropTypes.string,
   ariaCurrentAttr: PropTypes.bool,
