@@ -83,8 +83,7 @@ function BootstrapPagination({
         )}
         {a11yLabel && srOnlyClassName && (
           <span className={srOnlyClassName}>
-            {a11yLabel.mode === 'additional' ? ' ' : ''}
-            {a11yLabel.label}
+            {`${a11yLabel.mode === 'additional' ? ' ' : ''}${a11yLabel.label}`}
           </span>
         )}
       </>
