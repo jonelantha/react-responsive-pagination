@@ -74,19 +74,19 @@ function BootstrapPagination({
   }
 
   function getLabel(label: string, a11yLabel: A11yLabel | undefined) {
-    return a11yLabel ? (
+    return (
       <>
-        {a11yLabel.mode === 'replace' ? (
-          <span aria-hidden="true">{label}</span>
+        {!a11yLabel || a11yLabel.mode === 'additional' ? (
+          label
         ) : (
-          label + (srOnlyClassName ? ' ' : '')
+          <span aria-hidden="true">{label}</span>
         )}
-        {srOnlyClassName && (
-          <span className={srOnlyClassName}>{a11yLabel.label}</span>
+        {a11yLabel && srOnlyClassName && (
+          <span className={srOnlyClassName}>
+            {`${a11yLabel.mode === 'additional' ? ' ' : ''}${a11yLabel.label}`}
+          </span>
         )}
       </>
-    ) : (
-      label
     );
   }
 
@@ -106,7 +106,9 @@ function BootstrapPagination({
               className={pageLinkClassName}
               href={linkHref === 'hash' ? '#' : undefined}
               onClick={preventDefault(() => handlePageChange(item.gotoPage))}
-              aria-label={item.a11yLabel?.label}
+              aria-label={
+                item.a11yLabel?.mode === 'replace' ? item.a11yLabel.label : undefined
+              }
             >
               {getLabel(item.label, item.a11yLabel)}
             </a>
@@ -118,7 +120,12 @@ function BootstrapPagination({
             className={`${pageItemClassName} ${disabledItemClassName}`}
             aria-hidden={item.a11yHidden}
           >
-            <span className={pageLinkClassName} aria-label={item.a11yLabel?.label}>
+            <span
+              className={pageLinkClassName}
+              aria-label={
+                item.a11yLabel?.mode === 'replace' ? item.a11yLabel.label : undefined
+              }
+            >
               {getLabel(item.label, item.a11yLabel)}
             </span>
           </li>
