@@ -1,5 +1,17 @@
 # React Responsive Pagination Changelog
 
+# [1.10.0-beta.2](https://github.com/jonelantha/react-responsive-pagination/compare/v1.10.0-beta.1...v1.10.0-beta.2) (2022-11-27)
+
+
+### Bug Fixes
+
+* Active page number for ARIA incorrectly being hidden ([f8e0315](https://github.com/jonelantha/react-responsive-pagination/commit/f8e03150c306443d594d3c4d4e4d6e2411b07ccc))
+
+
+### Features
+
+* ariaPreviousLabel and ariaNextLabel props ([5d5f133](https://github.com/jonelantha/react-responsive-pagination/commit/5d5f13383681406da6c703543c8bf23e010be64a))
+
 # [1.10.0-beta.1](https://github.com/jonelantha/react-responsive-pagination/compare/v1.9.0...v1.10.0-beta.1) (2022-11-25)
 
 
