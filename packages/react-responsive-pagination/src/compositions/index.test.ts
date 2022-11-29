@@ -1,59 +1,129 @@
 import { narrowToWideCompositions } from '.';
 import { CompositionItem } from '../compositionItem';
 
-describe('narrowToWideCompositions smallest compositions', () => {
+const defaultParams = { narrowStrategies: [], renderNav: true };
+
+describe('narrowToWideCompositions - total', () => {
+  test('outputs nothing for total < 1', () => {
+    const compositions = narrowToWideCompositions({
+      ...defaultParams,
+      current: 5,
+      total: 0,
+    });
+
+    expect(compositions.next().done).toBe(true);
+  });
+});
+
+describe('narrowToWideCompositions - current', () => {
+  test('clamps current up to 1', () => {
+    const narrowestComposition = narrowToWideCompositions({
+      ...defaultParams,
+      current: 0,
+      total: 5,
+    }).next().value;
+
+    const expected = ['<', '*1', 2, '…R', 5, '>2'];
+    expect(shorthandOf(narrowestComposition)).toEqual(expected);
+  });
+
+  test('clamps current down to total', () => {
+    const narrowestComposition = narrowToWideCompositions({
+      ...defaultParams,
+      current: 7,
+      total: 5,
+    }).next().value;
+
+    const expected = ['<4', 1, '…L', 4, '*5', '>'];
+    expect(shorthandOf(narrowestComposition)).toEqual(expected);
+  });
+});
+
+describe('narrowToWideCompositions - smallest compositions', () => {
   test('outputs a number either side of the active number', () => {
-    const narrowestComposition = narrowToWideCompositions(5, 10, []).next().value;
+    const narrowestComposition = narrowToWideCompositions({
+      ...defaultParams,
+      current: 5,
+      total: 10,
+    }).next().value;
 
     const expected = ['<4', 1, '…L', 4, '*5', 6, '…R', 10, '>6'];
     expect(shorthandOf(narrowestComposition)).toEqual(expected);
   });
 
   test('will not use ellipsis to replace a single number at the start', () => {
-    const narrowestComposition = narrowToWideCompositions(4, 10, []).next().value;
+    const narrowestComposition = narrowToWideCompositions({
+      ...defaultParams,
+      current: 4,
+      total: 10,
+    }).next().value;
 
     const expected = ['<3', 1, 2, 3, '*4', 5, '…R', 10, '>5'];
     expect(shorthandOf(narrowestComposition)).toEqual(expected);
   });
 
   test('will not use ellipsis to replace a single number at the end', () => {
-    const narrowestComposition = narrowToWideCompositions(7, 10, []).next().value;
+    const narrowestComposition = narrowToWideCompositions({
+      ...defaultParams,
+      current: 7,
+      total: 10,
+    }).next().value;
 
     const expected = ['<6', 1, '…L', 6, '*7', 8, 9, 10, '>8'];
     expect(shorthandOf(narrowestComposition)).toEqual(expected);
   });
 
   test('will not use ellipsis to replace a single number at both side', () => {
-    const narrowestComposition = narrowToWideCompositions(4, 7, []).next().value;
+    const narrowestComposition = narrowToWideCompositions({
+      ...defaultParams,
+      current: 4,
+      total: 7,
+    }).next().value;
 
     const expected = ['<3', 1, 2, 3, '*4', 5, 6, 7, '>5'];
     expect(shorthandOf(narrowestComposition)).toEqual(expected);
   });
 });
 
-describe('narrowToWideCompositions small ranges compositions', () => {
+describe('narrowToWideCompositions - small range compositions', () => {
   test('handles 1 page correctly', () => {
-    const narrowestComposition = narrowToWideCompositions(1, 1, []).next().value;
+    const narrowestComposition = narrowToWideCompositions({
+      ...defaultParams,
+      current: 1,
+      total: 1,
+    }).next().value;
 
     expect(shorthandOf(narrowestComposition)).toEqual(['<', '*1', '>']);
   });
 
   test('handles 2 pages correctly', () => {
-    const narrowestComposition = narrowToWideCompositions(1, 2, []).next().value;
+    const narrowestComposition = narrowToWideCompositions({
+      ...defaultParams,
+      current: 1,
+      total: 2,
+    }).next().value;
 
     expect(shorthandOf(narrowestComposition)).toEqual(['<', '*1', 2, '>2']);
   });
 
   test('handles 3 pages correctly', () => {
-    const narrowestComposition = narrowToWideCompositions(1, 3, []).next().value;
+    const narrowestComposition = narrowToWideCompositions({
+      ...defaultParams,
+      current: 1,
+      total: 3,
+    }).next().value;
 
     expect(shorthandOf(narrowestComposition)).toEqual(['<', '*1', 2, 3, '>2']);
   });
 });
 
-describe('narrowToWideCompositions widening compositions', () => {
+describe('narrowToWideCompositions - widening compositions', () => {
   test('will expand evenly starting on right', () => {
-    const compositions = narrowToWideCompositions(6, 11, []);
+    const compositions = narrowToWideCompositions({
+      ...defaultParams,
+      current: 6,
+      total: 11,
+    });
 
     const expectedCompositions = [
       ['<5', 1, '…L', 5, '*6', 7, '…R', 11, '>7'],
@@ -71,7 +141,11 @@ describe('narrowToWideCompositions widening compositions', () => {
   });
 
   test('will expand evenly until the start is fully expanded', () => {
-    const compositions = narrowToWideCompositions(5, 11, []);
+    const compositions = narrowToWideCompositions({
+      ...defaultParams,
+      current: 5,
+      total: 11,
+    });
 
     const expectedCompositions = [
       ['<4', 1, '…L', 4, '*5', 6, '…R', 11, '>6'],
@@ -89,7 +163,11 @@ describe('narrowToWideCompositions widening compositions', () => {
   });
 
   test('will expand evenly until the end is fully expanded', () => {
-    const compositions = narrowToWideCompositions(7, 11, []);
+    const compositions = narrowToWideCompositions({
+      ...defaultParams,
+      current: 7,
+      total: 11,
+    });
 
     const expectedCompositions = [
       ['<6', 1, '…L', 6, '*7', 8, '…R', 11, '>8'],
@@ -107,9 +185,14 @@ describe('narrowToWideCompositions widening compositions', () => {
   });
 });
 
-describe('narrowToWideCompositions narrowStrategy', () => {
+describe('narrowToWideCompositions - narrowStrategy', () => {
   test('will initially drop nav if required', () => {
-    const compositions = narrowToWideCompositions(5, 9, ['dropNav']);
+    const compositions = narrowToWideCompositions({
+      ...defaultParams,
+      current: 5,
+      total: 9,
+      narrowStrategies: ['dropNav'],
+    });
 
     const expectedCompositions = [
       [1, '…L', 4, '*5', 6, '…R', 9],
@@ -126,7 +209,12 @@ describe('narrowToWideCompositions narrowStrategy', () => {
   });
 
   test('will initially drop ellipsis if required', () => {
-    const compositions = narrowToWideCompositions(5, 9, ['dropEllipsis']);
+    const compositions = narrowToWideCompositions({
+      ...defaultParams,
+      current: 5,
+      total: 9,
+      narrowStrategies: ['dropEllipsis'],
+    });
 
     const expectedCompositions = [
       ['<4', 1, 4, '*5', 6, 9, '>6'],
@@ -143,7 +231,12 @@ describe('narrowToWideCompositions narrowStrategy', () => {
   });
 
   test('will prioritise dropping nav if specified first', () => {
-    const compositions = narrowToWideCompositions(5, 9, ['dropNav', 'dropEllipsis']);
+    const compositions = narrowToWideCompositions({
+      ...defaultParams,
+      current: 5,
+      total: 9,
+      narrowStrategies: ['dropNav', 'dropEllipsis'],
+    });
 
     const expectedCompositions = [
       [1, 4, '*5', 6, 9],
@@ -161,7 +254,12 @@ describe('narrowToWideCompositions narrowStrategy', () => {
   });
 
   test('will prioritise dropping ellipsis if specified first', () => {
-    const compositions = narrowToWideCompositions(5, 9, ['dropEllipsis', 'dropNav']);
+    const compositions = narrowToWideCompositions({
+      ...defaultParams,
+      current: 5,
+      total: 9,
+      narrowStrategies: ['dropEllipsis', 'dropNav'],
+    });
 
     const expectedCompositions = [
       [1, 4, '*5', 6, 9],
@@ -179,7 +277,12 @@ describe('narrowToWideCompositions narrowStrategy', () => {
   });
 
   test('no extra iteration is added if no ellipsis present when just dropping ellipsis', () => {
-    const compositions = narrowToWideCompositions(2, 3, ['dropEllipsis']);
+    const compositions = narrowToWideCompositions({
+      ...defaultParams,
+      current: 2,
+      total: 3,
+      narrowStrategies: ['dropEllipsis'],
+    });
 
     const expectedCompositions = [['<1', 1, '*2', 3, '>3']];
 
@@ -195,8 +298,13 @@ describe('narrowToWideCompositions narrowStrategy', () => {
     ['dropNav', 'dropEllipsis'] as const,
   ])(
     'no extra iteration as added if no ellipsis present and narrowStrategy = [%s, %s]',
-    (...narrowStrategy) => {
-      const compositions = narrowToWideCompositions(2, 3, narrowStrategy);
+    (...narrowStrategies) => {
+      const compositions = narrowToWideCompositions({
+        ...defaultParams,
+        current: 2,
+        total: 3,
+        narrowStrategies,
+      });
 
       const expectedCompositions = [
         [1, '*2', 3],
@@ -210,6 +318,20 @@ describe('narrowToWideCompositions narrowStrategy', () => {
       expect(compositions.next().done).toBe(true);
     },
   );
+});
+
+describe('narrowToWideCompositions - renderNav', () => {
+  test('will not render nav when false', () => {
+    const narrowestComposition = narrowToWideCompositions({
+      ...defaultParams,
+      current: 2,
+      total: 6,
+      renderNav: false,
+    }).next().value;
+
+    const expected = [1, '*2', 3, '…R', 6];
+    expect(shorthandOf(narrowestComposition)).toEqual(expected);
+  });
 });
 
 function shorthandOf(received: CompositionItem[] | void) {

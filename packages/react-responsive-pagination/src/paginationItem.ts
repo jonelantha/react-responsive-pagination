@@ -4,7 +4,7 @@ type BaseItem = {
   type: string;
   key: string;
   label: string;
-  a11yLabel?: string;
+  a11yLabel?: A11yLabel;
 };
 
 type ClickableItem = BaseItem & {
@@ -37,30 +37,46 @@ export type PaginationItem = NavItem | NavDisabledItem | EllipsisItem | PageItem
 
 export type NavType = 'next' | 'previous';
 
+export type A11yLabel = { label: string; mode: 'replace' | 'additional' };
+
 export function compositionToPaginationItems(
   compositionItems: CompositionItem[],
   options?: {
-    nextLabel?: string;
     previousLabel?: string;
-    a11yActiveLabel: string;
+    nextLabel?: string;
+    ariaPreviousLabel?: string;
+    ariaNextLabel?: string;
+    a11yActiveLabel?: string;
   },
 ): PaginationItem[] {
+  const activeLabel = options?.a11yActiveLabel ?? '(current)';
+  const previousLabel = options?.previousLabel || '«';
+  const a11yPreviousLabel = options?.ariaPreviousLabel || 'Previous';
+  const nextLabel = options?.nextLabel || '»';
+  const a11yNextLabel = options?.ariaNextLabel || 'Next';
+
   return compositionItems.map(({ type, page }) => {
     switch (type) {
       case '<':
         return {
           type: 'previous',
           key: `previous${page === undefined ? '_disabled' : ''}`,
-          label: options?.previousLabel || '«',
-          a11yLabel: 'Previous',
+          label: previousLabel,
+          a11yLabel:
+            previousLabel === a11yPreviousLabel
+              ? undefined
+              : { label: a11yPreviousLabel, mode: 'replace' },
           gotoPage: page,
         };
       case '>':
         return {
           type: 'next',
           key: `next${page === undefined ? '_disabled' : ''}`,
-          label: options?.nextLabel || '»',
-          a11yLabel: 'Next',
+          label: nextLabel,
+          a11yLabel:
+            nextLabel === a11yNextLabel
+              ? undefined
+              : { label: a11yNextLabel, mode: 'replace' },
           gotoPage: page,
         };
       case '…L':
@@ -77,7 +93,10 @@ export function compositionToPaginationItems(
           type: 'page',
           key: `${type}_${page}`,
           label: page.toString(),
-          a11yLabel: (type === 'active' && options?.a11yActiveLabel) || undefined,
+          a11yLabel:
+            type === 'active' && activeLabel
+              ? { label: activeLabel, mode: 'additional' }
+              : undefined,
           gotoPage: page,
           active: type === 'active',
         };

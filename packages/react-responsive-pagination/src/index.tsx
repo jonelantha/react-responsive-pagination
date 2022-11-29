@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { usePaginationItems } from './hooks/usePaginationItems';
 import { preventDefault } from './helpers/dom';
 import { NarrowStrategy } from './compositions';
+import { A11yLabel } from './paginationItem';
 
 export const bootstrap4PaginationPreset = {};
 
@@ -31,7 +32,10 @@ function BootstrapPagination({
   srOnlyClassName = 'sr-only',
   previousLabel,
   nextLabel,
-  a11yActiveLabel = '(current)',
+  ariaPreviousLabel,
+  ariaNextLabel,
+  renderNav = true,
+  a11yActiveLabel,
   ariaCurrentAttr,
   linkHref = 'hash',
 }: BootstrapPaginationProps) {
@@ -39,6 +43,9 @@ function BootstrapPagination({
     narrowStrategy,
     previousLabel,
     nextLabel,
+    ariaPreviousLabel,
+    ariaNextLabel,
+    renderNav,
     a11yActiveLabel,
   });
 
@@ -66,14 +73,20 @@ function BootstrapPagination({
     }
   }
 
-  function getLabel(label: string, a11yLabel: string | undefined) {
-    return a11yLabel ? (
+  function getLabel(label: string, a11yLabel: A11yLabel | undefined) {
+    return (
       <>
-        <span aria-hidden="true">{label}</span>
-        {srOnlyClassName && <span className={srOnlyClassName}>{a11yLabel}</span>}
+        {!a11yLabel || a11yLabel.mode === 'additional' ? (
+          label
+        ) : (
+          <span aria-hidden="true">{label}</span>
+        )}
+        {a11yLabel && srOnlyClassName && (
+          <span className={srOnlyClassName}>
+            {`${a11yLabel.mode === 'additional' ? ' ' : ''}${a11yLabel.label}`}
+          </span>
+        )}
       </>
-    ) : (
-      label
     );
   }
 
@@ -93,7 +106,9 @@ function BootstrapPagination({
               className={pageLinkClassName}
               href={linkHref === 'hash' ? '#' : undefined}
               onClick={preventDefault(() => handlePageChange(item.gotoPage))}
-              aria-label={item.a11yLabel}
+              aria-label={
+                item.a11yLabel?.mode === 'replace' ? item.a11yLabel.label : undefined
+              }
             >
               {getLabel(item.label, item.a11yLabel)}
             </a>
@@ -105,7 +120,12 @@ function BootstrapPagination({
             className={`${pageItemClassName} ${disabledItemClassName}`}
             aria-hidden={item.a11yHidden}
           >
-            <span className={pageLinkClassName} aria-label={item.a11yLabel}>
+            <span
+              className={pageLinkClassName}
+              aria-label={
+                item.a11yLabel?.mode === 'replace' ? item.a11yLabel.label : undefined
+              }
+            >
               {getLabel(item.label, item.a11yLabel)}
             </span>
           </li>
@@ -131,6 +151,9 @@ type BootstrapPaginationProps = {
   srOnlyClassName?: string;
   previousLabel?: string;
   nextLabel?: string;
+  ariaPreviousLabel?: string;
+  ariaNextLabel?: string;
+  renderNav?: boolean;
   a11yActiveLabel?: string;
   ariaCurrentAttr?: boolean;
   linkHref?: 'hash' | 'omit';
@@ -155,6 +178,9 @@ BootstrapPagination.propTypes = {
   srOnlyClassName: PropTypes.string,
   previousLabel: PropTypes.string,
   nextLabel: PropTypes.string,
+  ariaPreviousLabel: PropTypes.string,
+  ariaNextLabel: PropTypes.string,
+  renderNav: PropTypes.bool,
   a11yActiveLabel: PropTypes.string,
   ariaCurrentAttr: PropTypes.bool,
   linkHref: PropTypes.oneOf(['hash', 'omit']),

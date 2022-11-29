@@ -26,6 +26,8 @@ describe('Setting extraClassName', () => {
   ])('will have expected class', async (extraClassProp, expectedFullClass) => {
     await page.fill('#extraClassNameAsJson', stringifyWithUndefined(extraClassProp));
 
+    await page.evaluate(() => new Promise(requestAnimationFrame));
+
     const pagination = await page.waitForSelector('ul.pagination');
 
     const fullClass = await pagination.getAttribute('class');
@@ -45,12 +47,16 @@ describe('classNames', () => {
   ])('setting %p to %p renders correctly', async (field, value) => {
     await page.fill(`#${field}AsJson`, JSON.stringify(value));
 
+    await page.evaluate(() => new Promise(requestAnimationFrame));
+
     const paginationHtml = await page.$eval('ul', ul => ul.outerHTML);
     expect(paginationHtml).toMatchSnapshot();
   });
 
   test('setting "srOnlyClassName" to "" removes screen reader spans', async () => {
     await page.fill(`#srOnlyClassNameAsJson`, JSON.stringify(''));
+
+    await page.evaluate(() => new Promise(requestAnimationFrame));
 
     const paginationHtml = await page.$eval('ul', ul => ul.outerHTML);
     expect(paginationHtml).toMatchSnapshot();

@@ -8,13 +8,11 @@ beforeAll(async () => {
   await page.setViewportSize({ width: 700, height: 700 });
 });
 
-describe('linkHref', () => {
-  test.each([undefined, 'hash', 'omit'].map(linkHref => [linkHref]))(
-    'Setting linkHref to %p',
+describe('renderNav', () => {
+  test.each([undefined, false, true].map(linkHref => [linkHref]))(
+    'Setting renderNav to %p',
     async previousLabel => {
-      await page.fill('#linkHrefAsJson', stringifyWithUndefined(previousLabel));
-
-      await page.evaluate(() => new Promise(requestAnimationFrame));
+      await page.fill('#renderNavAsJson', stringifyWithUndefined(previousLabel));
 
       const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
 

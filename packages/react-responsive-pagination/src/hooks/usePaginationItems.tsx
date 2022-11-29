@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { NarrowStrategy, narrowToWideCompositions } from '../compositions';
-import { sanatizeInteger } from '../helpers/util';
+import { sanatizeInteger, sanatizeBoolean } from '../helpers/util';
 import { compositionToPaginationItems } from '../paginationItem';
 import { useWidestComposition } from './useWidestComposition';
 
@@ -11,19 +11,20 @@ export function usePaginationItems(
   options?: {
     nextLabel?: string;
     previousLabel?: string;
-    a11yActiveLabel: string;
+    ariaNextLabel?: string;
+    ariaPreviousLabel?: string;
+    renderNav?: boolean;
+    a11yActiveLabel?: string;
     narrowStrategy?: NarrowStrategy | NarrowStrategy[];
   },
 ) {
-  const total = sanatizeInteger(inputTotal);
-
-  const current =
-    total < 1 ? null : Math.max(1, Math.min(sanatizeInteger(inputCurrent), total));
-
-  const narrowStrategies = sanatizeNarrowStrategies(options?.narrowStrategy);
-
   const narrowToWideCompositionsProvider = () =>
-    narrowToWideCompositions(current, total, narrowStrategies);
+    narrowToWideCompositions({
+      current: sanatizeInteger(inputCurrent) ?? 0,
+      total: sanatizeInteger(inputTotal) ?? 0,
+      narrowStrategies: sanatizeNarrowStrategies(options?.narrowStrategy),
+      renderNav: sanatizeBoolean(options?.renderNav) ?? true,
+    });
 
   const {
     items: compositionItems,

@@ -105,15 +105,18 @@ See [Overriding default classNames](https://react-responsive-pagination.elantha.
 
 ### Label Props
 
-| Prop                                            | Description                                        |
-| ----------------------------------------------- | -------------------------------------------------- |
-| **previousLabel**<br />`string`<br />(optional) | The label for the previous button, defaults to `«` |
-| **nextLabel**<br />`string`<br />(optional)     | The label for the next button, defaults to `»`     |
+| Prop                                                | Description                                                                  |
+| --------------------------------------------------- | ---------------------------------------------------------------------------- |
+| **previousLabel**<br />`string`<br />(optional)     | The label for the previous button, defaults to `«`                           |
+| **nextLabel**<br />`string`<br />(optional)         | The label for the next button, defaults to `»`                               |
+| **ariaPreviousLabel**<br />`string`<br />(optional) | The accessibility ARIA label for the previous button, defaults to `Previous` |
+| **ariaNextLabel**<br />`string`<br />(optional)     | The accessibility ARIA label for the next button, defaults to `Next`         |
 
 ### Misc Props
 
 | Prop                                                                                                     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **renderNav**<br />`boolean`<br />(optional)                                                             | When set to `false` the nav buttons (**«**/**»**) will not be rendered. Defaults to `true`                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | **narrowStrategy**<br />`'dropEllipsis' \| 'dropNav' \| ('dropEllipsis' \| 'dropNav')[]`<br />(optional) | Specify that nav buttons (**«**/**»**) and/or the ellipsis (**…**) can be dropped for very narrow widths (useful if the component is used in narrow widths with high page numbers)<br />`'dropEllipsis'` - drop the ellipsis (**…**) for narrow widths<br />`'dropNav'` - drop the nav (**«**/**»**) for narrow widths<br />`['dropNav', 'dropEllipsis']` - drop the nav initially and then further drop the ellipsis if required<br />`['dropEllipsis', 'dropNav']` - drop the ellipsis initially and then further drop the nav if required |
 
 See [Props Reference](https://react-responsive-pagination.elantha.com/props) for the full list

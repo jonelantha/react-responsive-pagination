@@ -10,6 +10,7 @@ import { PropsTable } from "../../src/components/PropsTable"
 import CommonProps from "./commonProps.md"
 import ClassNameProps from "./classNameProps.md"
 import LabelProps from "./labelProps.md"
+import RenderNavProps from "./renderNavProps.md"
 import NarrowProps from "./narrowProps.md"
 import LinkHref from "./linkHrefProps.md"
 
@@ -38,6 +39,7 @@ See [Overriding default classNames](/custom-styled-pagination/#overriding-defaul
 ## Misc Props
 
 <PropsTable>
+  <RenderNavProps />
   <NarrowProps />
   <LinkHref />
 </PropsTable>
