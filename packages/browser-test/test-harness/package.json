@@ -3,19 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/node": "^18.11.9",
-    "@types/react": "^18.0.25",
-    "@types/react-dom": "^18.0.8",
+    "@types/node": "^18.11.18",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
     "bootstrap4": "npm:bootstrap@^4.6.2",
-    "bootstrap5": "npm:bootstrap@^5.2.1",
+    "bootstrap5": "npm:bootstrap@^5.2.3",
     "formik": "^2.2.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-responsive-pagination": "workspace:packages/react-responsive-pagination",
-    "react-router-dom": "^6.4.3",
+    "react-router-dom": "^6.8.0",
     "react-scripts": "^5.0.1",
-    "serve": "14.1.1",
-    "typescript": "^4.8.4"
+    "serve": "14.2.0",
+    "typescript": "^4.9.5"
   },
   "scripts": {
     "start": "PORT=3001 react-scripts start",
