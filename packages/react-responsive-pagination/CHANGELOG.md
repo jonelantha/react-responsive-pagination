@@ -1,5 +1,17 @@
 # React Responsive Pagination Changelog
 
+# [2.0.0-beta.1](https://github.com/jonelantha/react-responsive-pagination/compare/v1.10.2...v2.0.0-beta.1) (2023-03-08)
+
+
+### Features
+
+* ESM only distribution & ES2020 target ([f814c5e](https://github.com/jonelantha/react-responsive-pagination/commit/f814c5ed6e64c5750c3972d71c19288a47eb87f2))
+
+
+### BREAKING CHANGES
+
+* commonjs build no longer included and pre-2020 js engines not supported
+
 ## [1.10.2](https://github.com/jonelantha/react-responsive-pagination/compare/v1.10.1...v1.10.2) (2023-03-07)
 
 
