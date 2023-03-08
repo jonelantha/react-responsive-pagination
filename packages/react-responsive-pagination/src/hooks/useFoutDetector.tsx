@@ -1,6 +1,6 @@
 import { useLayoutEffect } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
-import { getWidth } from '../helpers/style';
+import { getWidth } from '../helpers/style.js';
 
 export function useFoutDetector(
   getElements: () => HTMLElement[] | null,
@@ -46,6 +46,7 @@ function setupResizeObserver(
   elements: HTMLElement[],
   handleElementsResized: (elements: HTMLElement[]) => void,
 ) {
+  // @ts-ignore
   const resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]) => {
     const elements = entries.map(getTargetElement);
 

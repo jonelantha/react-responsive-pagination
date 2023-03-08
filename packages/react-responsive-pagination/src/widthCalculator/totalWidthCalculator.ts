@@ -1,6 +1,6 @@
-import { sum } from '../helpers/util';
-import { GetItemWidth } from './itemWidthCalculator';
-import { CompositionItem } from '../compositionItem';
+import { sum } from '../helpers/util.js';
+import { GetItemWidth } from './itemWidthCalculator.js';
+import { CompositionItem } from '../compositionItem.js';
 
 export function createTotalWidthCalculator({
   getItemWidth,

@@ -1,9 +1,9 @@
 import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { usePaginationItems } from './hooks/usePaginationItems';
-import { preventDefault } from './helpers/dom';
-import { NarrowStrategy } from './compositions';
-import { A11yLabel } from './paginationItem';
+import { usePaginationItems } from './hooks/usePaginationItems.js';
+import { preventDefault } from './helpers/dom.js';
+import { NarrowStrategy } from './compositions/index.js';
+import { A11yLabel } from './paginationItem.js';
 
 export const bootstrap4PaginationPreset = {};
 

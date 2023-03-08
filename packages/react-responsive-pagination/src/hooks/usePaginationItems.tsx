@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { NarrowStrategy, narrowToWideCompositions } from '../compositions';
-import { sanatizeInteger, sanatizeBoolean } from '../helpers/util';
-import { compositionToPaginationItems } from '../paginationItem';
-import { useWidestComposition } from './useWidestComposition';
+import { NarrowStrategy, narrowToWideCompositions } from '../compositions/index.js';
+import { sanatizeInteger, sanatizeBoolean } from '../helpers/util.js';
+import { compositionToPaginationItems } from '../paginationItem.js';
+import { useWidestComposition } from './useWidestComposition.js';
 
 export function usePaginationItems(
   inputCurrent: number,

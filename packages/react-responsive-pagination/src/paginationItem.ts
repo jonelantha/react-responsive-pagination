@@ -1,4 +1,4 @@
-import { CompositionItem } from './compositionItem';
+import { CompositionItem } from './compositionItem.js';
 
 type BaseItem = {
   type: string;

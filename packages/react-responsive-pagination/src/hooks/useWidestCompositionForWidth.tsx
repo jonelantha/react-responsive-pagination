@@ -1,8 +1,8 @@
 import { ForwardedRef, useRef } from 'react';
-import { lastWhere, iteratorNext } from '../helpers/iterator';
-import { useWidthCalculator } from './useWidthCalculator';
-import { useFoutDetector } from './useFoutDetector';
-import { CompositionItem } from '../compositionItem';
+import { lastWhere, iteratorNext } from '../helpers/iterator.js';
+import { useWidthCalculator } from './useWidthCalculator/index.js';
+import { useFoutDetector } from './useFoutDetector.js';
+import { CompositionItem } from '../compositionItem.js';
 
 export function useWidestCompositionForWidth(
   narrowToWideCompositionsProvider: () => IterableIterator<CompositionItem[]>,

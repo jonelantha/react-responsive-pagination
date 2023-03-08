@@ -1,4 +1,4 @@
-import { NumberWidthCalculator } from './numberWidthCalculator';
+import { NumberWidthCalculator } from './numberWidthCalculator.js';
 
 export function createPageWidthCalculator({
   getActivePageWidth,

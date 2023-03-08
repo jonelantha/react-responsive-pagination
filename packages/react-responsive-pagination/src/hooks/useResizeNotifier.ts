@@ -13,6 +13,7 @@ export function useResizeNotifier(
   useLayoutEffect(() => {
     if (!element) return;
 
+    // @ts-ignore
     const resizeObserver = new ResizeObserver(
       withResizeLoopDetection(() => {
         callBackRef.current!();

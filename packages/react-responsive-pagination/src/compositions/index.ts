@@ -5,9 +5,9 @@ import {
   createNavPrevious,
   isEllipsis,
   isNav,
-} from '../compositionItem';
-import { zipIterators } from '../helpers/iterator';
-import { narrowToWideRanges } from './ranges';
+} from '../compositionItem.js';
+import { zipIterators } from '../helpers/iterator.js';
+import { narrowToWideRanges } from './ranges.js';
 
 export type NarrowStrategy = 'dropEllipsis' | 'dropNav';
 
