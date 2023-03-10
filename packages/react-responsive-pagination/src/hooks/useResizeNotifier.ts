@@ -1,5 +1,4 @@
 import { useLayoutEffect, useRef } from 'react';
-import ResizeObserver from 'resize-observer-polyfill';
 
 export function useResizeNotifier(
   element: HTMLElement | undefined,
@@ -13,7 +12,6 @@ export function useResizeNotifier(
   useLayoutEffect(() => {
     if (!element) return;
 
-    // @ts-ignore
     const resizeObserver = new ResizeObserver(
       withResizeLoopDetection(() => {
         callBackRef.current!();
