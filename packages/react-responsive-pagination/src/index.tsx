@@ -13,11 +13,11 @@ export const bootstrap5PaginationPreset = {
   srOnlyClassName: '',
 };
 
-export default memo(BootstrapPagination);
+export default memo(ResponsivePagination);
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-function BootstrapPagination({
+function ResponsivePagination({
   current,
   total,
   onPageChange: handlePageChange,
@@ -38,7 +38,7 @@ function BootstrapPagination({
   a11yActiveLabel,
   ariaCurrentAttr,
   linkHref = 'hash',
-}: BootstrapPaginationProps) {
+}: ResponsivePaginationProps) {
   const { items, ref, clearCache } = usePaginationItems(current, total, maxWidth, {
     narrowStrategy,
     previousLabel,
@@ -135,7 +135,7 @@ function BootstrapPagination({
   );
 }
 
-type BootstrapPaginationProps = {
+type ResponsivePaginationProps = {
   current: number;
   total: number;
   onPageChange: (page: number) => void;
@@ -159,7 +159,7 @@ type BootstrapPaginationProps = {
   linkHref?: 'hash' | 'omit';
 };
 
-BootstrapPagination.propTypes = {
+ResponsivePagination.propTypes = {
   current: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,

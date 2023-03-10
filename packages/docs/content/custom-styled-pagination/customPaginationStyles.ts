@@ -352,7 +352,7 @@ export const MinimumBootstrap5Container = styled(CustomPaginationContainer)`
 
 export const exampleAppCode = `
 import React, { useState } from 'react';
-import Pagination from 'react-responsive-pagination';
+import ResponsivePagination from 'react-responsive-pagination';
 import './pagination.css'; // see pagination.css examples below
 
 export default function MyApp() {
@@ -365,7 +365,7 @@ export default function MyApp() {
   }
 
   return (
-    <Pagination
+    <ResponsivePagination
       total={totalPages}
       current={currentPage}
       onPageChange={page => handlePageChange(page)}

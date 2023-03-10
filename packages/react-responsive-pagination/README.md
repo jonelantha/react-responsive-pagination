@@ -36,14 +36,14 @@ _(see below for a Bootstrap 5 example)_
 ```jsx
 // ... make sure appropriate css is in the project (see guides above)
 import React, { useState } from 'react';
-import Pagination from 'react-responsive-pagination';
+import ResponsivePagination from 'react-responsive-pagination';
 
 function MyApp() {
   const [currentPage, setCurrentPage] = useState(4);
   const totalPages = 17;
 
   return (
-    <Pagination
+    <ResponsivePagination
       current={currentPage}
       total={totalPages}
       onPageChange={setCurrentPage}
@@ -56,14 +56,16 @@ function MyApp() {
 
 ```jsx
 import React, { useState } from 'react';
-import Pagination, { bootstrap5PaginationPreset } from 'react-responsive-pagination';
+import ResponsivePagination, {
+  bootstrap5PaginationPreset,
+} from 'react-responsive-pagination';
 
 function MyBootstrap5App() {
   const [currentPage, setCurrentPage] = useState(4);
   const totalPages = 17;
 
   return (
-    <Pagination
+    <ResponsivePagination
       {...bootstrap5PaginationPreset}
       current={currentPage}
       total={totalPages}

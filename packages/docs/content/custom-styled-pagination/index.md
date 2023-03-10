@@ -176,7 +176,7 @@ If needed, you can easily override the default class names by adding the followi
 ### Example - overriding default class names
 
 ```jsx
-<Pagination
+<ResponsivePagination
   className="my-pagination"
   pageItemClassName="my-item"
   pageLinkClassName="my-link"
@@ -223,7 +223,7 @@ Change the default labels for the previous and next buttons by setting the `prev
 </Bootstrap4PaginationContainer>
 
 ```jsx
-<Pagination ... previousLabel="Previous" nextLabel="Next" />
+<ResponsivePagination ... previousLabel="Previous" nextLabel="Next" />
 ```
 
 ## Useful Props For Customisation

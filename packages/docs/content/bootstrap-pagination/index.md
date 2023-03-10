@@ -52,7 +52,9 @@ To use with Bootstrap 5 you need to include the Bootstrap 5 preset - see example
 // Bootstrap 5.x styles included somewhere in the project
 // (alternatively for Bootstrap 4.x example, see next section)
 import React, { useState } from 'react';
-import Pagination, { bootstrap5PaginationPreset } from 'react-responsive-pagination';
+import ResponsivePagination, {
+  bootstrap5PaginationPreset,
+} from 'react-responsive-pagination';
 import 'bootstrap/dist/css/bootstrap.css';
 
 function MyBootstrap5App() {
@@ -66,7 +68,7 @@ function MyBootstrap5App() {
   }
 
   return (
-    <Pagination
+    <ResponsivePagination
       {...bootstrap5PaginationPreset} // include Bootstrap 5 preset
       total={totalPages}
       current={currentPage}
@@ -81,7 +83,7 @@ function MyBootstrap5App() {
 ```jsx
 // Bootstrap 4.x styles included somewhere in the project
 import React, { useState } from 'react';
-import Pagination from 'react-responsive-pagination';
+import ResponsivePagination from 'react-responsive-pagination';
 import 'bootstrap/dist/css/bootstrap.css';
 
 function MyBootstrap4App() {
@@ -95,7 +97,7 @@ function MyBootstrap4App() {
   }
 
   return (
-    <Pagination
+    <ResponsivePagination
       total={totalPages}
       current={currentPage}
       onPageChange={page => handlePageChange(page)}
@@ -121,7 +123,7 @@ If needed, the ARIA labels can also be changed by setting the `ariaPreviousLabel
 </Bootstrap4PaginationContainer>
 
 ```jsx
-<Pagination ... previousLabel="Previous" nextLabel="Next" />
+<ResponsivePagination ... previousLabel="Previous" nextLabel="Next" />
 ```
 
 **Example - Single arrow labels**
@@ -133,7 +135,7 @@ If needed, the ARIA labels can also be changed by setting the `ariaPreviousLabel
 </Bootstrap4PaginationContainer>
 
 ```jsx
-<Pagination ... previousLabel="‹" nextLabel="›" />
+<ResponsivePagination ... previousLabel="‹" nextLabel="›" />
 ```
 
 ### No navigation buttons
@@ -149,7 +151,7 @@ Don't include the navigation buttons by setting `renderNav` to **false**:
 </Bootstrap4PaginationContainer>
 
 ```jsx
-<Pagination ... renderNav={false} />
+<ResponsivePagination ... renderNav={false} />
 ```
 
 ### Alignment / Justify
@@ -171,7 +173,7 @@ Change how the pagination is positioned by setting the `extraClassName` prop to 
 </Bootstrap4PaginationContainer>
 
 ```jsx
-<Pagination ... extraClassName="justify-content-start" />
+<ResponsivePagination ... extraClassName="justify-content-start" />
 ```
 
 ## Props Reference
