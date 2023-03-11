@@ -7,6 +7,7 @@
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "bootstrap4": "npm:bootstrap@^4.6.2",
+    "bootstrap4-0-0": "npm:bootstrap@4.0.0",
     "bootstrap5": "npm:bootstrap@^5.2.3",
     "formik": "^2.2.9",
     "react": "^18.2.0",

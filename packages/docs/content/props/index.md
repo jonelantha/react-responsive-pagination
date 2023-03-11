@@ -13,6 +13,7 @@ import LabelProps from "./labelProps.md"
 import RenderNavProps from "./renderNavProps.md"
 import NarrowProps from "./narrowProps.md"
 import LinkHref from "./linkHrefProps.md"
+import LegacyProps from "./legacyProps.md"
 
 # Props Reference
 
@@ -42,4 +43,5 @@ See [Overriding default classNames](/custom-styled-pagination/#overriding-defaul
   <RenderNavProps />
   <NarrowProps />
   <LinkHref />
+  <LegacyProps />
 </PropsTable>

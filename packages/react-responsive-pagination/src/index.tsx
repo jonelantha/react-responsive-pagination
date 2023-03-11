@@ -5,13 +5,15 @@ import { preventDefault } from './helpers/dom.js';
 import { NarrowStrategy } from './compositions/index.js';
 import { A11yLabel } from './paginationItem.js';
 
+export const v1_bootstrap4PaginationPreset = {
+  ariaCurrentAttr: false,
+  a11yActiveLabel: '(current)',
+  srOnlyClassName: 'sr-only',
+};
+
 export const bootstrap4PaginationPreset = {};
 
-export const bootstrap5PaginationPreset = {
-  ariaCurrentAttr: true,
-  a11yActiveLabel: '',
-  srOnlyClassName: '',
-};
+export const bootstrap5PaginationPreset = {};
 
 export default memo(ResponsivePagination);
 
@@ -29,14 +31,14 @@ function ResponsivePagination({
   pageLinkClassName = 'page-link',
   activeItemClassName = 'active',
   disabledItemClassName = 'disabled',
-  srOnlyClassName = 'sr-only',
+  srOnlyClassName,
   previousLabel,
   nextLabel,
   ariaPreviousLabel,
   ariaNextLabel,
   renderNav = true,
   a11yActiveLabel,
-  ariaCurrentAttr,
+  ariaCurrentAttr = true,
   linkHref = 'hash',
 }: ResponsivePaginationProps) {
   const { items, ref, clearCache } = usePaginationItems(current, total, maxWidth, {

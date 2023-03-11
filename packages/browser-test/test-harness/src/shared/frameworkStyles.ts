@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 
 const frameworkStyles = {
+  bootstrap400: lazy(() => import('./Bootstrap4_0_0Styles')),
   bootstrap4: lazy(() => import('./Bootstrap4Styles')),
   bootstrap5: lazy(() => import('./Bootstrap5Styles')),
 };
