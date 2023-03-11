@@ -1,6 +1,7 @@
 {
   "extends": "./tsconfig",
   "compilerOptions": {
+    "jsx": "react-jsxdev",
     "inlineSources": true,
     "inlineSourceMap": true
   }
