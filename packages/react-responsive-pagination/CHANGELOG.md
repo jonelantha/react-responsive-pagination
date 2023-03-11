@@ -1,5 +1,19 @@
 # React Responsive Pagination Changelog
 
+# [2.0.0-beta.3](https://github.com/jonelantha/react-responsive-pagination/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2023-03-11)
+
+
+### Features
+
+* Use jsx transform ([d1a4397](https://github.com/jonelantha/react-responsive-pagination/commit/d1a439714102fa127cbc2953d124382e38a64e60))
+* Use jsx transform ([2870b37](https://github.com/jonelantha/react-responsive-pagination/commit/2870b37b85d889f702ea77f66eddd85d0bbdb664))
+
+
+### BREAKING CHANGES
+
+* Minimum react version increased to 16.14
+* Minimum react version increased to 16.14
+
 # [2.0.0-beta.2](https://github.com/jonelantha/react-responsive-pagination/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2023-03-11)
 
 
