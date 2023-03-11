@@ -1,4 +1,4 @@
-import Pagination from 'react-responsive-pagination';
+import ResponsivePagination from 'react-responsive-pagination';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { Field, Formik } from 'formik';
 import { frameworkIds, getFrameworkStyles } from './frameworkStyles';
@@ -76,7 +76,7 @@ function App() {
         {formik => (
           <>
             <div className={cssExtraClasses.join(' ')}>
-              <Pagination
+              <ResponsivePagination
                 {...presets[formik.values.presetId]}
                 onPageChange={page =>
                   formik.setFieldValue('propsAsJson.current', JSON.stringify(page))

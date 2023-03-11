@@ -25,18 +25,6 @@ export const customStyles1 = `
   color: #6c757d;
   pointer-events: none;
   cursor: auto;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
 }`;
 
 export const CustomStyleContainer1 = styled(CustomPaginationContainer)`
@@ -75,20 +63,7 @@ export const customStyles2 = `
   color: #6c757d;
   pointer-events: none;
   cursor: auto;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-`;
+}`;
 
 export const CustomStyleContainer2 = styled(CustomPaginationContainer)`
   ${customStyles2}
@@ -129,18 +104,6 @@ export const customStyles3 = `
   color: #6c757d;
   pointer-events: none;
   cursor: auto;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
 }`;
 
 export const CustomStyleContainer3 = styled(CustomPaginationContainer)`
@@ -210,20 +173,7 @@ export const minimumBootstrap4Styles = `
   cursor: auto;
   background-color: #fff;
   border-color: #dee2e6;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-`;
+}`;
 
 export const MinimumBootstrap4Container = styled(CustomPaginationContainer)`
   ${minimumBootstrap4Styles}
@@ -331,20 +281,7 @@ export const minimumBootstrap5Styles = `
   --bs-pagination-padding-y: 0.25rem;
   --bs-pagination-font-size: 0.875rem;
   --bs-pagination-border-radius: 0.25rem;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-`;
+}`;
 
 export const MinimumBootstrap5Container = styled(CustomPaginationContainer)`
   ${minimumBootstrap5Styles}
@@ -352,7 +289,7 @@ export const MinimumBootstrap5Container = styled(CustomPaginationContainer)`
 
 export const exampleAppCode = `
 import React, { useState } from 'react';
-import Pagination from 'react-responsive-pagination';
+import ResponsivePagination from 'react-responsive-pagination';
 import './pagination.css'; // see pagination.css examples below
 
 export default function MyApp() {
@@ -365,7 +302,7 @@ export default function MyApp() {
   }
 
   return (
-    <Pagination
+    <ResponsivePagination
       total={totalPages}
       current={currentPage}
       onPageChange={page => handlePageChange(page)}

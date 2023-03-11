@@ -33,7 +33,7 @@ _(examples below are using Bootstrap 4.x styles - for Bootstrap 5.x, see the [Bo
 
 ```jsx
 import React, { useState } from 'react';
-import Pagination from 'react-responsive-pagination';
+import ResponsivePagination from 'react-responsive-pagination';
 import 'bootstrap/dist/css/bootstrap.css'; // this example uses Bootstrap 4.x styles
 
 function MyApp() {
@@ -47,7 +47,7 @@ function MyApp() {
   }
 
   return (
-    <Pagination
+    <ResponsivePagination
       total={totalPages}
       current={currentPage}
       onPageChange={page => handlePageChange(page)}
@@ -60,7 +60,7 @@ function MyApp() {
 
 ```jsx
 import React from 'react';
-import Pagination from 'react-responsive-pagination';
+import ResponsivePagination from 'react-responsive-pagination';
 import 'bootstrap/dist/css/bootstrap.css'; // this example uses Bootstrap 4.x styles
 
 export default class MyApp extends React.Component {
@@ -76,7 +76,7 @@ export default class MyApp extends React.Component {
 
   render() {
     return (
-      <Pagination
+      <ResponsivePagination
         total={this.state.totalPages}
         current={this.state.currentPage}
         onPageChange={page => this.handlePageChange(page)}

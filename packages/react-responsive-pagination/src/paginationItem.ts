@@ -49,7 +49,7 @@ export function compositionToPaginationItems(
     a11yActiveLabel?: string;
   },
 ): PaginationItem[] {
-  const activeLabel = options?.a11yActiveLabel ?? '(current)';
+  const activeLabel = options?.a11yActiveLabel;
   const previousLabel = options?.previousLabel || '«';
   const a11yPreviousLabel = options?.ariaPreviousLabel || 'Previous';
   const nextLabel = options?.nextLabel || '»';
