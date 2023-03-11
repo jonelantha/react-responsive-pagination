@@ -1,5 +1,20 @@
 # React Responsive Pagination Changelog
 
+# [2.0.0-beta.2](https://github.com/jonelantha/react-responsive-pagination/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2023-03-11)
+
+
+### Features
+
+* Remove resize-observer-polyfill for better bundle sizes ([0dd33b3](https://github.com/jonelantha/react-responsive-pagination/commit/0dd33b3b2d9e875272cf0f053ee6aaf88d7bc264))
+* Rename default export to ResponsivePagination (with updated examples) ([162973e](https://github.com/jonelantha/react-responsive-pagination/commit/162973e4b1ac9e0ec4277883a80bad73fc38af76))
+* Use aria attributes for screen readers (instead of visually hidden spans) ([39f5e33](https://github.com/jonelantha/react-responsive-pagination/commit/39f5e3379634472e38f31e5a20e6260a315defd2))
+
+
+### BREAKING CHANGES
+
+* .sr-only spans no longer output, replaced with aria attributes
+* ResizeObserver no longer polyfilled
+
 # [2.0.0-beta.1](https://github.com/jonelantha/react-responsive-pagination/compare/v1.10.2...v2.0.0-beta.1) (2023-03-08)
 
 
