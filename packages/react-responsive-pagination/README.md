@@ -50,7 +50,7 @@ function MyApp() {
 
 ## ✔︎ Requirements / Compatibility
 
-- React 18, 17 and 16.8 upwards
+- React 18, 17 and 16.14 upwards
 - Modern browsers only - not suitable for IE 11
 
 ## 🔧 Props
