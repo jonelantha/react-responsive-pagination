@@ -6,7 +6,7 @@
     "allowSyntheticDefaultImports": true,
     "module": "node16",
     "moduleResolution": "node16",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "declaration": true,
     "outDir": "./dist",
     "skipLibCheck": true
