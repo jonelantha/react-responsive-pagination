@@ -14,7 +14,6 @@ export function usePaginationItems(
     ariaNextLabel?: string;
     ariaPreviousLabel?: string;
     renderNav?: boolean;
-    a11yActiveLabel?: string;
     narrowStrategy?: NarrowStrategy | NarrowStrategy[];
   },
 ) {

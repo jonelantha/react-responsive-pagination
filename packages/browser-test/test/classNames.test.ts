@@ -15,7 +15,6 @@ beforeEach(async () => {
   await page.fill('#pageLinkClassNameAsJson', 'undefined');
   await page.fill('#activeItemClassNameAsJson', 'undefined');
   await page.fill('#disabledItemClassNameAsJson', 'undefined');
-  await page.fill('#srOnlyClassNameAsJson', 'undefined');
 });
 
 describe('Setting extraClassName', () => {
@@ -43,18 +42,8 @@ describe('classNames', () => {
     ['pageLinkClassName', 'alt-page-link'],
     ['activeItemClassName', 'alt-active'],
     ['disabledItemClassName', 'alt-disabled'],
-    ['srOnlyClassName', 'alt-sr-only'],
   ])('setting %p to %p renders correctly', async (field, value) => {
     await page.fill(`#${field}AsJson`, JSON.stringify(value));
-
-    await page.evaluate(() => new Promise(requestAnimationFrame));
-
-    const paginationHtml = await page.$eval('ul', ul => ul.outerHTML);
-    expect(paginationHtml).toMatchSnapshot();
-  });
-
-  test('setting "srOnlyClassName" to "" removes screen reader spans', async () => {
-    await page.fill(`#srOnlyClassNameAsJson`, JSON.stringify(''));
 
     await page.evaluate(() => new Promise(requestAnimationFrame));
 
