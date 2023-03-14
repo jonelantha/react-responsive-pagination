@@ -2,10 +2,38 @@ import { Fragment } from 'react';
 import { PropsTable, PropDef } from "../../src/components/PropsTable"
 
 <Fragment>
-  <PropDef name='srOnlyClassName' type='string' defaultValue='undefined'>
-    _Legacy prop for v1 compatibility_
+  <PropDef name='labelBehaviour' type='LabelBehaviour' defaultValue='undefined'>
+    _for v1 compatibility_
+  
+    V1 of react-reponsive-pagination used visually hidden span tags for screen reader labels (the current version uses only aria attributes). This prop can be used to re-enable the V1 behaviour (if preferred):
 
-    V1 of this component used visually hidden spans for screen reader labels (instead of aria attributes). This prop can be used to re-enable the visually hidden spans (using the prop value as a class name for the spans)
+    ```jsx
+      import { srOnlySpanLabel }, ResponsivePagination from 'react-responsive-pagination';
+      ...
+      <ResponsivePagination
+        ...
+        labelBehaviour={srOnlySpanLabel()}
+      />
+    ```
+
+    By default 'sr-only' is used as the class for the visually hidden spans. To override this, pass `srOnlyClassName`:
+
+    ```jsx
+      <ResponsivePagination
+        ...
+        labelBehaviour={srOnlySpanLabel({ srOnlyClassName: 'my-sr-only' })}
+      />
+    ```
+
+    The accessibility label for the active page defaults to `(current)`, to override this pass `a11yActiveLabel`:
+
+    ```jsx
+      <ResponsivePagination
+        ...
+        labelBehaviour={srOnlySpanLabel({ a11yActiveLabel: '(active)'})}
+      />
+    ```
+    _(the active label can be turned off by passing a value of '')_
 
     For reference, here's an example of a visually hidden css style:
 

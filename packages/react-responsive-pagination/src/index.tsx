@@ -3,19 +3,29 @@ import PropTypes from 'prop-types';
 import { usePaginationItems } from './hooks/usePaginationItems.js';
 import { preventDefault } from './helpers/dom.js';
 import { NarrowStrategy } from './compositions/index.js';
-import { A11yLabel } from './paginationItem.js';
+import { PaginationItem } from './paginationItem.js';
 
 export const v1_bootstrap4PaginationPreset = {
   ariaCurrentAttr: false,
-  a11yActiveLabel: '(current)',
-  srOnlyClassName: 'sr-only',
+  labelBehaviour: srOnlySpanLabel(),
 };
 
 export const bootstrap4PaginationPreset = {};
 
 export const bootstrap5PaginationPreset = {};
 
-export default memo(ResponsivePagination);
+declare const process: { env: { NODE_ENV: string } };
+
+// check dev tools
+export default process.env.NODE_ENV !== 'production'
+  ? memo(ResponsivePaginationDev)
+  : memo(ResponsivePagination);
+
+function ResponsivePaginationDev(props: ResponsivePaginationProps) {
+  checkLegacyProps(props);
+
+  return ResponsivePagination(props);
+}
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
@@ -31,15 +41,14 @@ function ResponsivePagination({
   pageLinkClassName = 'page-link',
   activeItemClassName = 'active',
   disabledItemClassName = 'disabled',
-  srOnlyClassName,
   previousLabel,
   nextLabel,
   ariaPreviousLabel,
   ariaNextLabel,
   renderNav = true,
-  a11yActiveLabel,
   ariaCurrentAttr = true,
   linkHref = 'hash',
+  labelBehaviour: getLabel = defaultLabelBehaviour,
 }: ResponsivePaginationProps) {
   const { items, ref, clearCache } = usePaginationItems(current, total, maxWidth, {
     narrowStrategy,
@@ -48,7 +57,6 @@ function ResponsivePagination({
     ariaPreviousLabel,
     ariaNextLabel,
     renderNav,
-    a11yActiveLabel,
   });
 
   useEffect(() => {
@@ -60,7 +68,6 @@ function ResponsivePagination({
     pageLinkClassName,
     activeItemClassName,
     disabledItemClassName,
-    srOnlyClassName,
   ]);
 
   if (items.length === 0) return null;
@@ -73,23 +80,6 @@ function ResponsivePagination({
     } else {
       return 'pagination';
     }
-  }
-
-  function getLabel(label: string, a11yLabel: A11yLabel | undefined) {
-    return (
-      <>
-        {!a11yLabel || a11yLabel.mode === 'additional' ? (
-          label
-        ) : (
-          <span aria-hidden="true">{label}</span>
-        )}
-        {a11yLabel && srOnlyClassName && (
-          <span className={srOnlyClassName}>
-            {`${a11yLabel.mode === 'additional' ? ' ' : ''}${a11yLabel.label}`}
-          </span>
-        )}
-      </>
-    );
   }
 
   return (
@@ -108,11 +98,9 @@ function ResponsivePagination({
               className={pageLinkClassName}
               href={linkHref === 'hash' ? '#' : undefined}
               onClick={preventDefault(() => handlePageChange(item.gotoPage))}
-              aria-label={
-                item.a11yLabel?.mode === 'replace' ? item.a11yLabel.label : undefined
-              }
+              aria-label={item.a11yLabel}
             >
-              {getLabel(item.label, item.a11yLabel)}
+              {getLabel(item)}
             </a>
           </li>
         ) : (
@@ -122,13 +110,8 @@ function ResponsivePagination({
             className={`${pageItemClassName} ${disabledItemClassName}`}
             aria-hidden={item.a11yHidden}
           >
-            <span
-              className={pageLinkClassName}
-              aria-label={
-                item.a11yLabel?.mode === 'replace' ? item.a11yLabel.label : undefined
-              }
-            >
-              {getLabel(item.label, item.a11yLabel)}
+            <span className={pageLinkClassName} aria-label={item.a11yLabel}>
+              {getLabel(item)}
             </span>
           </li>
         ),
@@ -150,16 +133,17 @@ type ResponsivePaginationProps = {
   activeItemClassName?: string;
   disabledItemClassName?: string;
   disabledLinkClassName?: string;
-  srOnlyClassName?: string;
   previousLabel?: string;
   nextLabel?: string;
   ariaPreviousLabel?: string;
   ariaNextLabel?: string;
   renderNav?: boolean;
-  a11yActiveLabel?: string;
   ariaCurrentAttr?: boolean;
   linkHref?: 'hash' | 'omit';
+  labelBehaviour?: LabelBehaviour;
 };
+
+type LabelBehaviour = (item: PaginationItem) => React.ReactNode;
 
 ResponsivePagination.propTypes = {
   current: PropTypes.number.isRequired,
@@ -177,13 +161,53 @@ ResponsivePagination.propTypes = {
   activeItemClassName: PropTypes.string,
   disabledItemClassName: PropTypes.string,
   disabledLinkClassName: PropTypes.string,
-  srOnlyClassName: PropTypes.string,
   previousLabel: PropTypes.string,
   nextLabel: PropTypes.string,
   ariaPreviousLabel: PropTypes.string,
   ariaNextLabel: PropTypes.string,
   renderNav: PropTypes.bool,
-  a11yActiveLabel: PropTypes.string,
   ariaCurrentAttr: PropTypes.bool,
   linkHref: PropTypes.oneOf(['hash', 'omit']),
+  labelBehaviour: PropTypes.func,
 };
+
+function defaultLabelBehaviour({ a11yLabel, label }: PaginationItem) {
+  return !a11yLabel ? label : <span aria-hidden="true">{label}</span>;
+}
+
+export function srOnlySpanLabel({
+  a11yActiveLabel = '(current)',
+  srOnlyClassName = 'sr-only',
+}: {
+  a11yActiveLabel?: string;
+  srOnlyClassName?: string;
+} = {}) {
+  return (item: PaginationItem) => {
+    const activePage = item.gotoPage !== undefined && item.active;
+    const srOnlyLabel =
+      activePage && a11yActiveLabel ? ` ${a11yActiveLabel}` : item.a11yLabel;
+
+    return (
+      <>
+        {!item.a11yLabel ? item.label : <span aria-hidden="true">{item.label}</span>}
+        {srOnlyLabel && <span className={srOnlyClassName}>{srOnlyLabel}</span>}
+      </>
+    );
+  };
+}
+
+const legacyUsageWarnings: string[] = [];
+
+function checkLegacyProps(props: { [key in string]: any }) {
+  for (const legacyProp of ['srOnlyClassName', 'a11yActiveLabel']) {
+    if (
+      props[legacyProp] !== undefined &&
+      !legacyUsageWarnings.includes(legacyProp)
+    ) {
+      console.warn(
+        `react-responsive-pagination: '${legacyProp}' prop no longer supported, please see migration guide`,
+      );
+      legacyUsageWarnings.push(legacyProp);
+    }
+  }
+}
