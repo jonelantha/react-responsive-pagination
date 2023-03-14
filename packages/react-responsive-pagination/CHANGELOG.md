@@ -1,5 +1,17 @@
 # React Responsive Pagination Changelog
 
+# [2.0.0-beta.4](https://github.com/jonelantha/react-responsive-pagination/compare/v2.0.0-beta.3...v2.0.0-beta.4) (2023-03-14)
+
+
+### Features
+
+* Move v1 srOnly label behaviour into new LabelBehavior ([6baeb8e](https://github.com/jonelantha/react-responsive-pagination/commit/6baeb8e07c5275fe27c2789f1fac0fd79f9ebe0c))
+
+
+### BREAKING CHANGES
+
+* `srOnlyClassName` and `a11yActiveLabel` will require transition to srOnlySpanLabel
+
 # [2.0.0-beta.3](https://github.com/jonelantha/react-responsive-pagination/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2023-03-11)
 
 
