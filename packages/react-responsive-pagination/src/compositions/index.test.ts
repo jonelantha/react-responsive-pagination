@@ -1,7 +1,13 @@
-import { narrowToWideCompositions } from '.';
-import { CompositionItem } from '../compositionItem';
+import { narrowToWideCompositions } from './index.js';
+import { CompositionItem } from '../compositionItem.js';
+import {
+  dropEllipsis,
+  dropEllipsisThenNav,
+  dropNav,
+  dropNavThenEllipsis,
+} from '../narrowBehaviour.js';
 
-const defaultParams = { narrowStrategies: [], renderNav: true };
+const defaultParams = { narrowBehaviour: undefined, renderNav: true };
 
 describe('narrowToWideCompositions - total', () => {
   test('outputs nothing for total < 1', () => {
@@ -185,13 +191,13 @@ describe('narrowToWideCompositions - widening compositions', () => {
   });
 });
 
-describe('narrowToWideCompositions - narrowStrategy', () => {
+describe('narrowToWideCompositions - narrowBehaviour', () => {
   test('will initially drop nav if required', () => {
     const compositions = narrowToWideCompositions({
       ...defaultParams,
       current: 5,
       total: 9,
-      narrowStrategies: ['dropNav'],
+      narrowBehaviour: dropNav,
     });
 
     const expectedCompositions = [
@@ -213,7 +219,7 @@ describe('narrowToWideCompositions - narrowStrategy', () => {
       ...defaultParams,
       current: 5,
       total: 9,
-      narrowStrategies: ['dropEllipsis'],
+      narrowBehaviour: dropEllipsis,
     });
 
     const expectedCompositions = [
@@ -230,12 +236,12 @@ describe('narrowToWideCompositions - narrowStrategy', () => {
     expect(compositions.next().done).toBe(true);
   });
 
-  test('will prioritise dropping nav if specified first', () => {
+  test('will prioritise dropping nav if specified', () => {
     const compositions = narrowToWideCompositions({
       ...defaultParams,
       current: 5,
       total: 9,
-      narrowStrategies: ['dropNav', 'dropEllipsis'],
+      narrowBehaviour: dropNavThenEllipsis,
     });
 
     const expectedCompositions = [
@@ -253,12 +259,12 @@ describe('narrowToWideCompositions - narrowStrategy', () => {
     expect(compositions.next().done).toBe(true);
   });
 
-  test('will prioritise dropping ellipsis if specified first', () => {
+  test('will prioritise dropping ellipsis if specified', () => {
     const compositions = narrowToWideCompositions({
       ...defaultParams,
       current: 5,
       total: 9,
-      narrowStrategies: ['dropEllipsis', 'dropNav'],
+      narrowBehaviour: dropEllipsisThenNav,
     });
 
     const expectedCompositions = [
@@ -281,7 +287,7 @@ describe('narrowToWideCompositions - narrowStrategy', () => {
       ...defaultParams,
       current: 2,
       total: 3,
-      narrowStrategies: ['dropEllipsis'],
+      narrowBehaviour: dropEllipsis,
     });
 
     const expectedCompositions = [['<1', 1, '*2', 3, '>3']];
@@ -293,17 +299,14 @@ describe('narrowToWideCompositions - narrowStrategy', () => {
     expect(compositions.next().done).toBe(true);
   });
 
-  test.each([
-    ['dropEllipsis', 'dropNav'] as const,
-    ['dropNav', 'dropEllipsis'] as const,
-  ])(
-    'no extra iteration as added if no ellipsis present and narrowStrategy = [%s, %s]',
-    (...narrowStrategies) => {
+  test.each([dropEllipsisThenNav, dropNavThenEllipsis])(
+    'no extra iteration as added if no ellipsis present and narrowBehaviour = %p',
+    narrowBehaviour => {
       const compositions = narrowToWideCompositions({
         ...defaultParams,
         current: 2,
         total: 3,
-        narrowStrategies,
+        narrowBehaviour,
       });
 
       const expectedCompositions = [

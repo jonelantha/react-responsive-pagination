@@ -6,25 +6,25 @@ beforeAll(() => {
 
 const testWidths = [150, 200, 250];
 
-const narrowStrategies = [
+const narrowBehaviours = [
   undefined,
   'dropNav',
   'dropEllipsis',
-  ['dropNav', 'dropEllipsis'],
-  ['dropEllipsis', 'dropNav'],
+  'dropNavThenEllipsis',
+  'dropEllipsisThenNav',
 ];
 
-describe.each(narrowStrategies.map(narrowStrategy => [narrowStrategy]))(
-  'Auto sizing with narrowStrategy %p',
-  narrowStrategy => {
+describe.each(narrowBehaviours)(
+  'Auto sizing with narrowBehaviour %p',
+  narrowBehaviour => {
     beforeAll(async () => {
       await page.goto('about:blank');
 
       await page.goto(`${harnessUrl}bootstrap4`);
 
       await page.fill(
-        '#narrowStrategyAsJson',
-        stringifyWithUndefined(narrowStrategy),
+        '#narrowBehaviourNameAsJson',
+        stringifyWithUndefined(narrowBehaviour),
       );
 
       await page.fill('#totalAsJson', '100');
