@@ -2,8 +2,8 @@ import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { usePaginationItems } from './hooks/usePaginationItems.js';
 import { preventDefault } from './helpers/dom.js';
-import { NarrowStrategy } from './compositions/index.js';
 import { PaginationItem } from './paginationItem.js';
+import { NarrowBehaviour } from './narrowBehaviour.js';
 
 export const v1_bootstrap4PaginationPreset = {
   ariaCurrentAttr: false,
@@ -16,7 +16,6 @@ export const bootstrap5PaginationPreset = {};
 
 declare const process: { env: { NODE_ENV: string } };
 
-// check dev tools
 export default process.env.NODE_ENV !== 'production'
   ? memo(ResponsivePaginationDev)
   : memo(ResponsivePagination);
@@ -34,7 +33,7 @@ function ResponsivePagination({
   total,
   onPageChange: handlePageChange,
   maxWidth,
-  narrowStrategy,
+  narrowBehaviour,
   className,
   extraClassName = 'justify-content-center',
   pageItemClassName = 'page-item',
@@ -51,7 +50,7 @@ function ResponsivePagination({
   labelBehaviour: getLabel = defaultLabelBehaviour,
 }: ResponsivePaginationProps) {
   const { items, ref, clearCache } = usePaginationItems(current, total, maxWidth, {
-    narrowStrategy,
+    narrowBehaviour,
     previousLabel,
     nextLabel,
     ariaPreviousLabel,
@@ -125,7 +124,7 @@ type ResponsivePaginationProps = {
   total: number;
   onPageChange: (page: number) => void;
   maxWidth?: number;
-  narrowStrategy?: NarrowStrategy | NarrowStrategy[];
+  narrowBehaviour?: NarrowBehaviour;
   className?: string;
   extraClassName?: string;
   pageItemClassName?: string;
@@ -150,10 +149,7 @@ ResponsivePagination.propTypes = {
   total: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
   maxWidth: PropTypes.number,
-  narrowStrategy: PropTypes.oneOfType([
-    PropTypes.oneOf(['dropEllipsis', 'dropNav']),
-    PropTypes.arrayOf(PropTypes.oneOf(['dropEllipsis', 'dropNav']).isRequired),
-  ]),
+  narrowBehaviour: PropTypes.func,
   className: PropTypes.string,
   extraClassName: PropTypes.string,
   pageItemClassName: PropTypes.string,
@@ -199,7 +195,11 @@ export function srOnlySpanLabel({
 const legacyUsageWarnings: string[] = [];
 
 function checkLegacyProps(props: { [key in string]: any }) {
-  for (const legacyProp of ['srOnlyClassName', 'a11yActiveLabel']) {
+  for (const legacyProp of [
+    'srOnlyClassName',
+    'a11yActiveLabel',
+    'narrowStrategy',
+  ]) {
     if (
       props[legacyProp] !== undefined &&
       !legacyUsageWarnings.includes(legacyProp)

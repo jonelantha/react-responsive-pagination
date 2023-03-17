@@ -19,4 +19,4 @@ You can choose to override the auto sizing by specifying the `maxWidth` prop (se
 
 For very narrow widths the component may exceed the available space - this is to ensure that there's always a usable pagination component.
 
-The `narrowStrategy` prop can be used to specify that either the nav buttons (**«**/**»**) and/or the ellipsis (**…**) can be dropped for narrow widths - see the [narrowStrategy prop](/props#misc-props) for more details.
+The `narrowBehaviour` prop can be used to specify that either the nav buttons (**«**/**»**) and/or the ellipsis (**…**) can be dropped for narrow widths - see the [narrowBehaviour prop](/props#misc-props) for more details.
