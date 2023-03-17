@@ -10,10 +10,7 @@
   "main": "./dist/index.js",
   "exports": {
     ".": "./dist/index.js",
-    "./narrowBehaviour": {
-      "import": "./dist/narrowBehaviour.js",
-      "types": "./dist/narrowBehaviour.d.ts"
-    }
+    "./narrowBehaviour": "./dist/narrowBehaviour.js"
   },
   "files": [
     "dist/",
