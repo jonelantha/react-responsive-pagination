@@ -1,5 +1,17 @@
 # React Responsive Pagination Changelog
 
+# [2.0.0-beta.5](https://github.com/jonelantha/react-responsive-pagination/compare/v2.0.0-beta.4...v2.0.0-beta.5) (2023-03-17)
+
+
+### Features
+
+* Replace narrowStrategy with new NarrowBehaviour (to reduce bundle size) ([ebfd8dc](https://github.com/jonelantha/react-responsive-pagination/commit/ebfd8dc32b28f53b0ad05b307b1093db3cda0772))
+
+
+### BREAKING CHANGES
+
+* `narrowStrategy` will require transition to `narrowBehaviour`
+
 # [2.0.0-beta.4](https://github.com/jonelantha/react-responsive-pagination/compare/v2.0.0-beta.3...v2.0.0-beta.4) (2023-03-14)
 
 
