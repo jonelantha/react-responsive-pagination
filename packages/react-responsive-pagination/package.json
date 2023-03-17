@@ -8,11 +8,25 @@
   "homepage": "https://react-responsive-pagination.elantha.com",
   "type": "module",
   "main": "./dist/index.js",
-  "exports": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./narrowBehaviour": {
+      "import": "./dist/narrowBehaviour.js",
+      "types": "./dist/narrowBehaviour.d.ts"
+    }
+  },
+  "files": [
+    "dist/",
+    "CHANGELOG.md",
+    "LICENSE",
+    "narrowBehaviour.d.ts",
+    "narrowBehaviour.js",
+    "package.json",
+    "README.md"
+  ],
   "types": "./dist/index.d.ts",
   "scripts": {
-    "tsc": "rimraf dist/ && tsc",
-    "build": "yarn lint && yarn tsc",
+    "build": "yarn lint && rimraf dist/ && tsc --project ./tsconfig.prod.json",
     "start": "rimraf dist/ && tsc --project ./tsconfig.dev.json --watch",
     "test": "jest",
     "lint": "eslint --ext .ts --ext .tsx src",

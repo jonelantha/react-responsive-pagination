@@ -3,10 +3,9 @@ import {
   createActivePage,
   createNavNext,
   createNavPrevious,
-  isEllipsis,
-  isNav,
 } from '../compositionItem.js';
 import { zipIterators } from '../helpers/iterator.js';
+import { NarrowBehaviour } from '../narrowBehaviour.js';
 import { narrowToWideRanges } from './ranges.js';
 
 export type NarrowStrategy = 'dropEllipsis' | 'dropNav';
@@ -14,12 +13,12 @@ export type NarrowStrategy = 'dropEllipsis' | 'dropNav';
 export function* narrowToWideCompositions({
   current,
   total,
-  narrowStrategies,
+  narrowBehaviour,
   renderNav,
 }: {
   current: number;
   total: number;
-  narrowStrategies: NarrowStrategy[];
+  narrowBehaviour: NarrowBehaviour | undefined;
   renderNav: boolean;
 }) {
   if (total < 1) return;
@@ -33,35 +32,11 @@ export function* narrowToWideCompositions({
   );
 
   for (const initialComposition of compositions) {
-    if (narrowStrategies.length > 0) {
-      yield* initialReducedCompositions(initialComposition, narrowStrategies);
-    }
+    if (narrowBehaviour) yield* narrowBehaviour(initialComposition);
 
     yield initialComposition;
 
     yield* compositions;
-  }
-}
-
-function* initialReducedCompositions(
-  initialComposition: CompositionItem[],
-  narrowStrategies: NarrowStrategy[],
-) {
-  const hasEllipsis = initialComposition.some(isEllipsis);
-
-  const applicableStrategies = narrowStrategies.filter(
-    strategy => strategy !== 'dropEllipsis' || hasEllipsis,
-  );
-
-  while (applicableStrategies.length > 0) {
-    const dropEllipsis = applicableStrategies.includes('dropEllipsis');
-    const dropNav = applicableStrategies.includes('dropNav');
-
-    yield initialComposition.filter(
-      item => (!dropEllipsis || !isEllipsis(item)) && (!dropNav || !isNav(item)),
-    );
-
-    applicableStrategies.pop();
   }
 }
 

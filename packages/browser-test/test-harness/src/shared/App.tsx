@@ -1,4 +1,10 @@
 import ResponsivePagination, { srOnlySpanLabel } from 'react-responsive-pagination';
+import {
+  dropEllipsis,
+  dropEllipsisThenNav,
+  dropNav,
+  dropNavThenEllipsis,
+} from 'react-responsive-pagination/narrowBehaviour';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { Field, Formik } from 'formik';
 import { frameworkIds, getFrameworkStyles } from './frameworkStyles';
@@ -12,7 +18,6 @@ const fields = {
     total: 'Total Pages',
     maxWidth: 'Max Width',
     current: 'Current Page',
-    narrowStrategy: 'Narrow Strategy',
     className: 'className',
     extraClassName: 'Extra Class',
     pageItemClassName: 'Page item className',
@@ -32,6 +37,9 @@ const fields = {
     srOnlyClassName: 'SR Only className',
     a11yActiveLabel: 'a11y Active Label',
   },
+  narrowBehaviourFieldsAsJson: {
+    narrowBehaviourName: 'Narrow Behaviour',
+  },
 };
 
 const initialValues = {
@@ -40,7 +48,6 @@ const initialValues = {
     total: '100',
     maxWidth: '',
     current: '0',
-    narrowStrategy: 'undefined',
     className: 'undefined',
     extraClassName: 'undefined',
     pageItemClassName: 'undefined',
@@ -59,6 +66,9 @@ const initialValues = {
     labelBehaviour: 'undefined',
     srOnlyClassName: 'undefined',
     a11yActiveLabel: 'undefined',
+  },
+  narrowBehaviourFieldsAsJson: {
+    narrowBehaviourName: 'undefined',
   },
 };
 
@@ -90,6 +100,9 @@ function App() {
                 {...parseJsonFields(formik.values.propsAsJson)}
                 {...getLabelBehaviour(
                   parseJsonFields(formik.values.labelBehaviourFieldsAsJson),
+                )}
+                {...getNarrowBehaviour(
+                  parseJsonFields(formik.values.narrowBehaviourFieldsAsJson),
                 )}
               />
             </div>
@@ -187,27 +200,32 @@ function App() {
                     ))}
                   </div>
                 </div>
-                {(['propsAsJson', 'labelBehaviourFieldsAsJson'] as const).map(
-                  group =>
-                    Object.entries(fields[group]).map(([field, title]) => (
-                      <div className="mb-1 row" key={field}>
-                        <label
-                          htmlFor={`${field}AsJson`}
-                          className="col-sm-4 col-form-label"
-                        >
-                          {title} (JSON)
-                        </label>
-                        <div className="col-sm-2">
-                          <Field
-                            name={`${group}.${field}`}
-                            type="text"
-                            className="form-control"
-                            id={`${field}AsJson`}
-                            spellCheck="false"
-                          />
-                        </div>
+                {(
+                  [
+                    'propsAsJson',
+                    'labelBehaviourFieldsAsJson',
+                    'narrowBehaviourFieldsAsJson',
+                  ] as const
+                ).map(group =>
+                  Object.entries(fields[group]).map(([field, title]) => (
+                    <div className="mb-1 row" key={field}>
+                      <label
+                        htmlFor={`${field}AsJson`}
+                        className="col-sm-4 col-form-label"
+                      >
+                        {title} (JSON)
+                      </label>
+                      <div className="col-sm-2">
+                        <Field
+                          name={`${group}.${field}`}
+                          type="text"
+                          className="form-control"
+                          id={`${field}AsJson`}
+                          spellCheck="false"
+                        />
                       </div>
-                    )),
+                    </div>
+                  )),
                 )}
               </form>
             </div>
@@ -227,6 +245,19 @@ function getLabelBehaviour({
 }: { [K in keyof (typeof fields)['labelBehaviourFieldsAsJson']]: any }) {
   if (labelBehaviour === 'srOnlySpanLabel') {
     return { labelBehaviour: srOnlySpanLabel({ srOnlyClassName, a11yActiveLabel }) };
+  }
+}
+
+function getNarrowBehaviour({ narrowBehaviourName }: { narrowBehaviourName: any }) {
+  switch (narrowBehaviourName) {
+    case 'dropEllipsis':
+      return { narrowBehaviour: dropEllipsis };
+    case 'dropNav':
+      return { narrowBehaviour: dropNav };
+    case 'dropEllipsisThenNav':
+      return { narrowBehaviour: dropEllipsisThenNav };
+    case 'dropNavThenEllipsis':
+      return { narrowBehaviour: dropNavThenEllipsis };
   }
 }
 
