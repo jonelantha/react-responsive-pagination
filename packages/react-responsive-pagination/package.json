@@ -10,7 +10,9 @@
   "main": "./dist/index.js",
   "exports": {
     ".": "./dist/index.js",
-    "./narrowBehaviour": "./dist/narrowBehaviour.js"
+    "./narrowBehaviour": "./dist/narrowBehaviour.js",
+    "./labelBehaviour": "./dist/labelBehaviour.js",
+    "./presets": "./dist/presets.js"
   },
   "files": [
     "dist/",
@@ -18,6 +20,10 @@
     "LICENSE",
     "narrowBehaviour.d.ts",
     "narrowBehaviour.js",
+    "labelBehaviour.d.ts",
+    "labelBehaviour.js",
+    "preset.d.ts",
+    "preset.js",
     "package.json",
     "README.md"
   ],
