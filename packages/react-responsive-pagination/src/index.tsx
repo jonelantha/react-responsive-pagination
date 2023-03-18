@@ -2,16 +2,11 @@ import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { usePaginationItems } from './hooks/usePaginationItems.js';
 import { preventDefault } from './helpers/dom.js';
-import { PaginationItem } from './paginationItem.js';
 import { NarrowBehaviour } from './narrowBehaviour.js';
+import { defaultLabelBehaviour, LabelBehaviour } from './labelBehaviour.js';
 
-export const v1_bootstrap4PaginationPreset = {
-  ariaCurrentAttr: false,
-  labelBehaviour: srOnlySpanLabel(),
-};
-
+/* legacy - may be removed */
 export const bootstrap4PaginationPreset = {};
-
 export const bootstrap5PaginationPreset = {};
 
 declare const process: { env: { NODE_ENV: string } };
@@ -142,8 +137,6 @@ type ResponsivePaginationProps = {
   labelBehaviour?: LabelBehaviour;
 };
 
-type LabelBehaviour = (item: PaginationItem) => React.ReactNode;
-
 ResponsivePagination.propTypes = {
   current: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
@@ -166,31 +159,6 @@ ResponsivePagination.propTypes = {
   linkHref: PropTypes.oneOf(['hash', 'omit']),
   labelBehaviour: PropTypes.func,
 };
-
-function defaultLabelBehaviour({ a11yLabel, label }: PaginationItem) {
-  return !a11yLabel ? label : <span aria-hidden="true">{label}</span>;
-}
-
-export function srOnlySpanLabel({
-  a11yActiveLabel = '(current)',
-  srOnlyClassName = 'sr-only',
-}: {
-  a11yActiveLabel?: string;
-  srOnlyClassName?: string;
-} = {}) {
-  return (item: PaginationItem) => {
-    const activePage = item.gotoPage !== undefined && item.active;
-    const srOnlyLabel =
-      activePage && a11yActiveLabel ? ` ${a11yActiveLabel}` : item.a11yLabel;
-
-    return (
-      <>
-        {!item.a11yLabel ? item.label : <span aria-hidden="true">{item.label}</span>}
-        {srOnlyLabel && <span className={srOnlyClassName}>{srOnlyLabel}</span>}
-      </>
-    );
-  };
-}
 
 const legacyUsageWarnings: string[] = [];
 
