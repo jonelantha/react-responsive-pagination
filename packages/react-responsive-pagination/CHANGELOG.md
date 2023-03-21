@@ -1,5 +1,20 @@
 # React Responsive Pagination Changelog
 
+# [2.0.0-beta.8](https://github.com/jonelantha/react-responsive-pagination/compare/v2.0.0-beta.7...v2.0.0-beta.8) (2023-03-21)
+
+
+### Features
+
+* Move presets/labelBehavior to sub-packages ([872ccee](https://github.com/jonelantha/react-responsive-pagination/commit/872cceed53fb9ec2691700cfbbfca16e86441486))
+* Move v1 srOnly label behaviour into new LabelBehavior ([98ab8d7](https://github.com/jonelantha/react-responsive-pagination/commit/98ab8d74817d18ecdc27985785b68a788de36969))
+* Replace narrowStrategy with new NarrowBehaviour (to reduce bundle size) ([8ca58f7](https://github.com/jonelantha/react-responsive-pagination/commit/8ca58f7c83bb33dc44a2de2358cb542ddead7307))
+
+
+### BREAKING CHANGES
+
+* `narrowStrategy` will require transition to `narrowBehaviour`
+* `srOnlyClassName` and `a11yActiveLabel` will require transition to srOnlySpanLabel
+
 # [2.0.0-beta.7](https://github.com/jonelantha/react-responsive-pagination/compare/v2.0.0-beta.6...v2.0.0-beta.7) (2023-03-21)
 
 
