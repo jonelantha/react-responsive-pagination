@@ -22,8 +22,8 @@
     "narrowBehaviour.js",
     "labelBehaviour.d.ts",
     "labelBehaviour.js",
-    "preset.d.ts",
-    "preset.js",
+    "presets.d.ts",
+    "presets.js",
     "package.json",
     "README.md"
   ],

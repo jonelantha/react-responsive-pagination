@@ -1,3 +1,4 @@
+import React from 'react';
 import { PaginationItem } from './paginationItem.js';
 
 export type LabelBehaviour = (item: PaginationItem) => React.ReactNode;
