@@ -1,5 +1,12 @@
 # React Responsive Pagination Changelog
 
+# [2.0.0-beta.7](https://github.com/jonelantha/react-responsive-pagination/compare/v2.0.0-beta.6...v2.0.0-beta.7) (2023-03-21)
+
+
+### Features
+
+* Move presets/labelBehavior to sub-packages ([8aceb81](https://github.com/jonelantha/react-responsive-pagination/commit/8aceb81c237cc157cdc50cdadf6cb94bbaa8f214))
+
 # [2.0.0-beta.6](https://github.com/jonelantha/react-responsive-pagination/compare/v2.0.0-beta.5...v2.0.0-beta.6) (2023-03-17)
 
 
