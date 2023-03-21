@@ -114,7 +114,7 @@ function ResponsivePagination({
   );
 }
 
-type ResponsivePaginationProps = {
+export type ResponsivePaginationProps = {
   current: number;
   total: number;
   onPageChange: (page: number) => void;
@@ -173,7 +173,7 @@ function checkLegacyProps(props: { [key in string]: any }) {
       !legacyUsageWarnings.includes(legacyProp)
     ) {
       console.warn(
-        `react-responsive-pagination: '${legacyProp}' prop no longer supported, please see migration guide`,
+        `react-responsive-pagination: '${legacyProp}' prop no longer supported, please see migration guide: https://react-responsive-pagination.elantha.com/migration/`,
       );
       legacyUsageWarnings.push(legacyProp);
     }

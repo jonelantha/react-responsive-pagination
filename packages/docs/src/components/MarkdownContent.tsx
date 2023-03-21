@@ -73,6 +73,7 @@ export const MarkdownContainer = styled.article`
   }
 
   td > code,
+  p > strong > code,
   p > code {
     background-color: ${colorHighlightedBackground};
     border: 1px solid rgba(0, 0, 0, 0.1);
