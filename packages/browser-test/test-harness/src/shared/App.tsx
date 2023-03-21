@@ -1,4 +1,5 @@
-import ResponsivePagination, { srOnlySpanLabel } from 'react-responsive-pagination';
+import ResponsivePagination from 'react-responsive-pagination';
+import { srOnlySpanLabel } from 'react-responsive-pagination/labelBehaviour';
 import {
   dropEllipsis,
   dropEllipsisThenNav,

@@ -2,7 +2,7 @@ import {
   v1_bootstrap4PaginationPreset,
   bootstrap4PaginationPreset,
   bootstrap5PaginationPreset,
-} from 'react-responsive-pagination';
+} from 'react-responsive-pagination/presets';
 
 export const presets = {
   none: null,

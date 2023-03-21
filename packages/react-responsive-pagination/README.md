@@ -13,15 +13,15 @@ A responsive React pagination component which intelligently renders to the avail
 
 <a href="https://react-responsive-pagination.elantha.com/"><img src="./react-responsive-pagination.gif?raw=true" width="985" alt="react-responsive-pagination example" /></a>
 
-### 📕 Visit [https://react-responsive-pagination.elantha.com](https://react-responsive-pagination.elantha.com) to get started 🚀
+## 📕 Visit [https://react-responsive-pagination.elantha.com](https://react-responsive-pagination.elantha.com) to get started 🚀
 
-## 🥾 Works out of the box with Bootstrap 4.x or 5.x
+## ⭐️ v1 user? See the [v1 migration guide](https://react-responsive-pagination.elantha.com/migration) to get started with v2 ⭐️
 
-Using Bootstrap? See the [Bootstrap Getting Started Guide](https://react-responsive-pagination.elantha.com/bootstrap-pagination/)
-
-## 🎨 Supports custom styling
+## 🎨 Supports custom styling and also works out of the box with Bootstrap 4 or 5 🥾
 
 Custom styles? No problem - see the [Custom Styles Guide](https://react-responsive-pagination.elantha.com/custom-styled-pagination/)
+
+Using Bootstrap? See the [Bootstrap Getting Started Guide](https://react-responsive-pagination.elantha.com/bootstrap-pagination/)
 
 ## ⏳ Quick Start
 
@@ -32,7 +32,8 @@ npm install react-responsive-pagination
 ```jsx
 import React, { useState } from 'react';
 import ResponsivePagination from 'react-responsive-pagination';
-// ... make sure appropriate css is included in the project (see guides above)
+// make sure appropriate css is included in the project:
+// see css sample below (or import Bootstrap styles)
 
 function MyApp() {
   const [currentPage, setCurrentPage] = useState(4);
@@ -45,6 +46,35 @@ function MyApp() {
       onPageChange={setCurrentPage}
     />
   );
+}
+```
+
+Basic css example, see [Custom Styles Guide](https://react-responsive-pagination.elantha.com/custom-styled-pagination/) for more examples or [use Bootstrap styles](https://react-responsive-pagination.elantha.com/)
+
+```css
+.pagination {
+  justify-content: center;
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+}
+
+.page-item .page-link {
+  position: relative;
+  display: block;
+  margin: 0 10px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.page-item.active .page-link {
+  font-weight: bold;
+}
+
+.page-item.disabled .page-link {
+  color: #6c757d;
+  pointer-events: none;
+  cursor: auto;
 }
 ```
 

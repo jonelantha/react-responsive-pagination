@@ -8,7 +8,8 @@ import { PropsTable, PropDef } from "../../src/components/PropsTable"
     V1 of react-reponsive-pagination used visually hidden span tags for screen reader labels (the current version uses only aria attributes). This prop can be used to re-enable the V1 behaviour (if preferred):
 
     ```jsx
-      import { srOnlySpanLabel }, ResponsivePagination from 'react-responsive-pagination';
+      import ResponsivePagination from 'react-responsive-pagination';
+      import { srOnlySpanLabel } from 'react-responsive-pagination/labelBehaviour';
       ...
       <ResponsivePagination
         ...
