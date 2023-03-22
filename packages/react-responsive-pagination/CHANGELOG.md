@@ -1,5 +1,12 @@
 # React Responsive Pagination Changelog
 
+# [2.0.0-beta.9](https://github.com/jonelantha/react-responsive-pagination/compare/v2.0.0-beta.8...v2.0.0-beta.9) (2023-03-22)
+
+
+### Features
+
+* restore React import ([c9533ef](https://github.com/jonelantha/react-responsive-pagination/commit/c9533efe1abe782f459bd3f3af5c2249358335ff))
+
 # [2.0.0-beta.8](https://github.com/jonelantha/react-responsive-pagination/compare/v2.0.0-beta.7...v2.0.0-beta.8) (2023-03-21)
 
 
