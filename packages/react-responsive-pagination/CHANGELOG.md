@@ -1,5 +1,27 @@
 # React Responsive Pagination Changelog
 
+# [2.0.0](https://github.com/jonelantha/react-responsive-pagination/compare/v1.10.2...v2.0.0) (2023-03-23)
+
+
+### Features
+
+* ESM only distribution & ES2020 target ([f814c5e](https://github.com/jonelantha/react-responsive-pagination/commit/f814c5ed6e64c5750c3972d71c19288a47eb87f2))
+* Move presets/labelBehavior to sub-packages ([872ccee](https://github.com/jonelantha/react-responsive-pagination/commit/872cceed53fb9ec2691700cfbbfca16e86441486))
+* Move v1 srOnly label behaviour into new LabelBehavior ([98ab8d7](https://github.com/jonelantha/react-responsive-pagination/commit/98ab8d74817d18ecdc27985785b68a788de36969))
+* Remove resize-observer-polyfill for better bundle sizes ([0dd33b3](https://github.com/jonelantha/react-responsive-pagination/commit/0dd33b3b2d9e875272cf0f053ee6aaf88d7bc264))
+* Rename default export to ResponsivePagination (with updated examples) ([162973e](https://github.com/jonelantha/react-responsive-pagination/commit/162973e4b1ac9e0ec4277883a80bad73fc38af76))
+* Replace narrowStrategy with new NarrowBehaviour (to reduce bundle size) ([8ca58f7](https://github.com/jonelantha/react-responsive-pagination/commit/8ca58f7c83bb33dc44a2de2358cb542ddead7307))
+* Use aria attributes for screen readers (instead of visually hidden spans) ([39f5e33](https://github.com/jonelantha/react-responsive-pagination/commit/39f5e3379634472e38f31e5a20e6260a315defd2))
+
+
+### BREAKING CHANGES
+
+* `narrowStrategy` will require transition to `narrowBehaviour`
+* `srOnlyClassName` and `a11yActiveLabel` will require transition to srOnlySpanLabel
+* .sr-only spans no longer output, replaced with aria attributes
+* ResizeObserver no longer polyfilled
+* commonjs build no longer included and pre-2020 js engines not supported
+
 ## [1.10.2](https://github.com/jonelantha/react-responsive-pagination/compare/v1.10.1...v1.10.2) (2023-03-07)
 
 
