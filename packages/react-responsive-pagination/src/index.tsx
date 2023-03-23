@@ -1,52 +1,56 @@
 import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { usePaginationItems } from './hooks/usePaginationItems';
-import { preventDefault } from './helpers/dom';
-import { NarrowStrategy } from './compositions';
-import { A11yLabel } from './paginationItem';
+import { usePaginationItems } from './hooks/usePaginationItems.js';
+import { preventDefault } from './helpers/dom.js';
+import { NarrowBehaviour } from './narrowBehaviour.js';
+import { defaultLabelBehaviour, LabelBehaviour } from './labelBehaviour.js';
 
+/* legacy - may be removed */
 export const bootstrap4PaginationPreset = {};
+export const bootstrap5PaginationPreset = {};
 
-export const bootstrap5PaginationPreset = {
-  ariaCurrentAttr: true,
-  a11yActiveLabel: '',
-  srOnlyClassName: '',
-};
+declare const process: { env: { NODE_ENV: string } };
 
-export default memo(BootstrapPagination);
+export default process.env.NODE_ENV !== 'production'
+  ? memo(ResponsivePaginationDev)
+  : memo(ResponsivePagination);
+
+function ResponsivePaginationDev(props: ResponsivePaginationProps) {
+  checkLegacyProps(props);
+
+  return ResponsivePagination(props);
+}
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-function BootstrapPagination({
+function ResponsivePagination({
   current,
   total,
   onPageChange: handlePageChange,
   maxWidth,
-  narrowStrategy,
+  narrowBehaviour,
   className,
   extraClassName = 'justify-content-center',
   pageItemClassName = 'page-item',
   pageLinkClassName = 'page-link',
   activeItemClassName = 'active',
   disabledItemClassName = 'disabled',
-  srOnlyClassName = 'sr-only',
   previousLabel,
   nextLabel,
   ariaPreviousLabel,
   ariaNextLabel,
   renderNav = true,
-  a11yActiveLabel,
-  ariaCurrentAttr,
+  ariaCurrentAttr = true,
   linkHref = 'hash',
-}: BootstrapPaginationProps) {
+  labelBehaviour: getLabel = defaultLabelBehaviour,
+}: ResponsivePaginationProps) {
   const { items, ref, clearCache } = usePaginationItems(current, total, maxWidth, {
-    narrowStrategy,
+    narrowBehaviour,
     previousLabel,
     nextLabel,
     ariaPreviousLabel,
     ariaNextLabel,
     renderNav,
-    a11yActiveLabel,
   });
 
   useEffect(() => {
@@ -58,7 +62,6 @@ function BootstrapPagination({
     pageLinkClassName,
     activeItemClassName,
     disabledItemClassName,
-    srOnlyClassName,
   ]);
 
   if (items.length === 0) return null;
@@ -71,23 +74,6 @@ function BootstrapPagination({
     } else {
       return 'pagination';
     }
-  }
-
-  function getLabel(label: string, a11yLabel: A11yLabel | undefined) {
-    return (
-      <>
-        {!a11yLabel || a11yLabel.mode === 'additional' ? (
-          label
-        ) : (
-          <span aria-hidden="true">{label}</span>
-        )}
-        {a11yLabel && srOnlyClassName && (
-          <span className={srOnlyClassName}>
-            {`${a11yLabel.mode === 'additional' ? ' ' : ''}${a11yLabel.label}`}
-          </span>
-        )}
-      </>
-    );
   }
 
   return (
@@ -106,11 +92,9 @@ function BootstrapPagination({
               className={pageLinkClassName}
               href={linkHref === 'hash' ? '#' : undefined}
               onClick={preventDefault(() => handlePageChange(item.gotoPage))}
-              aria-label={
-                item.a11yLabel?.mode === 'replace' ? item.a11yLabel.label : undefined
-              }
+              aria-label={item.a11yLabel}
             >
-              {getLabel(item.label, item.a11yLabel)}
+              {getLabel(item)}
             </a>
           </li>
         ) : (
@@ -120,13 +104,8 @@ function BootstrapPagination({
             className={`${pageItemClassName} ${disabledItemClassName}`}
             aria-hidden={item.a11yHidden}
           >
-            <span
-              className={pageLinkClassName}
-              aria-label={
-                item.a11yLabel?.mode === 'replace' ? item.a11yLabel.label : undefined
-              }
-            >
-              {getLabel(item.label, item.a11yLabel)}
+            <span className={pageLinkClassName} aria-label={item.a11yLabel}>
+              {getLabel(item)}
             </span>
           </li>
         ),
@@ -135,12 +114,12 @@ function BootstrapPagination({
   );
 }
 
-type BootstrapPaginationProps = {
+export type ResponsivePaginationProps = {
   current: number;
   total: number;
   onPageChange: (page: number) => void;
   maxWidth?: number;
-  narrowStrategy?: NarrowStrategy | NarrowStrategy[];
+  narrowBehaviour?: NarrowBehaviour;
   className?: string;
   extraClassName?: string;
   pageItemClassName?: string;
@@ -148,26 +127,22 @@ type BootstrapPaginationProps = {
   activeItemClassName?: string;
   disabledItemClassName?: string;
   disabledLinkClassName?: string;
-  srOnlyClassName?: string;
   previousLabel?: string;
   nextLabel?: string;
   ariaPreviousLabel?: string;
   ariaNextLabel?: string;
   renderNav?: boolean;
-  a11yActiveLabel?: string;
   ariaCurrentAttr?: boolean;
   linkHref?: 'hash' | 'omit';
+  labelBehaviour?: LabelBehaviour;
 };
 
-BootstrapPagination.propTypes = {
+ResponsivePagination.propTypes = {
   current: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
   maxWidth: PropTypes.number,
-  narrowStrategy: PropTypes.oneOfType([
-    PropTypes.oneOf(['dropEllipsis', 'dropNav']),
-    PropTypes.arrayOf(PropTypes.oneOf(['dropEllipsis', 'dropNav']).isRequired),
-  ]),
+  narrowBehaviour: PropTypes.func,
   className: PropTypes.string,
   extraClassName: PropTypes.string,
   pageItemClassName: PropTypes.string,
@@ -175,13 +150,32 @@ BootstrapPagination.propTypes = {
   activeItemClassName: PropTypes.string,
   disabledItemClassName: PropTypes.string,
   disabledLinkClassName: PropTypes.string,
-  srOnlyClassName: PropTypes.string,
   previousLabel: PropTypes.string,
   nextLabel: PropTypes.string,
   ariaPreviousLabel: PropTypes.string,
   ariaNextLabel: PropTypes.string,
   renderNav: PropTypes.bool,
-  a11yActiveLabel: PropTypes.string,
   ariaCurrentAttr: PropTypes.bool,
   linkHref: PropTypes.oneOf(['hash', 'omit']),
+  labelBehaviour: PropTypes.func,
 };
+
+const legacyUsageWarnings: string[] = [];
+
+function checkLegacyProps(props: { [key in string]: any }) {
+  for (const legacyProp of [
+    'srOnlyClassName',
+    'a11yActiveLabel',
+    'narrowStrategy',
+  ]) {
+    if (
+      props[legacyProp] !== undefined &&
+      !legacyUsageWarnings.includes(legacyProp)
+    ) {
+      console.warn(
+        `react-responsive-pagination: '${legacyProp}' prop no longer supported, please see migration guide: https://react-responsive-pagination.elantha.com/migration/`,
+      );
+      legacyUsageWarnings.push(legacyProp);
+    }
+  }
+}

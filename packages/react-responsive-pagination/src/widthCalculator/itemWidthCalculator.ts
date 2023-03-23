@@ -1,6 +1,6 @@
-import { GetPageWidth } from './pageWidthCalculator';
-import { GetNavWidth } from './navWidthCalculator';
-import { CompositionItem } from '../compositionItem';
+import { GetPageWidth } from './pageWidthCalculator.js';
+import { GetNavWidth } from './navWidthCalculator.js';
+import { CompositionItem } from '../compositionItem.js';
 
 export function createItemWidthCalculator({
   getPageWidth,

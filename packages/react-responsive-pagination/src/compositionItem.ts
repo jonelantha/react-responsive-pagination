@@ -40,3 +40,7 @@ export function isNav(
 export function isEllipsis(item: CompositionItem): item is CompositionEllipsis {
   return item.type === '…L' || item.type === '…R';
 }
+
+export function containsEllipsis(composition: CompositionItem[]) {
+  return composition.some(isEllipsis);
+}

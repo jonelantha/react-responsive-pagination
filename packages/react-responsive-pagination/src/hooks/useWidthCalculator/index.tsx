@@ -3,10 +3,10 @@ import {
   createWidthCalculator,
   WidthCalculator,
   WidthCalculatorBaseMetrics,
-} from '../../widthCalculator';
-import { getViewMetricsFromContainer } from './getViewMetrics';
-import { objectUnzip } from '../../helpers/object';
-import { CompositionItem } from '../../compositionItem';
+} from '../../widthCalculator/index.js';
+import { getViewMetricsFromContainer } from './getViewMetrics.js';
+import { objectUnzip } from '../../helpers/object.js';
+import { CompositionItem } from '../../compositionItem.js';
 
 export function useWidthCalculator() {
   const [baseMetrics, setBaseMetrics] = useState<WidthCalculatorBaseMetrics | null>(

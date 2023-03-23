@@ -1,5 +1,5 @@
-import { objectZip } from '../../helpers/object';
-import { getNonContentWidth, getElementWidth } from '../../helpers/style';
+import { objectZip } from '../../helpers/object.js';
+import { getNonContentWidth, getElementWidth } from '../../helpers/style.js';
 
 export function getViewMetricsFromContainer<ItemKey extends string>(
   containerElement: HTMLElement,

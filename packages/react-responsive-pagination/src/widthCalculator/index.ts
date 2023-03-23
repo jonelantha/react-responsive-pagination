@@ -1,15 +1,15 @@
-import { createTotalWidthCalculator } from './totalWidthCalculator';
-import { createItemWidthCalculator } from './itemWidthCalculator';
-import { createNavWidthCalculator } from './navWidthCalculator';
-import { createPageWidthCalculator } from './pageWidthCalculator';
-import { createNumberWidthCalculator } from './numberWidthCalculator';
+import { createTotalWidthCalculator } from './totalWidthCalculator.js';
+import { createItemWidthCalculator } from './itemWidthCalculator.js';
+import { createNavWidthCalculator } from './navWidthCalculator.js';
+import { createPageWidthCalculator } from './pageWidthCalculator.js';
+import { createNumberWidthCalculator } from './numberWidthCalculator.js';
 import {
   createActivePage,
   createEllipsis,
   createNavNext,
   createNavPrevious,
   createPage,
-} from '../compositionItem';
+} from '../compositionItem.js';
 
 export function createWidthCalculator(
   baseMetrics: WidthCalculatorBaseMetrics | null,

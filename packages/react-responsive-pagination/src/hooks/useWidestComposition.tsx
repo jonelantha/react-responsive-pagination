@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
-import { CompositionItem } from '../compositionItem';
-import { setRefValue } from '../helpers/ref';
-import { useAvailableWidth } from './useAvailableWidth';
-import { useWidestCompositionForWidth } from './useWidestCompositionForWidth';
+import { CompositionItem } from '../compositionItem.js';
+import { setRefValue } from '../helpers/ref.js';
+import { useAvailableWidth } from './useAvailableWidth.js';
+import { useWidestCompositionForWidth } from './useWidestCompositionForWidth.js';
 
 export function useWidestComposition(
   narrowToWideCompositionsProvider: () => IterableIterator<CompositionItem[]>,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Pagination from 'react-responsive-pagination';
+import ResponsivePagination from 'react-responsive-pagination';
 
 export default function BootstrapLiveDemo({ totalPages = 120, ...props }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -10,7 +10,7 @@ export default function BootstrapLiveDemo({ totalPages = 120, ...props }) {
   }
 
   return (
-    <Pagination
+    <ResponsivePagination
       total={totalPages}
       current={currentPage}
       onPageChange={page => handlePageChange(page)}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Pagination from 'react-responsive-pagination';
+import ResponsivePagination from 'react-responsive-pagination';
 
 export default class BootstrapLiveDemoClass extends Component {
   state = {
@@ -14,7 +14,7 @@ export default class BootstrapLiveDemoClass extends Component {
 
   render() {
     return (
-      <Pagination
+      <ResponsivePagination
         total={this.state.totalPages}
         current={this.state.currentPage}
         onPageChange={page => this.handlePageChange(page)}

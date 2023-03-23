@@ -6,19 +6,36 @@
   "license": "MIT",
   "repository": "github:jonelantha/react-responsive-pagination",
   "homepage": "https://react-responsive-pagination.elantha.com",
-  "main": "lib.cjs/index.js",
-  "module": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "type": "module",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./narrowBehaviour": "./dist/narrowBehaviour.js",
+    "./labelBehaviour": "./dist/labelBehaviour.js",
+    "./presets": "./dist/presets.js"
+  },
+  "files": [
+    "dist/",
+    "CHANGELOG.md",
+    "LICENSE",
+    "narrowBehaviour.d.ts",
+    "narrowBehaviour.js",
+    "labelBehaviour.d.ts",
+    "labelBehaviour.js",
+    "presets.d.ts",
+    "presets.js",
+    "package.json",
+    "README.md"
+  ],
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "tsc-commonjs": "rimraf lib.cjs/ && tsc --project ./tsconfig/commonjs.json",
-    "tsc-esnext": "rimraf lib/ && tsc --project ./tsconfig/esnext.json",
-    "build": "yarn lint && yarn tsc-commonjs && yarn tsc-esnext",
-    "start": "rimraf lib/ && tsc --project ./tsconfig/dev.json --watch",
+    "build": "yarn lint && rimraf dist/ && tsc --project ./tsconfig.prod.json",
+    "start": "rimraf dist/ && tsc --project ./tsconfig.dev.json --watch",
     "test": "jest",
     "lint": "eslint --ext .ts --ext .tsx src",
     "prepublishOnly": "yarn build",
     "release": "rm ../../package.json && semantic-release",
-    "previewReleaseNotes": "rm ../../package.json && semantic-release --dry-run"
+    "previewReleaseNotes": "semantic-release --dry-run"
   },
   "keywords": [
     "responsive",
@@ -35,8 +52,7 @@
     "extends": "react-app"
   },
   "dependencies": {
-    "prop-types": "^15.8.1",
-    "resize-observer-polyfill": "^1.5.1"
+    "prop-types": "^15.8.1"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",

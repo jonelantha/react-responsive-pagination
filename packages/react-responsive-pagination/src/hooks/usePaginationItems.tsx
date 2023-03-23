@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
-import { NarrowStrategy, narrowToWideCompositions } from '../compositions';
-import { sanatizeInteger, sanatizeBoolean } from '../helpers/util';
-import { compositionToPaginationItems } from '../paginationItem';
-import { useWidestComposition } from './useWidestComposition';
+import { narrowToWideCompositions } from '../compositions/index.js';
+import { sanatizeInteger, sanatizeBoolean } from '../helpers/util.js';
+import { NarrowBehaviour } from '../narrowBehaviour.js';
+import { compositionToPaginationItems } from '../paginationItem.js';
+import { useWidestComposition } from './useWidestComposition.js';
 
 export function usePaginationItems(
   inputCurrent: number,
@@ -14,15 +15,14 @@ export function usePaginationItems(
     ariaNextLabel?: string;
     ariaPreviousLabel?: string;
     renderNav?: boolean;
-    a11yActiveLabel?: string;
-    narrowStrategy?: NarrowStrategy | NarrowStrategy[];
+    narrowBehaviour?: NarrowBehaviour;
   },
 ) {
   const narrowToWideCompositionsProvider = () =>
     narrowToWideCompositions({
       current: sanatizeInteger(inputCurrent) ?? 0,
       total: sanatizeInteger(inputTotal) ?? 0,
-      narrowStrategies: sanatizeNarrowStrategies(options?.narrowStrategy),
+      narrowBehaviour: options?.narrowBehaviour,
       renderNav: sanatizeBoolean(options?.renderNav) ?? true,
     });
 
@@ -39,12 +39,4 @@ export function usePaginationItems(
   const items = compositionToPaginationItems(compositionItems, options);
 
   return { items, ref, clearCache };
-}
-
-function sanatizeNarrowStrategies(inputNarrowStrategies: unknown): NarrowStrategy[] {
-  return (
-    Array.isArray(inputNarrowStrategies)
-      ? inputNarrowStrategies
-      : [inputNarrowStrategies]
-  ).filter(strategy => strategy === 'dropEllipsis' || strategy === 'dropNav');
 }

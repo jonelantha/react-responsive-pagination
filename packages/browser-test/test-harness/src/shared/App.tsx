@@ -1,4 +1,11 @@
-import Pagination from 'react-responsive-pagination';
+import ResponsivePagination from 'react-responsive-pagination';
+import { srOnlySpanLabel } from 'react-responsive-pagination/labelBehaviour';
+import {
+  dropEllipsis,
+  dropEllipsisThenNav,
+  dropNav,
+  dropNavThenEllipsis,
+} from 'react-responsive-pagination/narrowBehaviour';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { Field, Formik } from 'formik';
 import { frameworkIds, getFrameworkStyles } from './frameworkStyles';
@@ -7,29 +14,34 @@ import { PresetId, presets } from './presets';
 import './TestStyles.css';
 import './App.css';
 
-const propFields = {
-  total: 'Total Pages',
-  maxWidth: 'Max Width',
-  current: 'Current Page',
-  narrowStrategy: 'Narrow Strategy',
-  className: 'className',
-  extraClassName: 'Extra Class',
-  pageItemClassName: 'Page item className',
-  pageLinkClassName: 'Page link className',
-  activeItemClassName: 'Active className',
-  disabledItemClassName: 'Disabled item className',
-  srOnlyClassName: 'SR Only className',
-  previousLabel: 'Previous Label',
-  nextLabel: 'Next Label',
-  ariaPreviousLabel: 'Aria Previous Label',
-  ariaNextLabel: 'Aria Next Label',
-  renderNav: 'Render Navigation',
-  a11yActiveLabel: 'a11y Active Label',
-  ariaCurrentAttr: 'ariaCurrent Attr',
-  linkHref: 'linkHref',
+const fields = {
+  propsAsJson: {
+    total: 'Total Pages',
+    maxWidth: 'Max Width',
+    current: 'Current Page',
+    className: 'className',
+    extraClassName: 'Extra Class',
+    pageItemClassName: 'Page item className',
+    pageLinkClassName: 'Page link className',
+    activeItemClassName: 'Active className',
+    disabledItemClassName: 'Disabled item className',
+    previousLabel: 'Previous Label',
+    nextLabel: 'Next Label',
+    ariaPreviousLabel: 'Aria Previous Label',
+    ariaNextLabel: 'Aria Next Label',
+    renderNav: 'Render Navigation',
+    ariaCurrentAttr: 'ariaCurrent Attr',
+    linkHref: 'linkHref',
+  },
+  labelBehaviourFieldsAsJson: {
+    labelBehaviour: 'Label Behaviour',
+    srOnlyClassName: 'SR Only className',
+    a11yActiveLabel: 'a11y Active Label',
+  },
+  narrowBehaviourFieldsAsJson: {
+    narrowBehaviourName: 'Narrow Behaviour',
+  },
 };
-
-type PropFieldName = keyof typeof propFields;
 
 const initialValues = {
   presetId: 'none' as PresetId,
@@ -37,22 +49,27 @@ const initialValues = {
     total: '100',
     maxWidth: '',
     current: '0',
-    narrowStrategy: 'undefined',
     className: 'undefined',
     extraClassName: 'undefined',
     pageItemClassName: 'undefined',
     pageLinkClassName: 'undefined',
     activeItemClassName: 'undefined',
     disabledItemClassName: 'undefined',
-    srOnlyClassName: 'undefined',
     previousLabel: 'undefined',
     nextLabel: 'undefined',
     ariaPreviousLabel: 'undefined',
     ariaNextLabel: 'undefined',
     renderNav: 'undefined',
-    a11yActiveLabel: 'undefined',
     ariaCurrentAttr: 'undefined',
     linkHref: 'undefined',
+  },
+  labelBehaviourFieldsAsJson: {
+    labelBehaviour: 'undefined',
+    srOnlyClassName: 'undefined',
+    a11yActiveLabel: 'undefined',
+  },
+  narrowBehaviourFieldsAsJson: {
+    narrowBehaviourName: 'undefined',
   },
 };
 
@@ -76,12 +93,18 @@ function App() {
         {formik => (
           <>
             <div className={cssExtraClasses.join(' ')}>
-              <Pagination
+              <ResponsivePagination
                 {...presets[formik.values.presetId]}
                 onPageChange={page =>
                   formik.setFieldValue('propsAsJson.current', JSON.stringify(page))
                 }
-                {...getPropsFromJsonFields(formik.values.propsAsJson)}
+                {...parseJsonFields(formik.values.propsAsJson)}
+                {...getLabelBehaviour(
+                  parseJsonFields(formik.values.labelBehaviourFieldsAsJson),
+                )}
+                {...getNarrowBehaviour(
+                  parseJsonFields(formik.values.narrowBehaviourFieldsAsJson),
+                )}
               />
             </div>
             <div className="container">
@@ -178,25 +201,33 @@ function App() {
                     ))}
                   </div>
                 </div>
-                {Object.entries(propFields).map(([field, title]) => (
-                  <div className="mb-1 row" key={field}>
-                    <label
-                      htmlFor={`${field}AsJson`}
-                      className="col-sm-4 col-form-label"
-                    >
-                      {title} (JSON)
-                    </label>
-                    <div className="col-sm-2">
-                      <Field
-                        name={`propsAsJson.${field}`}
-                        type="text"
-                        className="form-control"
-                        id={`${field}AsJson`}
-                        spellCheck="false"
-                      />
+                {(
+                  [
+                    'propsAsJson',
+                    'labelBehaviourFieldsAsJson',
+                    'narrowBehaviourFieldsAsJson',
+                  ] as const
+                ).map(group =>
+                  Object.entries(fields[group]).map(([field, title]) => (
+                    <div className="mb-1 row" key={field}>
+                      <label
+                        htmlFor={`${field}AsJson`}
+                        className="col-sm-4 col-form-label"
+                      >
+                        {title} (JSON)
+                      </label>
+                      <div className="col-sm-2">
+                        <Field
+                          name={`${group}.${field}`}
+                          type="text"
+                          className="form-control"
+                          id={`${field}AsJson`}
+                          spellCheck="false"
+                        />
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  )),
+                )}
               </form>
             </div>
           </>
@@ -207,6 +238,29 @@ function App() {
 }
 
 export default App;
+
+function getLabelBehaviour({
+  labelBehaviour,
+  srOnlyClassName,
+  a11yActiveLabel,
+}: { [K in keyof (typeof fields)['labelBehaviourFieldsAsJson']]: any }) {
+  if (labelBehaviour === 'srOnlySpanLabel') {
+    return { labelBehaviour: srOnlySpanLabel({ srOnlyClassName, a11yActiveLabel }) };
+  }
+}
+
+function getNarrowBehaviour({ narrowBehaviourName }: { narrowBehaviourName: any }) {
+  switch (narrowBehaviourName) {
+    case 'dropEllipsis':
+      return { narrowBehaviour: dropEllipsis };
+    case 'dropNav':
+      return { narrowBehaviour: dropNav };
+    case 'dropEllipsisThenNav':
+      return { narrowBehaviour: dropEllipsisThenNav };
+    case 'dropNavThenEllipsis':
+      return { narrowBehaviour: dropNavThenEllipsis };
+  }
+}
 
 function useUrlQueryToggles(
   field: string,
@@ -234,13 +288,13 @@ function useUrlQueryToggles(
   return [activeValues, toggleValue];
 }
 
-function getPropsFromJsonFields(propFieldJsonValues: {
-  [key in PropFieldName]: string;
+function parseJsonFields<K extends string>(jsonValues: {
+  [key in K]: string;
 }) {
-  const props = {} as { [key in PropFieldName]: any };
+  const props = {} as { [key in K]: any };
 
-  (Object.keys(propFields) as PropFieldName[]).forEach(field => {
-    const value = tryJsonParse(propFieldJsonValues[field]);
+  (Object.keys(jsonValues) as K[]).forEach(field => {
+    const value = tryJsonParse(jsonValues[field]);
     if (value !== undefined) {
       props[field] = value;
     }

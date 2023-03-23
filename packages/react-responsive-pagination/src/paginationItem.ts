@@ -1,10 +1,10 @@
-import { CompositionItem } from './compositionItem';
+import { CompositionItem } from './compositionItem.js';
 
 type BaseItem = {
   type: string;
   key: string;
   label: string;
-  a11yLabel?: A11yLabel;
+  a11yLabel?: string;
 };
 
 type ClickableItem = BaseItem & {
@@ -37,8 +37,6 @@ export type PaginationItem = NavItem | NavDisabledItem | EllipsisItem | PageItem
 
 export type NavType = 'next' | 'previous';
 
-export type A11yLabel = { label: string; mode: 'replace' | 'additional' };
-
 export function compositionToPaginationItems(
   compositionItems: CompositionItem[],
   options?: {
@@ -46,10 +44,8 @@ export function compositionToPaginationItems(
     nextLabel?: string;
     ariaPreviousLabel?: string;
     ariaNextLabel?: string;
-    a11yActiveLabel?: string;
   },
 ): PaginationItem[] {
-  const activeLabel = options?.a11yActiveLabel ?? '(current)';
   const previousLabel = options?.previousLabel || '«';
   const a11yPreviousLabel = options?.ariaPreviousLabel || 'Previous';
   const nextLabel = options?.nextLabel || '»';
@@ -63,9 +59,7 @@ export function compositionToPaginationItems(
           key: `previous${page === undefined ? '_disabled' : ''}`,
           label: previousLabel,
           a11yLabel:
-            previousLabel === a11yPreviousLabel
-              ? undefined
-              : { label: a11yPreviousLabel, mode: 'replace' },
+            previousLabel === a11yPreviousLabel ? undefined : a11yPreviousLabel,
           gotoPage: page,
         };
       case '>':
@@ -73,10 +67,7 @@ export function compositionToPaginationItems(
           type: 'next',
           key: `next${page === undefined ? '_disabled' : ''}`,
           label: nextLabel,
-          a11yLabel:
-            nextLabel === a11yNextLabel
-              ? undefined
-              : { label: a11yNextLabel, mode: 'replace' },
+          a11yLabel: nextLabel === a11yNextLabel ? undefined : a11yNextLabel,
           gotoPage: page,
         };
       case '…L':
@@ -93,10 +84,6 @@ export function compositionToPaginationItems(
           type: 'page',
           key: `${type}_${page}`,
           label: page.toString(),
-          a11yLabel:
-            type === 'active' && activeLabel
-              ? { label: activeLabel, mode: 'additional' }
-              : undefined,
           gotoPage: page,
           active: type === 'active',
         };

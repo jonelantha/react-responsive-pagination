@@ -13,15 +13,15 @@ A responsive React pagination component which intelligently renders to the avail
 
 <a href="https://react-responsive-pagination.elantha.com/"><img src="./react-responsive-pagination.gif?raw=true" width="985" alt="react-responsive-pagination example" /></a>
 
-### 📕 Visit [https://react-responsive-pagination.elantha.com](https://react-responsive-pagination.elantha.com) to get started 🚀
+## 📕 Visit [https://react-responsive-pagination.elantha.com](https://react-responsive-pagination.elantha.com) to get started 🚀
 
-## 🥾 Works out of the box with Bootstrap 4.x or 5.x
+## ⭐️ v1 user? See the [v1 migration guide](https://react-responsive-pagination.elantha.com/migration) to get started with v2 ⭐️
 
-Using Bootstrap? See the [Bootstrap Getting Started Guide](https://react-responsive-pagination.elantha.com/bootstrap-pagination/)
-
-## 🎨 Supports custom styling
+## 🎨 Supports custom styling and also works out of the box with Bootstrap 4 or 5 🥾
 
 Custom styles? No problem - see the [Custom Styles Guide](https://react-responsive-pagination.elantha.com/custom-styled-pagination/)
+
+Using Bootstrap? See the [Bootstrap Getting Started Guide](https://react-responsive-pagination.elantha.com/bootstrap-pagination/)
 
 ## ⏳ Quick Start
 
@@ -29,21 +29,18 @@ Custom styles? No problem - see the [Custom Styles Guide](https://react-responsi
 npm install react-responsive-pagination
 ```
 
-### Custom styles or Bootstrap 4
-
-_(see below for a Bootstrap 5 example)_
-
 ```jsx
-// ... make sure appropriate css is in the project (see guides above)
 import React, { useState } from 'react';
-import Pagination from 'react-responsive-pagination';
+import ResponsivePagination from 'react-responsive-pagination';
+// make sure appropriate css is included in the project:
+// see css sample below (or import Bootstrap styles)
 
 function MyApp() {
   const [currentPage, setCurrentPage] = useState(4);
   const totalPages = 17;
 
   return (
-    <Pagination
+    <ResponsivePagination
       current={currentPage}
       total={totalPages}
       onPageChange={setCurrentPage}
@@ -52,24 +49,32 @@ function MyApp() {
 }
 ```
 
-### Bootstrap 5
+Basic css example, see [Custom Styles Guide](https://react-responsive-pagination.elantha.com/custom-styled-pagination/) for more examples or [use Bootstrap styles](https://react-responsive-pagination.elantha.com/)
 
-```jsx
-import React, { useState } from 'react';
-import Pagination, { bootstrap5PaginationPreset } from 'react-responsive-pagination';
+```css
+.pagination {
+  justify-content: center;
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+}
 
-function MyBootstrap5App() {
-  const [currentPage, setCurrentPage] = useState(4);
-  const totalPages = 17;
+.page-item .page-link {
+  position: relative;
+  display: block;
+  margin: 0 10px;
+  color: #007bff;
+  text-decoration: none;
+}
 
-  return (
-    <Pagination
-      {...bootstrap5PaginationPreset}
-      current={currentPage}
-      total={totalPages}
-      onPageChange={setCurrentPage}
-    />
-  );
+.page-item.active .page-link {
+  font-weight: bold;
+}
+
+.page-item.disabled .page-link {
+  color: #6c757d;
+  pointer-events: none;
+  cursor: auto;
 }
 ```
 
@@ -93,15 +98,14 @@ function MyBootstrap5App() {
 
 See [Overriding default classNames](https://react-responsive-pagination.elantha.com/custom-styled-pagination/#overriding-default-classnames) for more information
 
-| Prop                                                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **className**<br />`string`<br />(optional)             | Class name for the top level **<ul\>** container<br />Defaults to `pagination`, overrides **extraClassName** prop (below)                                                                                                                                                                                                                                                                                                                |
-| **extraClassName**<br />`string`<br />(optional)        | Useful when using Bootstrap styles, extra classNames to be added to the top level **<ul\>** container. Use this prop to override the default justify value - for example to align elements to the start of the page use: `justify-content-start`<br />Defaults to `justify-content-center`, not applicable if **className** prop (above) is set                                                                                          |
-| **pageItemClassName**<br />`string`<br />(optional)     | Class name for all the **<li\>** elements<br />Defaults to `page-item`                                                                                                                                                                                                                                                                                                                                                                   |
-| **pageLinkClassName**<br />`string`<br />(optional)     | Class name for **<a\>** or **<span\>** child elements within an **<li\>** element: <br />`<li ...><a class='page-link'>1</a></li>`<br />Defaults to `page-link`                                                                                                                                                                                                                                                                          |
-| **activeItemClassName**<br />`string`<br />(optional)   | Appended to **<li\>** class name for the active element:<br />`<li class='page-item active'><a class='page-link'>1</a></li>`<br />Defaults to `active`                                                                                                                                                                                                                                                                                   |
-| **disabledItemClassName**<br />`string`<br />(optional) | Appended to **<li\>** class name for non-clickable elements (disabled nav buttons and the break/ellipsis):<br />`<li class='page-item disabled'><span class='page-link'>...</span></li>`<br />Defaults to `disabled`                                                                                                                                                                                                                     |
-| **srOnlyClassName**<br />`string`<br />(optional)       | Class for screen reader only content (which should be visually hidden) - see [an example of typical css](https://react-responsive-pagination.elantha.com/custom-styled-pagination/#screen-reader-only-sr-only-styles) for this purpose<br />Setting this prop to `''` will turn off all the **<span\>** based screen reader labels (however, `aria-label` attributes will still be output for screen readers)<br />Defaults to `sr-only` |
+| Prop                                                    | Description                                                                                                                                                                                                                                                                                                                                     |
+| ------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **className**<br />`string`<br />(optional)             | Class name for the top level **<ul\>** container<br />Defaults to `pagination`, overrides **extraClassName** prop (below)                                                                                                                                                                                                                       |
+| **extraClassName**<br />`string`<br />(optional)        | Useful when using Bootstrap styles, extra classNames to be added to the top level **<ul\>** container. Use this prop to override the default justify value - for example to align elements to the start of the page use: `justify-content-start`<br />Defaults to `justify-content-center`, not applicable if **className** prop (above) is set |
+| **pageItemClassName**<br />`string`<br />(optional)     | Class name for all the **<li\>** elements<br />Defaults to `page-item`                                                                                                                                                                                                                                                                          |
+| **pageLinkClassName**<br />`string`<br />(optional)     | Class name for **<a\>** or **<span\>** child elements within an **<li\>** element: <br />`<li ...><a class='page-link'>1</a></li>`<br />Defaults to `page-link`                                                                                                                                                                                 |
+| **activeItemClassName**<br />`string`<br />(optional)   | Appended to **<li\>** class name for the active element:<br />`<li class='page-item active'><a class='page-link'>1</a></li>`<br />Defaults to `active`                                                                                                                                                                                          |
+| **disabledItemClassName**<br />`string`<br />(optional) | Appended to **<li\>** class name for non-clickable elements (disabled nav buttons and the break/ellipsis):<br />`<li class='page-item disabled'><span class='page-link'>...</span></li>`<br />Defaults to `disabled`                                                                                                                            |
 
 ### Label Props
 
@@ -114,10 +118,10 @@ See [Overriding default classNames](https://react-responsive-pagination.elantha.
 
 ### Misc Props
 
-| Prop                                                                                                     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **renderNav**<br />`boolean`<br />(optional)                                                             | When set to `false` the nav buttons (**«**/**»**) will not be rendered. Defaults to `true`                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| **narrowStrategy**<br />`'dropEllipsis' \| 'dropNav' \| ('dropEllipsis' \| 'dropNav')[]`<br />(optional) | Specify that nav buttons (**«**/**»**) and/or the ellipsis (**…**) can be dropped for very narrow widths (useful if the component is used in narrow widths with high page numbers)<br />`'dropEllipsis'` - drop the ellipsis (**…**) for narrow widths<br />`'dropNav'` - drop the nav (**«**/**»**) for narrow widths<br />`['dropNav', 'dropEllipsis']` - drop the nav initially and then further drop the ellipsis if required<br />`['dropEllipsis', 'dropNav']` - drop the ellipsis initially and then further drop the nav if required |
+| Prop                                                       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **renderNav**<br />`boolean`<br />(optional)               | When set to `false` the nav buttons (**«**/**»**) will not be rendered. Defaults to `true`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **narrowBehaviour**<br />`NarrowBehaviour`<br />(optional) | Specify that nav buttons (**«**/**»**) and/or the ellipsis (**…**) can be dropped for very narrow widths (useful if the component is used in narrow widths with high page numbers)<br />Valid behaviours should be imported from `react-responsive-pagination/narrowBehaviour`, [see example](https://react-responsive-pagination.elantha.com/props/#misc-props)<br /><br />`dropEllipsis` - drop the ellipsis (**…**) for narrow widths<br />`dropNav` - drop the nav (**«**/**»**) for narrow widths<br />`dropNavThenEllipsis` - drop the nav initially and then further drop the ellipsis if required<br />`dropEllipsisThenNav` - drop the ellipsis initially and then further drop the nav if required |
 
 See [Props Reference](https://react-responsive-pagination.elantha.com/props) for the full list
 

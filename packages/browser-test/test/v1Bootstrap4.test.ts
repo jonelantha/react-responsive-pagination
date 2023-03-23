@@ -3,11 +3,11 @@ import { setupThrowOnError } from './helper';
 beforeAll(async () => {
   setupThrowOnError(page);
 
-  await page.goto(`${harnessUrl}bootstrap5`);
+  await page.goto(`${harnessUrl}bootstrap4`);
 
   await page.setViewportSize({ width: 700, height: 700 });
 
-  await page.check('#preset_bootstrap5');
+  await page.check('#preset_v1Bootstrap4');
 });
 
 const testWidths = [
@@ -15,7 +15,7 @@ const testWidths = [
   850, 950,
 ];
 
-describe('Bootstrap 5 preset', () => {
+describe('v1 Bootstrap 4 preset', () => {
   test.each(testWidths.map(width => [width]))(
     'renders correctly with viewport width %ipx',
     async width => {
