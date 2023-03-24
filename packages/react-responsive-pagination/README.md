@@ -9,15 +9,15 @@
 
 A responsive React pagination component which intelligently renders to the available width - for React 16, 17 or 18
 
+### 📕 Visit [https://react-responsive-pagination.elantha.com](https://react-responsive-pagination.elantha.com) to get started 🚀
+
+### ⭐️ v1 user? See the [v1 migration guide](https://react-responsive-pagination.elantha.com/migration) to start using v2 ⭐️
+
 ### ⚡️ [LIVE DEMO - try it out for yourself!](https://react-responsive-pagination.elantha.com/live-demo/) ⚡️
 
 <a href="https://react-responsive-pagination.elantha.com/"><img src="./react-responsive-pagination.gif?raw=true" width="985" alt="react-responsive-pagination example" /></a>
 
-## 📕 Visit [https://react-responsive-pagination.elantha.com](https://react-responsive-pagination.elantha.com) to get started 🚀
-
-## ⭐️ v1 user? See the [v1 migration guide](https://react-responsive-pagination.elantha.com/migration) to get started with v2 ⭐️
-
-## 🎨 Supports custom styling and also works out of the box with Bootstrap 4 or 5 🥾
+## 🎨 Supports custom styling and Bootstrap 4 and 5 🥾
 
 Custom styles? No problem - see the [Custom Styles Guide](https://react-responsive-pagination.elantha.com/custom-styled-pagination/)
 
@@ -62,13 +62,21 @@ Basic css example, see [Custom Styles Guide](https://react-responsive-pagination
 .page-item .page-link {
   position: relative;
   display: block;
-  margin: 0 10px;
+  margin: 0 2px;
+  border: 1px solid #cccccc;
+  padding: 5px 10px;
+  border-radius: 5px;
   color: #007bff;
   text-decoration: none;
 }
 
+.page-item a.page-link:hover {
+  background-color: #cccccc;
+}
+
 .page-item.active .page-link {
-  font-weight: bold;
+  color: #ffffff;
+  background-color: #007bff;
 }
 
 .page-item.disabled .page-link {
