@@ -35,6 +35,9 @@ function ResponsivePagination({
   pageLinkClassName = 'page-link',
   activeItemClassName = 'active',
   disabledItemClassName = 'disabled',
+  navClassName,
+  previousClassName,
+  nextClassName,
   previousLabel,
   nextLabel,
   ariaPreviousLabel,
@@ -62,6 +65,9 @@ function ResponsivePagination({
     pageLinkClassName,
     activeItemClassName,
     disabledItemClassName,
+    navClassName,
+    previousClassName,
+    nextClassName,
   ]);
 
   if (items.length === 0) return null;
@@ -83,9 +89,12 @@ function ResponsivePagination({
           // item = ClickableItem
           <li
             key={item.key}
-            className={`${pageItemClassName}${
-              item.active && activeItemClassName ? ' ' + activeItemClassName : ''
-            }`}
+            className={classNames([
+              pageItemClassName,
+              item.active && activeItemClassName,
+              item.type === 'next' && (nextClassName ?? navClassName),
+              item.type === 'previous' && (previousClassName ?? navClassName),
+            ])}
             aria-current={item.active && ariaCurrentAttr ? 'page' : undefined}
           >
             <a
@@ -101,7 +110,12 @@ function ResponsivePagination({
           // item = NonClickableItem
           <li
             key={item.key}
-            className={`${pageItemClassName} ${disabledItemClassName}`}
+            className={classNames([
+              pageItemClassName,
+              disabledItemClassName,
+              item.type === 'next' && (nextClassName ?? navClassName),
+              item.type === 'previous' && (previousClassName ?? navClassName),
+            ])}
             aria-hidden={item.a11yHidden}
           >
             <span className={pageLinkClassName} aria-label={item.a11yLabel}>
@@ -112,6 +126,10 @@ function ResponsivePagination({
       )}
     </ul>
   );
+}
+
+function classNames(names: (string | false | undefined)[]) {
+  return names.filter(name => name).join(' ');
 }
 
 export type ResponsivePaginationProps = {
@@ -127,6 +145,9 @@ export type ResponsivePaginationProps = {
   activeItemClassName?: string;
   disabledItemClassName?: string;
   disabledLinkClassName?: string;
+  navClassName?: string;
+  previousClassName?: string;
+  nextClassName?: string;
   previousLabel?: string;
   nextLabel?: string;
   ariaPreviousLabel?: string;
@@ -150,6 +171,9 @@ ResponsivePagination.propTypes = {
   activeItemClassName: PropTypes.string,
   disabledItemClassName: PropTypes.string,
   disabledLinkClassName: PropTypes.string,
+  navClassName: PropTypes.string,
+  previousClassName: PropTypes.string,
+  nextClassName: PropTypes.string,
   previousLabel: PropTypes.string,
   nextLabel: PropTypes.string,
   ariaPreviousLabel: PropTypes.string,

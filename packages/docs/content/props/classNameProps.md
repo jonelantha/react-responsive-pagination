@@ -40,4 +40,34 @@ import ExtraClassNameProp from './extraClassNameProp.md';
     Defaults to `disabled`
 
   </PropDef>
+  <PropDef name='navClassName' type='string' defaultValue='undefined'>
+    Appended to **\<li>** class name for nav items (`«` / `»` buttons)
+
+    Setting to 'my-nav' would give html similar to:
+
+    `<li class='page-item my-nav'><span class='page-link'>«</span></li>`
+
+    By default will not be output
+
+  </PropDef>
+  <PropDef name='previousClassName' type='string' defaultValue='undefined'>
+    Appended to **\<li>** class name for the previous button (`«`)
+
+    Setting to 'my-previous-button' would give html similar to:
+
+    `<li class='page-item my-previous-button'><span class='page-link'>«</span></li>`
+
+    Overrides `navClassName` and by default will not be output
+
+  </PropDef>
+  <PropDef name='nextClassName' type='string' defaultValue='undefined'>
+    Appended to **\<li>** class name for the next button (`»`)
+
+    Setting to 'my-next-button' would give html similar to:
+
+    `<li class='page-item my-next-button'><span class='page-link'>»</span></li>`
+
+    Overrides `navClassName` and by default will not be output
+
+  </PropDef>
 </Fragment>
