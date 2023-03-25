@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/node": "^18.15.5",
-    "@types/react": "^18.0.28",
+    "@types/node": "^18.15.9",
+    "@types/react": "^18.0.29",
     "@types/react-dom": "^18.0.11",
     "bootstrap4": "npm:bootstrap@^4.6.2",
     "bootstrap4-0-0": "npm:bootstrap@4.0.0",
