@@ -17,11 +17,13 @@ A responsive React pagination component which intelligently renders to the avail
 
 <a href="https://react-responsive-pagination.elantha.com/"><img src="./react-responsive-pagination.gif?raw=true" width="985" alt="react-responsive-pagination example" /></a>
 
-## 🎨 Supports custom styling and Bootstrap 4 and 5 🥾
-
-Custom styles? No problem - see the [Custom Styles Guide](https://react-responsive-pagination.elantha.com/custom-styled-pagination/)
+## 🥾 Bootstrap 4 and 5 support included 
 
 Using Bootstrap? See the [Bootstrap Getting Started Guide](https://react-responsive-pagination.elantha.com/bootstrap-pagination/)
+
+## 🎨 Custom styling
+
+Custom styles? No problem - see the [Custom Styles Guide](https://react-responsive-pagination.elantha.com/custom-styled-pagination/)
 
 ## ⏳ Quick Start
 
@@ -59,30 +61,22 @@ Basic css example, see [Custom Styles Guide](https://react-responsive-pagination
   list-style: none;
 }
 
-.page-item .page-link {
-  position: relative;
+.page-link {
   display: block;
-  margin: 0 2px;
   border: 1px solid #cccccc;
-  padding: 5px 10px;
   border-radius: 5px;
-  color: #007bff;
+  padding: 5px 10px;
+  margin: 0 2px;
   text-decoration: none;
 }
 
-.page-item a.page-link:hover {
+a.page-link:hover {
   background-color: #cccccc;
 }
 
 .page-item.active .page-link {
   color: #ffffff;
   background-color: #007bff;
-}
-
-.page-item.disabled .page-link {
-  color: #6c757d;
-  pointer-events: none;
-  cursor: auto;
 }
 ```
 
