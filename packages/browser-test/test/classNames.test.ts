@@ -15,6 +15,9 @@ beforeEach(async () => {
   await page.fill('#pageLinkClassNameAsJson', 'undefined');
   await page.fill('#activeItemClassNameAsJson', 'undefined');
   await page.fill('#disabledItemClassNameAsJson', 'undefined');
+  await page.fill('#navClassNameAsJson', 'undefined');
+  await page.fill('#previousClassNameAsJson', 'undefined');
+  await page.fill('#nextClassNameAsJson', 'undefined');
 });
 
 describe('Setting extraClassName', () => {
@@ -50,4 +53,42 @@ describe('classNames', () => {
     const paginationHtml = await page.$eval('ul', ul => ul.outerHTML);
     expect(paginationHtml).toMatchSnapshot();
   });
+});
+
+describe('nav classNames', () => {
+  describe.each([{ navEnabled: true }, { navEnabled: false }])(
+    'with navEnabled = $navEnabled',
+    ({ navEnabled }) => {
+      beforeAll(async () => {
+        if (navEnabled) {
+          await page.fill('#totalAsJson', JSON.stringify(10));
+          await page.fill('#currentAsJson', JSON.stringify(3));
+        } else {
+          await page.fill('#totalAsJson', JSON.stringify(1));
+        }
+      });
+
+      test.each([
+        { nav: undefined, previous: undefined, next: undefined },
+        { nav: undefined, previous: 'previous', next: 'next' },
+        { nav: 'nav', previous: undefined, next: undefined },
+        { nav: 'nav', previous: 'previous', next: 'next' },
+      ])(
+        'setting navClassName=$nav, previousClassName=$previous, nextClassName=$next renders correctly',
+        async ({ nav, previous, next }) => {
+          await page.fill(`#navClassNameAsJson`, stringifyWithUndefined(nav));
+          await page.fill(
+            `#previousClassNameAsJson`,
+            stringifyWithUndefined(previous),
+          );
+          await page.fill(`#nextClassNameAsJson`, stringifyWithUndefined(next));
+
+          await page.evaluate(() => new Promise(requestAnimationFrame));
+
+          const paginationHtml = await page.$eval('ul', ul => ul.outerHTML);
+          expect(paginationHtml).toMatchSnapshot();
+        },
+      );
+    },
+  );
 });

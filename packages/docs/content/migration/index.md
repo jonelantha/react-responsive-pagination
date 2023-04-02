@@ -8,7 +8,7 @@ addOverview: true
 
 # Migration from v1
 
-For most v1 users, v2 should work fine without any changes, please see below for breaking changes and required migrations:
+**TL;DR:** most v1 users won't need to do anything. Any `.sr-only` stylesheet rules can be removed and also the `bootstrap5PaginationPreset` can be removed (see first two points below)
 
 ## Removing '.sr-only' css styles
 

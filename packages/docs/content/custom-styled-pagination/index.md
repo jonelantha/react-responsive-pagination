@@ -148,6 +148,9 @@ If needed, you can easily override the default class names by adding the followi
 | `pageLinkClassName`     | Class name for **\<a>** or **\<span>** child elements within an **\<li>** element                         |
 | `activeItemClassName`   | Appended to **\<li>** class name for the active element                                                   |
 | `disabledItemClassName` | Appended to **\<li>** class name for non-clickable elements (disabled nav buttons and the break/ellipsis) |
+| `navClassName`          | Appended to **\<li>** class name for both nav buttons                                                     |
+| `previousClassName`     | Appended to **\<li>** class name for previous nav button (overrides `navClassName`)                       |
+| `nextClassName`         | Appended to **\<li>** class name for next nav button (overrides `navClassName`)                           |
 
 ### Example - overriding default class names
 
@@ -158,13 +161,14 @@ If needed, you can easily override the default class names by adding the followi
   pageLinkClassName="my-link"
   activeItemClassName="my-active"
   disabledItemClassName="my-disabled"
+  navClassName="my-nav"
   // ...other props
 />
 
 // would create html like this
 
 <ul class="my-pagination">
-    <li class="my-item my-disabled">
+    <li class="my-item my-disabled my-nav">
         <span class="my-link" aria-label="Previous">
             <span aria-hidden="true">«</span>
         </span>
