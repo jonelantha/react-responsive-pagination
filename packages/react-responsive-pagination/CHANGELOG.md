@@ -1,5 +1,17 @@
 # React Responsive Pagination Changelog
 
+# [2.1.0](https://github.com/jonelantha/react-responsive-pagination/compare/v2.0.1...v2.1.0) (2023-04-02)
+
+
+### Bug Fixes
+
+* Package updates ([2a26be3](https://github.com/jonelantha/react-responsive-pagination/commit/2a26be3db0010c23345c4716a9bc96136b35fbe4))
+
+
+### Features
+
+* nav button className props ([c8ff00b](https://github.com/jonelantha/react-responsive-pagination/commit/c8ff00be60645553cd74e25618b641a3acbcbafe))
+
 ## [2.0.1](https://github.com/jonelantha/react-responsive-pagination/compare/v2.0.0...v2.0.1) (2023-03-24)
 
 
