@@ -12,7 +12,8 @@
     ".": "./dist/index.js",
     "./narrowBehaviour": "./dist/narrowBehaviour.js",
     "./labelBehaviour": "./dist/labelBehaviour.js",
-    "./presets": "./dist/presets.js"
+    "./presets": "./dist/presets.js",
+    "./themes/*": "./themes/*"
   },
   "files": [
     "dist/",
@@ -25,7 +26,8 @@
     "presets.d.ts",
     "presets.js",
     "package.json",
-    "README.md"
+    "README.md",
+    "themes/"
   ],
   "types": "./dist/index.d.ts",
   "scripts": {
