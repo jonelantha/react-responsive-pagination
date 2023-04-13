@@ -32,12 +32,13 @@
   --pagination-focus-color: var(--pagination-hover-color);
   --pagination-focus-bg: var(--pagination-hover-bg);
   --pagination-focus-box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-  --pagination-active-color: #fff;
+  --pagination-active-color: var(--pagination-bg);
   --pagination-active-bg: var(--pagination-color);
-  --pagination-active-border-color: var(--pagination-color);
+  --pagination-active-border-color: var(--pagination-active-bg);
   --pagination-disabled-color: #6c757d;
   --pagination-disabled-bg: var(--pagination-bg);
   --pagination-disabled-border-color: var(--pagination-border-color);
+  --pagination-item-margin-x: 0.2rem;
   display: flex;
   padding-left: 0;
   margin-top: var(--pagination-margin-top, 0);
@@ -54,6 +55,8 @@
   text-decoration: none;
   background-color: var(--pagination-bg);
   border: var(--pagination-border-width) solid var(--pagination-border-color);
+  border-radius: var(--pagination-border-radius);
+  margin: 0 var(--pagination-item-margin-x);
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -86,32 +89,6 @@
   pointer-events: none;
   background-color: var(--pagination-disabled-bg);
   border-color: var(--pagination-disabled-border-color);
-}
-
-.pagination .page-item:not(:first-child) .page-link {
-  margin-left: -1px;
-}
-.pagination .page-item:first-child .page-link {
-  border-top-left-radius: var(--pagination-border-radius);
-  border-bottom-left-radius: var(--pagination-border-radius);
-}
-.pagination .page-item:last-child .page-link {
-  border-top-right-radius: var(--pagination-border-radius);
-  border-bottom-right-radius: var(--pagination-border-radius);
-}
-
-.pagination.pagination-lg {
-  --pagination-padding-x: 1.5rem;
-  --pagination-padding-y: 0.75rem;
-  --pagination-font-size: 1.25rem;
-  --pagination-border-radius: 0.5rem;
-}
-
-.pagination.pagination-sm {
-  --pagination-padding-x: 0.5rem;
-  --pagination-padding-y: 0.25rem;
-  --pagination-font-size: 0.875rem;
-  --pagination-border-radius: 0.25rem;
 }
 
 .pagination.justify-content-start {
