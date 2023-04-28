@@ -2,9 +2,9 @@
 title: 'Frequently asked questions'
 description: 'react-responsive-pagination frequently asked questions'
 navTitle: 'FAQ'
-topNavOrder: 4
-sideNavOrder: 6
-footerNavOrder: 7
+topNavOrder: 5
+sideNavOrder: 7
+footerNavOrder: 8
 ---
 
 # FAQ

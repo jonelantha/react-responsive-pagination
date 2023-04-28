@@ -9,13 +9,10 @@ footerNavOrder: 1
 addOverview: true
 ---
 
-import OverrideSSR from "../../src/components/OverrideSSR"
-import Bootstrap4PaginationContainer from '../../src/components/Bootstrap4PaginationContainer';
-import BootstrapLiveDemo from "../../src/components/BootstrapLiveDemo"
-import BootstrapSSR from "../../src/components/BootstrapSSR"
-
-import { CustomStyleContainer3 } from '../custom-styled-pagination/customPaginationStyles';
-import { ChoiceBlocksContainer, ChoiceBlock, ChoiceBlockCTA } from '../../src/components/ChoiceBlocks';
+import ResponsivePagination from 'react-responsive-pagination';
+import { CustomStyleContainer } from '../custom-styled-pagination/customPaginationStyles';
+import { BootstrapLightStyleContainer, ClassicLightStyleContainer } from '../themes/themes';
+import { ChoiceBlocksContainer, ChoiceBlock } from '../../src/components/ChoiceBlocks';
 
 # react-responsive-pagination
 
@@ -23,23 +20,21 @@ import { ChoiceBlocksContainer, ChoiceBlock, ChoiceBlockCTA } from '../../src/co
 
 An npm React component for truly responsive pagination
 
-Pagination which always fits:
+Pagination which always outputs the right number of links for the width available:
 
-<Bootstrap4PaginationContainer noBorder>
-  <OverrideSSR>
-    {isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo />}
-  </OverrideSSR>
-</Bootstrap4PaginationContainer>
+<BootstrapLightStyleContainer>
+  {(props) => <ResponsivePagination {...props} />}
+</BootstrapLightStyleContainer>
 
 _Try it for yourself, resize the window (or change the orientation of your device)_
 
 <TickList>
-  - Truly responsive, always outputs the right number of pagination elements for the width available
-  - Supports Bootstrap 5.x and 4.x
-  - Supports custom styles
+  - Fully accessible with aria tags for screen readers  
+  - Ready styled themes (or bring your own css)
+  - Bootstrap 4 & 5 support built-in
   - High performance, no unnecessary renders
   - Built for tree-shaking = minimum impact on the bundle
-  - Modern hook based architecture with TypeScript
+  - Modern hook based architecture with 100% TypeScript
   - Backed by a comprehensive automated browser based test suite
 </TickList>
 
@@ -50,26 +45,19 @@ npm install react-responsive-pagination
 ```
 
 <ChoiceBlocksContainer>
-  <ChoiceBlock>
-    ### Want to use Bootstrap styles?
-    <Bootstrap4PaginationContainer noBorder>
-      <OverrideSSR>
-        {isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo totalPages={4} />}
-      </OverrideSSR>
-    </Bootstrap4PaginationContainer>
-    <ChoiceBlockCTA>
-      <CTALink to="/bootstrap-pagination">Bootstrap Pagination</CTALink>
-    </ChoiceBlockCTA>
+  <ChoiceBlock title='Want ready-styled pagination?' ctaLabel='Themed Pagination' ctaLink="/themes">
+    <ClassicLightStyleContainer noBottomMargin>
+      {(props) => <ResponsivePagination {...props} />}
+    </ClassicLightStyleContainer>
   </ChoiceBlock>
-  <ChoiceBlock>
-    ### Want to use custom styles?
-    <CustomStyleContainer3 noBorder>
-      <OverrideSSR>
-        {isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo totalPages={4} />}
-      </OverrideSSR>
-    </CustomStyleContainer3>
-    <ChoiceBlockCTA>
-      <CTALink to="/custom-styled-pagination">Custom Styled Pagination</CTALink>
-    </ChoiceBlockCTA>
+  <ChoiceBlock title='Already using Bootstrap?' ctaLabel='Bootstrap Pagination' ctaLink="/bootstrap-pagination">
+    <BootstrapLightStyleContainer noBottomMargin>
+      {(props) => <ResponsivePagination {...props} />}
+    </BootstrapLightStyleContainer>
+  </ChoiceBlock>
+  <ChoiceBlock title='Want to use custom styles?' ctaLabel='Custom Pagination' ctaLink="/custom-styled-pagination">
+    <CustomStyleContainer noBottomMargin>
+       {(props) => <ResponsivePagination {...props} />}
+    </CustomStyleContainer>
   </ChoiceBlock>
 </ChoiceBlocksContainer>

@@ -2,7 +2,8 @@
 title: 'Migration from v1'
 description: 'Migration from react-responsive-pagination v1'
 navTitle: 'Migration from v1'
-sideNavOrder: 7
+sideNavOrder: 8
+footerNavOrder: 9
 addOverview: true
 ---
 
