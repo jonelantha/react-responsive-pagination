@@ -1,5 +1,12 @@
 # React Responsive Pagination Changelog
 
+# [2.2.0-beta.4](https://github.com/jonelantha/react-responsive-pagination/compare/v2.2.0-beta.3...v2.2.0-beta.4) (2023-04-28)
+
+
+### Features
+
+* Themes ([6c70e8d](https://github.com/jonelantha/react-responsive-pagination/commit/6c70e8d9d579dfffb6c05ab428324e337d935bfb))
+
 # [2.2.0-beta.3](https://github.com/jonelantha/react-responsive-pagination/compare/v2.2.0-beta.2...v2.2.0-beta.3) (2023-04-28)
 
 
