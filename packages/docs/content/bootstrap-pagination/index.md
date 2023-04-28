@@ -2,17 +2,14 @@
 title: 'Responsive Bootstrap Pagination Component'
 description: 'React npm responsive Bootstrap pagination component'
 navTitle: 'Bootstrap Usage'
-topNavOrder: 2
-sideNavOrder: 3
-footerNavOrder: 4
+topNavOrder: 3
+sideNavOrder: 4
+footerNavOrder: 5
 addOverview: true
 ---
 
-import OverrideSSR from "../../src/components/OverrideSSR"
-import Bootstrap4PaginationContainer from '../../src/components/Bootstrap4PaginationContainer';
-import BootstrapLiveDemo from "../../src/components/BootstrapLiveDemo"
-import BootstrapSSR from "../../src/components/BootstrapSSR"
-
+import ResponsivePagination from 'react-responsive-pagination';
+import { BootstrapLightStyleContainer } from '../themes/themes';
 import { PropsTable, PropDef } from "../../src/components/PropsTable"
 import CommonProps from "../props/commonProps.md"
 import ExtraClassNameProp from "../props/extraClassNameProp.md"
@@ -26,13 +23,13 @@ import NarrowProps from "../props/narrowProps.md"
 
 Ready to go with Bootstrap styles - see examples below
 
-<Bootstrap4PaginationContainer>
-  <OverrideSSR>
-    {isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo />}
-  </OverrideSSR>
-</Bootstrap4PaginationContainer>
+<BootstrapLightStyleContainer hasBorder>
+  {(props) => <ResponsivePagination {...props} />}
+</BootstrapLightStyleContainer>
 
-Don't want to use Bootstrap? No problem, see the [Custom Styled Pagination](/custom-styled-pagination) guide
+Not using Bootstrap? No problem, see the available ready-to-go [themes](/themes) including a standalone Bootstrap theme
+
+Want to customise the appearance? See the [Custom Styles](/custom-styled-pagination) guide
 
 ## Installation
 
@@ -82,23 +79,19 @@ If needed, the ARIA labels can also be changed by setting the `ariaPreviousLabel
 
 **Example - Text labels**
 
-<Bootstrap4PaginationContainer>
-  <OverrideSSR>
-    {isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo previousLabel="Previous" nextLabel="Next" />}
-  </OverrideSSR>
-</Bootstrap4PaginationContainer>
-
+<BootstrapLightStyleContainer hasBorder>
+  {(props) => <ResponsivePagination {...props} previousLabel="Previous" nextLabel="Next" />}
+</BootstrapLightStyleContainer>
+  
 ```jsx
 <ResponsivePagination ... previousLabel="Previous" nextLabel="Next" />
 ```
 
 **Example - Single arrow labels**
 
-<Bootstrap4PaginationContainer>
-  <OverrideSSR>
-    {isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo previousLabel="‹" nextLabel="›" />}
-  </OverrideSSR>
-</Bootstrap4PaginationContainer>
+<BootstrapLightStyleContainer hasBorder>
+  {(props) => <ResponsivePagination {...props} previousLabel="‹" nextLabel="›" />}
+</BootstrapLightStyleContainer>
 
 ```jsx
 <ResponsivePagination ... previousLabel="‹" nextLabel="›" />
@@ -110,11 +103,9 @@ Don't include the navigation buttons by setting `renderNav` to **false**:
 
 **Example - No navigation buttons**
 
-<Bootstrap4PaginationContainer>
-  <OverrideSSR>
-    {isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo renderNav={false} />}
-  </OverrideSSR>
-</Bootstrap4PaginationContainer>
+<BootstrapLightStyleContainer hasBorder>
+  {(props) => <ResponsivePagination {...props} renderNav={false} />}
+</BootstrapLightStyleContainer>
 
 ```jsx
 <ResponsivePagination ... renderNav={false} />
@@ -132,11 +123,9 @@ Change how the pagination is positioned by setting the `extraClassName` prop to 
 
 **Example - align pagination left:**
 
-<Bootstrap4PaginationContainer noBorder>
-  <OverrideSSR>
-    {isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemo extraClassName="justify-content-start" />}
-  </OverrideSSR>
-</Bootstrap4PaginationContainer>
+<BootstrapLightStyleContainer>
+  {(props) => <ResponsivePagination {...props} extraClassName="justify-content-start" />}
+</BootstrapLightStyleContainer>
 
 ```jsx
 <ResponsivePagination ... extraClassName="justify-content-start" />

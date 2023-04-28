@@ -9,18 +9,21 @@
 
 An accessible responsive React pagination component which intelligently renders to the available width - for React 16, 17 or 18
 
-✅ Ready to go themes or bring your own css  
-✅ Bootstrap 4 & 5 support built-in  
+<a href="https://react-responsive-pagination.elantha.com/"><img src="./react-responsive-pagination.gif?raw=true" width="985" alt="react-responsive-pagination example" /></a>
+
+### ⚡️ [LIVE DEMO - try it out for yourself!](https://react-responsive-pagination.elantha.com/live-demo/) ⚡️
+
 ✅ Fully accessible with aria tags for screen readers  
-✅ Modern hook based architecture, optimised for tree-shaking and small bundle sizes
+✅ Ready styled themes (or bring your own css)  
+✅ Bootstrap 4 & 5 support built-in  
+✅ High performance, no unnecessary renders  
+✅ Built for tree-shaking = minimum impact on the bundle  
+✅ Modern hook based architecture with 100% TypeScript  
+✅ Backed by a comprehensive automated browser based test suite
 
 **📕 Visit [https://react-responsive-pagination.elantha.com](https://react-responsive-pagination.elantha.com) to get started 🚀**
 
 v1 user? See the [v1 migration guide](https://react-responsive-pagination.elantha.com/migration) to start using v2
-
-<a href="https://react-responsive-pagination.elantha.com/"><img src="./react-responsive-pagination.gif?raw=true" width="985" alt="react-responsive-pagination example" /></a>
-
-### ⚡️ [LIVE DEMO - try it out for yourself!](https://react-responsive-pagination.elantha.com/live-demo/) ⚡️
 
 ## ⏳ Quick Start
 
@@ -50,7 +53,11 @@ function MyApp() {
 
 ## 🦄 Three ways to style:
 
-1. 🖼️ **Pre-built themes (NEW!)**
+1. 🎨 **Custom styling**
+
+   Custom styles? No problem - see the [Custom Styles Guide](https://react-responsive-pagination.elantha.com/custom-styled-pagination/)
+
+2. 🖼️ **Ready-to-go themes (⭐️NEW!⭐️)**
 
    Just import one of the css themes into your project (as shown in the quickstart example above)
 
@@ -58,21 +65,19 @@ function MyApp() {
    import 'react-responsive-pagination/themes/classic-light.css';
    ```
 
-   | Theme               | Description                                                                                                                                                                                                                                                                         |
+   | Theme               | Example                                                                                                                                                                                                                                                                             |
    | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-   | classic-light.css   | <img src="./theme-previews/classic.png?raw=true" width="292" alt="classic pagination" /><br />Classic pagination with link boxes                                                                                                                                                    |
+   | classic-light.css   | <img src="./theme-previews/classic.png?raw=true" width="292" alt="classic pagination" />                                                                                                                                                                                            |
    | bootstrap-light.css | <img src="./theme-previews/bootstrap.png?raw=true" width="250" alt="classic pagination" /><br />Bootstrap 5 styled pagination (without installing Bootstrap)<br />See [additional bootstrap options](https://react-responsive-pagination.elantha.com/bootstrap-pagination/#options) |
-   | minimal-light.css   | <img src="./theme-previews/minimal.png?raw=true" width="169" alt="classic pagination" /><br />Minimal pagination - links only                                                                                                                                                       |
+   | minimal-light.css   | <img src="./theme-previews/minimal.png?raw=true" width="169" alt="classic pagination" />                                                                                                                                                                                            |
+
+   Please see the [Themes guide](https://react-responsive-pagination.elantha.com/themes/) for more details (including overridable theme attributes)
 
    Want to create your own? See the [Custom Styles Guide](https://react-responsive-pagination.elantha.com/custom-styled-pagination/)
 
-2. 🥾 **Bootstrap 4 and 5**
+3. 🥾 **Bootstrap 4 and 5**
 
    Using Bootstrap in your project? **react-responsive-pagination** just works with Bootstrap (no need for any additional styles). See the [Bootstrap Getting Started Guide](https://react-responsive-pagination.elantha.com/bootstrap-pagination/)
-
-3. 🎨 **Custom styling**
-
-   Custom styles? No problem - see the [Custom Styles Guide](https://react-responsive-pagination.elantha.com/custom-styled-pagination/)
 
 ## ✔︎ Requirements / Compatibility
 
