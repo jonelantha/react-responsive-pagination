@@ -1,7 +1,6 @@
 import { Link } from 'gatsby';
 import { ReactNode, isValidElement } from 'react';
 import CodeBlock from './CodeBlock';
-import CTALink from './CTALink';
 import TickList from './TickList';
 
 const mdxComponents = {
@@ -15,7 +14,6 @@ const mdxComponents = {
     }
   },
   CodeBlock,
-  CTALink,
   TickList,
   pre: ({ children: codeTag }: { children?: ReactNode }) => {
     if (!isValidElement(codeTag)) throw new Error();

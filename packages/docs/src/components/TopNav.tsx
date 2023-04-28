@@ -41,8 +41,8 @@ const TopNav = forwardRef<HTMLElement, TopNavProps>(
 
 export const topNavMinHeight = '48px';
 
-export const topNavFullWidthBreakPoint = '900px';
-export const topNavNoLinksBreakPoint = '780px';
+export const topNavFullWidthBreakPoint = '930px';
+export const topNavNoLinksBreakPoint = '850px';
 
 const hPadding = '0.4em';
 const hItemLeftMargin = '0.5em';
