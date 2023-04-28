@@ -6,9 +6,11 @@ import { chevron } from './icons';
 const CTALink = styled(Link)`
   display: flex;
   align-items: center;
-  font-size: 1rem;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  line-height: 1.5;
   background: ${colorLink};
-  padding: 0.5rem 0.75rem;
+  padding: 0.75rem 1rem;
   color: #ffffff;
   border-radius: ${borderRadius};
   box-shadow: ${boxShadow};
@@ -28,6 +30,7 @@ const CTALink = styled(Link)`
     height: 1rem;
     width: 1rem;
     transform: rotate(90deg);
+    flex-shrink: 0;
   }
 `;
 
