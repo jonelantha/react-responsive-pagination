@@ -27,7 +27,7 @@
   --pagination-hover-color: var(--pagination-color);
   --pagination-hover-bg: var(--pagination-bg);
   --pagination-hover-text-decoration: underline;
-  --pagination-active-color: var(#000000);
+  --pagination-active-color: #000000;
   --pagination-active-bg: var(--pagination-bg);
   --pagination-disabled-color: #6c757d;
   --pagination-disabled-bg: var(--pagination-bg);
