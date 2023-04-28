@@ -89,6 +89,8 @@ const BodyScrollLockStyles = createGlobalStyle`
   }
 `;
 
+export const sideNavWidth = '300px';
+
 const Layout = styled.main<{ popupSideNavVisible: boolean }>`
   display: grid;
 
@@ -97,7 +99,7 @@ const Layout = styled.main<{ popupSideNavVisible: boolean }>`
       'top-nav top-nav'
       'side-nav content'
       'side-nav footer';
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: ${sideNavWidth} 1fr;
     grid-template-rows: auto 1fr auto;
   }
 
@@ -140,7 +142,7 @@ const Layout = styled.main<{ popupSideNavVisible: boolean }>`
               z-index: 10;
               height: 100vh;
               border-right: 1px solid ${footerBg};
-              width: clamp(300px, 85%, 500px);
+              width: clamp(${sideNavWidth}, 85%, 500px);
             `
           : css`
               display: none;
