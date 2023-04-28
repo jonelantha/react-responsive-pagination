@@ -7,23 +7,14 @@ topNavOrder: 1
 footerNavOrder: 3
 ---
 
-import OverrideSSR from "../../src/components/OverrideSSR"
-import Bootstrap4PaginationContainer from '../../src/components/Bootstrap4PaginationContainer';
-import BootstrapLiveDemoClass from "../../src/components/BootstrapLiveDemoClass"
-import BootstrapSSR from "../../src/components/BootstrapSSR"
-import ResizeContainer from "../../src/components/ResizeContainer"
+import { BootstrapLightStyleContainer } from '../themes/themes';
+import ResponsivePagination from 'react-responsive-pagination';
 
 **Live Demo** - try resizing your browser to see the component automatically adjust to the available width.
 
-<Bootstrap4PaginationContainer noBorder>
-  <OverrideSSR>
-    {isSSR => (
-      <ResizeContainer visibilityHidden={isSSR}>
-        {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
-      </ResizeContainer>
-    )}
-  </OverrideSSR>
-</Bootstrap4PaginationContainer>
+<BootstrapLightStyleContainer hasBorder striped shadow>
+  {(props) => <ResponsivePagination {...props} total={120} />}
+</BootstrapLightStyleContainer>
 
 NOTE: the striped region illustrates the component's container, it's not part of the component 🙂
 
