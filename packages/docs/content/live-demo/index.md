@@ -7,14 +7,14 @@ topNavOrder: 1
 footerNavOrder: 3
 ---
 
-import { BootstrapLightStyleContainer } from '../themes/themes';
+import { BootstrapThemeContainer } from '../themes/themes';
 import ResponsivePagination from 'react-responsive-pagination';
 
 **Live Demo** - try resizing your browser to see the component automatically adjust to the available width.
 
-<BootstrapLightStyleContainer hasBorder striped shadow>
+<BootstrapThemeContainer hasBorder striped shadow>
   {(props) => <ResponsivePagination {...props} total={120} />}
-</BootstrapLightStyleContainer>
+</BootstrapThemeContainer>
 
 NOTE: the striped region illustrates the component's container, it's not part of the component 🙂
 

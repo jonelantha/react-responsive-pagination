@@ -34,7 +34,7 @@ npm install react-responsive-pagination
 ```jsx
 import React, { useState } from 'react';
 import ResponsivePagination from 'react-responsive-pagination';
-import 'react-responsive-pagination/themes/classic-light.css';
+import 'react-responsive-pagination/themes/classic.css';
 // 👆 classic theme, see below for other theme / css options
 
 function MyApp() {
@@ -62,14 +62,14 @@ function MyApp() {
    Just import one of the css themes into your project (as shown in the quickstart example above)
 
    ```
-   import 'react-responsive-pagination/themes/classic-light.css';
+   import 'react-responsive-pagination/themes/classic.css';
    ```
 
-   | Theme               | Example                                                                                                                                                                                                                                                                             |
-   | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-   | classic-light.css   | <img src="./theme-previews/classic.png?raw=true" width="292" alt="classic pagination" />                                                                                                                                                                                            |
-   | bootstrap-light.css | <img src="./theme-previews/bootstrap.png?raw=true" width="250" alt="classic pagination" /><br />Bootstrap 5 styled pagination (without installing Bootstrap)<br />See [additional bootstrap options](https://react-responsive-pagination.elantha.com/bootstrap-pagination/#options) |
-   | minimal-light.css   | <img src="./theme-previews/minimal.png?raw=true" width="169" alt="classic pagination" />                                                                                                                                                                                            |
+   | Theme         | Example                                                                                                                                                                                                                                                                             |
+   | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+   | classic.css   | <img src="./theme-previews/classic.png?raw=true" width="292" alt="classic pagination" />                                                                                                                                                                                            |
+   | bootstrap.css | <img src="./theme-previews/bootstrap.png?raw=true" width="250" alt="classic pagination" /><br />Bootstrap 5 styled pagination (without installing Bootstrap)<br />See [additional bootstrap options](https://react-responsive-pagination.elantha.com/bootstrap-pagination/#options) |
+   | minimal.css   | <img src="./theme-previews/minimal.png?raw=true" width="169" alt="classic pagination" />                                                                                                                                                                                            |
 
    Please see the [Themes guide](https://react-responsive-pagination.elantha.com/themes/) for more details (including overridable theme attributes)
 

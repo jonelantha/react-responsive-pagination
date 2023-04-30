@@ -11,7 +11,7 @@ addOverview: true
 
 import ResponsivePagination from 'react-responsive-pagination';
 import { CustomStyleContainer } from '../custom-styled-pagination/customPaginationStyles';
-import { BootstrapLightStyleContainer, ClassicLightStyleContainer } from '../themes/themes';
+import { BootstrapThemeContainer, ClassicThemeContainer } from '../themes/themes';
 import { ChoiceBlocksContainer, ChoiceBlock } from '../../src/components/ChoiceBlocks';
 
 # react-responsive-pagination
@@ -22,9 +22,9 @@ An npm React component for truly responsive pagination
 
 Pagination which always outputs the right number of links for the width available:
 
-<BootstrapLightStyleContainer>
+<BootstrapThemeContainer>
   {(props) => <ResponsivePagination {...props} />}
-</BootstrapLightStyleContainer>
+</BootstrapThemeContainer>
 
 _Try it for yourself, resize the window (or change the orientation of your device)_
 
@@ -46,14 +46,14 @@ npm install react-responsive-pagination
 
 <ChoiceBlocksContainer>
   <ChoiceBlock title='Want ready-styled pagination?' ctaLabel='Themed Pagination' ctaLink="/themes">
-    <ClassicLightStyleContainer noBottomMargin>
+    <ClassicThemeContainer noBottomMargin>
       {(props) => <ResponsivePagination {...props} />}
-    </ClassicLightStyleContainer>
+    </ClassicThemeContainer>
   </ChoiceBlock>
   <ChoiceBlock title='Already using Bootstrap?' ctaLabel='Bootstrap Pagination' ctaLink="/bootstrap-pagination">
-    <BootstrapLightStyleContainer noBottomMargin>
+    <BootstrapThemeContainer noBottomMargin>
       {(props) => <ResponsivePagination {...props} />}
-    </BootstrapLightStyleContainer>
+    </BootstrapThemeContainer>
   </ChoiceBlock>
   <ChoiceBlock title='Want to use custom styles?' ctaLabel='Custom Pagination' ctaLink="/custom-styled-pagination">
     <CustomStyleContainer noBottomMargin>

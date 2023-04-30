@@ -11,7 +11,7 @@ addOverview: true
 import ResponsivePagination from 'react-responsive-pagination';
 import CodeBlock from '../../src/components/CodeBlock';
 import { CustomStyleContainer, customStyles, exampleAppCode } from './customPaginationStyles';
-import { BootstrapLightStyleContainer } from '../themes/themes';
+import { BootstrapThemeContainer } from '../themes/themes';
 import { PropsTable, PropDef } from "../../src/components/PropsTable"
 import ClassNameProps from "../props/classNameProps.md"
 import LabelProps from "../props/labelProps.md"
@@ -131,9 +131,9 @@ Change the default labels for the previous and next buttons by setting the `prev
 
 **Example - Text labels**
 
-<BootstrapLightStyleContainer hasBorder>
+<BootstrapThemeContainer hasBorder>
   {(props) => <ResponsivePagination {...props} previousLabel="Previous" nextLabel="Next" />}
-</BootstrapLightStyleContainer>
+</BootstrapThemeContainer>
   
 ```jsx
 <ResponsivePagination ... previousLabel="Previous" nextLabel="Next" />

@@ -8,7 +8,7 @@ footerNavOrder: 4
 addOverview: true
 ---
 
-import { exampleAppCode, BootstrapLightStyleContainer, ClassicLightStyleContainer, MinimalLightStyleContainer, ThemeAttributes } from './themes';
+import { exampleAppCode, BootstrapThemeContainer, ClassicThemeContainer, MinimalThemeContainer, ThemeAttributes } from './themes';
 import ResponsivePagination from 'react-responsive-pagination';
 
 # Themes
@@ -39,49 +39,49 @@ _(see [Configuring a theme](#configuring-a-theme-optional) for details on overri
 
 ## 1. Classic theme
 
-<ClassicLightStyleContainer hasBorder>
+<ClassicThemeContainer hasBorder>
   {(props) => <ResponsivePagination {...props} />}
-</ClassicLightStyleContainer>
+</ClassicThemeContainer>
 
 <ThemeAttributes>
 **Theme import:**  
-`import 'react-responsive-pagination/themes/minimal-light.css';`
+`import 'react-responsive-pagination/themes/minimal.css';`
 
 **Overiddable variables:**  
-See [common overridable variables](#common-overridable-variables) below or see the [theme css source](https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/main/packages/react-responsive-pagination/themes/classic-light.css) for the full list (with default values)
+See [common overridable variables](#common-overridable-variables) below or see the [theme css source](https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/main/packages/react-responsive-pagination/themes/classic.css) for the full list (with default values)
 </ThemeAttributes>
 
 ## 2. Bootstrap theme (without Bootstrap)
 
 Bootstrap 5 styled pagination. Standalone styles, no need to install the full Bootstrap library
 
-<BootstrapLightStyleContainer hasBorder>
+<BootstrapThemeContainer hasBorder>
   {(props) => <ResponsivePagination {...props} />}
-</BootstrapLightStyleContainer>
+</BootstrapThemeContainer>
 
 <ThemeAttributes>
 **Theme import:**  
-`import 'react-responsive-pagination/themes/bootstrap-light.css';`
+`import 'react-responsive-pagination/themes/bootstrap.css';`
 
 **Notes:**  
 See [additional Bootstrap options](https://react-responsive-pagination.elantha.com/bootstrap-pagination/#options)
 
 **Overiddable variables:**  
-See [common overridable variables](#common-overridable-variables) below or see the [theme css source](https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/main/packages/react-responsive-pagination/themes/bootstrap-light.css) for the full list (with default values)
+See [common overridable variables](#common-overridable-variables) below or see the [theme css source](https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/main/packages/react-responsive-pagination/themes/bootstrap.css) for the full list (with default values)
 </ThemeAttributes>
 
 ## 3. Minimal theme
 
-<MinimalLightStyleContainer hasBorder>
+<MinimalThemeContainer hasBorder>
   {(props) => <ResponsivePagination {...props} />}
-</MinimalLightStyleContainer>
+</MinimalThemeContainer>
 
 <ThemeAttributes>
 **Theme import:**  
-`import 'react-responsive-pagination/themes/minimal-light.css';`
+`import 'react-responsive-pagination/themes/minimal.css';`
 
 **Overiddable variables:**  
-See [common overridable variables](#common-overridable-variables) below or see the [theme css source](https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/main/packages/react-responsive-pagination/themes/minimal-light.css) for the full list (with default values)
+See [common overridable variables](#common-overridable-variables) below or see the [theme css source](https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/main/packages/react-responsive-pagination/themes/minimal.css) for the full list (with default values)
 </ThemeAttributes>
 
 ## Configuring a theme (optional)

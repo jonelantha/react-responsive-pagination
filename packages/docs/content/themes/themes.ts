@@ -1,27 +1,27 @@
 import styled from 'styled-components';
 import { PaginationContainer } from '../../src/components/PaginationContainer';
-import bootstrapLightCss from '!!raw-loader!react-responsive-pagination/themes/bootstrap-light.css';
-import classicLightCss from '!!raw-loader!react-responsive-pagination/themes/classic-light.css';
-import minimalLightCss from '!!raw-loader!react-responsive-pagination/themes/minimal-light.css';
+import bootstrapCss from '!!raw-loader!react-responsive-pagination/themes/bootstrap.css';
+import classicCss from '!!raw-loader!react-responsive-pagination/themes/classic.css';
+import minimalCss from '!!raw-loader!react-responsive-pagination/themes/minimal.css';
 import { boxBorder } from '../../src/components/GlobalStyles';
 
-export const BootstrapLightStyleContainer = styled(PaginationContainer)`
-  ${bootstrapLightCss}
+export const BootstrapThemeContainer = styled(PaginationContainer)`
+  ${bootstrapCss}
 `;
 
-export const ClassicLightStyleContainer = styled(PaginationContainer)`
-  ${classicLightCss}
+export const ClassicThemeContainer = styled(PaginationContainer)`
+  ${classicCss}
 `;
 
-export const MinimalLightStyleContainer = styled(PaginationContainer)`
-  ${minimalLightCss}
+export const MinimalThemeContainer = styled(PaginationContainer)`
+  ${minimalCss}
 `;
 
 export const exampleAppCode = `
 import React, { useState } from 'react';
 import ResponsivePagination from 'react-responsive-pagination';
 
-import 'react-responsive-pagination/themes/classic-light.css';
+import 'react-responsive-pagination/themes/classic.css';
 // ^ classic theme, see below for other themes
 // include this once in the project (preferrably the main index.js)
 

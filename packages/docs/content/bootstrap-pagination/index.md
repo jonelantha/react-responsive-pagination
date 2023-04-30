@@ -9,7 +9,7 @@ addOverview: true
 ---
 
 import ResponsivePagination from 'react-responsive-pagination';
-import { BootstrapLightStyleContainer } from '../themes/themes';
+import { BootstrapThemeContainer } from '../themes/themes';
 import { PropsTable, PropDef } from "../../src/components/PropsTable"
 import CommonProps from "../props/commonProps.md"
 import ExtraClassNameProp from "../props/extraClassNameProp.md"
@@ -23,9 +23,9 @@ import NarrowProps from "../props/narrowProps.md"
 
 Ready to go with Bootstrap styles - see examples below
 
-<BootstrapLightStyleContainer hasBorder>
+<BootstrapThemeContainer hasBorder>
   {(props) => <ResponsivePagination {...props} />}
-</BootstrapLightStyleContainer>
+</BootstrapThemeContainer>
 
 Not using Bootstrap? No problem, see the available ready-to-go [themes](/themes) including a standalone Bootstrap theme
 
@@ -79,9 +79,9 @@ If needed, the ARIA labels can also be changed by setting the `ariaPreviousLabel
 
 **Example - Text labels**
 
-<BootstrapLightStyleContainer hasBorder>
+<BootstrapThemeContainer hasBorder>
   {(props) => <ResponsivePagination {...props} previousLabel="Previous" nextLabel="Next" />}
-</BootstrapLightStyleContainer>
+</BootstrapThemeContainer>
   
 ```jsx
 <ResponsivePagination ... previousLabel="Previous" nextLabel="Next" />
@@ -89,9 +89,9 @@ If needed, the ARIA labels can also be changed by setting the `ariaPreviousLabel
 
 **Example - Single arrow labels**
 
-<BootstrapLightStyleContainer hasBorder>
+<BootstrapThemeContainer hasBorder>
   {(props) => <ResponsivePagination {...props} previousLabel="‹" nextLabel="›" />}
-</BootstrapLightStyleContainer>
+</BootstrapThemeContainer>
 
 ```jsx
 <ResponsivePagination ... previousLabel="‹" nextLabel="›" />
@@ -103,9 +103,9 @@ Don't include the navigation buttons by setting `renderNav` to **false**:
 
 **Example - No navigation buttons**
 
-<BootstrapLightStyleContainer hasBorder>
+<BootstrapThemeContainer hasBorder>
   {(props) => <ResponsivePagination {...props} renderNav={false} />}
-</BootstrapLightStyleContainer>
+</BootstrapThemeContainer>
 
 ```jsx
 <ResponsivePagination ... renderNav={false} />
@@ -123,9 +123,9 @@ Change how the pagination is positioned by setting the `extraClassName` prop to 
 
 **Example - align pagination left:**
 
-<BootstrapLightStyleContainer>
+<BootstrapThemeContainer>
   {(props) => <ResponsivePagination {...props} extraClassName="justify-content-start" />}
-</BootstrapLightStyleContainer>
+</BootstrapThemeContainer>
 
 ```jsx
 <ResponsivePagination ... extraClassName="justify-content-start" />
