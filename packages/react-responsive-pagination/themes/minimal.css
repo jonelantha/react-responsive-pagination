@@ -10,6 +10,7 @@
 --pagination-item-margin-x
 --pagination-color
 --pagination-bg
+--pagination-border-radius
 --pagination-hover-color
 --pagination-hover-bg
 --pagination-hover-text-decoration
@@ -52,11 +53,12 @@
 .pagination .page-link {
   position: relative;
   display: block;
-  padding: var(--pagination-padding-y, 0) var(--pagination-padding-x, 0.5rem);
+  padding: var(--pagination-padding-y, 0.25rem) var(--pagination-padding-x, 0.5rem);
   font-size: var(--pagination-font-size, 1rem);
   color: var(--pagination-color, #0d6efd);
   text-decoration: none;
   background-color: var(--pagination-bg, #fff);
+  border-radius: var(--pagination-border-radius, 0.2rem);
   margin: 0 var(--pagination-item-margin-x, 0);
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
 }
@@ -67,16 +69,16 @@
 }
 .pagination .page-link:hover {
   z-index: 2;
-  color: var(--pagination-hover-color, var(--pagination-color, #0d6efd));
-  background-color: var(--pagination-hover-bg, var(--pagination-bg, #fff));
-  text-decoration: var(--pagination-hover-text-decoration, underline);
+  color: var(--pagination-hover-color, var(--pagination-bg, #fff));
+  background-color: var(--pagination-hover-bg, var(--pagination-color, #0d6efd));
+  text-decoration: var(--pagination-hover-text-decoration);
 }
 
 .pagination .active > .page-link {
   z-index: 3;
-  color: var(--pagination-active-color, #000000);
-  background-color: var(--pagination-active-bg, var(--pagination-bg, #fff));
-  font-weight: var(--pagination-active-font-weight, 800);
+  color: var(--pagination-active-color, var(--pagination-bg, #fff));
+  background-color: var(--pagination-active-bg, var(--pagination-color, #0d6efd));
+  font-weight: var(--pagination-active-font-weight);
 }
 
 .pagination .disabled > .page-link {
