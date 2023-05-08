@@ -2,8 +2,8 @@
 title: 'Props Reference'
 description: 'React npm responsive pagination props'
 navTitle: 'Props Reference'
-sideNavOrder: 5
-footerNavOrder: 6
+sideNavOrder: 6
+footerNavOrder: 7
 ---
 
 import { PropsTable } from "../../src/components/PropsTable"

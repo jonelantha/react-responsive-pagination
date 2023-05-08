@@ -2,18 +2,16 @@
 title: 'Custom Styles Guide'
 description: 'React npm responsive pagination component with custom styling'
 navTitle: 'Custom Styles'
-topNavOrder: 3
-sideNavOrder: 4
-footerNavOrder: 5
+topNavOrder: 4
+sideNavOrder: 5
+footerNavOrder: 6
 addOverview: true
 ---
 
-import OverrideSSR from "../../src/components/OverrideSSR"
+import ResponsivePagination from 'react-responsive-pagination';
 import CodeBlock from '../../src/components/CodeBlock';
-import { CustomStyleContainer1, customStyles1, CustomStyleContainer2, customStyles2, CustomStyleContainer3, customStyles3, MinimumBootstrap4Container, MinimumBootstrap5Container, minimumBootstrap4Styles, minimumBootstrap5Styles, exampleAppCode } from './customPaginationStyles';
-import BootstrapLiveDemoClass from "../../src/components/BootstrapLiveDemoClass"
-import Bootstrap4PaginationContainer from '../../src/components/Bootstrap4PaginationContainer';
-import BootstrapSSR from "../../src/components/BootstrapSSR"
+import { CustomStyleContainer, customStyles, exampleAppCode } from './customPaginationStyles';
+import { BootstrapThemeContainer } from '../themes/themes';
 import { PropsTable, PropDef } from "../../src/components/PropsTable"
 import ClassNameProps from "../props/classNameProps.md"
 import LabelProps from "../props/labelProps.md"
@@ -24,15 +22,15 @@ import RenderNavProps from "../props/renderNavProps.md"
 
 **react-responsive-pagination** is an easy to use React responsive pagination component which always outputs the right number of pagination elements for the width available, no guesswork needed
 
-Easy to style, just include the necessary css in your project (see examples below)
+Easy to completely customise, just add custom css to your project using this guide
 
-<OverrideSSR>
-  {isSSR => (
-    <CustomStyleContainer1>
-      {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
-    </CustomStyleContainer1>
-  )}
-</OverrideSSR>
+<CustomStyleContainer hasBorder>
+  {(props) => <ResponsivePagination {...props} />}
+</CustomStyleContainer>
+  
+Don't want to create custom css? See the available ready-to-go [themes](/themes)
+
+Using Bootstrap 5.x or 4.x? No problem, see the [Bootstrap Pagination](/bootstrap-pagination) guide
 
 ## Installation
 
@@ -46,96 +44,37 @@ npm install react-responsive-pagination
 
 <CodeBlock code={exampleAppCode} language='jsx' title='MyApp.js'/>
 
-See below for **pagination.css** examples
+See below for a **pagination.css** example
 
 _(for more information on Props, see [Props Reference](/props))_
 
 ## Custom Styling
 
-To create custom styles for **react-responsive-pagination** simply include some custom css - the five examples below should provide a good starting point. For a full list of suggested css selectors to target, see [Selector Reference](#selector-reference)
+To create custom styles for **react-responsive-pagination** simply include some custom css - the example below and the [theme css source files](https://github.com/jonelantha/react-responsive-pagination/tree/main/packages/react-responsive-pagination/themes) should provide a good starting point. For a full list of suggested css selectors to target, see [Selector Reference](#selector-reference)
 
-Using Bootstrap 5.x or 4.x? No problem, see the [Bootstrap Pagination](/bootstrap-pagination) guide.
+## Example
 
-## Example 1 - Basic Pagination
-
-<OverrideSSR>
-  {isSSR => (
-    <CustomStyleContainer1>
-      {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
-    </CustomStyleContainer1>
-  )}
-</OverrideSSR>
-
-<CodeBlock code={customStyles1} language='css' previewSize={6} title='pagination.css'/>
+<CustomStyleContainer hasBorder>
+  {(props) => <ResponsivePagination {...props} />}
+</CustomStyleContainer>
+  
+<CodeBlock code={customStyles} language='css' previewSize={6} title='pagination.css'/>
 
 _For a full list of suggested css selectors to target, see [Selector Reference](#selector-reference)_
 
-## Example 2 - Classic Pagination
-
-<OverrideSSR>
-  {isSSR => (
-    <CustomStyleContainer2>
-      {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
-    </CustomStyleContainer2>
-  )}
-</OverrideSSR>
-
-<CodeBlock code={customStyles2} language='css' previewSize={6} title='pagination.css'/>
-
-_For a full list of suggested css selectors to target, see [Selector Reference](#selector-reference)_
-
-## Example 3 - Advanced Pagination
-
-<OverrideSSR>
-  {isSSR => (
-    <CustomStyleContainer3>
-      {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
-    </CustomStyleContainer3>
-  )}
-</OverrideSSR>
-
-<CodeBlock code={customStyles3} language='css' previewSize={6} title='pagination.css'/>
-
-_For a full list of suggested css selectors to target, see [Selector Reference](#selector-reference)_
-
-## Example 4 - Standalone Bootstrap 4 Styles
-
-<OverrideSSR>
-  {isSSR => (
-    <MinimumBootstrap4Container>
-      {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
-    </MinimumBootstrap4Container>
-  )}
-</OverrideSSR>
-
-<CodeBlock code={minimumBootstrap4Styles} language='css' previewSize={7} title='pagination.css' />
-
-_For a full list of suggested css selectors to target, see [Selector Reference](#selector-reference)_
-
-## Example 5 - Standalone Bootstrap 5 Styles
-
-<OverrideSSR>
-  {isSSR => (
-    <MinimumBootstrap5Container>
-      {isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass />}
-    </MinimumBootstrap5Container>
-  )}
-</OverrideSSR>
-
-<CodeBlock code={minimumBootstrap5Styles} language='css' previewSize={7} title='pagination.css' />
-
-_For a full list of suggested css selectors to target, see the next section_
+**Further examples**:  
+Please see the theme css files at: [https://github.com/jonelantha/react-responsive-pagination/tree/main/packages/react-responsive-pagination/themes](https://github.com/jonelantha/react-responsive-pagination/tree/main/packages/react-responsive-pagination/themes) - these are also a good starting point for custom css files
 
 ## Selector Reference
 
-| Selector                         | Notes                                                                                                                                                                    |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `.pagination`                    | **Pagination container** _(\<ul> tag)_<br />The recommended style is a horizontal flexbox (see examples above)                                                           |
-| `.page-item`                     | **Item containers** _(\<li> tags)_<br />Styles may not be needed for this selector, see selector below                                                                   |
-| `.page-item .page-link`          | **Item elements** _(\<a> or \<span> tags)_<br />Includes links and static labels. Style as a block element with appropriate font, margin and border (see examples above) |
-| `.page-item a.page-link`         | **Clickable item elements** _(\<a> tags)_<br />Page links or the next/previous buttons (if they are clickable)                                                           |
-| `.page-item.active .page-link`   | **Active page link** _(\<a> tags)_<br />CSS should highlight this element (see examples above)                                                                           |
-| `.page-item.disabled .page-link` | **Disabled items** _(\<span> tags)_<br />Includes '...' or disabled nav buttons. CSS should show grey out these elements (see examples above)                            |
+| Selector                         | Notes                                                                                                                                                                   |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.pagination`                    | **Pagination container** _(\<ul> tag)_<br />The recommended style is a horizontal flexbox (see example above)                                                           |
+| `.page-item`                     | **Item containers** _(\<li> tags)_<br />Styles may not be needed for this selector, see selector below                                                                  |
+| `.page-item .page-link`          | **Item elements** _(\<a> or \<span> tags)_<br />Includes links and static labels. Style as a block element with appropriate font, margin and border (see example above) |
+| `.page-item a.page-link`         | **Clickable item elements** _(\<a> tags)_<br />Page links or the next/previous buttons (if they are clickable)                                                          |
+| `.page-item.active .page-link`   | **Active page link** _(\<a> tags)_<br />CSS should highlight this element (see example above)                                                                           |
+| `.page-item.disabled .page-link` | **Disabled items** _(\<span> tags)_<br />Includes '...' or disabled nav buttons. CSS should show grey out these elements (see example above)                            |
 
 ## Overriding default classNames
 
@@ -192,12 +131,10 @@ Change the default labels for the previous and next buttons by setting the `prev
 
 **Example - Text labels**
 
-<Bootstrap4PaginationContainer>
-  <OverrideSSR>
-    {isSSR => isSSR ? <BootstrapSSR /> : <BootstrapLiveDemoClass previousLabel="Previous" nextLabel="Next" />}
-  </OverrideSSR>
-</Bootstrap4PaginationContainer>
-
+<BootstrapThemeContainer hasBorder>
+  {(props) => <ResponsivePagination {...props} previousLabel="Previous" nextLabel="Next" />}
+</BootstrapThemeContainer>
+  
 ```jsx
 <ResponsivePagination ... previousLabel="Previous" nextLabel="Next" />
 ```
