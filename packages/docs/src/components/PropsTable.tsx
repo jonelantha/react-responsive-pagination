@@ -1,4 +1,4 @@
-import React, { isValidElement, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { fontWeightBold } from './GlobalStyles';
 import styled from 'styled-components';
 

@@ -1,5 +1,4 @@
-import Highlight, { defaultProps, Language } from 'prism-react-renderer';
-import prismTheme from 'prism-react-renderer/themes/vsDark';
+import { Highlight, Language } from 'prism-react-renderer';
 import { MouseEvent, TouchEvent, useState } from 'react';
 import styled, { css } from 'styled-components';
 import {
@@ -59,12 +58,7 @@ export default function CodeBlock({
   }
 
   return (
-    <Highlight
-      {...defaultProps}
-      code={code.trim()}
-      language={language || 'javascript'}
-      theme={prismTheme}
-    >
+    <Highlight code={code.trim()} language={language || 'javascript'}>
       {({ className, style, tokens: lines, getLineProps, getTokenProps }) => {
         const { previewLines, remainingLines } = splitLines(lines, previewSize);
         const expandable = remainingLines && remainingLines.length > 0 && !expanded;
