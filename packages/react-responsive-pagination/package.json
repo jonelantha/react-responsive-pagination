@@ -15,6 +15,9 @@
     "./presets": "./dist/presets.js",
     "./themes/*": "./themes/*"
   },
+  "publishConfig": {
+    "provenance": true
+  },
   "files": [
     "dist/",
     "CHANGELOG.md",
