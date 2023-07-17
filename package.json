@@ -10,6 +10,8 @@
     "test": "yarn workspace react-responsive-pagination test",
     "start-test-harness": "yarn workspace browser-test start-harness-18",
     "browser-test-dev": "yarn workspace browser-test test-dev",
+    "browser-test-18-ci": "yarn workspace browser-test test-18-ci",
+    "browser-test-17-ci": "yarn workspace browser-test test-17-ci",
     "browser-test-18": "yarn workspace browser-test test-18",
     "browser-test-17": "yarn workspace browser-test test-17",
     "start-docs": "yarn workspace docs develop",
