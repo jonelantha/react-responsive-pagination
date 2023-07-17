@@ -9,17 +9,14 @@
 
 An accessible responsive React pagination component which intelligently renders to the available width - for React 16, 17 or 18
 
-<a href="https://react-responsive-pagination.elantha.com/"><img src="./react-responsive-pagination.gif?raw=true" width="985" alt="react-responsive-pagination example" /></a>
-
-### ⚡️ [LIVE DEMO - try it out for yourself!](https://react-responsive-pagination.elantha.com/live-demo/) ⚡️
-
 ✅ Fully accessible with aria tags for screen readers  
 ✅ Ready styled themes (or bring your own css)  
 ✅ Bootstrap 4 & 5 support built-in  
-✅ High performance, no unnecessary renders  
-✅ Built for tree-shaking = minimum impact on the bundle  
-✅ Modern hook based architecture with 100% TypeScript  
-✅ Backed by a comprehensive automated browser based test suite
+✅ Built for tree-shaking = minimum impact on the bundle
+
+<a href="https://react-responsive-pagination.elantha.com/"><img src="./react-responsive-pagination.gif?raw=true" width="985" alt="react-responsive-pagination example" /></a>
+
+### ⚡️ [LIVE DEMO - try it out for yourself!](https://react-responsive-pagination.elantha.com/live-demo/) ⚡️
 
 **📕 Visit [https://react-responsive-pagination.elantha.com](https://react-responsive-pagination.elantha.com) to get started 🚀**
 
@@ -51,13 +48,13 @@ function MyApp() {
 }
 ```
 
-## 🦄 Three ways to style:
+## Three ways to style:
 
 1. 🎨 **Custom styling**
 
    Custom styles? No problem - see the [Custom Styles Guide](https://react-responsive-pagination.elantha.com/custom-styled-pagination/)
 
-2. 🖼️ **Ready-to-go themes (⭐️NEW!⭐️)**
+2. 🖼️ **Ready-to-go themes (NEW!)**
 
    Just import one of the css themes into your project (as shown in the quickstart example above)
 

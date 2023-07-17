@@ -15,6 +15,9 @@
     "./presets": "./dist/presets.js",
     "./themes/*": "./themes/*"
   },
+  "publishConfig": {
+    "provenance": true
+  },
   "files": [
     "dist/",
     "CHANGELOG.md",
@@ -63,26 +66,24 @@
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@types/jest": "^29.5.0",
+    "@types/jest": "^29.5.3",
     "@types/prop-types": "^15.7.5",
-    "@types/react": "^18.0.29",
-    "@types/react-dom": "^18.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.56.0",
-    "@typescript-eslint/parser": "^5.56.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^8.36.0",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.44.0",
     "eslint-config-react-app": "^7.0.1",
-    "eslint-plugin-flowtype": "^8.0.3",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "jest": "^29.5.0",
+    "jest": "^29.6.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "rimraf": "^4.4.1",
-    "semantic-release": "^21.0.0",
-    "ts-jest": "29.0.5",
+    "rimraf": "^5.0.1",
+    "semantic-release": "^21.0.7",
+    "ts-jest": "^29.1.1",
     "typescript": "^4.9.5"
   }
 }

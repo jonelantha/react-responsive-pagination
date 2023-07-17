@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/jest": "^29.5.0",
-    "@types/node": "^18.15.9",
+    "@types/jest": "^29.5.3",
+    "@types/node": "^18.16.19",
     "expect-playwright": "^0.8.0",
-    "jest": "^29.5.0",
-    "jest-circus": "^29.5.0",
+    "jest": "^29.6.1",
+    "jest-circus": "^29.6.1",
     "jest-playwright-preset": "^3.0.1",
-    "playwright": "^1.32.1",
-    "ts-jest": "^29.0.5",
+    "playwright": "^1.36.0",
+    "ts-jest": "^29.1.1",
     "typescript": "^4.9.5"
   },
   "scripts": {
@@ -21,6 +21,8 @@
     "build-harness-17": "yarn workspace test-harness-17 build",
     "serve-harness-17": "yarn workspace test-harness-17 serve",
     "test-dev": "jest --runInBand",
+    "test-18-ci": "yarn build-harness-18 && PROD_TEST=1 BROWSER='chromium,firefox' SERVE_COMMAND='yarn serve-harness-18' jest --runInBand",
+    "test-17-ci": "yarn build-harness-17 && PROD_TEST=1 BROWSER='chromium,firefox' SERVE_COMMAND='yarn serve-harness-17' jest --runInBand",
     "test-18": "yarn build-harness-18 && PROD_TEST=1 SERVE_COMMAND='yarn serve-harness-18' jest --runInBand",
     "test-17": "yarn build-harness-17 && PROD_TEST=1 SERVE_COMMAND='yarn serve-harness-17' jest --runInBand"
   }

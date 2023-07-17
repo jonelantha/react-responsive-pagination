@@ -5,9 +5,7 @@ const commonConfig = {
 if (process.env.PROD_TEST) {
   module.exports = {
     ...commonConfig,
-    browsers: process.env.BROWSER
-      ? [process.env.BROWSER]
-      : ['chromium', 'firefox', 'webkit'],
+    browsers: getBrowsers(process.env.BROWSER ?? 'all'),
     serverOptions: {
       command: process.env.SERVE_COMMAND,
       port: 3000,
@@ -22,9 +20,14 @@ if (process.env.PROD_TEST) {
       headless: false,
       slowMo: process.env.SLOWMO ?? null,
     },
-    browsers:
-      process.env.BROWSER === 'all'
-        ? ['chromium', 'firefox', 'webkit']
-        : [process.env.BROWSER ?? 'chromium'],
+    browsers: getBrowsers(process.env.BROWSER ?? 'chromium'),
   };
+}
+
+function getBrowsers(browserStr) {
+  if (browserStr === 'all') {
+    return ['chromium', 'firefox', 'webkit'];
+  }
+
+  return browserStr.split(',');
 }

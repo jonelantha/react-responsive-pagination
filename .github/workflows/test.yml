@@ -31,6 +31,6 @@ jobs:
       - name: Unit Tests
         run: yarn test
       - name: Test React 18
-        run: yarn browser-test-18
+        run: yarn browser-test-18-ci
       - name: Test React 17
-        run: yarn browser-test-17
+        run: yarn browser-test-17-ci

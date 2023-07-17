@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { borderRadius, boxShadow, boxBorder } from './GlobalStyles';
+import { borderRadius, boxBorder } from './GlobalStyles';
 
 const TickList = styled.div`
   ul {
