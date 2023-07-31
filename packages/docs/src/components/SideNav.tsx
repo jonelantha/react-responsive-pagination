@@ -1,14 +1,14 @@
 import { Link } from 'gatsby';
 import styled, { css } from 'styled-components';
 import { NavItem } from '../utils/useNavItems';
-import Reveal from '../components/Reveal';
+import Reveal from './Reveal';
 import {
   colorContent,
   borderRadius,
   fontWeightSemiBold,
   colorNavBgHover,
   colorHighlightedBackground,
-} from '../components/GlobalStyles';
+} from './GlobalStyles';
 import { staticNavMediaQuery } from './DocLayoutBreakpoints';
 import { chevron, close, external } from './icons';
 

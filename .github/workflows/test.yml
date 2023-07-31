@@ -13,24 +13,19 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
-      - uses: actions/cache@v3
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: ${{ runner.os }}-yarn-
+          cache: 'npm'
       - name: Install dependencies
-        run: yarn install --immutable
+        run: npm ci
+      - name: Install test-harness-react-17 dependencies
+        working-directory: ./test-harness-react-17
+        run: npm ci
       - name: Install playwright dependencies
         run: npx playwright install-deps
       - name: Build
-        run: yarn build
+        run: npm run build
       - name: Unit Tests
-        run: yarn test
+        run: npm run test
       - name: Test React 18
-        run: yarn browser-test-18-ci
+        run: npm run browser-test-18-ci
       - name: Test React 17
-        run: yarn browser-test-17-ci
+        run: npm run browser-test-17-ci

@@ -18,21 +18,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
-      - uses: actions/cache@v3
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: ${{ runner.os }}-yarn-
+          cache: 'npm'
       - name: Install dependencies
-        run: yarn install --immutable
+        run: npm ci
       - name: Build component
-        run: yarn build
+        run: npm run build
       - name: Build docs
-        run: yarn build-docs
+        run: npm run build-docs
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:

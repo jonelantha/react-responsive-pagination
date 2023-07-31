@@ -7,7 +7,7 @@ import {
   borderRadius,
   fontWeightSemiBold,
   colorNavBgHover,
-} from '../components/GlobalStyles';
+} from './GlobalStyles';
 import { NavItem } from '../utils/useNavItems';
 import { hamburger, external } from './icons';
 
