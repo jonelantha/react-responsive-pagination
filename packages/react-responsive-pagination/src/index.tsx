@@ -72,11 +72,11 @@ function ResponsivePagination({
 
   if (items.length === 0) return null;
 
-  function getContainerClassName()  {
+  function getContainerClassName() {
     if (className !== undefined) {
       return className;
     } else if (extraClassName) {
-      return `pagination ${extraClassName}`; 
+      return `pagination ${extraClassName}`;
     } else {
       return 'pagination';
     }

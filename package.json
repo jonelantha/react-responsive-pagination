@@ -4,23 +4,25 @@
     "packages/**"
   ],
   "scripts": {
-    "start": "yarn workspace react-responsive-pagination start",
-    "build": "yarn workspace react-responsive-pagination build",
-    "release": "yarn workspace react-responsive-pagination release",
-    "test": "yarn workspace react-responsive-pagination test",
-    "start-test-harness": "yarn workspace browser-test start-harness-18",
-    "browser-test-dev": "yarn workspace browser-test test-dev",
-    "browser-test-18-ci": "yarn workspace browser-test test-18-ci",
-    "browser-test-17-ci": "yarn workspace browser-test test-17-ci",
-    "browser-test-18": "yarn workspace browser-test test-18",
-    "browser-test-17": "yarn workspace browser-test test-17",
-    "start-docs": "yarn workspace docs develop",
-    "build-docs": "yarn workspace docs build",
-    "update-yarn-ts": "yarn dlx @yarnpkg/sdks vscode"
+    "start": "npm run start -w react-responsive-pagination",
+    "build": "npm run build -w react-responsive-pagination",
+    "release": "npm run release -w react-responsive-pagination",
+    "test": "npm run test -w react-responsive-pagination",
+    "start-test-harness": "npm run start -w test-harness",
+    "browser-test-dev": "npm run test-dev -w browser-test",
+    "browser-test-18-ci": "npm run build -w test-harness && SERVE_COMMAND='npm run serve -w test-harness' npm run test-prod-ci -w browser-test",
+    "browser-test-17-ci": "npm run build --prefix test-harness-react-17 && SERVE_COMMAND='npm run serve --prefix ../../test-harness-react-17' npm run test-prod-ci -w browser-test",
+    "browser-test-18": "npm run build -w test-harness && SERVE_COMMAND='npm run serve -w test-harness' npm run test-prod -w browser-test",
+    "browser-test-17": "npm run build --prefix test-harness-react-17 && SERVE_COMMAND='npm run serve --prefix ../../test-harness-react-17' npm run test-prod -w browser-test",
+    "start-docs": "npm run develop -w docs",
+    "build-docs": "npm run build -w docs"
   },
   "dependencies": {
     "prettier": "^2.8.8",
+    "react-refresh": "^0.14.0",
     "typescript": "^4.9.5"
   },
-  "packageManager": "yarn@3.6.1"
+  "overrides": {
+    "react-refresh": "$react-refresh"
+  }
 }

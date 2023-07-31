@@ -6,7 +6,7 @@ import {
   colorFooterLink,
   colorFooterLinkHover,
   mainFontFamily,
-} from '../components/GlobalStyles';
+} from './GlobalStyles';
 import { external } from './icons';
 
 type FooterProps = { items: NavItem[] };

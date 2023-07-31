@@ -14,16 +14,8 @@
     "typescript": "^4.9.5"
   },
   "scripts": {
-    "start-harness-18": "yarn workspace test-harness start",
-    "build-harness-18": "yarn workspace test-harness build",
-    "serve-harness-18": "yarn workspace test-harness serve",
-    "start-harness-17": "yarn workspace test-harness-17 start",
-    "build-harness-17": "yarn workspace test-harness-17 build",
-    "serve-harness-17": "yarn workspace test-harness-17 serve",
     "test-dev": "jest --runInBand",
-    "test-18-ci": "yarn build-harness-18 && PROD_TEST=1 BROWSER='chromium,firefox' SERVE_COMMAND='yarn serve-harness-18' jest --runInBand",
-    "test-17-ci": "yarn build-harness-17 && PROD_TEST=1 BROWSER='chromium,firefox' SERVE_COMMAND='yarn serve-harness-17' jest --runInBand",
-    "test-18": "yarn build-harness-18 && PROD_TEST=1 SERVE_COMMAND='yarn serve-harness-18' jest --runInBand",
-    "test-17": "yarn build-harness-17 && PROD_TEST=1 SERVE_COMMAND='yarn serve-harness-17' jest --runInBand"
+    "test-prod-ci": "PROD_TEST=1 BROWSER='chromium,firefox' jest --runInBand",
+    "test-prod": "PROD_TEST=1 jest --runInBand"
   }
 }
