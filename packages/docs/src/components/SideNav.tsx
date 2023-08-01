@@ -65,7 +65,7 @@ export default function SideNav({
                 {title}
               </GatsbyLink>
               <ExpandButton
-                expanded={expandedSlug === slug}
+                $expanded={expandedSlug === slug}
                 aria-label={`${
                   expandedSlug === slug ? 'Hide' : 'Show'
                 } '${title}' sections`}
@@ -210,7 +210,7 @@ const SectionHead = styled.div`
   }
 `;
 
-const ExpandButton = styled.button<{ expanded: boolean }>`
+const ExpandButton = styled.button<{ $expanded: boolean }>`
   cursor: pointer;
   background: none;
   margin: 0;
@@ -237,7 +237,7 @@ const ExpandButton = styled.button<{ expanded: boolean }>`
     height: 2rem;
     width: 2rem;
     transition: transform 200ms;
-    transform: rotate(${({ expanded }) => (expanded ? '180deg' : '90deg')});
+    transform: rotate(${({ $expanded }) => ($expanded ? '180deg' : '90deg')});
   }
 `;
 

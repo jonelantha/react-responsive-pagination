@@ -47,7 +47,7 @@ export default function DocLayout({ children, activeSlug }: DocTemplateProps) {
   });
 
   return (
-    <Layout popupSideNavVisible={popupSideNavVisible}>
+    <Layout $popupSideNavVisible={popupSideNavVisible}>
       <GlobalStyles />
       <TopNav
         ref={headerRef}
@@ -91,7 +91,7 @@ const BodyScrollLockStyles = createGlobalStyle`
 
 export const sideNavWidth = '300px';
 
-const Layout = styled.main<{ popupSideNavVisible: boolean }>`
+const Layout = styled.main<{ $popupSideNavVisible: boolean }>`
   display: grid;
 
   @media ${staticNavMediaQuery} {
@@ -133,8 +133,8 @@ const Layout = styled.main<{ popupSideNavVisible: boolean }>`
     }
 
     @media ${popupNavMediaQuery} {
-      ${({ popupSideNavVisible }) =>
-        popupSideNavVisible
+      ${({ $popupSideNavVisible }) =>
+        $popupSideNavVisible
           ? css`
               position: fixed;
               top: 0;
