@@ -1,6 +1,11 @@
-const rehypeSetCodeAttributes = require('./rehype-set-code-attributes');
+// @ts-check
+import remarkGfm from 'remark-gfm';
+import rehypeSlug from 'rehype-slug';
 
-module.exports = {
+/**
+ * @type {import('gatsby').GatsbyConfig}
+ */
+const gatsbyConfig = {
   flags: {},
   siteMetadata: {
     title: 'react-responsive-pagination',
@@ -25,20 +30,12 @@ module.exports = {
       options: {
         extensions: ['.mdx', '.md'],
         mdxOptions: {
-          remarkPlugins: [require('remark-gfm')],
-          rehypePlugins: [wrapESMPlugin('rehype-slug'), rehypeSetCodeAttributes],
+          remarkPlugins: [remarkGfm],
+          rehypePlugins: [rehypeSlug],
         },
       },
     },
   ],
 };
 
-function wrapESMPlugin(name) {
-  return function wrapESM(opts) {
-    return async (...args) => {
-      const mod = await import(name);
-      const plugin = mod.default(opts);
-      return plugin(...args);
-    };
-  };
-}
+export default gatsbyConfig;
