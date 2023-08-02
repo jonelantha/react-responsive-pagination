@@ -135,7 +135,7 @@ const CloseButton = styled.button`
 
   background: no-repeat ${close(colorContent)} 50% / 1rem 1rem;
 
-  :is(:hover, :focus-visible) {
+  &:is(:hover, :focus-visible) {
     background-color: ${colorNavBgHover};
   }
 `;
@@ -173,7 +173,7 @@ const LinkStyles = css`
 
   border-radius: ${borderRadius};
 
-  :is(:hover, :focus-visible) {
+  &:is(:hover, :focus-visible) {
     background-color: ${colorNavBgHover};
     color: inherit;
   }
@@ -182,7 +182,7 @@ const LinkStyles = css`
 const ExternalLink = styled.a`
   ${LinkStyles}
 
-  ::after {
+  &::after {
     content: ${external(colorContent)};
     display: inline-block;
     margin-left: 0.4em;
@@ -227,11 +227,11 @@ const ExpandButton = styled.button<{ $expanded: boolean }>`
   border: none;
   border-radius: ${borderRadius};
 
-  :is(:hover, :focus-visible) {
+  &:is(:hover, :focus-visible) {
     background-color: ${colorNavBgHover};
   }
 
-  ::after {
+  &::after {
     content: ${chevron(colorContent)};
     display: block;
     height: 2rem;

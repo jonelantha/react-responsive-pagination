@@ -72,7 +72,7 @@ export const FooterStyles = styled.footer`
 const LinkStyles = css`
   color: ${colorFooterLink};
 
-  :hover {
+  &:hover {
     color: ${colorFooterLinkHover};
   }
 `;
@@ -84,7 +84,7 @@ const GatsbyLink = styled(Link)`
 const ExternalLink = styled.a`
   ${LinkStyles}
 
-  ::after {
+  &::after {
     content: ${external(colorFooterLink)};
     display: inline-block;
     margin-left: 0.4em;
@@ -92,7 +92,7 @@ const ExternalLink = styled.a`
     height: 0.8em;
   }
 
-  :hover::after {
+  &:hover::after {
     content: ${external(colorFooterLinkHover)};
   }
 `;
