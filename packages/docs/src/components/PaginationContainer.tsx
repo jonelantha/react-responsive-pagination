@@ -37,11 +37,11 @@ export function PaginationContainer({
   return (
     <PaginationContainerDiv
       className={className}
-      hasBorder={hasBorder}
-      noBottomMargin={noBottomMargin}
-      striped={striped}
-      shadow={shadow}
-      visibilityHidden={isSSR}
+      $hasBorder={hasBorder}
+      $noBottomMargin={noBottomMargin}
+      $striped={striped}
+      $shadow={shadow}
+      $visibilityHidden={isSSR}
     >
       {isSSR ? (
         <PaginationSSRPlaceholder />
@@ -57,34 +57,34 @@ export function PaginationContainer({
 }
 
 const PaginationContainerDiv = styled.div<{
-  hasBorder: boolean;
-  noBottomMargin: boolean;
-  striped: boolean;
-  shadow: boolean;
-  visibilityHidden: boolean;
+  $hasBorder: boolean;
+  $noBottomMargin: boolean;
+  $striped: boolean;
+  $shadow: boolean;
+  $visibilityHidden: boolean;
 }>`
-  ${({ visibilityHidden }) =>
-    visibilityHidden &&
+  ${({ $visibilityHidden }) =>
+    $visibilityHidden &&
     css`
       visibility: hidden;
     `}
 
-  ${({ hasBorder }) =>
-    hasBorder &&
+  ${({ $hasBorder }) =>
+    $hasBorder &&
     css`
       border: ${boxBorder};
       border-radius: ${borderRadius};
       padding: 1rem 0;
     `}
 
-  ${({ noBottomMargin }) =>
-    !noBottomMargin &&
+  ${({ $noBottomMargin }) =>
+    !$noBottomMargin &&
     css`
       margin-bottom: ${leading};
     `}
 
-  ${({ striped }) =>
-    striped &&
+  ${({ $striped }) =>
+    $striped &&
     css`
       background: repeating-linear-gradient(
         135deg,
@@ -95,8 +95,8 @@ const PaginationContainerDiv = styled.div<{
       );
     `}
 
-    ${({ shadow }) =>
-    shadow &&
+    ${({ $shadow }) =>
+    $shadow &&
     css`
       box-shadow: ${boxShadow};
     `}

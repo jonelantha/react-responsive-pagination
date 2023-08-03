@@ -7,7 +7,7 @@ import {
   borderRadius,
   fontWeightSemiBold,
   colorNavBgHover,
-} from '../components/GlobalStyles';
+} from './GlobalStyles';
 import { NavItem } from '../utils/useNavItems';
 import { hamburger, external } from './icons';
 
@@ -60,7 +60,7 @@ const HamburgerButton = styled.button`
   padding: 0 ${hPadding};
   background: no-repeat ${hamburger(colorContent)} 50% / 1.75rem 1.75rem;
 
-  :is(:hover, :focus-visible) {
+  &:is(:hover, :focus-visible) {
     background-color: ${colorNavBgHover};
   }
 `;
@@ -77,7 +77,7 @@ const LinkStyles = css`
   color: ${colorContent};
   border-radius: ${borderRadius};
 
-  :is(:hover, :focus-visible) {
+  &:is(:hover, :focus-visible) {
     color: initial;
     background: ${colorNavBgHover};
   }
@@ -108,7 +108,7 @@ const GitHubLink = styled(NavLink)`
     margin-right: 0.4em;
   }
 
-  ::after {
+  &::after {
     content: ${external(colorContent)};
     display: inline-block;
     line-height: 1;

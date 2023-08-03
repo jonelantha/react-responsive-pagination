@@ -10,12 +10,3 @@ node_modules
 !.vscode/launch.json
 !.vscode/extensions.json
 *.code-workspace
-
-# yarn
-.yarn/*
-!.yarn/patches
-!.yarn/releases
-!.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
-.pnp.*

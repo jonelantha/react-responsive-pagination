@@ -13,11 +13,14 @@
     "formik": "^2.4.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-responsive-pagination": "workspace:packages/react-responsive-pagination",
+    "react-responsive-pagination": "file:../packages/react-responsive-pagination",
     "react-router-dom": "^6.14.1",
     "react-scripts": "^5.0.1",
     "serve": "14.2.0",
-    "typescript": "^4.9.5"
+    "typescript": "^5.1.6"
+  },
+  "overrides": {
+    "typescript": "^5.1.6"
   },
   "scripts": {
     "start": "PORT=3001 craco start",

@@ -1,14 +1,14 @@
 import { Link } from 'gatsby';
 import styled, { css } from 'styled-components';
 import { NavItem } from '../utils/useNavItems';
-import Reveal from '../components/Reveal';
+import Reveal from './Reveal';
 import {
   colorContent,
   borderRadius,
   fontWeightSemiBold,
   colorNavBgHover,
   colorHighlightedBackground,
-} from '../components/GlobalStyles';
+} from './GlobalStyles';
 import { staticNavMediaQuery } from './DocLayoutBreakpoints';
 import { chevron, close, external } from './icons';
 
@@ -65,7 +65,7 @@ export default function SideNav({
                 {title}
               </GatsbyLink>
               <ExpandButton
-                expanded={expandedSlug === slug}
+                $expanded={expandedSlug === slug}
                 aria-label={`${
                   expandedSlug === slug ? 'Hide' : 'Show'
                 } '${title}' sections`}
@@ -135,7 +135,7 @@ const CloseButton = styled.button`
 
   background: no-repeat ${close(colorContent)} 50% / 1rem 1rem;
 
-  :is(:hover, :focus-visible) {
+  &:is(:hover, :focus-visible) {
     background-color: ${colorNavBgHover};
   }
 `;
@@ -173,7 +173,7 @@ const LinkStyles = css`
 
   border-radius: ${borderRadius};
 
-  :is(:hover, :focus-visible) {
+  &:is(:hover, :focus-visible) {
     background-color: ${colorNavBgHover};
     color: inherit;
   }
@@ -182,7 +182,7 @@ const LinkStyles = css`
 const ExternalLink = styled.a`
   ${LinkStyles}
 
-  ::after {
+  &::after {
     content: ${external(colorContent)};
     display: inline-block;
     margin-left: 0.4em;
@@ -210,7 +210,7 @@ const SectionHead = styled.div`
   }
 `;
 
-const ExpandButton = styled.button<{ expanded: boolean }>`
+const ExpandButton = styled.button<{ $expanded: boolean }>`
   cursor: pointer;
   background: none;
   margin: 0;
@@ -227,17 +227,17 @@ const ExpandButton = styled.button<{ expanded: boolean }>`
   border: none;
   border-radius: ${borderRadius};
 
-  :is(:hover, :focus-visible) {
+  &:is(:hover, :focus-visible) {
     background-color: ${colorNavBgHover};
   }
 
-  ::after {
+  &::after {
     content: ${chevron(colorContent)};
     display: block;
     height: 2rem;
     width: 2rem;
     transition: transform 200ms;
-    transform: rotate(${({ expanded }) => (expanded ? '180deg' : '90deg')});
+    transform: rotate(${({ $expanded }) => ($expanded ? '180deg' : '90deg')});
   }
 `;
 
