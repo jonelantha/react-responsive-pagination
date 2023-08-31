@@ -16,7 +16,7 @@
     "react-responsive-pagination": "file:../packages/react-responsive-pagination",
     "react-router-dom": "^6.14.1",
     "react-scripts": "^5.0.1",
-    "serve": "14.2.0",
+    "serve": "^14.2.0",
     "typescript": "^5.1.6"
   },
   "overrides": {

@@ -6,7 +6,9 @@ interface Node extends BaseNode {
   value: string;
   depth: number;
 }
-type Parent = BaseParent<Node>;
+interface Parent extends Node, BaseParent {
+  children: Node[];
+}
 
 export const remarkHeadingsPlugin = function remarkHeadingsPlugin() {
   const transformer: Transformer<Node> = (tree, file) => {
