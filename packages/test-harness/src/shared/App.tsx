@@ -1,6 +1,7 @@
 import ResponsivePagination from 'react-responsive-pagination';
 import { srOnlySpanLabel } from 'react-responsive-pagination/labelBehaviour';
 import {
+  combine,
   dropEllipsis,
   dropEllipsisThenNav,
   dropNav,
@@ -42,7 +43,7 @@ const fields = {
     a11yActiveLabel: 'a11y Active Label',
   },
   narrowBehaviourFieldsAsJson: {
-    narrowBehaviourName: 'Narrow Behaviour',
+    narrowBehaviourNames: 'Narrow Behaviour',
   },
 };
 
@@ -75,7 +76,7 @@ const initialValues = {
     a11yActiveLabel: 'undefined',
   },
   narrowBehaviourFieldsAsJson: {
-    narrowBehaviourName: 'undefined',
+    narrowBehaviourNames: 'undefined',
   },
 };
 
@@ -255,16 +256,33 @@ function getLabelBehaviour({
   }
 }
 
-function getNarrowBehaviour({ narrowBehaviourName }: { narrowBehaviourName: any }) {
+function getNarrowBehaviour({
+  narrowBehaviourNames,
+}: {
+  narrowBehaviourNames: unknown;
+}) {
+  const narrowBehaviour = getSingleNarrowBehaviour(narrowBehaviourNames);
+  if (narrowBehaviour) {
+    return { narrowBehaviour };
+  } else if (Array.isArray(narrowBehaviourNames)) {
+    const narrowBehaviours = narrowBehaviourNames
+      .map(getSingleNarrowBehaviour)
+      .filter(notUndefined);
+
+    return { narrowBehaviour: combine(...narrowBehaviours) };
+  }
+}
+
+function getSingleNarrowBehaviour(narrowBehaviourName: unknown) {
   switch (narrowBehaviourName) {
     case 'dropEllipsis':
-      return { narrowBehaviour: dropEllipsis };
+      return dropEllipsis;
     case 'dropNav':
-      return { narrowBehaviour: dropNav };
+      return dropNav;
     case 'dropEllipsisThenNav':
-      return { narrowBehaviour: dropEllipsisThenNav };
+      return dropEllipsisThenNav;
     case 'dropNavThenEllipsis':
-      return { narrowBehaviour: dropNavThenEllipsis };
+      return dropNavThenEllipsis;
   }
 }
 
@@ -315,4 +333,8 @@ function tryJsonParse(str: string) {
   } catch (error) {
     return undefined;
   }
+}
+
+function notUndefined<T>(x: T | undefined): x is T {
+  return x !== undefined;
 }
