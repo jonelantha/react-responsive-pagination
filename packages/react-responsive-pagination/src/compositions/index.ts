@@ -8,8 +8,6 @@ import { zipIterators } from '../helpers/iterator.js';
 import { NarrowBehaviour } from '../narrowBehaviour.js';
 import { narrowToWideRanges } from './ranges.js';
 
-export type NarrowStrategy = 'dropEllipsis' | 'dropNav';
-
 export function* narrowToWideCompositions({
   current,
   total,
