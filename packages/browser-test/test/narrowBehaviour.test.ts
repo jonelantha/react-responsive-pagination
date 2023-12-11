@@ -10,8 +10,13 @@ const narrowBehaviours = [
   undefined,
   'dropNav',
   'dropEllipsis',
+  'dropFirstAndLast',
   'dropNavThenEllipsis',
   'dropEllipsisThenNav',
+  ['dropEllipsis', 'dropNav'],
+  ['dropNav', 'dropEllipsis'],
+  ['dropFirstAndLast', 'dropEllipsis'],
+  ['dropEllipsis', 'dropFirstAndLast'],
 ];
 
 describe.each(narrowBehaviours)(
@@ -23,7 +28,7 @@ describe.each(narrowBehaviours)(
       await page.goto(`${harnessUrl}bootstrap4`);
 
       await page.fill(
-        '#narrowBehaviourNameAsJson',
+        '#narrowBehaviourNamesAsJson',
         stringifyWithUndefined(narrowBehaviour),
       );
 

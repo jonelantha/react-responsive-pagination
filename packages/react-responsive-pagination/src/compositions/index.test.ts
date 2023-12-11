@@ -1,11 +1,6 @@
 import { narrowToWideCompositions } from './index.js';
-import { CompositionItem } from '../compositionItem.js';
-import {
-  dropEllipsis,
-  dropEllipsisThenNav,
-  dropNav,
-  dropNavThenEllipsis,
-} from '../narrowBehaviour.js';
+import { dropNavThenEllipsis } from '../narrowBehaviour.js';
+import { shorthandOf } from '../compositionItem.test.js';
 
 const defaultParams = { narrowBehaviour: undefined, renderNav: true };
 
@@ -192,51 +187,7 @@ describe('narrowToWideCompositions - widening compositions', () => {
 });
 
 describe('narrowToWideCompositions - narrowBehaviour', () => {
-  test('will initially drop nav if required', () => {
-    const compositions = narrowToWideCompositions({
-      ...defaultParams,
-      current: 5,
-      total: 9,
-      narrowBehaviour: dropNav,
-    });
-
-    const expectedCompositions = [
-      [1, '…L', 4, '*5', 6, '…R', 9],
-      ['<4', 1, '…L', 4, '*5', 6, '…R', 9, '>6'],
-      ['<4', 1, '…L', 4, '*5', 6, 7, 8, 9, '>6'],
-      ['<4', 1, 2, 3, 4, '*5', 6, 7, 8, 9, '>6'],
-    ];
-
-    for (const expected of expectedCompositions) {
-      expect(shorthandOf(compositions.next().value)).toEqual(expected);
-    }
-
-    expect(compositions.next().done).toBe(true);
-  });
-
-  test('will initially drop ellipsis if required', () => {
-    const compositions = narrowToWideCompositions({
-      ...defaultParams,
-      current: 5,
-      total: 9,
-      narrowBehaviour: dropEllipsis,
-    });
-
-    const expectedCompositions = [
-      ['<4', 1, 4, '*5', 6, 9, '>6'],
-      ['<4', 1, '…L', 4, '*5', 6, '…R', 9, '>6'],
-      ['<4', 1, '…L', 4, '*5', 6, 7, 8, 9, '>6'],
-      ['<4', 1, 2, 3, 4, '*5', 6, 7, 8, 9, '>6'],
-    ];
-
-    for (const expected of expectedCompositions) {
-      expect(shorthandOf(compositions.next().value)).toEqual(expected);
-    }
-
-    expect(compositions.next().done).toBe(true);
-  });
-
-  test('will prioritise dropping nav if specified', () => {
+  test('will apply a narrowBehaviour if specified', () => {
     const compositions = narrowToWideCompositions({
       ...defaultParams,
       current: 5,
@@ -258,69 +209,6 @@ describe('narrowToWideCompositions - narrowBehaviour', () => {
 
     expect(compositions.next().done).toBe(true);
   });
-
-  test('will prioritise dropping ellipsis if specified', () => {
-    const compositions = narrowToWideCompositions({
-      ...defaultParams,
-      current: 5,
-      total: 9,
-      narrowBehaviour: dropEllipsisThenNav,
-    });
-
-    const expectedCompositions = [
-      [1, 4, '*5', 6, 9],
-      ['<4', 1, 4, '*5', 6, 9, '>6'],
-      ['<4', 1, '…L', 4, '*5', 6, '…R', 9, '>6'],
-      ['<4', 1, '…L', 4, '*5', 6, 7, 8, 9, '>6'],
-      ['<4', 1, 2, 3, 4, '*5', 6, 7, 8, 9, '>6'],
-    ];
-
-    for (const expected of expectedCompositions) {
-      expect(shorthandOf(compositions.next().value)).toEqual(expected);
-    }
-
-    expect(compositions.next().done).toBe(true);
-  });
-
-  test('no extra iteration is added if no ellipsis present when just dropping ellipsis', () => {
-    const compositions = narrowToWideCompositions({
-      ...defaultParams,
-      current: 2,
-      total: 3,
-      narrowBehaviour: dropEllipsis,
-    });
-
-    const expectedCompositions = [['<1', 1, '*2', 3, '>3']];
-
-    for (const expected of expectedCompositions) {
-      expect(shorthandOf(compositions.next().value)).toEqual(expected);
-    }
-
-    expect(compositions.next().done).toBe(true);
-  });
-
-  test.each([dropEllipsisThenNav, dropNavThenEllipsis])(
-    'no extra iteration as added if no ellipsis present and narrowBehaviour = %p',
-    narrowBehaviour => {
-      const compositions = narrowToWideCompositions({
-        ...defaultParams,
-        current: 2,
-        total: 3,
-        narrowBehaviour,
-      });
-
-      const expectedCompositions = [
-        [1, '*2', 3],
-        ['<1', 1, '*2', 3, '>3'],
-      ];
-
-      for (const expected of expectedCompositions) {
-        expect(shorthandOf(compositions.next().value)).toEqual(expected);
-      }
-
-      expect(compositions.next().done).toBe(true);
-    },
-  );
 });
 
 describe('narrowToWideCompositions - renderNav', () => {
@@ -336,22 +224,3 @@ describe('narrowToWideCompositions - renderNav', () => {
     expect(shorthandOf(narrowestComposition)).toEqual(expected);
   });
 });
-
-function shorthandOf(received: CompositionItem[] | void) {
-  return received?.map(({ type, page }) => {
-    switch (type) {
-      case 'page':
-        return page;
-      case 'active':
-        return `*${page}`;
-      case '<':
-      case '>':
-        return page === undefined ? type : `${type}${page}`;
-      case '…L':
-      case '…R':
-        return type;
-      default:
-        throw Error(`Type "${type}" not recognised`);
-    }
-  });
-}

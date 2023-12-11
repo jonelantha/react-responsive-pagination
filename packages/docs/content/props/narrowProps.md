@@ -10,7 +10,7 @@ import { PropsTable, PropDef } from "../../src/components/PropsTable"
     ```jsx
     import ResponsivePagination from 'react-responsive-pagination';
     import { dropEllipsis } from 'react-responsive-pagination/narrowBehaviour';
-    ...
+
     <ResponsivePagination ... narrowBehaviour={dropEllipsis} />
     ```
 
@@ -18,10 +18,25 @@ import { PropsTable, PropDef } from "../../src/components/PropsTable"
 
     `dropEllipsis` - drop the ellipsis (**…**) for narrow widths<br />
     `dropNav` - drop the nav (**«**/**»**) for narrow widths<br />
-    `dropNavThenEllipsis` - drop the nav initially and then further drop the ellipsis if required<br />
-    `dropEllipsisThenNav` - drop the ellipsis initially and then further drop the nav if required
+    `dropFirstAndLast` - drop the first and last pages for narrow widths<br />
 
     The default behaviour is to not drop any elements (this may change in a future major release)
+
+    **Using Multiple NarrowBehaviours**
+
+    Multiple NarrowBehaviours can be combined using the `combine` helper (also imported from `react-responsive-pagination/narrowBehaviour`), example:
+
+    ```jsx
+    import ResponsivePagination from 'react-responsive-pagination';
+    import { dropEllipsis, dropNav, combine } from 'react-responsive-pagination/narrowBehaviour';
+
+    <ResponsivePagination
+      ...
+      narrowBehaviour={combine(dropNav, dropEllipsis)}
+    />
+    ```
+
+    The behaviours will be applied in order so in this example, `combine(dropNav, dropEllipsis)` will drop the nav (**«**/**»**) initially and then further drop the ellipsis (**…**) if required<br />
 
   </PropDef>
 </Fragment>

@@ -90,16 +90,30 @@ import { dropEllipsis } from 'react-responsive-pagination/narrowBehaviour';
 />
 ```
 
+Example for replacing v1 `narrowStrategy={['dropEllipsis', 'dropNav']}`:
+
+```js
+import ResponsivePagination from 'react-responsive-pagination';
+import { dropEllipsis, dropNav, combine } from 'react-responsive-pagination/narrowBehaviour';
+
+...
+
+<ResponsivePagination
+  ...
+  narrowBehaviour={combine(dropEllipsis, dropNav)}
+/>
+```
+
 Below shows the v1 narrowStrategy values and their v2 narrowBehaviour replacements
 
-| v1 narrowStrategy             | replacement narrowBehaviour |
-| ----------------------------- | --------------------------- |
-| `'dropEllipsis'`              | `dropEllipsis`              |
-| `'dropNav'`                   | `dropNav`                   |
-| `['dropEllipsis', 'dropNav']` | `dropEllipsisThenNav`       |
-| `['dropNav', 'dropEllipsis']` | `dropNavThenEllipsis`       |
+| v1 narrowStrategy             | replacement narrowBehaviour      |
+| ----------------------------- | -------------------------------- |
+| `'dropEllipsis'`              | `dropEllipsis`                   |
+| `'dropNav'`                   | `dropNav`                        |
+| `['dropEllipsis', 'dropNav']` | `combine(dropEllipsis, dropNav)` |
+| `['dropNav', 'dropEllipsis']` | `combine(dropNav, dropEllipsis)` |
 
-_(NOTE - narrowBehaviour values above are not strings, they are imported from **'react-responsive-pagination/narrowBehaviour'**, see code example above)_
+_(NOTE - narrowBehaviour values and the `combine` helper above are not strings, they are imported from **'react-responsive-pagination/narrowBehaviour'**, see code example above)_
 
 ## ResizeObserver no longer polyfilled
 
