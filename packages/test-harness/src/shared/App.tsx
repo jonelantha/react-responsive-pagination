@@ -6,6 +6,7 @@ import {
   dropEllipsisThenNav,
   dropNav,
   dropNavThenEllipsis,
+  dropFirstAndLast,
 } from 'react-responsive-pagination/narrowBehaviour';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { Field, Formik } from 'formik';
@@ -283,6 +284,8 @@ function getSingleNarrowBehaviour(narrowBehaviourName: unknown) {
       return dropEllipsisThenNav;
     case 'dropNavThenEllipsis':
       return dropNavThenEllipsis;
+    case 'dropFirstAndLast':
+      return dropFirstAndLast;
   }
 }
 

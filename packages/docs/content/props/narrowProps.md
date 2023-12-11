@@ -18,6 +18,7 @@ import { PropsTable, PropDef } from "../../src/components/PropsTable"
 
     `dropEllipsis` - drop the ellipsis (**…**) for narrow widths<br />
     `dropNav` - drop the nav (**«**/**»**) for narrow widths<br />
+    `dropFirstAndLast` - drop the first and last pages for narrow widths<br />
 
     The default behaviour is to not drop any elements (this may change in a future major release)
 
