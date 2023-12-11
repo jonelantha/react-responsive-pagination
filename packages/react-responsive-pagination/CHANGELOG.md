@@ -1,5 +1,13 @@
 # React Responsive Pagination Changelog
 
+# [2.3.0](https://github.com/jonelantha/react-responsive-pagination/compare/v2.2.4...v2.3.0) (2023-12-11)
+
+
+### Features
+
+* NarrowBehaviour combine helper, for using multiple NarrowBehaviours ([3c040ec](https://github.com/jonelantha/react-responsive-pagination/commit/3c040ec0060fcb9aeaa284b66f1d35376ed748f2))
+* new dropFirstAndLast NarrowBehaviour ([f0b0a54](https://github.com/jonelantha/react-responsive-pagination/commit/f0b0a54d1886fded1a1aa8d25921a4f8f3a622ed))
+
 ## [2.2.4](https://github.com/jonelantha/react-responsive-pagination/compare/v2.2.3...v2.2.4) (2023-11-24)
 
 
