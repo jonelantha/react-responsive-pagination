@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { narrowToWideCompositions } from '../compositions/index.js';
 import { sanatizeInteger, sanatizeBoolean } from '../helpers/util.js';
 import { NarrowBehaviour } from '../narrowBehaviour.js';
@@ -10,8 +10,8 @@ export function usePaginationItems(
   inputTotal: number,
   maxWidth: number | undefined,
   options?: {
-    nextLabel?: string;
-    previousLabel?: string;
+    nextLabel?: string | ReactNode;
+    previousLabel?: string | ReactNode;
     ariaNextLabel?: string;
     ariaPreviousLabel?: string;
     renderNav?: boolean;
