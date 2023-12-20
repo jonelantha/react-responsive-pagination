@@ -1,5 +1,12 @@
 # React Responsive Pagination Changelog
 
+# [2.4.0-beta.1](https://github.com/jonelantha/react-responsive-pagination/compare/v2.3.0...v2.4.0-beta.1) (2023-12-20)
+
+
+### Features
+
+* Support for React elements for previous/next labels ([1cda768](https://github.com/jonelantha/react-responsive-pagination/commit/1cda76855213a6eda58dcd74f64838e4698a60fd))
+
 # [2.3.0](https://github.com/jonelantha/react-responsive-pagination/compare/v2.2.4...v2.3.0) (2023-12-11)
 
 
