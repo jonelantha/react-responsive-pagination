@@ -12,6 +12,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { Field, Formik } from 'formik';
 import { frameworkIds, getFrameworkStyles } from './frameworkStyles';
 import { PresetId, presets } from './presets';
+import { createTestComponent } from './test-components';
 
 import './TestStyles.css';
 import './App.css';
@@ -332,7 +333,10 @@ function parseJsonFields<K extends string>(jsonValues: {
 
 function tryJsonParse(str: string) {
   try {
-    return JSON.parse(str);
+    const value = JSON.parse(str);
+
+    const testComponent = createTestComponent(value);
+    return testComponent ?? value;
   } catch (error) {
     return undefined;
   }
