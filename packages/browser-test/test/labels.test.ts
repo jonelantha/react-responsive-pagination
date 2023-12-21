@@ -17,20 +17,21 @@ describe('Labels', () => {
     await page.fill('#ariaCurrentAttrAsJson', 'undefined');
   });
 
-  test.each([undefined, '<', 'Previous'].map(previousLabel => [previousLabel]))(
-    'Setting previousLabel to %p',
-    async previousLabel => {
-      await page.fill('#previousLabelAsJson', stringifyWithUndefined(previousLabel));
+  test.each(
+    [undefined, '<', 'Previous', '<PreviousLabel />'].map(previousLabel => [
+      previousLabel,
+    ]),
+  )('Setting previousLabel to %p', async previousLabel => {
+    await page.fill('#previousLabelAsJson', stringifyWithUndefined(previousLabel));
 
-      await page.evaluate(() => new Promise(requestAnimationFrame));
+    await page.evaluate(() => new Promise(requestAnimationFrame));
 
-      const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
+    const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
 
-      expect(paginationHtml).toMatchSnapshot();
-    },
-  );
+    expect(paginationHtml).toMatchSnapshot();
+  });
 
-  test.each([undefined, '>', 'Next'].map(nextLabel => [nextLabel]))(
+  test.each([undefined, '>', 'Next', '<NextLabel />'].map(nextLabel => [nextLabel]))(
     'Setting nextLabel to %p',
     async nextLabel => {
       await page.fill('#nextLabelAsJson', stringifyWithUndefined(nextLabel));

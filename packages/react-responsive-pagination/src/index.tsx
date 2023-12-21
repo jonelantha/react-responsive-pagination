@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import React, { ReactNode, memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { usePaginationItems } from './hooks/usePaginationItems.js';
 import { preventDefault } from './helpers/dom.js';
@@ -148,8 +148,8 @@ export type ResponsivePaginationProps = {
   navClassName?: string;
   previousClassName?: string;
   nextClassName?: string;
-  previousLabel?: string;
-  nextLabel?: string;
+  previousLabel?: string | ReactNode;
+  nextLabel?: string | ReactNode;
   ariaPreviousLabel?: string;
   ariaNextLabel?: string;
   renderNav?: boolean;

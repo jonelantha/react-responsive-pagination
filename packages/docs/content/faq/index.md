@@ -73,3 +73,9 @@ serverDependenciesToBundle: [
 ```
 
 See [Remix Gotchas](https://remix.run/docs/en/main/pages/gotchas#md-importing-esm-packages) for further details.
+
+## Using React Components for labels
+
+Using React Components for the `previousLabel` and `nextLabel` props is currently experimental. It should work fine for simple components (for example static `<img />` or `<svg />` tags) but complex components with internal state and/or props which change may lead to unexpected results (full support is planned for a future release).
+
+_(NOTE the console warning about using component for labels is only shown for development builds)_

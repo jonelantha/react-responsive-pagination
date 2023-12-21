@@ -110,12 +110,12 @@ See [Overriding default classNames](https://react-responsive-pagination.elantha.
 
 ### Label Props
 
-| Prop                                                | Description                                                                  |
-| --------------------------------------------------- | ---------------------------------------------------------------------------- |
-| **previousLabel**<br />`string`<br />(optional)     | The label for the previous button, defaults to `«`                           |
-| **nextLabel**<br />`string`<br />(optional)         | The label for the next button, defaults to `»`                               |
-| **ariaPreviousLabel**<br />`string`<br />(optional) | The accessibility ARIA label for the previous button, defaults to `Previous` |
-| **ariaNextLabel**<br />`string`<br />(optional)     | The accessibility ARIA label for the next button, defaults to `Next`         |
+| Prop                                                         | Description                                                                                                                                                                                                                         |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **previousLabel**<br />`string \| ReactNode`<br />(optional) | The label for the previous button, defaults to `«`<br /><br />See the [FAQ](https://react-responsive-pagination.elantha.com/faq/#using-react-components-for-labels) for further information on using React components for this prop |
+| **nextLabel**<br />`string \| ReactNode`<br />(optional)     | The label for the next button, defaults to `»` <br /><br />See the [FAQ](https://react-responsive-pagination.elantha.com/faq/#using-react-components-for-labels) for further information on using React components for this prop    |
+| **ariaPreviousLabel**<br />`string`<br />(optional)          | The accessibility ARIA label for the previous button, defaults to `Previous`                                                                                                                                                        |
+| **ariaNextLabel**<br />`string`<br />(optional)              | The accessibility ARIA label for the next button, defaults to `Next`                                                                                                                                                                |
 
 ### Misc Props
 

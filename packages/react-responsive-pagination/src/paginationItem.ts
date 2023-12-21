@@ -1,9 +1,10 @@
+import { ReactNode } from 'react';
 import { CompositionItem } from './compositionItem.js';
 
 type BaseItem = {
   type: string;
   key: string;
-  label: string;
+  label: string | ReactNode;
   a11yLabel?: string;
 };
 
@@ -40,8 +41,8 @@ export type NavType = 'next' | 'previous';
 export function compositionToPaginationItems(
   compositionItems: CompositionItem[],
   options?: {
-    previousLabel?: string;
-    nextLabel?: string;
+    previousLabel?: string | ReactNode;
+    nextLabel?: string | ReactNode;
     ariaPreviousLabel?: string;
     ariaNextLabel?: string;
   },
