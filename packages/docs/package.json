@@ -34,5 +34,8 @@
     "develop": "gatsby develop",
     "start": "npm run develop",
     "clean": "gatsby clean"
+  },
+  "optionalDependencies": {
+    "@parcel/watcher-linux-x64-glibc": "^2.3.0"
   }
 }
