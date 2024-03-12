@@ -19,11 +19,6 @@
   },
   "dependencies": {
     "prettier": "^3.2.5",
-    "react-refresh": "^0.14.0",
-    "typescript": "^5.1.6"
-  },
-  "overrides": {
-    "react-refresh": "$react-refresh",
     "typescript": "^5.1.6"
   }
 }
