@@ -1,5 +1,12 @@
 # React Responsive Pagination Changelog
 
+## [2.4.3-beta.1](https://github.com/jonelantha/react-responsive-pagination/compare/v2.4.2...v2.4.3-beta.1) (2024-03-13)
+
+
+### Bug Fixes
+
+* Package updates (create-react-app -> vite) ([f8ef050](https://github.com/jonelantha/react-responsive-pagination/commit/f8ef0502f1aa720c4a06e74ef44f9190e9d2ce6e))
+
 ## [2.4.2](https://github.com/jonelantha/react-responsive-pagination/compare/v2.4.1...v2.4.2) (2024-03-10)
 
 
