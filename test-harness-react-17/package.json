@@ -2,48 +2,28 @@
   "name": "test-harness-17",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
-    "@craco/craco": "^7.1.0",
-    "@types/node": "^20.9.3",
-    "@types/react": "^17.0.62",
-    "@types/react-dom": "^17.0.20",
     "bootstrap4": "npm:bootstrap@^4.6.2",
     "bootstrap4-0-0": "npm:bootstrap@4.0.0",
     "bootstrap5": "npm:bootstrap@^5.3.0",
     "formik": "^2.4.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
     "react-responsive-pagination": "file:../packages/react-responsive-pagination",
     "react-router-dom": "^6.14.1",
-    "react-scripts": "^5.0.1",
-    "serve": "^14.2.0",
-    "typescript": "^5.1.6"
+    "serve": "^14.2.0"
   },
-  "overrides": {
-    "typescript": "^5.1.6"
+  "devDependencies": {
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.4"
   },
   "scripts": {
-    "start": "PORT=3001 craco start",
-    "build": "CI=false craco build",
-    "serve": "serve -s build",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "start": "vite --port 3001",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "serve": "serve -s dist"
   }
 }
