@@ -1,4 +1,4 @@
-export function getElementWidth(element: HTMLElement) {
+export function getElementWidth(element: Element) {
   const style = getComputedStyle(element);
 
   return (
@@ -8,7 +8,7 @@ export function getElementWidth(element: HTMLElement) {
   );
 }
 
-export function getContentWidth(element: HTMLElement) {
+export function getContentWidth(element: Element) {
   const style = getComputedStyle(element);
 
   return (
@@ -20,7 +20,7 @@ export function getContentWidth(element: HTMLElement) {
   );
 }
 
-export function getNonContentWidth(element: HTMLElement) {
+export function getNonContentWidth(element: Element) {
   const style = getComputedStyle(element);
 
   return (
@@ -33,7 +33,7 @@ export function getNonContentWidth(element: HTMLElement) {
   );
 }
 
-export function getWidth(element: HTMLElement) {
+export function getWidth(element: Element) {
   return element.getBoundingClientRect().width;
 }
 

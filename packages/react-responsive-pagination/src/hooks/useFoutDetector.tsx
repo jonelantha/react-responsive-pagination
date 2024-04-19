@@ -2,7 +2,7 @@ import { useLayoutEffect } from 'react';
 import { getWidth } from '../helpers/style.js';
 
 export function useFoutDetector(
-  getElements: () => HTMLElement[] | null,
+  getElements: () => Element[] | null,
   handleFout: () => void,
 ) {
   useLayoutEffect(() => {
@@ -15,12 +15,12 @@ export function useFoutDetector(
 }
 
 function setupWidthChangeAfterRenderListener(
-  elements: HTMLElement[],
+  elements: Element[],
   handleWidthChangeAfterRender: () => void,
 ) {
   const getInitialWidth = createInitialWidthProvider(elements);
 
-  const hasWidthChanged = (element: HTMLElement) => {
+  const hasWidthChanged = (element: Element) => {
     return isSignificantDifference(getInitialWidth(element), getWidth(element));
   };
 
@@ -31,10 +31,10 @@ function setupWidthChangeAfterRenderListener(
   });
 }
 
-function createInitialWidthProvider(elements: HTMLElement[]) {
+function createInitialWidthProvider(elements: Element[]) {
   const initialWidths = elements.map(getWidth);
 
-  return function getInitialWidth(element: HTMLElement) {
+  return function getInitialWidth(element: Element) {
     const index = elements.indexOf(element);
 
     return initialWidths[index];
@@ -42,11 +42,11 @@ function createInitialWidthProvider(elements: HTMLElement[]) {
 }
 
 function setupResizeObserver(
-  elements: HTMLElement[],
-  handleElementsResized: (elements: HTMLElement[]) => void,
+  elements: Element[],
+  handleElementsResized: (elements: Element[]) => void,
 ) {
   const resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]) => {
-    const elements = entries.map(getTargetElement);
+    const elements = entries.map(entry => entry.target);
 
     handleElementsResized(elements);
   });
@@ -54,10 +54,6 @@ function setupResizeObserver(
   elements.forEach(element => resizeObserver.observe(element));
 
   return () => resizeObserver.disconnect();
-}
-
-function getTargetElement(entry: ResizeObserverEntry) {
-  return entry.target as HTMLElement;
 }
 
 function isSignificantDifference(width1: number, width2: number) {

@@ -2,10 +2,10 @@ import { objectZip } from '../../helpers/object.js';
 import { getNonContentWidth, getElementWidth } from '../../helpers/style.js';
 
 export function getViewMetricsFromContainer<ItemKey extends string>(
-  containerElement: HTMLElement,
+  containerElement: Element,
   itemKeys: ItemKey[],
 ): ViewMetrics<ItemKey> {
-  const itemElements = Array.from(containerElement.children) as HTMLElement[];
+  const itemElements = Array.from(containerElement.children);
 
   return {
     outerFrameWidth: getNonContentWidth(containerElement),
@@ -15,7 +15,7 @@ export function getViewMetricsFromContainer<ItemKey extends string>(
 
 function getItemWidthsFromItemDomElements<ItemKey extends string>(
   itemKeys: ItemKey[],
-  itemElements: HTMLElement[],
+  itemElements: Element[],
 ) {
   const itemWidths = itemElements.map(getElementWidth);
 
