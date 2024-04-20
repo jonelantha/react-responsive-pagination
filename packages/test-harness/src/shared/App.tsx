@@ -18,6 +18,7 @@ import './TestStyles.css';
 import './App.css';
 
 const fields = {
+  renderPagination: 'Render Pagination',
   propsAsJson: {
     total: 'Total Pages',
     maxWidth: 'Max Width',
@@ -50,6 +51,7 @@ const fields = {
 };
 
 const initialValues = {
+  renderPagination: true,
   presetId: 'none' as PresetId,
   propsAsJson: {
     total: '100',
@@ -102,19 +104,21 @@ function App() {
         {formik => (
           <>
             <div className={cssExtraClasses.join(' ')} id="paginationParent">
-              <ResponsivePagination
-                {...presets[formik.values.presetId]}
-                onPageChange={page =>
-                  formik.setFieldValue('propsAsJson.current', JSON.stringify(page))
-                }
-                {...parseJsonFields(formik.values.propsAsJson)}
-                {...getLabelBehaviour(
-                  parseJsonFields(formik.values.labelBehaviourFieldsAsJson),
-                )}
-                {...getNarrowBehaviour(
-                  parseJsonFields(formik.values.narrowBehaviourFieldsAsJson),
-                )}
-              />
+              {formik.values.renderPagination && (
+                <ResponsivePagination
+                  {...presets[formik.values.presetId]}
+                  onPageChange={page =>
+                    formik.setFieldValue('propsAsJson.current', JSON.stringify(page))
+                  }
+                  {...parseJsonFields(formik.values.propsAsJson)}
+                  {...getLabelBehaviour(
+                    parseJsonFields(formik.values.labelBehaviourFieldsAsJson),
+                  )}
+                  {...getNarrowBehaviour(
+                    parseJsonFields(formik.values.narrowBehaviourFieldsAsJson),
+                  )}
+                />
+              )}
             </div>
             <div className="container">
               <form>
@@ -208,6 +212,24 @@ function App() {
                         </label>
                       </div>
                     ))}
+                  </div>
+                </div>
+                <div className="mb-1 row">
+                  <label
+                    htmlFor="renderPagination"
+                    className="col-sm-4 col-form-label"
+                  >
+                    Render Pagination
+                  </label>
+                  <div className="col-sm-2 ">
+                    <div className="form-check">
+                      <Field
+                        name="renderPagination"
+                        type="checkbox"
+                        className="form-check-input"
+                        id="renderPagination"
+                      />
+                    </div>
                   </div>
                 </div>
                 {(

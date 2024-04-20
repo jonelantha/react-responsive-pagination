@@ -47,6 +47,8 @@ function ResponsivePagination({
   linkHref = 'hash',
   labelBehaviour: getLabel = defaultLabelBehaviour,
 }: ResponsivePaginationProps) {
+  renderCount++;
+
   const { items, ref, clearCache } = usePaginationItems(current, total, maxWidth, {
     narrowBehaviour,
     previousLabel,
@@ -202,4 +204,14 @@ function checkLegacyProps(props: { [key in string]: any }) {
       legacyUsageWarnings.push(legacyProp);
     }
   }
+}
+
+let renderCount = 0;
+
+export function getRenderCount() {
+  return renderCount;
+}
+
+export function resetRenderCount() {
+  renderCount = 0;
 }

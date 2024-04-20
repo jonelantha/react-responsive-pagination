@@ -1,6 +1,7 @@
 import { Page } from 'playwright';
 import { setupThrowOnError, stringifyWithUndefined } from './helper';
 import { URLSearchParams } from 'url';
+import 'test-harness/src/shared/window.d.ts';
 
 export class TestHarnessPage {
   page: Page;
@@ -18,9 +19,24 @@ export class TestHarnessPage {
     }
   }
 
-  async goto(options?: { css: string }) {
+  setupEndOfFramePromise() {
+    return this.page.addInitScript(() => {
+      window.endOfFramePromise = () =>
+        new Promise<void>(resolve => {
+          const resizeObserver = new ResizeObserver(() => {
+            resizeObserver.disconnect();
+            resolve();
+          });
+
+          resizeObserver.observe(document.body);
+        });
+    });
+  }
+
+  async goto(options?: { css?: string; notStrict?: boolean }) {
     const query = new URLSearchParams({
       ...(options?.css && { css: options?.css }),
+      ...(options?.notStrict && { notStrict: '1' }),
     });
 
     await this.page.goto(`${harnessUrl}bootstrap4?${query.toString()}`);
@@ -52,5 +68,27 @@ export class TestHarnessPage {
 
   async waitForNextFrame() {
     await this.page.evaluate(() => new Promise(requestAnimationFrame));
+  }
+
+  async resetRenderCount() {
+    await this.page.evaluate(() => window.resetRenderCount());
+  }
+
+  async getRenderCount() {
+    return await this.page.evaluate(() => window.getRenderCount());
+  }
+
+  async hidePagination() {
+    await this.page.locator('#renderPagination').uncheck();
+  }
+
+  async showPagination() {
+    await this.page.locator('#renderPagination').check();
+  }
+}
+
+declare global {
+  interface Window {
+    endOfFramePromise: () => Promise<void>;
   }
 }

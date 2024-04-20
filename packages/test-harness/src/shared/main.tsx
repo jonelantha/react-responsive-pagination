@@ -1,7 +1,11 @@
 import React, { ReactElement, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { resetRenderCount, getRenderCount } from 'react-responsive-pagination';
 
 import App from './App';
+
+window.resetRenderCount = resetRenderCount;
+window.getRenderCount = getRenderCount;
 
 export async function start(
   reactMount: (children: ReactElement, rootElement: Element) => void,
@@ -12,17 +16,22 @@ export async function start(
 
   console.log(React.version);
 
+  const app = (
+    <Suspense fallback={null}>
+      <Router>
+        <Routes>
+          <Route path="/:frameworkId" element={<App />} />
+          <Route index element={<Navigate to="/bootstrap4" replace />} />
+        </Routes>
+      </Router>
+    </Suspense>
+  );
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const notStrict = Boolean(urlParams.get('notStrict'));
+
   reactMount(
-    <React.StrictMode>
-      <Suspense fallback={null}>
-        <Router>
-          <Routes>
-            <Route path="/:frameworkId" element={<App />} />
-            <Route index element={<Navigate to="/bootstrap4" replace />} />
-          </Routes>
-        </Router>
-      </Suspense>
-    </React.StrictMode>,
+    notStrict ? app : <React.StrictMode>{app}</React.StrictMode>,
     document.getElementById('root')!,
   );
 }
