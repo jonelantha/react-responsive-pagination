@@ -13,6 +13,7 @@
     "./narrowBehaviour": "./dist/narrowBehaviour.js",
     "./labelBehaviour": "./dist/labelBehaviour.js",
     "./presets": "./dist/presets.js",
+    "./debug": "./dist/debug.js",
     "./themes/*": "./themes/*"
   },
   "publishConfig": {
