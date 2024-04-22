@@ -1,9 +1,9 @@
-import { setupThrowOnError, stringifyWithUndefined } from './helper';
+import { TestHarnessPage } from './test-harness-page';
+
+const testHarness = new TestHarnessPage(page, { throwOnError: true });
 
 beforeAll(async () => {
-  setupThrowOnError(page);
-
-  await page.goto(`${harnessUrl}bootstrap4`);
+  await testHarness.goto();
 
   await page.setViewportSize({ width: 700, height: 700 });
 });
@@ -12,11 +12,11 @@ describe('linkHref', () => {
   test.each([undefined, 'hash', 'omit'].map(linkHref => [linkHref]))(
     'Setting linkHref to %p',
     async previousLabel => {
-      await page.fill('#linkHrefAsJson', stringifyWithUndefined(previousLabel));
+      await testHarness.setField('linkHref', previousLabel);
 
-      await page.evaluate(() => new Promise(requestAnimationFrame));
+      await testHarness.waitForNextFrame();
 
-      const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
+      const paginationHtml = await testHarness.getPaginationHtml();
 
       expect(paginationHtml).toMatchSnapshot();
     },

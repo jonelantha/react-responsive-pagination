@@ -1,8 +1,6 @@
-import { setupThrowOnError, stringifyWithUndefined } from './helper';
+import { TestHarnessPage } from './test-harness-page';
 
-beforeAll(() => {
-  setupThrowOnError(page);
-});
+const testHarness = new TestHarnessPage(page, { throwOnError: true });
 
 const testWidths = [150, 200, 250];
 
@@ -23,16 +21,11 @@ describe.each(narrowBehaviours)(
   'Auto sizing with narrowBehaviour %p',
   narrowBehaviour => {
     beforeAll(async () => {
-      await page.goto('about:blank');
+      await testHarness.goto();
 
-      await page.goto(`${harnessUrl}bootstrap4`);
+      await testHarness.setField('narrowBehaviourNames', narrowBehaviour);
 
-      await page.fill(
-        '#narrowBehaviourNamesAsJson',
-        stringifyWithUndefined(narrowBehaviour),
-      );
-
-      await page.fill('#totalAsJson', '100');
+      await testHarness.setField('total', 100);
     });
 
     test.each(testWidths.map(width => [width]))(
@@ -40,9 +33,9 @@ describe.each(narrowBehaviours)(
       async width => {
         await page.setViewportSize({ width, height: 700 });
 
-        await page.evaluate(() => new Promise(requestAnimationFrame));
+        await testHarness.waitForNextFrame();
 
-        const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
+        const paginationHtml = await testHarness.getPaginationHtml();
 
         expect(paginationHtml).toMatchSnapshot();
       },

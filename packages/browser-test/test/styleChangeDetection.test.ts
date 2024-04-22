@@ -1,30 +1,26 @@
-import { setupThrowOnError } from './helper';
+import { TestHarnessPage } from './test-harness-page';
+
+const testHarness = new TestHarnessPage(page, { throwOnError: true });
 
 beforeAll(async () => {
-  setupThrowOnError(page);
-
-  await page.goto(`${harnessUrl}bootstrap4`);
+  await testHarness.goto();
 
   await page.setViewportSize({ width: 500, height: 700 });
 
-  await page.fill('#totalAsJson', '100');
+  await testHarness.setField('total', 100);
 
-  await page.fill('#currentAsJson', '50');
+  await testHarness.setField('current', 50);
 });
 
 describe('Pagination style change detection', () => {
   test.each([['inherit'], ['24px'], ['40px'], ['inherit']])(
     'adapts correctly when font-size changed to %p',
     async fontSize => {
-      await page.$eval(
-        '#editable-style-block',
-        (styleBlock, style) => {
-          styleBlock.innerHTML = style;
-        },
-        `.pagination { font-size: ${fontSize}; }`,
-      );
+      await testHarness.editableStyleBlockLocator().evaluate((styleBlock, style) => {
+        styleBlock.innerHTML = style;
+      }, `.pagination { font-size: ${fontSize}; }`);
 
-      await page.evaluate(() => new Promise(requestAnimationFrame));
+      await testHarness.waitForNextFrame();
 
       const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
 

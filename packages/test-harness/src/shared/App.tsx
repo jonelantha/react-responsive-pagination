@@ -101,7 +101,7 @@ function App() {
       <Formik initialValues={initialValues} onSubmit={() => {}}>
         {formik => (
           <>
-            <div className={cssExtraClasses.join(' ')}>
+            <div className={cssExtraClasses.join(' ')} id="paginationParent">
               <ResponsivePagination
                 {...presets[formik.values.presetId]}
                 onPageChange={page =>

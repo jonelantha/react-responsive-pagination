@@ -1,20 +1,20 @@
-import { setupThrowOnError, stringifyWithUndefined } from './helper';
+import { TestHarnessPage } from './test-harness-page';
+
+const testHarness = new TestHarnessPage(page, { throwOnError: true });
 
 beforeAll(async () => {
-  setupThrowOnError(page);
-
-  await page.goto(`${harnessUrl}bootstrap4`);
+  await testHarness.goto();
 
   await page.setViewportSize({ width: 700, height: 700 });
 });
 
 describe('Labels', () => {
   beforeEach(async () => {
-    await page.fill('#previousLabelAsJson', 'undefined');
-    await page.fill('#nextLabelAsJson', 'undefined');
-    await page.fill('#ariaPreviousLabelAsJson', 'undefined');
-    await page.fill('#ariaNextLabelAsJson', 'undefined');
-    await page.fill('#ariaCurrentAttrAsJson', 'undefined');
+    await testHarness.setField('previousLabel', undefined);
+    await testHarness.setField('nextLabel', undefined);
+    await testHarness.setField('ariaPreviousLabel', undefined);
+    await testHarness.setField('ariaNextLabel', undefined);
+    await testHarness.setField('ariaCurrentAttr', undefined);
   });
 
   test.each(
@@ -22,11 +22,11 @@ describe('Labels', () => {
       previousLabel,
     ]),
   )('Setting previousLabel to %p', async previousLabel => {
-    await page.fill('#previousLabelAsJson', stringifyWithUndefined(previousLabel));
+    await testHarness.setField('previousLabel', previousLabel);
 
-    await page.evaluate(() => new Promise(requestAnimationFrame));
+    await testHarness.waitForNextFrame();
 
-    const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
+    const paginationHtml = await testHarness.getPaginationHtml();
 
     expect(paginationHtml).toMatchSnapshot();
   });
@@ -34,11 +34,11 @@ describe('Labels', () => {
   test.each([undefined, '>', 'Next', '<NextLabel />'].map(nextLabel => [nextLabel]))(
     'Setting nextLabel to %p',
     async nextLabel => {
-      await page.fill('#nextLabelAsJson', stringifyWithUndefined(nextLabel));
+      await testHarness.setField('nextLabel', nextLabel);
 
-      await page.evaluate(() => new Promise(requestAnimationFrame));
+      await testHarness.waitForNextFrame();
 
-      const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
+      const paginationHtml = await testHarness.getPaginationHtml();
 
       expect(paginationHtml).toMatchSnapshot();
     },
@@ -47,14 +47,11 @@ describe('Labels', () => {
   test.each(
     [undefined, 'AriaPrevious'].map(ariaPreviousLabel => [ariaPreviousLabel]),
   )('Setting ariaPreviousLabel to %p', async ariaPreviousLabel => {
-    await page.fill(
-      '#ariaPreviousLabelAsJson',
-      stringifyWithUndefined(ariaPreviousLabel),
-    );
+    await testHarness.setField('ariaPreviousLabel', ariaPreviousLabel);
 
-    await page.evaluate(() => new Promise(requestAnimationFrame));
+    await testHarness.waitForNextFrame();
 
-    const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
+    const paginationHtml = await testHarness.getPaginationHtml();
 
     expect(paginationHtml).toMatchSnapshot();
   });
@@ -62,11 +59,11 @@ describe('Labels', () => {
   test.each([undefined, 'AriaNext'].map(ariaNextLabel => [ariaNextLabel]))(
     'Setting ariaNextLabel to %p',
     async ariaNextLabel => {
-      await page.fill('#ariaNextLabelAsJson', stringifyWithUndefined(ariaNextLabel));
+      await testHarness.setField('ariaNextLabel', ariaNextLabel);
 
-      await page.evaluate(() => new Promise(requestAnimationFrame));
+      await testHarness.waitForNextFrame();
 
-      const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
+      const paginationHtml = await testHarness.getPaginationHtml();
 
       expect(paginationHtml).toMatchSnapshot();
     },
@@ -75,14 +72,11 @@ describe('Labels', () => {
   test.each([undefined, true].map(ariaCurrentAttr => [ariaCurrentAttr]))(
     'Setting ariaCurrentAttr to %p',
     async ariaCurrentAttr => {
-      await page.fill(
-        '#ariaCurrentAttrAsJson',
-        stringifyWithUndefined(ariaCurrentAttr),
-      );
+      await testHarness.setField('ariaCurrentAttr', ariaCurrentAttr);
 
-      await page.evaluate(() => new Promise(requestAnimationFrame));
+      await testHarness.waitForNextFrame();
 
-      const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
+      const paginationHtml = await testHarness.getPaginationHtml();
 
       expect(paginationHtml).toMatchSnapshot();
     },
