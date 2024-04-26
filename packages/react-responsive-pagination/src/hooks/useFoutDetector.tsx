@@ -1,5 +1,6 @@
 import { useLayoutEffect } from 'react';
 import { getWidth } from '../helpers/style.js';
+import { flushSync } from 'react-dom';
 
 export function useFoutDetector(
   getElements: () => Element[] | null,
@@ -48,7 +49,7 @@ function setupResizeObserver(
   const resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]) => {
     const elements = entries.map(entry => entry.target);
 
-    handleElementsResized(elements);
+    flushSync(() => handleElementsResized(elements));
   });
 
   elements.forEach(element => resizeObserver.observe(element));

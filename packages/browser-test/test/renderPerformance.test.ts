@@ -41,3 +41,36 @@ describe('Initial appearance', () => {
     await expect(snapshot).toMatchSnapshot();
   });
 });
+
+describe('Style change', () => {
+  beforeEach(async () => {
+    await testHarness.setStyle('.pagination { font-size: inherit; }');
+  });
+
+  test('does not cause excessive react renders', async () => {
+    await testHarness.resetRenderCount();
+
+    await testHarness.setStyle('.pagination { font-size: 40px; }');
+
+    await testHarness.waitForNextFrame();
+
+    await expect(page).toHaveSelectorCount('ul > *', 13);
+
+    const numberOfRenders = await testHarness.getRenderCount();
+
+    expect(numberOfRenders).toBe(3);
+  });
+
+  test('renders fully before repaint', async () => {
+    const numberOfElements = await page.evaluate(async () => {
+      document.getElementById('editable-style-block')!.innerHTML =
+        '.pagination { font-size: 40px; }';
+
+      await window.endOfFramePromise();
+
+      return document.querySelector('ul.pagination')?.children.length;
+    });
+
+    await expect(numberOfElements).toBe(13);
+  });
+});

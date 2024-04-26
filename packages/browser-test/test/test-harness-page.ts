@@ -62,6 +62,12 @@ export class TestHarnessPage {
     return this.page.locator('#editable-style-block');
   }
 
+  async setStyle(styleStr: string) {
+    await this.editableStyleBlockLocator().evaluate((styleBlock, style) => {
+      styleBlock.innerHTML = style;
+    }, styleStr);
+  }
+
   presetLocator(type: string) {
     return this.page.locator(`#preset_${type}`);
   }
