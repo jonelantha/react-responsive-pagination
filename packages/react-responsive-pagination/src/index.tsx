@@ -206,13 +206,3 @@ function checkLegacyProps(props: { [key in string]: any }) {
     }
   }
 }
-
-let renderCount = 0;
-
-export function getRenderCount() {
-  return renderCount;
-}
-
-export function resetRenderCount() {
-  renderCount = 0;
-}
