@@ -1,61 +1,35 @@
-import { useLayoutEffect } from 'react';
+import { useRef } from 'react';
+import { useIsomorphicLayoutEffect } from '../helpers/react.js';
 import { getWidth } from '../helpers/style.js';
+import { flushSync } from 'react-dom';
 
 export function useFoutDetector(
-  getElements: () => Element[] | null,
+  getElements: (element: Element | null) => Element[] | null,
   handleFout: () => void,
 ) {
-  useLayoutEffect(() => {
-    const elements = getElements();
+  const containerRef = useRef<Element | null>(null);
+
+  useIsomorphicLayoutEffect(() => {
+    const elements = getElements(containerRef.current);
 
     if (!elements) return;
 
-    return setupWidthChangeAfterRenderListener(elements, handleFout);
-  });
-}
+    const widthsAtRender = new Map(
+      elements.map(element => [element, getWidth(element)]),
+    );
 
-function setupWidthChangeAfterRenderListener(
-  elements: Element[],
-  handleWidthChangeAfterRender: () => void,
-) {
-  const getInitialWidth = createInitialWidthProvider(elements);
+    const resizeObserver = new ResizeObserver(entries => {
+      const hasAnElementChangedSignificantly = entries
+        .map(entry => widthsAtRender.get(entry.target)! - getWidth(entry.target))
+        .some(difference => difference < -0.5 || difference > 0.5);
 
-  const hasWidthChanged = (element: Element) => {
-    return isSignificantDifference(getInitialWidth(element), getWidth(element));
-  };
+      hasAnElementChangedSignificantly && flushSync(handleFout);
+    });
 
-  return setupResizeObserver(elements, maybeResizedElements => {
-    if (maybeResizedElements.some(hasWidthChanged)) {
-      handleWidthChangeAfterRender();
-    }
-  });
-}
+    elements.forEach(element => resizeObserver.observe(element));
 
-function createInitialWidthProvider(elements: Element[]) {
-  const initialWidths = elements.map(getWidth);
-
-  return function getInitialWidth(element: Element) {
-    const index = elements.indexOf(element);
-
-    return initialWidths[index];
-  };
-}
-
-function setupResizeObserver(
-  elements: Element[],
-  handleElementsResized: (elements: Element[]) => void,
-) {
-  const resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]) => {
-    const elements = entries.map(entry => entry.target);
-
-    handleElementsResized(elements);
+    return () => resizeObserver.disconnect();
   });
 
-  elements.forEach(element => resizeObserver.observe(element));
-
-  return () => resizeObserver.disconnect();
-}
-
-function isSignificantDifference(width1: number, width2: number) {
-  return Math.abs(width1 - width2) > 0.5;
+  return containerRef;
 }

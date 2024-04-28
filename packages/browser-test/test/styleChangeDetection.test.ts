@@ -16,9 +16,7 @@ describe('Pagination style change detection', () => {
   test.each([['inherit'], ['24px'], ['40px'], ['inherit']])(
     'adapts correctly when font-size changed to %p',
     async fontSize => {
-      await testHarness.editableStyleBlockLocator().evaluate((styleBlock, style) => {
-        styleBlock.innerHTML = style;
-      }, `.pagination { font-size: ${fontSize}; }`);
+      await testHarness.setStyle(`.pagination { font-size: ${fontSize}; }`);
 
       await testHarness.waitForNextFrame();
 
