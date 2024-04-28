@@ -1,24 +1,24 @@
-import { setupThrowOnError } from './helper';
+import { TestHarnessPage } from './test-harness-page';
+
+const testHarness = new TestHarnessPage(page, { throwOnError: true });
 
 beforeAll(async () => {
-  setupThrowOnError(page);
-
-  await page.goto(`${harnessUrl}bootstrap4`);
+  await testHarness.goto();
 
   await page.setViewportSize({ width: 600, height: 700 });
 
-  await page.fill('#totalAsJson', '100');
+  await testHarness.setField('total', 100);
 });
 
 describe('Pagination maxWidth', () => {
-  test.each([[null], [400], [250], [null]])(
+  test.each([[undefined], [400], [250], [undefined]])(
     'renders correctly with maxWidth of %p',
     async width => {
-      await page.fill('#maxWidthAsJson', (width && width.toString()) || '');
+      await testHarness.setField('maxWidth', width);
 
-      await page.evaluate(() => new Promise(requestAnimationFrame));
+      await testHarness.waitForNextFrame();
 
-      const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
+      const paginationHtml = await testHarness.getPaginationHtml();
 
       expect(paginationHtml).toMatchSnapshot();
     },

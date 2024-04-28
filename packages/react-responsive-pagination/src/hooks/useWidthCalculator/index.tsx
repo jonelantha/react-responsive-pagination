@@ -43,7 +43,7 @@ export function useWidthCalculator() {
 type RenderNeededResult = {
   renderNeeded: {
     items: CompositionItem[];
-    ref: (element: HTMLElement | null) => void;
+    ref: (element: Element | null) => void;
   };
   clearCache: () => void;
 };

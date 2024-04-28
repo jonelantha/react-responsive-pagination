@@ -1,13 +1,13 @@
-import { setupThrowOnError } from './helper';
+import { TestHarnessPage } from './test-harness-page';
+
+const testHarness = new TestHarnessPage(page, { throwOnError: true });
 
 beforeAll(async () => {
-  setupThrowOnError(page);
-
-  await page.goto(`${harnessUrl}bootstrap4`);
+  await testHarness.goto();
 
   await page.setViewportSize({ width: 700, height: 700 });
 
-  await page.check('#preset_v1Bootstrap4');
+  await testHarness.presetLocator('v1Bootstrap4').check();
 });
 
 const testWidths = [
@@ -21,7 +21,7 @@ describe('v1 Bootstrap 4 preset', () => {
     async width => {
       await page.setViewportSize({ width, height: 700 });
 
-      await page.evaluate(() => new Promise(requestAnimationFrame));
+      await testHarness.waitForNextFrame();
 
       const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
 

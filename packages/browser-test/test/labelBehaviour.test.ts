@@ -1,31 +1,28 @@
-import { setupThrowOnError, stringifyWithUndefined } from './helper';
+import { TestHarnessPage } from './test-harness-page';
+
+const testHarness = new TestHarnessPage(page, { throwOnError: true });
 
 beforeAll(async () => {
-  setupThrowOnError(page);
-
-  await page.goto(`${harnessUrl}bootstrap4`);
+  testHarness.goto();
 
   await page.setViewportSize({ width: 700, height: 700 });
 });
 
 describe('Label Behaviour', () => {
   beforeEach(async () => {
-    await page.fill('#labelBehaviourAsJson', JSON.stringify('srOnlySpanLabel'));
-    await page.fill('#srOnlyClassNameAsJson', 'undefined');
-    await page.fill('#a11yActiveLabelAsJson', 'undefined');
+    await testHarness.setField('labelBehaviour', 'srOnlySpanLabel');
+    await testHarness.setField('srOnlyClassName', undefined);
+    await testHarness.setField('a11yActiveLabel', undefined);
   });
 
   test.each([undefined, 'active'].map(a11yActiveLabel => [a11yActiveLabel]))(
     'Setting a11yActiveLabel to %p',
     async a11yActiveLabel => {
-      await page.fill(
-        '#a11yActiveLabelAsJson',
-        stringifyWithUndefined(a11yActiveLabel),
-      );
+      await testHarness.setField('a11yActiveLabel', a11yActiveLabel);
 
-      await page.evaluate(() => new Promise(requestAnimationFrame));
+      await testHarness.waitForNextFrame();
 
-      const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
+      const paginationHtml = await testHarness.getPaginationHtml();
 
       expect(paginationHtml).toMatchSnapshot();
     },
@@ -34,14 +31,11 @@ describe('Label Behaviour', () => {
   test.each([undefined, 'alt-sr-only'].map(a11yActiveLabel => [a11yActiveLabel]))(
     'Setting srOnlyClassName to %p',
     async a11yActiveLabel => {
-      await page.fill(
-        '#srOnlyClassNameAsJson',
-        stringifyWithUndefined(a11yActiveLabel),
-      );
+      await testHarness.setField('srOnlyClassName', a11yActiveLabel);
 
-      await page.evaluate(() => new Promise(requestAnimationFrame));
+      await testHarness.waitForNextFrame();
 
-      const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
+      const paginationHtml = await testHarness.getPaginationHtml();
 
       expect(paginationHtml).toMatchSnapshot();
     },

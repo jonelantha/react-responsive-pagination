@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef } from 'react';
 
 export function useResizeNotifier(
-  element: HTMLElement | undefined,
+  element: Element | undefined,
   callback: () => void,
 ) {
   const callBackRef = useRef(callback);

@@ -1,4 +1,6 @@
-export {};
+import { TestHarnessPage } from './test-harness-page';
+
+const testHarness = new TestHarnessPage(page);
 
 const startWidth = 650;
 const endWidth = 500;
@@ -7,13 +9,13 @@ const rate = 2;
 jest.setTimeout(30000);
 
 beforeAll(async () => {
-  await page.goto(`${harnessUrl}bootstrap4?css=demo`);
+  await testHarness.goto({ css: 'demo' });
 
   await page.setViewportSize({ width: startWidth, height: 200 });
 
-  await page.fill('#currentAsJson', '8');
+  await testHarness.setField('current', 8);
 
-  await page.fill('#totalAsJson', '20');
+  await testHarness.setField('total', 20);
 
   await page.evaluate(() => {
     document.documentElement.scrollTop = 0;

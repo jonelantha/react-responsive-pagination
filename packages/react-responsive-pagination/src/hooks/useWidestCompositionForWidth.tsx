@@ -9,12 +9,12 @@ export function useWidestCompositionForWidth(
   maxWidth: number,
 ): {
   items: CompositionItem[];
-  ref: ForwardedRef<HTMLElement | null>;
+  ref: ForwardedRef<Element | null>;
   clearCache: () => void;
 } {
   const widthCalculator = useWidthCalculator();
 
-  const containerElementRef = useRef<HTMLElement | null>(null);
+  const containerElementRef = useRef<Element | null>(null);
 
   const clearCache = widthCalculator.clearCache;
 
@@ -61,6 +61,6 @@ function getLargestFittingCompositionWithFallback(
   return lastWhere(narrowToWideCompositions, doesCompositionFit) ?? firstComposition;
 }
 
-function getItemsDomElements(viewDomElement: HTMLElement | null) {
-  return viewDomElement && (Array.from(viewDomElement.children) as HTMLElement[]);
+function getItemsDomElements(viewDomElement: Element | null) {
+  return viewDomElement && Array.from(viewDomElement.children);
 }

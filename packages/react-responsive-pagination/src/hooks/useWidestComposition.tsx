@@ -8,7 +8,7 @@ export function useWidestComposition(
   narrowToWideCompositionsProvider: () => IterableIterator<CompositionItem[]>,
   maxWidth?: number,
 ) {
-  const [containerElement, setContainerElement] = useState<HTMLElement | null>(null);
+  const [containerElement, setContainerElement] = useState<Element | null>(null);
 
   const availableWidth = useAvailableWidth(
     maxWidth === undefined ? containerElement : null,
@@ -23,7 +23,7 @@ export function useWidestComposition(
   } = useWidestCompositionForWidth(narrowToWideCompositionsProvider, width);
 
   const ref = useCallback(
-    (element: HTMLElement | null) => {
+    (element: Element | null) => {
       setRefValue(widestCompositionRef, element);
       setContainerElement(element);
     },
