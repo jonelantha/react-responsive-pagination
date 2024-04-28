@@ -1,6 +1,6 @@
 import React, { ReactElement, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { resetRenderCount, getRenderCount } from 'react-responsive-pagination';
+import { resetRenderCount, getRenderCount } from 'react-responsive-pagination/debug';
 
 import App from './App';
 

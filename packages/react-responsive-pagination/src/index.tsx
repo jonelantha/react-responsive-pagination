@@ -4,6 +4,7 @@ import { usePaginationItems } from './hooks/usePaginationItems.js';
 import { preventDefault } from './helpers/dom.js';
 import { NarrowBehaviour } from './narrowBehaviour.js';
 import { defaultLabelBehaviour, LabelBehaviour } from './labelBehaviour.js';
+import { incRenderCount } from './debug.js';
 
 /* legacy - may be removed */
 export const bootstrap4PaginationPreset = {};
@@ -47,7 +48,7 @@ function ResponsivePagination({
   linkHref = 'hash',
   labelBehaviour: getLabel = defaultLabelBehaviour,
 }: ResponsivePaginationProps) {
-  renderCount++;
+  incRenderCount();
 
   const { items, ref, clearCache } = usePaginationItems(current, total, maxWidth, {
     narrowBehaviour,
