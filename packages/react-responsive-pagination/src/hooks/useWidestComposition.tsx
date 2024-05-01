@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { CompositionItem } from '../compositionItem.js';
 import { useAvailableWidth } from './useAvailableWidth.js';
 import { useFoutDetector } from './useFoutDetector.js';
-import { useWidthCalculator } from './useWidthCalculator/index.js';
+import { useWidthCalculator } from './useWidthCalculator.js';
 import { iteratorNext, lastWhere } from '../helpers/iterator.js';
 
 export function useWidestComposition(
@@ -21,9 +21,7 @@ export function useWidestComposition(
 
   const width = maxWidth ?? availableWidth ?? 0;
 
-  const widthCalculator = useWidthCalculator();
-
-  const clearCache = widthCalculator.clearCache;
+  const { widthCalculator, metricsRender, clearCache } = useWidthCalculator();
 
   const foutDetectorRef = useFoutDetector(getItemsDomElements, clearCache);
 
@@ -35,11 +33,11 @@ export function useWidestComposition(
     [foutDetectorRef],
   );
 
-  if ('renderNeeded' in widthCalculator) {
+  if (metricsRender) {
     return {
-      items: widthCalculator.renderNeeded.items,
+      items: metricsRender.items,
       ref(containerElement) {
-        widthCalculator.renderNeeded.ref(containerElement);
+        metricsRender.ref(containerElement);
         ref(containerElement);
       },
       clearCache,
@@ -48,7 +46,7 @@ export function useWidestComposition(
     return {
       items: getLargestFittingCompositionWithFallback(
         narrowToWideCompositionsProvider,
-        widthCalculator.calculator,
+        widthCalculator,
         width,
       ),
       ref,
