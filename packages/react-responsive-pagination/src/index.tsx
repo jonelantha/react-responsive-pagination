@@ -6,15 +6,15 @@ import { NarrowBehaviour } from './narrowBehaviour.js';
 import { defaultLabelBehaviour, LabelBehaviour } from './labelBehaviour.js';
 import { incRenderCount } from './debug.js';
 
-/* legacy - may be removed */
-export const bootstrap4PaginationPreset = {};
-export const bootstrap5PaginationPreset = {};
+export * from './narrowBehaviour.js';
+export * from './presets.js';
+export * from './labelBehaviour.js';
 
 declare const process: { env: { NODE_ENV: string } };
 
 export default process.env.NODE_ENV !== 'production'
-  ? memo(ResponsivePaginationDev)
-  : memo(ResponsivePagination);
+  ? memo<React.FC<ResponsivePaginationProps>>(ResponsivePaginationDev)
+  : memo<React.FC<ResponsivePaginationProps>>(ResponsivePagination);
 
 function ResponsivePaginationDev(props: ResponsivePaginationProps) {
   checkLegacyProps(props);
@@ -135,6 +135,9 @@ function classNames(names: (string | false | undefined)[]) {
   return names.filter(name => name).join(' ');
 }
 
+/**
+ * @public
+ */
 export type ResponsivePaginationProps = {
   current: number;
   total: number;
@@ -183,7 +186,7 @@ ResponsivePagination.propTypes = {
   ariaNextLabel: PropTypes.string,
   renderNav: PropTypes.bool,
   ariaCurrentAttr: PropTypes.bool,
-  linkHref: PropTypes.oneOf(['hash', 'omit']),
+  linkHref: PropTypes.oneOf(['hash', 'omit'] as const),
   labelBehaviour: PropTypes.func,
 };
 
