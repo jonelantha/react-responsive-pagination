@@ -1,13 +1,18 @@
 import { useCallback, useState } from 'react';
 import { CompositionItem } from '../compositionItem.js';
-import { setRefValue } from '../helpers/ref.js';
 import { useAvailableWidth } from './useAvailableWidth.js';
-import { useWidestCompositionForWidth } from './useWidestCompositionForWidth.js';
+import { useFoutDetector } from './useFoutDetector.js';
+import { useWidthCalculator } from './useWidthCalculator.js';
+import { iteratorNext, lastWhere } from '../helpers/iterator.js';
 
 export function useWidestComposition(
   narrowToWideCompositionsProvider: () => IterableIterator<CompositionItem[]>,
   maxWidth?: number,
-) {
+): {
+  items: CompositionItem[];
+  ref: (element: Element | null) => void;
+  clearCache: () => void;
+} {
   const [containerElement, setContainerElement] = useState<Element | null>(null);
 
   const availableWidth = useAvailableWidth(
@@ -16,23 +21,55 @@ export function useWidestComposition(
 
   const width = maxWidth ?? availableWidth ?? 0;
 
-  const {
-    items,
-    ref: widestCompositionRef,
-    clearCache,
-  } = useWidestCompositionForWidth(narrowToWideCompositionsProvider, width);
+  const { widthCalculator, metricsRender, clearCache } = useWidthCalculator();
+
+  const foutDetectorRef = useFoutDetector(getItemsDomElements, clearCache);
 
   const ref = useCallback(
     (element: Element | null) => {
-      setRefValue(widestCompositionRef, element);
+      foutDetectorRef.current = element;
       setContainerElement(element);
     },
-    [widestCompositionRef],
+    [foutDetectorRef],
   );
 
-  return {
-    items,
-    ref,
-    clearCache,
-  };
+  if (metricsRender) {
+    return {
+      items: metricsRender.items,
+      ref(containerElement) {
+        metricsRender.ref(containerElement);
+        ref(containerElement);
+      },
+      clearCache,
+    };
+  } else {
+    return {
+      items: getLargestFittingCompositionWithFallback(
+        narrowToWideCompositionsProvider,
+        widthCalculator,
+        width,
+      ),
+      ref,
+      clearCache,
+    };
+  }
+}
+
+function getLargestFittingCompositionWithFallback(
+  getNarrowToWideCompositions: () => IterableIterator<CompositionItem[]>,
+  getCompositionWidth: (items: CompositionItem[]) => number,
+  maxWidth: number,
+) {
+  const narrowToWideCompositions = getNarrowToWideCompositions();
+
+  const firstComposition = iteratorNext(narrowToWideCompositions) ?? [];
+
+  const doesCompositionFit = (composition: CompositionItem[]) =>
+    getCompositionWidth(composition) < maxWidth;
+
+  return lastWhere(narrowToWideCompositions, doesCompositionFit) ?? firstComposition;
+}
+
+function getItemsDomElements(viewDomElement: Element | null) {
+  return viewDomElement && Array.from(viewDomElement.children);
 }
