@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { CompositionItem } from './compositionItem.js';
 
 type BaseItem = {

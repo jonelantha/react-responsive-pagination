@@ -1,10 +1,24 @@
-import { srOnlySpanLabel } from './labelBehaviour.js';
+import { LabelBehaviour, srOnlySpanLabel } from './labelBehaviour.js';
 
-export const v1_bootstrap4PaginationPreset = {
+/**
+ * @public
+ */
+export const v1_bootstrap4PaginationPreset: {
+  ariaCurrentAttr: false;
+  labelBehaviour: LabelBehaviour;
+} = {
   ariaCurrentAttr: false,
-  labelBehaviour: srOnlySpanLabel(),
+  labelBehaviour: /*#__PURE__*/ srOnlySpanLabel(),
 };
 
+/**
+ * legacy - may be removed
+ * @public
+ */
 export const bootstrap4PaginationPreset = {};
 
+/**
+ * legacy - may be removed
+ * @public
+ */
 export const bootstrap5PaginationPreset = {};

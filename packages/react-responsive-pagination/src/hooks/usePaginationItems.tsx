@@ -1,4 +1,5 @@
-import { ReactNode, isValidElement, useEffect } from 'react';
+import { isValidElement, useEffect } from 'react';
+import type { ReactNode } from 'react';
 import { narrowToWideCompositions } from '../compositions/index.js';
 import { sanatizeInteger, sanatizeBoolean } from '../helpers/util.js';
 import { NarrowBehaviour } from '../narrowBehaviour.js';
