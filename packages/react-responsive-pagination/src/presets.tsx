@@ -8,7 +8,7 @@ export const v1_bootstrap4PaginationPreset: {
   labelBehaviour: LabelBehaviour;
 } = {
   ariaCurrentAttr: false,
-  labelBehaviour: srOnlySpanLabel(),
+  labelBehaviour: /*#__PURE__*/ srOnlySpanLabel(),
 };
 
 /**
