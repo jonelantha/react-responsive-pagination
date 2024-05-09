@@ -1,5 +1,12 @@
 # React Responsive Pagination Changelog
 
+# [2.5.0](https://github.com/jonelantha/react-responsive-pagination/compare/v2.4.4...v2.5.0) (2024-05-09)
+
+
+### Features
+
+* Faster handling of css induced changes ([554c529](https://github.com/jonelantha/react-responsive-pagination/commit/554c529a9fd270b6c62ab4a986ee914a49ed1ee5))
+
 ## [2.4.4](https://github.com/jonelantha/react-responsive-pagination/compare/v2.4.3...v2.4.4) (2024-04-28)
 
 
