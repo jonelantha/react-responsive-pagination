@@ -1,5 +1,12 @@
 # React Responsive Pagination Changelog
 
+# [2.6.0-beta.4](https://github.com/jonelantha/react-responsive-pagination/compare/v2.6.0-beta.3...v2.6.0-beta.4) (2024-05-11)
+
+
+### Bug Fixes
+
+* Restore propTypes ([f76aebe](https://github.com/jonelantha/react-responsive-pagination/commit/f76aebeb7db35f2b8cb42cc95b5f7f41ffa509f0))
+
 # [2.6.0-beta.3](https://github.com/jonelantha/react-responsive-pagination/compare/v2.6.0-beta.2...v2.6.0-beta.3) (2024-05-11)
 
 
