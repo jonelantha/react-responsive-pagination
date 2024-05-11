@@ -1,4 +1,5 @@
-import React, { ReactNode, memo, useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
+import type { ReactNode, FC } from 'react';
 import PropTypes from 'prop-types';
 import { usePaginationItems } from './hooks/usePaginationItems.js';
 import { preventDefault } from './helpers/dom.js';
@@ -12,9 +13,11 @@ export * from './labelBehaviour.js';
 
 declare const process: { env: { NODE_ENV: string } };
 
-export default process.env.NODE_ENV !== 'production'
-  ? memo<React.FC<ResponsivePaginationProps>>(ResponsivePaginationDev)
-  : memo<React.FC<ResponsivePaginationProps>>(ResponsivePagination);
+const ResponsivePaginationComponent: FC<ResponsivePaginationProps> =
+  process.env.NODE_ENV !== 'production'
+    ? memo(ResponsivePaginationDev)
+    : memo(ResponsivePagination);
+export default ResponsivePaginationComponent;
 
 function ResponsivePaginationDev(props: ResponsivePaginationProps) {
   checkLegacyProps(props);

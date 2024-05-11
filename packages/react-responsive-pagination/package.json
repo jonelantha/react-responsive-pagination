@@ -43,7 +43,7 @@
     "release": "rm ../../package.json && semantic-release",
     "previewReleaseNotes": "semantic-release --dry-run",
     "api-extractor": "api-extractor run --local --verbose",
-    "copy-extra-types": "cp ./src/*.d.ts ./dist"
+    "copy-extra-types": "cp ./src/*.d.ts ./dist && cp ./temp/types/debug.d.ts ./dist"
   },
   "keywords": [
     "responsive",

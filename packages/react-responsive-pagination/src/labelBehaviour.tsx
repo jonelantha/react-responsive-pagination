@@ -1,15 +1,19 @@
 import React from 'react';
+import type { ReactNode } from 'react';
 import { PaginationItem } from './paginationItem.js';
 
 /**
  * @public
  */
-export type LabelBehaviour = (item: PaginationItem) => React.ReactNode;
+export type LabelBehaviour = (item: PaginationItem) => ReactNode;
 
 /**
  * @public
  */
-export function defaultLabelBehaviour({ a11yLabel, label }: PaginationItem) {
+export function defaultLabelBehaviour({
+  a11yLabel,
+  label,
+}: PaginationItem): ReactNode {
   return !a11yLabel ? label : <span aria-hidden="true">{label}</span>;
 }
 
@@ -23,7 +27,7 @@ export function srOnlySpanLabel({
   a11yActiveLabel?: string;
   srOnlyClassName?: string;
 } = {}) {
-  return (item: PaginationItem) => {
+  return (item: PaginationItem): ReactNode => {
     const activePage = item.gotoPage !== undefined && item.active;
     const srOnlyLabel =
       activePage && a11yActiveLabel ? ` ${a11yActiveLabel}` : item.a11yLabel;
