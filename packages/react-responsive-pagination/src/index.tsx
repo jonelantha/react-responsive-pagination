@@ -13,45 +13,46 @@ export * from './labelBehaviour.js';
 
 declare const process: { env: { NODE_ENV: string } };
 
+/**
+ * @public
+ */
 const ResponsivePaginationComponent: FC<ResponsivePaginationProps> =
-  process.env.NODE_ENV !== 'production'
-    ? memo(ResponsivePaginationDev)
-    : memo(ResponsivePagination);
+  memo(ResponsivePagination);
 export default ResponsivePaginationComponent;
-
-function ResponsivePaginationDev(props: ResponsivePaginationProps) {
-  checkLegacyProps(props);
-
-  return ResponsivePagination(props);
-}
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-function ResponsivePagination({
-  current,
-  total,
-  onPageChange: handlePageChange,
-  maxWidth,
-  narrowBehaviour,
-  className,
-  extraClassName = 'justify-content-center',
-  pageItemClassName = 'page-item',
-  pageLinkClassName = 'page-link',
-  activeItemClassName = 'active',
-  disabledItemClassName = 'disabled',
-  navClassName,
-  previousClassName,
-  nextClassName,
-  previousLabel,
-  nextLabel,
-  ariaPreviousLabel,
-  ariaNextLabel,
-  renderNav = true,
-  ariaCurrentAttr = true,
-  linkHref = 'hash',
-  labelBehaviour: getLabel = defaultLabelBehaviour,
-}: ResponsivePaginationProps) {
+function ResponsivePagination(props: ResponsivePaginationProps) {
   incRenderCount();
+
+  if (process.env.NODE_ENV !== 'production') {
+    checkLegacyProps(props);
+  }
+
+  const {
+    current,
+    total,
+    onPageChange: handlePageChange,
+    maxWidth,
+    narrowBehaviour,
+    className,
+    extraClassName = 'justify-content-center',
+    pageItemClassName = 'page-item',
+    pageLinkClassName = 'page-link',
+    activeItemClassName = 'active',
+    disabledItemClassName = 'disabled',
+    navClassName,
+    previousClassName,
+    nextClassName,
+    previousLabel,
+    nextLabel,
+    ariaPreviousLabel,
+    ariaNextLabel,
+    renderNav = true,
+    ariaCurrentAttr = true,
+    linkHref = 'hash',
+    labelBehaviour: getLabel = defaultLabelBehaviour,
+  } = props;
 
   const { items, ref, clearCache } = usePaginationItems(current, total, maxWidth, {
     narrowBehaviour,
