@@ -1,5 +1,12 @@
 # React Responsive Pagination Changelog
 
+# [2.6.0-beta.3](https://github.com/jonelantha/react-responsive-pagination/compare/v2.6.0-beta.2...v2.6.0-beta.3) (2024-05-11)
+
+
+### Features
+
+* Streamlined d.ts files (reduced package size) ([1202554](https://github.com/jonelantha/react-responsive-pagination/commit/1202554b098a150ef0f93534a3052f93da373af4))
+
 # [2.6.0-beta.2](https://github.com/jonelantha/react-responsive-pagination/compare/v2.6.0-beta.1...v2.6.0-beta.2) (2024-05-09)
 
 
