@@ -1,5 +1,5 @@
 {
-  "extends": "./tsconfig.prod",
+  "extends": "./tsconfig.comp",
   "compilerOptions": {
     "inlineSources": true,
     "inlineSourceMap": true

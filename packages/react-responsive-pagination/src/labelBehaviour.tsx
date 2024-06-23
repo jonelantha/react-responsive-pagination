@@ -1,12 +1,25 @@
 import React from 'react';
+import type { ReactNode } from 'react';
 import { PaginationItem } from './paginationItem.js';
 
-export type LabelBehaviour = (item: PaginationItem) => React.ReactNode;
+/**
+ * @public
+ */
+export type LabelBehaviour = (item: PaginationItem) => ReactNode;
 
-export function defaultLabelBehaviour({ a11yLabel, label }: PaginationItem) {
+/**
+ * @public
+ */
+export function defaultLabelBehaviour({
+  a11yLabel,
+  label,
+}: PaginationItem): ReactNode {
   return !a11yLabel ? label : <span aria-hidden="true">{label}</span>;
 }
 
+/**
+ * @public
+ */
 export function srOnlySpanLabel({
   a11yActiveLabel = '(current)',
   srOnlyClassName = 'sr-only',
@@ -14,7 +27,7 @@ export function srOnlySpanLabel({
   a11yActiveLabel?: string;
   srOnlyClassName?: string;
 } = {}) {
-  return (item: PaginationItem) => {
+  return (item: PaginationItem): ReactNode => {
     const activePage = item.gotoPage !== undefined && item.active;
     const srOnlyLabel =
       activePage && a11yActiveLabel ? ` ${a11yActiveLabel}` : item.a11yLabel;

@@ -1,4 +1,5 @@
-import React, { ReactNode, memo, useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
+import type { ReactNode, FC } from 'react';
 import PropTypes from 'prop-types';
 import { usePaginationItems } from './hooks/usePaginationItems.js';
 import { preventDefault } from './helpers/dom.js';
@@ -6,49 +7,52 @@ import { NarrowBehaviour } from './narrowBehaviour.js';
 import { defaultLabelBehaviour, LabelBehaviour } from './labelBehaviour.js';
 import { incRenderCount } from './debug.js';
 
-/* legacy - may be removed */
-export const bootstrap4PaginationPreset = {};
-export const bootstrap5PaginationPreset = {};
+export * from './narrowBehaviour.js';
+export * from './presets.js';
+export * from './labelBehaviour.js';
 
 declare const process: { env: { NODE_ENV: string } };
 
-export default process.env.NODE_ENV !== 'production'
-  ? memo(ResponsivePaginationDev)
-  : memo(ResponsivePagination);
-
-function ResponsivePaginationDev(props: ResponsivePaginationProps) {
-  checkLegacyProps(props);
-
-  return ResponsivePagination(props);
-}
+/**
+ * @public
+ */
+const ResponsivePaginationComponent: FC<ResponsivePaginationProps> =
+  memo(ResponsivePagination);
+export default ResponsivePaginationComponent;
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-function ResponsivePagination({
-  current,
-  total,
-  onPageChange: handlePageChange,
-  maxWidth,
-  narrowBehaviour,
-  className,
-  extraClassName = 'justify-content-center',
-  pageItemClassName = 'page-item',
-  pageLinkClassName = 'page-link',
-  activeItemClassName = 'active',
-  disabledItemClassName = 'disabled',
-  navClassName,
-  previousClassName,
-  nextClassName,
-  previousLabel,
-  nextLabel,
-  ariaPreviousLabel,
-  ariaNextLabel,
-  renderNav = true,
-  ariaCurrentAttr = true,
-  linkHref = 'hash',
-  labelBehaviour: getLabel = defaultLabelBehaviour,
-}: ResponsivePaginationProps) {
+function ResponsivePagination(props: ResponsivePaginationProps) {
   incRenderCount();
+
+  if (process.env.NODE_ENV !== 'production') {
+    checkLegacyProps(props);
+  }
+
+  const {
+    current,
+    total,
+    onPageChange: handlePageChange,
+    maxWidth,
+    narrowBehaviour,
+    className,
+    extraClassName = 'justify-content-center',
+    pageItemClassName = 'page-item',
+    pageLinkClassName = 'page-link',
+    activeItemClassName = 'active',
+    disabledItemClassName = 'disabled',
+    navClassName,
+    previousClassName,
+    nextClassName,
+    previousLabel,
+    nextLabel,
+    ariaPreviousLabel,
+    ariaNextLabel,
+    renderNav = true,
+    ariaCurrentAttr = true,
+    linkHref = 'hash',
+    labelBehaviour: getLabel = defaultLabelBehaviour,
+  } = props;
 
   const { items, ref, clearCache } = usePaginationItems(current, total, maxWidth, {
     narrowBehaviour,
@@ -135,6 +139,9 @@ function classNames(names: (string | false | undefined)[]) {
   return names.filter(name => name).join(' ');
 }
 
+/**
+ * @public
+ */
 export type ResponsivePaginationProps = {
   current: number;
   total: number;
@@ -177,13 +184,13 @@ ResponsivePagination.propTypes = {
   navClassName: PropTypes.string,
   previousClassName: PropTypes.string,
   nextClassName: PropTypes.string,
-  previousLabel: PropTypes.string,
-  nextLabel: PropTypes.string,
+  previousLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  nextLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   ariaPreviousLabel: PropTypes.string,
   ariaNextLabel: PropTypes.string,
   renderNav: PropTypes.bool,
   ariaCurrentAttr: PropTypes.bool,
-  linkHref: PropTypes.oneOf(['hash', 'omit']),
+  linkHref: PropTypes.oneOf(['hash', 'omit'] as const),
   labelBehaviour: PropTypes.func,
 };
 

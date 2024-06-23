@@ -1,4 +1,6 @@
 {
-  "extends": "./tsconfig",
-  "exclude": ["./src/**/*.test.ts"]
+  "extends": "./tsconfig.comp",
+  "compilerOptions": {
+    "declarationDir": "./temp/types"
+  }
 }

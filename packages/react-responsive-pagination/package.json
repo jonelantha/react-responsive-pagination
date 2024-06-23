@@ -35,13 +35,15 @@
   ],
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "npm run lint && rimraf dist/ && tsc --project ./tsconfig.prod.json",
+    "build": "npm run lint && rimraf dist/ && tsc --project ./tsconfig.prod.json && npm run api-extractor && npm run copy-extra-types",
     "start": "rimraf dist/ && tsc --project ./tsconfig.dev.json --watch",
     "test": "jest",
     "lint": "eslint --ext .ts --ext .tsx src",
     "prepublishOnly": "npm run build",
     "release": "rm ../../package.json && semantic-release",
-    "previewReleaseNotes": "semantic-release --dry-run"
+    "previewReleaseNotes": "semantic-release --dry-run",
+    "api-extractor": "api-extractor run --local --verbose",
+    "copy-extra-types": "cp ./src/*.d.ts ./dist && cp ./temp/types/debug.d.ts ./dist"
   },
   "keywords": [
     "responsive",
@@ -65,6 +67,7 @@
     "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "^7.43.3",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@types/jest": "^29.5.12",

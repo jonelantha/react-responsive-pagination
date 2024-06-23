@@ -15,8 +15,8 @@ import { findLastIndex } from './helpers/util.js';
  * NarrowBehaviours will yield their narrowest composition first and then
  * yield a less narrow composition
  * They should not yield the initialComposition
+ * @public
  */
-
 export type NarrowBehaviour = (
   composition: ReadonlyArray<CompositionItem>,
   metaData?: NarrowBehaviourMetaData,
@@ -26,6 +26,9 @@ type NarrowBehaviourMetaData = {
   appliedBehaviours?: NarrowBehaviour[];
 };
 
+/**
+ * @public
+ */
 export function* dropEllipsis(
   initialComposition: ReadonlyArray<CompositionItem>,
   metaData?: NarrowBehaviourMetaData,
@@ -59,10 +62,16 @@ export function* dropEllipsis(
   }
 }
 
+/**
+ * @public
+ */
 export function* dropNav(initialComposition: ReadonlyArray<CompositionItem>) {
   yield initialComposition.filter(item => !isNav(item));
 }
 
+/**
+ * @public
+ */
 export function* dropFirstAndLast(
   initialComposition: ReadonlyArray<CompositionItem>,
   metaData?: NarrowBehaviourMetaData,
@@ -128,6 +137,9 @@ export function* dropFirstAndLast(
   }
 }
 
+/**
+ * @public
+ */
 export function* dropEllipsisThenNav(
   initialComposition: ReadonlyArray<CompositionItem>,
 ) {
@@ -139,6 +151,9 @@ export function* dropEllipsisThenNav(
   }
 }
 
+/**
+ * @public
+ */
 export function* dropNavThenEllipsis(
   initialComposition: ReadonlyArray<CompositionItem>,
 ) {
@@ -158,6 +173,7 @@ export function* dropNavThenEllipsis(
 
 /**
  * Combine two or more narrowBehaviours
+ * @public
  */
 export const combine =
   (...behaviours: ReadonlyArray<NarrowBehaviour>): NarrowBehaviour =>
