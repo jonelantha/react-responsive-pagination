@@ -1,5 +1,17 @@
 # React Responsive Pagination Changelog
 
+# [2.6.0](https://github.com/jonelantha/react-responsive-pagination/compare/v2.5.0...v2.6.0) (2024-06-23)
+
+
+### Bug Fixes
+
+* Restore propTypes ([dc64562](https://github.com/jonelantha/react-responsive-pagination/commit/dc64562b1a7fb164b2071a05a4ac875552dace37))
+
+
+### Features
+
+* Streamlined d.ts files (reduced package size) ([1202554](https://github.com/jonelantha/react-responsive-pagination/commit/1202554b098a150ef0f93534a3052f93da373af4))
+
 # [2.5.0](https://github.com/jonelantha/react-responsive-pagination/compare/v2.4.4...v2.5.0) (2024-05-09)
 
 
