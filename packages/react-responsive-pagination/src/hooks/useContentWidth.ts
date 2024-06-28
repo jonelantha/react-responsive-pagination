@@ -1,21 +1,65 @@
-import { useState, useLayoutEffect } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { getContentWidth } from '../helpers/style.js';
-import { useResizeNotifier } from './useResizeNotifier.js';
+import { useIsomorphicLayoutEffect } from '../helpers/react.js';
 
 export function useContentWidth(element: Element | undefined) {
   const [width, setWidth] = useState<number>();
+  const widthRef = useRef<number>();
 
-  function syncWidth() {
+  const syncWidth = useCallback(() => {
     const newWidth = element ? getContentWidth(element) : undefined;
 
-    if (width !== newWidth) {
+    if (widthRef.current !== newWidth) {
+      widthRef.current = newWidth;
       setWidth(newWidth);
     }
-  }
+  }, [element]);
 
-  useResizeNotifier(element, syncWidth);
+  useIsomorphicLayoutEffect(syncWidth);
 
-  useLayoutEffect(syncWidth);
+  useEffect(() => {
+    if (!element) return;
+
+    const resizeObserver = new ResizeObserver(withResizeLoopDetection(syncWidth));
+
+    resizeObserver.observe(element);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [element, syncWidth]);
 
   return width;
+}
+
+function withResizeLoopDetection(callback: () => void) {
+  return (entries: ResizeObserverEntry[], resizeObserver: ResizeObserver) => {
+    const elements = entries.map(entry => entry.target);
+
+    const rectsBefore = elements.map(element => element.getBoundingClientRect());
+
+    callback();
+
+    const rectsAfter = elements.map(element => element.getBoundingClientRect());
+
+    const changedElements = elements.filter(
+      (_, i) => !areRectSizesEqual(rectsBefore[i], rectsAfter[i]),
+    );
+
+    changedElements.forEach(element =>
+      unobserveUntilNextFrame(element, resizeObserver),
+    );
+  };
+}
+
+function unobserveUntilNextFrame(element: Element, resizeObserver: ResizeObserver) {
+  resizeObserver.unobserve(element);
+
+  requestAnimationFrame(() => {
+    resizeObserver.observe(element);
+  });
+}
+
+function areRectSizesEqual(rect1: DOMRect, rect2: DOMRect) {
+  return rect1.width === rect2.width && rect1.height === rect2.height;
 }

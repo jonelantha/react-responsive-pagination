@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { CompositionItem } from '../compositionItem.js';
 import { useAvailableWidth } from './useAvailableWidth.js';
 import { useFoutDetector } from './useFoutDetector.js';
@@ -13,24 +13,18 @@ export function useWidestComposition(
   ref: (element: Element | null) => void;
   clearCache: () => void;
 } {
-  const [containerElement, setContainerElement] = useState<Element | null>(null);
-
-  const availableWidth = useAvailableWidth(
-    maxWidth === undefined ? containerElement : null,
-  );
-
-  const width = maxWidth ?? availableWidth ?? 0;
-
   const { widthCalculator, metricsRender, clearCache } = useWidthCalculator();
 
   const foutDetectorRef = useFoutDetector(getItemsDomElements, clearCache);
 
+  const { width = 0, ref: availableWidthRef } = useAvailableWidth(maxWidth);
+
   const ref = useCallback(
     (element: Element | null) => {
       foutDetectorRef.current = element;
-      setContainerElement(element);
+      availableWidthRef?.(element);
     },
-    [foutDetectorRef],
+    [foutDetectorRef, availableWidthRef],
   );
 
   if (metricsRender) {
