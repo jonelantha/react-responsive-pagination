@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { getContentWidth } from '../helpers/style.js';
 import { useIsomorphicLayoutEffect } from '../helpers/react.js';
+import { flushSync } from 'react-dom';
 
 export function useContentWidth(element: Element | undefined) {
   const [width, setWidth] = useState<number>();
@@ -20,7 +21,9 @@ export function useContentWidth(element: Element | undefined) {
   useEffect(() => {
     if (!element) return;
 
-    const resizeObserver = new ResizeObserver(withResizeLoopDetection(syncWidth));
+    const resizeObserver = new ResizeObserver(
+      withResizeLoopDetection(() => flushSync(syncWidth)),
+    );
 
     resizeObserver.observe(element);
 
