@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { getContentWidth } from '../helpers/style.js';
 import { useIsomorphicLayoutEffect } from '../helpers/react.js';
+import { flushSync } from 'react-dom';
 
 export function useContentWidth(element: Element | undefined) {
   const [width, setWidth] = useState<number>();
@@ -38,7 +39,7 @@ function withResizeLoopDetection(callback: () => void) {
 
     const rectsBefore = elements.map(element => element.getBoundingClientRect());
 
-    callback();
+    flushSync(callback);
 
     const rectsAfter = elements.map(element => element.getBoundingClientRect());
 
