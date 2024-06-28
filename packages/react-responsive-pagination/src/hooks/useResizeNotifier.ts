@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef } from 'react';
+import { flushSync } from 'react-dom';
 
 export function useResizeNotifier(
   element: Element | undefined,
@@ -32,7 +33,7 @@ function withResizeLoopDetection(callback: () => void) {
 
     const rectsBefore = elements.map(element => element.getBoundingClientRect());
 
-    callback();
+    flushSync(callback);
 
     const rectsAfter = elements.map(element => element.getBoundingClientRect());
 
