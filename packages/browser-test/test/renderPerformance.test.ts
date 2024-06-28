@@ -74,3 +74,23 @@ describe('Style change', () => {
     await expect(numberOfElements).toBe(13);
   });
 });
+
+describe('Resize', () => {
+  beforeEach(async () => {
+    await page.evaluate(async () => {
+      document.getElementById('paginationParent')!.style.width = '';
+    });
+  });
+
+  test('renders fully before repaint', async () => {
+    const numberOfElements = await page.evaluate(async () => {
+      document.getElementById('paginationParent')!.style.width = '500px';
+
+      await window.endOfFramePromise();
+
+      return document.querySelector('ul.pagination')?.children.length;
+    });
+
+    await expect(numberOfElements).toBe(9);
+  });
+});
