@@ -1,5 +1,12 @@
 # React Responsive Pagination Changelog
 
+## [2.6.1-beta.1](https://github.com/jonelantha/react-responsive-pagination/compare/v2.6.0...v2.6.1-beta.1) (2024-06-29)
+
+
+### Bug Fixes
+
+* Recalc resize before repaint ([f334c86](https://github.com/jonelantha/react-responsive-pagination/commit/f334c8665a16821b207d776fb0e9a20c4c590f45))
+
 # [2.6.0](https://github.com/jonelantha/react-responsive-pagination/compare/v2.5.0...v2.6.0) (2024-06-23)
 
 
