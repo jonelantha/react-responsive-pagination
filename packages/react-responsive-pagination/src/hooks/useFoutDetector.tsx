@@ -23,7 +23,7 @@ export function useFoutDetector(
         .map(entry => widthsAtRender.get(entry.target)! - getWidth(entry.target))
         .some(difference => difference < -0.5 || difference > 0.5);
 
-      hasAnElementChangedSignificantly && flushSync(handleFout);
+      hasAnElementChangedSignificantly && handleFout();
     });
 
     elements.forEach(element => resizeObserver.observe(element));

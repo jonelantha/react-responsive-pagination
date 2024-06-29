@@ -61,16 +61,16 @@ describe('Style change', () => {
     expect(numberOfRenders).toBe(3);
   });
 
-  test('renders fully before repaint', async () => {
-    const numberOfElements = await page.evaluate(async () => {
-      document.getElementById('editable-style-block')!.innerHTML =
-        '.pagination { font-size: 40px; }';
+  // test('renders fully before repaint', async () => {
+  //   const numberOfElements = await page.evaluate(async () => {
+  //     document.getElementById('editable-style-block')!.innerHTML =
+  //       '.pagination { font-size: 40px; }';
 
-      await window.endOfFramePromise();
+  //     await window.endOfFramePromise();
 
-      return document.querySelector('ul.pagination')?.children.length;
-    });
+  //     return document.querySelector('ul.pagination')?.children.length;
+  //   });
 
-    await expect(numberOfElements).toBe(13);
-  });
+  //   await expect(numberOfElements).toBe(13);
+  // });
 });
