@@ -16,7 +16,6 @@
   },
   "scripts": {
     "test-dev": "jest --runInBand",
-    "test-prod-ci": "PROD_TEST=1 BROWSER='chromium,firefox' jest --runInBand",
     "test-prod": "PROD_TEST=1 jest --runInBand"
   }
 }

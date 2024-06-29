@@ -74,3 +74,37 @@ describe('Style change', () => {
     await expect(numberOfElements).toBe(13);
   });
 });
+
+describe('Resize', () => {
+  beforeEach(async () => {
+    await page.evaluate(async () => {
+      document.getElementById('paginationParent')!.style.width = '';
+    });
+  });
+
+  test('does not cause excessive react renders', async () => {
+    await testHarness.resetRenderCount();
+
+    await page.setViewportSize({ width: 500, height: 700 });
+
+    await testHarness.waitForNextFrame();
+
+    await expect(page).toHaveSelectorCount('ul > *', 9);
+
+    const numberOfRenders = await testHarness.getRenderCount();
+
+    expect(numberOfRenders).toBe(1);
+  });
+
+  test('renders fully before repaint', async () => {
+    const numberOfElements = await page.evaluate(async () => {
+      document.getElementById('paginationParent')!.style.width = '500px';
+
+      await window.endOfFramePromise();
+
+      return document.querySelector('ul.pagination')?.children.length;
+    });
+
+    await expect(numberOfElements).toBe(9);
+  });
+});

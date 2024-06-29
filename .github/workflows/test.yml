@@ -26,6 +26,6 @@ jobs:
       - name: Unit Tests
         run: npm run test
       - name: Test React 18
-        run: npm run browser-test-18-ci
+        run: npm run browser-test-18
       - name: Test React 17
-        run: npm run browser-test-17-ci
+        run: npm run browser-test-17
