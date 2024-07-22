@@ -18,6 +18,8 @@ An accessible responsive React pagination component which intelligently renders 
 
 ### ⚡️ [LIVE DEMO - try it out for yourself!](https://react-responsive-pagination.elantha.com/live-demo/) ⚡️
 
+**⭐️ What's new:** August 2024 - SSR support
+
 **📕 Visit [https://react-responsive-pagination.elantha.com](https://react-responsive-pagination.elantha.com) to get started 🚀**
 
 v1 user? See the [v1 migration guide](https://react-responsive-pagination.elantha.com/migration) to start using v2

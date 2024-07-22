@@ -54,14 +54,19 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
     labelBehaviour: getLabel = defaultLabelBehaviour,
   } = props;
 
-  const { items, ref, clearCache } = usePaginationItems(current, total, maxWidth, {
-    narrowBehaviour,
-    previousLabel,
-    nextLabel,
-    ariaPreviousLabel,
-    ariaNextLabel,
-    renderNav,
-  });
+  const { visible, items, ref, clearCache } = usePaginationItems(
+    current,
+    total,
+    maxWidth,
+    {
+      narrowBehaviour,
+      previousLabel,
+      nextLabel,
+      ariaPreviousLabel,
+      ariaNextLabel,
+      renderNav,
+    },
+  );
 
   useEffect(() => {
     return () => clearCache();
@@ -90,7 +95,11 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
   }
 
   return (
-    <ul className={getContainerClassName()} ref={ref}>
+    <ul
+      className={getContainerClassName()}
+      ref={ref}
+      {...(!visible && { style: { visibility: 'hidden' } })}
+    >
       {items.map(item =>
         item.gotoPage !== undefined ? (
           // item = ClickableItem

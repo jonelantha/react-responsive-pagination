@@ -28,6 +28,7 @@ export function usePaginationItems(
     });
 
   const {
+    visible,
     items: compositionItems,
     ref,
     clearCache,
@@ -42,7 +43,7 @@ export function usePaginationItems(
 
   const items = compositionToPaginationItems(compositionItems, options);
 
-  return { items, ref, clearCache };
+  return { visible, items, ref, clearCache };
 }
 
 function labelCacheKey(item: string | ReactNode) {
