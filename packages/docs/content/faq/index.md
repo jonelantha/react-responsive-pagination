@@ -25,37 +25,7 @@ The `narrowBehaviour` prop can be used to specify that either the nav buttons (*
 
 `Warning: useLayoutEffect does nothing on the server ...`
 
-First class support for SSR is planned in a future release. Until then, Option 2 at [https://reactjs.org/link/uselayouteffect-ssr](https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85#option-2-lazily-show-component-with-uselayouteffect) can be used:
-
-```jsx
-import ResponsivePagination, {
-  ResponsivePaginationProps,
-} from 'react-responsive-pagination';
-
-function ResponsivePaginationSSR(props: ResponsivePaginationProps) {
-  const [showPagination, setShowPagination] = useState(false);
-
-  useEffect(() => {
-    setShowPagination(true);
-  }, []);
-
-  if (!showPagination) {
-    return null;
-  }
-
-  return <ResponsivePagination {...props} />;
-}
-
-...
-
-function MyApp() {
-    ...
-    return <ResponsivePaginationSSR current={current} ... />;
-}
-
-```
-
-_(a similar workaround is used on this documentation site)_
+First class support for SSR was added in v2.7 - please update to the latest version to take advantage of SSR support.
 
 ## ESM only
 

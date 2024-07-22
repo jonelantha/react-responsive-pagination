@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { CompositionItem } from '../compositionItem.js';
 import { useAvailableWidth } from './useAvailableWidth.js';
 import { useFoutDetector } from './useFoutDetector.js';
@@ -11,6 +11,7 @@ export function useWidestComposition(
 ): {
   items: CompositionItem[];
   ref: (element: Element | null) => void;
+  visible: boolean;
   clearCache: () => void;
 } {
   const { widthCalculator, metricsRender, clearCache } = useWidthCalculator();
@@ -27,8 +28,23 @@ export function useWidestComposition(
     [foutDetectorRef, availableWidthRef],
   );
 
+  const [showPlaceholder, setShowPlaceholder] = useState(true);
+  if (showPlaceholder) {
+    const firstComposition = iteratorNext(narrowToWideCompositionsProvider());
+    return {
+      visible: false,
+      items: firstComposition ?? [],
+      ref(containerElement) {
+        setShowPlaceholder(false);
+        ref(containerElement);
+      },
+      clearCache,
+    };
+  }
+
   if (metricsRender) {
     return {
+      visible: false,
       items: metricsRender.items,
       ref(containerElement) {
         metricsRender.ref(containerElement);
@@ -36,17 +52,18 @@ export function useWidestComposition(
       },
       clearCache,
     };
-  } else {
-    return {
-      items: getLargestFittingCompositionWithFallback(
-        narrowToWideCompositionsProvider,
-        widthCalculator,
-        width,
-      ),
-      ref,
-      clearCache,
-    };
   }
+
+  return {
+    visible: true,
+    items: getLargestFittingCompositionWithFallback(
+      narrowToWideCompositionsProvider,
+      widthCalculator,
+      width,
+    ),
+    ref,
+    clearCache,
+  };
 }
 
 function getLargestFittingCompositionWithFallback(
