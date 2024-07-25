@@ -27,11 +27,13 @@ The `narrowBehaviour` prop can be used to specify that either the nav buttons (*
 
 First class support for SSR was added in v2.7 - please update to the latest version to take advantage of SSR support.
 
+_(any SSR workarounds can be removed after upgrading to v2.7)_
+
 ## ESM only
 
 Like many modern npm packages, react-responsive-pagination only has ESM exports - it's compatible with up-to-date versions of all popular bundlers and frameworks.
 
-When using with [Remix](https://remix.run) the following will need to be added to **remix.config.js**:
+When using [Remix](https://remix.run) with the [Classic Remix Compiler](https://remix.run/docs/en/main/guides/vite#classic-remix-compiler-vs-remix-vite) the following will need to be added to **remix.config.js**:
 
 ```js
 serverDependenciesToBundle: [
@@ -42,7 +44,7 @@ serverDependenciesToBundle: [
 ],
 ```
 
-See [Remix Gotchas](https://remix.run/docs/en/main/pages/gotchas#md-importing-esm-packages) for further details.
+See [Remix Gotchas](https://remix.run/docs/en/main/guides/gotchas#importing-esm-packages) for further details.
 
 ## Using React Components for labels
 

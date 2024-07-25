@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled, { css } from 'styled-components';
-import PaginationSSRPlaceholder from './PaginationSSRPlaceholder';
 import { leading, borderRadius, boxBorder, boxShadow } from './GlobalStyles';
 
 type PaginationContainerProps = {
@@ -29,10 +28,6 @@ export function PaginationContainer({
   children: renderPagination,
 }: PaginationContainerProps) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [isSSR, setIsSSR] = useState(true);
-  useEffect(() => {
-    setIsSSR(false);
-  }, []);
 
   return (
     <PaginationContainerDiv
@@ -41,17 +36,12 @@ export function PaginationContainer({
       $noBottomMargin={noBottomMargin}
       $striped={striped}
       $shadow={shadow}
-      $visibilityHidden={isSSR}
     >
-      {isSSR ? (
-        <PaginationSSRPlaceholder />
-      ) : (
-        renderPagination({
-          current: currentPage,
-          onPageChange: setCurrentPage,
-          total: 20,
-        })
-      )}
+      {renderPagination({
+        current: currentPage,
+        onPageChange: setCurrentPage,
+        total: 20,
+      })}
     </PaginationContainerDiv>
   );
 }
@@ -61,14 +51,7 @@ const PaginationContainerDiv = styled.div<{
   $noBottomMargin: boolean;
   $striped: boolean;
   $shadow: boolean;
-  $visibilityHidden: boolean;
 }>`
-  ${({ $visibilityHidden }) =>
-    $visibilityHidden &&
-    css`
-      visibility: hidden;
-    `}
-
   ${({ $hasBorder }) =>
     $hasBorder &&
     css`
