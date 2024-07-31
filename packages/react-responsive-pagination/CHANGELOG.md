@@ -1,5 +1,12 @@
 # React Responsive Pagination Changelog
 
+# [2.7.0-beta.2](https://github.com/jonelantha/react-responsive-pagination/compare/v2.7.0-beta.1...v2.7.0-beta.2) (2024-07-31)
+
+
+### Features
+
+* SSR support ([7a6f576](https://github.com/jonelantha/react-responsive-pagination/commit/7a6f576e4a1fbd1873adfe6f7a7fb73ed3d51e6c))
+
 # [2.7.0-beta.1](https://github.com/jonelantha/react-responsive-pagination/compare/v2.6.1...v2.7.0-beta.1) (2024-07-22)
 
 
