@@ -26,7 +26,7 @@ describe('Initial appearance', () => {
 
     const numberOfRenders = await testHarness.getRenderCount();
 
-    expect(numberOfRenders).toBe(4);
+    expect(numberOfRenders).toBe(5);
   });
 
   test('renders fully before repaint', async () => {

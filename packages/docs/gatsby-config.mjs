@@ -6,7 +6,7 @@ import rehypeSlug from 'rehype-slug';
  * @type {import('gatsby').GatsbyConfig}
  */
 const gatsbyConfig = {
-  flags: {},
+  flags: { DEV_SSR: true },
   siteMetadata: {
     title: 'react-responsive-pagination',
     description: 'Responsive React pagination component',
