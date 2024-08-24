@@ -71,9 +71,9 @@ export default function CodeBlock({
             <Pre>
               <Code>
                 {previewLines.map((line, i) => (
-                  <div {...getLineProps({ line, key: i })}>
+                  <div key={i} {...getLineProps({ line })}>
                     {line.map((token, key) => (
-                      <span {...getTokenProps({ token, key })} />
+                      <span key={key} {...getTokenProps({ token })} />
                     ))}
                   </div>
                 ))}
@@ -91,9 +91,9 @@ export default function CodeBlock({
                       </Summary>
 
                       {remainingLines.map((line, i) => (
-                        <div {...getLineProps({ line, key: i })}>
+                        <div key={i} {...getLineProps({ line })}>
                           {line.map((token, key) => (
-                            <span {...getTokenProps({ token, key })} />
+                            <span key={key} {...getTokenProps({ token })} />
                           ))}
                         </div>
                       ))}
