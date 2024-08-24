@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-export function createTestComponent(value: any) {
+export function createTestComponent(value: unknown) {
   switch (value) {
     case '<PreviousLabel />':
       return <PreviousLabel />;

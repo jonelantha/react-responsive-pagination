@@ -100,9 +100,10 @@ function createWidthCalculator([
       case '…R':
         return ellipsisWidth;
 
-      default:
+      default: {
         const _exCheck: never = type;
         return _exCheck;
+      }
     }
   };
 

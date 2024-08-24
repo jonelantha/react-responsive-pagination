@@ -78,7 +78,7 @@ export function* dropFirstAndLast(
 ) {
   const ellipsisDropped = metaData?.appliedBehaviours?.includes(dropEllipsis);
 
-  let composition = initialComposition.slice();
+  const composition = initialComposition.slice();
 
   /**
    * normal

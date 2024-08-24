@@ -38,7 +38,7 @@
     "build": "npm run lint && rimraf dist/ && tsc --project ./tsconfig.prod.json && npm run api-extractor && npm run copy-extra-types",
     "start": "rimraf dist/ && tsc --project ./tsconfig.dev.json --watch",
     "test": "jest",
-    "lint": "eslint --ext .ts --ext .tsx src",
+    "lint": "eslint src --report-unused-disable-directives",
     "prepublishOnly": "npm run build",
     "release": "rm ../../package.json && semantic-release",
     "previewReleaseNotes": "semantic-release --dry-run",
@@ -56,9 +56,6 @@
     "bootstrap",
     "react bootstrap pagination"
   ],
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "dependencies": {
     "prop-types": "^15.8.1"
   },
@@ -74,20 +71,17 @@
     "@types/prop-types": "^15.7.5",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
-    "@typescript-eslint/eslint-plugin": "^7.1.1",
-    "@typescript-eslint/parser": "^7.1.1",
-    "eslint": "^8.57.0",
-    "eslint-config-react-app": "^7.0.1",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-react": "^7.34.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint": "^9.9.1",
+    "eslint-plugin-jsx-a11y": "^6.9.0",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^5.1.0-rc-b57d2823-20240822",
     "jest": "^29.6.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rimraf": "^5.0.1",
     "semantic-release": "^23.0.2",
     "ts-jest": "^29.1.2",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.2",
+    "typescript-eslint": "^8.2.0"
   }
 }

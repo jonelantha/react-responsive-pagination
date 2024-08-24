@@ -179,7 +179,6 @@ function App() {
                     <style
                       id="editable-style-block"
                       className="form-control"
-                      scoped
                       contentEditable
                       suppressContentEditableWarning
                     >
@@ -274,7 +273,7 @@ function getLabelBehaviour({
   labelBehaviour,
   srOnlyClassName,
   a11yActiveLabel,
-}: { [K in keyof (typeof fields)['labelBehaviourFieldsAsJson']]: any }) {
+}: { [K in keyof (typeof fields)['labelBehaviourFieldsAsJson']]: string }) {
   if (labelBehaviour === 'srOnlySpanLabel') {
     return { labelBehaviour: srOnlySpanLabel({ srOnlyClassName, a11yActiveLabel }) };
   }
@@ -341,7 +340,7 @@ function useUrlQueryToggles(
 function parseJsonFields<K extends string>(jsonValues: {
   [key in K]: string;
 }) {
-  const props = {} as { [key in K]: any };
+  const props = {} as { [key in K]: any }; // eslint-disable-line @typescript-eslint/no-explicit-any
 
   (Object.keys(jsonValues) as K[]).forEach(field => {
     const value = tryJsonParse(jsonValues[field]);
@@ -359,7 +358,7 @@ function tryJsonParse(str: string) {
 
     const testComponent = createTestComponent(value);
     return testComponent ?? value;
-  } catch (error) {
+  } catch {
     return undefined;
   }
 }

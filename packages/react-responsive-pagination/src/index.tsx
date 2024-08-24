@@ -205,7 +205,7 @@ ResponsivePagination.propTypes = {
 
 const legacyUsageWarnings: string[] = [];
 
-function checkLegacyProps(props: { [key in string]: any }) {
+function checkLegacyProps(props: { [key in string]: unknown }) {
   for (const legacyProp of [
     'srOnlyClassName',
     'a11yActiveLabel',

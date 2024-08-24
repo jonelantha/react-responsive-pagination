@@ -395,7 +395,7 @@ describe('combine', () => {
     yield initialComposition.slice(undefined, -1);
   };
 
-  const nullBehaviour: NarrowBehaviour = function* (initialComposition) {};
+  const nullBehaviour: NarrowBehaviour = function* () {};
 
   test('it correctly applies a single behaviour', () => {
     const receivedCompositions = combine(mockTrimStartBehaviour)(
