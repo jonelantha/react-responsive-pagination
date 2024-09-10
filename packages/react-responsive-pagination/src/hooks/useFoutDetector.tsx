@@ -1,16 +1,14 @@
-import { useRef } from 'react';
 import { useIsomorphicLayoutEffect } from '../helpers/react.js';
 import { getWidth } from '../helpers/style.js';
 import { flushSync } from 'react-dom';
 
 export function useFoutDetector(
+  container: Element | null,
   getElements: (element: Element | null) => Element[] | null,
   handleFout: () => void,
 ) {
-  const containerRef = useRef<Element | null>(null);
-
   useIsomorphicLayoutEffect(() => {
-    const elements = getElements(containerRef.current);
+    const elements = getElements(container);
 
     if (!elements) return;
 
@@ -30,6 +28,4 @@ export function useFoutDetector(
 
     return () => resizeObserver.disconnect();
   });
-
-  return containerRef;
 }
