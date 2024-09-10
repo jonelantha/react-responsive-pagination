@@ -20,7 +20,7 @@ describe('Pagination style change detection', () => {
 
       await testHarness.waitForNextFrame();
 
-      const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
+      const paginationHtml = await testHarness.getPaginationHtml();
 
       expect(paginationHtml).toMatchSnapshot();
     },
