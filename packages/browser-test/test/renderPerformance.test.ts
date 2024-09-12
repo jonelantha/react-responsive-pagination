@@ -44,7 +44,7 @@ describe('Initial appearance', () => {
 
 describe('Style change', () => {
   beforeEach(async () => {
-    await testHarness.setStyle('.pagination { font-size: inherit; }');
+    await testHarness.resetStyle();
   });
 
   test('does not cause excessive react renders', async () => {

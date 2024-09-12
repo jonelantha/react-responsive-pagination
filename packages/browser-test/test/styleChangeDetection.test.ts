@@ -10,6 +10,10 @@ beforeAll(async () => {
   await testHarness.setField('total', 100);
 
   await testHarness.setField('current', 50);
+
+  await testHarness.resetStyle();
+
+  await testHarness.waitForNextFrame();
 });
 
 describe('Pagination style change detection', () => {
@@ -26,5 +30,25 @@ describe('Pagination style change detection', () => {
     },
   );
 
-  // TODO - test style change triggered within React events
+  test('adapts correctly when font-size and width changed at the same time', async () => {
+    await testHarness.setStyle(
+      '#paginationParent { width: 400px; } .pagination { font-size: 8px; }',
+    );
+
+    await testHarness.waitForNextFrame();
+
+    const paginationHtml = await testHarness.getPaginationHtml();
+
+    expect(paginationHtml).toMatchSnapshot();
+  });
+
+  test('adapts correctly when style is changed within a react render', async () => {
+    await testHarness.setField('parentClassName', 'add-margin-padding');
+
+    await testHarness.waitForNextFrame();
+
+    const paginationHtml = await testHarness.getPaginationHtml();
+
+    expect(paginationHtml).toMatchSnapshot();
+  });
 });

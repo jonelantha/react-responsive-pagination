@@ -19,6 +19,9 @@ import './App.css';
 
 const fields = {
   renderPagination: 'Render Pagination',
+  miscAsJson: {
+    parentClassName: 'Container Class',
+  },
   propsAsJson: {
     total: 'Total Pages',
     maxWidth: 'Max Width',
@@ -53,6 +56,9 @@ const fields = {
 const initialValues = {
   renderPagination: true,
   presetId: 'none' as PresetId,
+  miscAsJson: {
+    parentClassName: 'undefined',
+  },
   propsAsJson: {
     total: '100',
     maxWidth: '',
@@ -103,7 +109,13 @@ function App() {
       <Formik initialValues={initialValues} onSubmit={() => {}}>
         {formik => (
           <>
-            <div className={cssExtraClasses.join(' ')} id="paginationParent">
+            <div
+              className={getParentClassName(
+                cssExtraClasses,
+                formik.values.miscAsJson.parentClassName,
+              )}
+              id="paginationParent"
+            >
               {formik.values.renderPagination && (
                 <ResponsivePagination
                   {...presets[formik.values.presetId]}
@@ -233,6 +245,7 @@ function App() {
                 </div>
                 {(
                   [
+                    'miscAsJson',
                     'propsAsJson',
                     'labelBehaviourFieldsAsJson',
                     'narrowBehaviourFieldsAsJson',
@@ -268,6 +281,19 @@ function App() {
 }
 
 export default App;
+
+function getParentClassName(
+  cssExtraClasses: string[],
+  parentClassNameAsJson: string,
+) {
+  const extraParentClass = tryJsonParse(parentClassNameAsJson);
+
+  const parentClasses = extraParentClass
+    ? [extraParentClass, ...cssExtraClasses]
+    : cssExtraClasses;
+
+  return parentClasses.join(' ');
+}
 
 function getLabelBehaviour({
   labelBehaviour,

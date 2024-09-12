@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { CompositionItem } from '../compositionItem.js';
 import { useAvailableWidth } from './useAvailableWidth.js';
-import { useFoutDetector } from './useFoutDetector.js';
+import { useItemWidthChangeDetector } from './useItemWidthChangeDetector.js';
 import { useWidthCalculator } from './useWidthCalculator.js';
 import { iteratorNext, lastWhere } from '../helpers/iterator.js';
 
@@ -18,7 +18,12 @@ export function useWidestComposition<ContainerType extends Element>(
 
   const { widthCalculator, metricsRender, clearCache } = useWidthCalculator();
 
-  useFoutDetector(containerRef.current, getItemsDomElements, clearCache);
+  useItemWidthChangeDetector(
+    metricsRender === undefined,
+    containerRef.current,
+    getItemsDomElements,
+    clearCache,
+  );
 
   const width = useAvailableWidth(containerRef.current, maxWidth) ?? 0;
 
@@ -75,6 +80,6 @@ function getLargestFittingCompositionWithFallback(
   return lastWhere(narrowToWideCompositions, doesCompositionFit) ?? firstComposition;
 }
 
-function getItemsDomElements(viewDomElement: Element | null) {
-  return viewDomElement && Array.from(viewDomElement.children);
+function getItemsDomElements(viewDomElement: Element) {
+  return Array.from(viewDomElement.children);
 }
