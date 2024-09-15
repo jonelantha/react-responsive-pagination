@@ -46,6 +46,7 @@ export function getWidth(element: Element) {
   return element.getBoundingClientRect().width;
 }
 
+// V3-TODO: round up
 function styleMetricToInt(styleAttribute: string | null) {
   return styleAttribute ? parseInt(styleAttribute) : 0;
 }
