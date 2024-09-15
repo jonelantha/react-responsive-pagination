@@ -6,6 +6,7 @@ type PaginationContainerProps = {
   className: string;
   hasBorder: boolean;
   noBottomMargin: boolean;
+  inlinePadding?: boolean;
   striped: boolean;
   shadow: boolean;
   children: ({
@@ -23,6 +24,7 @@ export function PaginationContainer({
   className,
   hasBorder,
   noBottomMargin,
+  inlinePadding = false,
   striped,
   shadow,
   children: renderPagination,
@@ -34,6 +36,7 @@ export function PaginationContainer({
       className={className}
       $hasBorder={hasBorder}
       $noBottomMargin={noBottomMargin}
+      $inlinePadding={inlinePadding}
       $striped={striped}
       $shadow={shadow}
     >
@@ -49,15 +52,16 @@ export function PaginationContainer({
 const PaginationContainerDiv = styled.div<{
   $hasBorder: boolean;
   $noBottomMargin: boolean;
+  $inlinePadding: boolean;
   $striped: boolean;
   $shadow: boolean;
 }>`
-  ${({ $hasBorder }) =>
+  ${({ $hasBorder, $inlinePadding }) =>
     $hasBorder &&
     css`
       border: ${boxBorder};
       border-radius: ${borderRadius};
-      padding: 1rem 0;
+      padding: 1rem ${$inlinePadding ? '1rem' : '0'};
     `}
 
   ${({ $noBottomMargin }) =>

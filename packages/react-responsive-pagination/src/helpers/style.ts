@@ -1,10 +1,19 @@
+// V3-TODO: use logical properties throughout
+
 export function getElementWidth(element: Element) {
   const style = getComputedStyle(element);
 
+  const overrideInlineMarginStart = style.getPropertyValue(
+    '--pagination-override-margin-inline-start',
+  );
+  const overrideInlineMarginEnd = style.getPropertyValue(
+    '--pagination-override-margin-inline-end',
+  );
+
   return (
-    styleMetricToInt(style.marginLeft) +
+    styleMetricToInt(overrideInlineMarginStart || style.marginLeft) +
     getWidth(element) +
-    styleMetricToInt(style.marginRight)
+    styleMetricToInt(overrideInlineMarginEnd || style.marginRight)
   );
 }
 

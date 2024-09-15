@@ -10,7 +10,7 @@ addOverview: true
 
 import ResponsivePagination from 'react-responsive-pagination';
 import CodeBlock from '../../src/components/CodeBlock';
-import { CustomStyleContainer, customStyles, exampleAppCode } from './customPaginationStyles';
+import { CustomStyleContainer, customStyles, exampleAppCode, navJustifiedStyles, NavJustifiedContainer } from './customPaginationStyles';
 import { BootstrapThemeContainer } from '../themes/themes';
 import { PropsTable, PropDef } from "../../src/components/PropsTable"
 import ClassNameProps from "../props/classNameProps.md"
@@ -138,6 +138,28 @@ Change the default labels for the previous and next buttons by setting the `prev
 ```jsx
 <ResponsivePagination ... previousLabel="Previous" nextLabel="Next" />
 ```
+
+## Justifying Previous / Next Buttons
+
+Aligning the previous and next buttons to the start and end of the row is possible using `margin: auto` and two custom css vars (see code sample below)
+
+**Example**
+
+<NavJustifiedContainer hasBorder inlinePadding>
+  {(props) => <ResponsivePagination {...props} total={15} previousClassName='previous-justified' nextClassName='next-justified' />}
+</NavJustifiedContainer>
+
+```jsx
+<ResponsivePagination
+  ...
+  previousClassName='previous-justified'
+  nextClassName='next-justified'
+/>
+```
+
+<CodeBlock code={navJustifiedStyles} language='css' />
+
+NOTE: `--pagination-override-margin-inline-start` and `--pagination-override-margin-inline-end` must be applied in css classes specific to the previous and next buttons (using `previousClassName` and `nextClassName` props). Applying via `:first-child` or `:last-child` is currently unsupported and may lead to unexpected results.
 
 ## Useful Props For Customisation
 
