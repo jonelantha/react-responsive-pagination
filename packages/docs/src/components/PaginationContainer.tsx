@@ -3,12 +3,12 @@ import styled, { css } from 'styled-components';
 import { leading, borderRadius, boxBorder, boxShadow } from './GlobalStyles';
 
 type PaginationContainerProps = {
-  className: string;
-  hasBorder: boolean;
-  noBottomMargin: boolean;
+  className?: string;
+  hasBorder?: boolean;
+  noBottomMargin?: boolean;
   inlinePadding?: boolean;
-  striped: boolean;
-  shadow: boolean;
+  striped?: boolean;
+  shadow?: boolean;
   children: ({
     current,
     onPageChange,
@@ -22,11 +22,11 @@ type PaginationContainerProps = {
 
 export function PaginationContainer({
   className,
-  hasBorder,
-  noBottomMargin,
+  hasBorder = false,
+  noBottomMargin = false,
   inlinePadding = false,
-  striped,
-  shadow,
+  striped = false,
+  shadow = false,
   children: renderPagination,
 }: PaginationContainerProps) {
   const [currentPage, setCurrentPage] = useState(1);
