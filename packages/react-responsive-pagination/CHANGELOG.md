@@ -1,5 +1,12 @@
 # React Responsive Pagination Changelog
 
+# [2.8.0](https://github.com/jonelantha/react-responsive-pagination/compare/v2.7.1...v2.8.0) (2024-09-17)
+
+
+### Features
+
+* callback fn for `linkHref` prop ([e3ec913](https://github.com/jonelantha/react-responsive-pagination/commit/e3ec913dc78f0072774b09fd89ebd640a3089800))
+
 ## [2.7.1](https://github.com/jonelantha/react-responsive-pagination/compare/v2.7.0...v2.7.1) (2024-09-09)
 
 
