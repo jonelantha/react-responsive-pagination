@@ -20,8 +20,6 @@ const ResponsivePaginationComponent: FC<ResponsivePaginationProps> =
   memo(ResponsivePagination);
 export default ResponsivePaginationComponent;
 
-/* eslint-disable jsx-a11y/anchor-is-valid */
-
 function ResponsivePagination(props: ResponsivePaginationProps) {
   incRenderCount();
 
@@ -115,7 +113,7 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
           >
             <a
               className={pageLinkClassName}
-              href={linkHref === 'hash' ? '#' : undefined}
+              href={getHref(linkHref, item.gotoPage)}
               onClick={preventDefault(() => handlePageChange(item.gotoPage))}
               aria-label={item.a11yLabel}
             >
@@ -148,6 +146,19 @@ function classNames(names: (string | false | undefined)[]) {
   return names.filter(name => name).join(' ');
 }
 
+function getHref(
+  linkHref: ((page: number) => string) | 'hash' | 'omit',
+  page: number,
+) {
+  if (typeof linkHref === 'function') {
+    return linkHref(page);
+  } else if (linkHref === 'hash') {
+    return '#';
+  } else {
+    return undefined;
+  }
+}
+
 /**
  * @public
  */
@@ -173,7 +184,7 @@ export type ResponsivePaginationProps = {
   ariaNextLabel?: string;
   renderNav?: boolean;
   ariaCurrentAttr?: boolean;
-  linkHref?: 'hash' | 'omit';
+  linkHref?: ((page: number) => string) | 'hash' | 'omit';
   labelBehaviour?: LabelBehaviour;
 };
 
@@ -199,7 +210,10 @@ ResponsivePagination.propTypes = {
   ariaNextLabel: PropTypes.string,
   renderNav: PropTypes.bool,
   ariaCurrentAttr: PropTypes.bool,
-  linkHref: PropTypes.oneOf(['hash', 'omit'] as const),
+  linkHref: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.oneOf(['hash', 'omit'] as const),
+  ]),
   labelBehaviour: PropTypes.func,
 };
 

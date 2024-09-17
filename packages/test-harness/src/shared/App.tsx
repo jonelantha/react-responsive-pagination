@@ -343,7 +343,8 @@ function parseJsonFields<K extends string>(jsonValues: {
   const props = {} as { [key in K]: any }; // eslint-disable-line @typescript-eslint/no-explicit-any
 
   (Object.keys(jsonValues) as K[]).forEach(field => {
-    const value = tryJsonParse(jsonValues[field]);
+    const value = getFieldValue(tryJsonParse(jsonValues[field]));
+
     if (value !== undefined) {
       props[field] = value;
     }
@@ -354,13 +355,19 @@ function parseJsonFields<K extends string>(jsonValues: {
 
 function tryJsonParse(str: string) {
   try {
-    const value = JSON.parse(str);
-
-    const testComponent = createTestComponent(value);
-    return testComponent ?? value;
+    return JSON.parse(str);
   } catch {
     return undefined;
   }
+}
+
+function getFieldValue(value: unknown) {
+  const testComponent = createTestComponent(value);
+  if (testComponent) return testComponent;
+
+  if (value === 'hrefTestFn()') return (page: number) => `/test-page/${page}`;
+
+  return value;
 }
 
 function notUndefined<T>(x: T | undefined): x is T {
