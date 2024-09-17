@@ -21,4 +21,14 @@ describe('linkHref', () => {
       expect(paginationHtml).toMatchSnapshot();
     },
   );
+
+  test('Setting linkHref to a function', async () => {
+    await testHarness.setField('linkHref', 'hrefTestFn()');
+
+    await testHarness.waitForNextFrame();
+
+    const paginationHtml = await testHarness.getPaginationHtml();
+
+    expect(paginationHtml).toMatchSnapshot();
+  });
 });
