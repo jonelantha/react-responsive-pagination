@@ -32,3 +32,28 @@ describe.each(testCssClasses.map(cssClasses => [cssClasses]))(
     );
   },
 );
+
+describe('Auto sizing after total change', () => {
+  beforeAll(async () => {
+    await testHarness.goto();
+
+    await testHarness.setField('total', 100);
+  });
+
+  test.each(testWidths.map(width => [width]))(
+    'renders correctly with viewport width %ipx',
+    async width => {
+      await testHarness.setField('total', 200);
+
+      await testHarness.waitForNextFrame();
+
+      await page.setViewportSize({ width, height: 700 });
+
+      await testHarness.waitForNextFrame();
+
+      const paginationHtml = await page.$eval('ul.pagination', ul => ul.outerHTML);
+
+      expect(paginationHtml).toMatchSnapshot();
+    },
+  );
+});
