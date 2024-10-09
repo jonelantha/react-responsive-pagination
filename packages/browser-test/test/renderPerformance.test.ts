@@ -26,7 +26,7 @@ describe('Initial appearance', () => {
 
     const numberOfRenders = await testHarness.getRenderCount();
 
-    expect(numberOfRenders).toBe(5);
+    expect(numberOfRenders).toBe(4);
   });
 
   test('renders fully before repaint', async () => {
@@ -44,7 +44,7 @@ describe('Initial appearance', () => {
 
 describe('Style change', () => {
   beforeEach(async () => {
-    await testHarness.setStyle('.pagination { font-size: inherit; }');
+    await testHarness.resetStyle();
   });
 
   test('does not cause excessive react renders', async () => {
@@ -58,7 +58,7 @@ describe('Style change', () => {
 
     const numberOfRenders = await testHarness.getRenderCount();
 
-    expect(numberOfRenders).toBe(3);
+    expect(numberOfRenders).toBe(2);
   });
 
   test('renders fully before repaint', async () => {
