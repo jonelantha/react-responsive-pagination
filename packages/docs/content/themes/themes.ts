@@ -9,6 +9,13 @@ export const BootstrapThemeContainer = styled(PaginationContainer)`
   ${bootstrapCss}
 `;
 
+export const ClassicThemeCustomContainer = (extraStyles: string) => styled(
+  PaginationContainer,
+)`
+  ${classicCss}
+  ${extraStyles}
+`;
+
 export const ClassicThemeContainer = styled(PaginationContainer)`
   ${classicCss}
 `;

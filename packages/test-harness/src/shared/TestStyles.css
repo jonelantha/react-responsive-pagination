@@ -67,3 +67,22 @@
   border: 0;
 }
 
+.previous-auto-margin {
+  margin-inline-end: auto;
+  --pagination-override-margin-inline-end: 0;
+}
+
+.previous-auto-margin-large {
+  margin-inline-end: auto;
+  --pagination-override-margin-inline-end: 100px;
+}
+
+.next-auto-margin {
+  margin-inline-start: auto;
+  --pagination-override-margin-inline-start: 0;
+}
+
+.next-auto-margin-large {
+  margin-inline-start: auto;
+  --pagination-override-margin-inline-start: 100px;
+}

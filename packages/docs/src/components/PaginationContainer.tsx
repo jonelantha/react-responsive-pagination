@@ -3,11 +3,12 @@ import styled, { css } from 'styled-components';
 import { leading, borderRadius, boxBorder, boxShadow } from './GlobalStyles';
 
 type PaginationContainerProps = {
-  className: string;
-  hasBorder: boolean;
-  noBottomMargin: boolean;
-  striped: boolean;
-  shadow: boolean;
+  className?: string;
+  hasBorder?: boolean;
+  noBottomMargin?: boolean;
+  inlinePadding?: boolean;
+  striped?: boolean;
+  shadow?: boolean;
   children: ({
     current,
     onPageChange,
@@ -21,10 +22,11 @@ type PaginationContainerProps = {
 
 export function PaginationContainer({
   className,
-  hasBorder,
-  noBottomMargin,
-  striped,
-  shadow,
+  hasBorder = false,
+  noBottomMargin = false,
+  inlinePadding = false,
+  striped = false,
+  shadow = false,
   children: renderPagination,
 }: PaginationContainerProps) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,6 +36,7 @@ export function PaginationContainer({
       className={className}
       $hasBorder={hasBorder}
       $noBottomMargin={noBottomMargin}
+      $inlinePadding={inlinePadding}
       $striped={striped}
       $shadow={shadow}
     >
@@ -49,15 +52,16 @@ export function PaginationContainer({
 const PaginationContainerDiv = styled.div<{
   $hasBorder: boolean;
   $noBottomMargin: boolean;
+  $inlinePadding: boolean;
   $striped: boolean;
   $shadow: boolean;
 }>`
-  ${({ $hasBorder }) =>
+  ${({ $hasBorder, $inlinePadding }) =>
     $hasBorder &&
     css`
       border: ${boxBorder};
       border-radius: ${borderRadius};
-      padding: 1rem 0;
+      padding: 1rem ${$inlinePadding ? '1rem' : '0'};
     `}
 
   ${({ $noBottomMargin }) =>

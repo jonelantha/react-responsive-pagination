@@ -45,7 +45,7 @@ _(see [Configuring a theme](#configuring-a-theme-optional) for details on overri
 
 <ThemeAttributes>
 **Theme import:**  
-`import 'react-responsive-pagination/themes/minimal.css';`
+`import 'react-responsive-pagination/themes/classic.css';`
 
 **Overiddable variables:**  
 See [common overridable variables](#common-overridable-variables) below or see the [theme css source](https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/main/packages/react-responsive-pagination/themes/classic.css) for the full list (with default values)

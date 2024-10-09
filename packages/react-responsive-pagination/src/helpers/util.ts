@@ -8,7 +8,7 @@ export function sanatizeBoolean(maybeBoolean: unknown) {
   return typeof maybeBoolean === 'boolean' ? maybeBoolean : undefined;
 }
 
-// TODO: use native findLastIndex in next major release
+// V3-TODO: use native findLastIndex
 export function findLastIndex<T>(
   array: ReadonlyArray<T>,
   predicate: (item: T) => boolean,
