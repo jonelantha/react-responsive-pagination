@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { PaginationContainer } from '../../src/components/PaginationContainer';
+import { ClassicThemeCustomContainer } from '../themes/themes';
 
 export const customStyles = `
 .pagination {
@@ -66,3 +67,17 @@ export default function MyApp() {
   );
 }
 `;
+
+export const navJustifiedStyles = `
+.previous-justified {
+  margin-inline-end: auto;
+  --pagination-override-margin-inline-end: 0; /* <- minimum margin */
+}
+
+.next-justified {
+  margin-inline-start: auto;
+  --pagination-override-margin-inline-start: 0; /* <- minimum margin */
+}
+`;
+
+export const NavJustifiedContainer = ClassicThemeCustomContainer(navJustifiedStyles);
