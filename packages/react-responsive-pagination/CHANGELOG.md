@@ -1,5 +1,12 @@
 # React Responsive Pagination Changelog
 
+# [2.9.0](https://github.com/jonelantha/react-responsive-pagination/compare/v2.8.0...v2.9.0) (2024-10-17)
+
+
+### Features
+
+* Support `margin: auto` styles for nav elements ([353a5d5](https://github.com/jonelantha/react-responsive-pagination/commit/353a5d5acc980accf5dcfb56f83a262731abda65))
+
 # [2.8.0](https://github.com/jonelantha/react-responsive-pagination/compare/v2.7.1...v2.8.0) (2024-09-17)
 
 
