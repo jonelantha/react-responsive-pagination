@@ -52,7 +52,7 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
     labelBehaviour: getLabel = defaultLabelBehaviour,
   } = props;
 
-  const { visible, items, ref, clearCache } = usePaginationItems(
+  const { visible, items, ref, clearCache } = usePaginationItems<HTMLUListElement>(
     current,
     total,
     maxWidth,

@@ -6,7 +6,7 @@ import { NarrowBehaviour } from '../narrowBehaviour.js';
 import { compositionToPaginationItems } from '../paginationItem.js';
 import { useWidestComposition } from './useWidestComposition.js';
 
-export function usePaginationItems(
+export function usePaginationItems<ContainerType extends Element>(
   inputCurrent: number,
   inputTotal: number,
   maxWidth: number | undefined,
@@ -32,7 +32,10 @@ export function usePaginationItems(
     items: compositionItems,
     ref,
     clearCache,
-  } = useWidestComposition(narrowToWideCompositionsProvider, maxWidth);
+  } = useWidestComposition<ContainerType>(
+    narrowToWideCompositionsProvider,
+    maxWidth,
+  );
 
   const previousLabelCacheKey = labelCacheKey(options?.previousLabel);
   const nextLabelCacheKey = labelCacheKey(options?.nextLabel);
