@@ -9,7 +9,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-responsive-pagination": "file:../react-responsive-pagination",
-    "react-router-dom": "^6.14.1",
+    "react-router-dom": "^7.0.2",
     "serve": "^14.2.0"
   },
   "devDependencies": {
@@ -21,7 +21,7 @@
     "eslint-plugin-react-hooks": "^5.1.0-rc-b57d2823-20240822",
     "typescript": "^5.2.2",
     "typescript-eslint": "^8.2.0",
-    "vite": "^5.1.4"
+    "vite": "^6.0.3"
   },
   "scripts": {
     "start": "vite --port 3001",
