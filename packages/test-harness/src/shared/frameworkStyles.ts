@@ -26,7 +26,7 @@ export function getFrameworkStyles(frameworkId: string | undefined) {
     : NullStyles;
 }
 
-function NullStyles({ children }: { children: JSX.Element }) {
+function NullStyles({ children }: { children: React.JSX.Element }) {
   return children;
 }
 
@@ -41,6 +41,6 @@ function cssLazyLoadComponent(cssUrl: string) {
       cssLinkElement.onload = resolve;
     });
 
-    return { default: ({ children }: { children: JSX.Element }) => children };
+    return { default: ({ children }: { children: React.JSX.Element }) => children };
   });
 }

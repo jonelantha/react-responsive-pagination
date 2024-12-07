@@ -18,5 +18,5 @@ npm install react-responsive-pagination
 
 ## Compatibility
 
-- React 18, 17 and ^16.8
+- React 19, 18, 17 and ^16.8
 - Modern browsers only - not suitable for IE 11
