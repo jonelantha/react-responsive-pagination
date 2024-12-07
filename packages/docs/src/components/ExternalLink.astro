@@ -1,0 +1,19 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import ExternalSVG from './ExternalSVG.astro';
+
+type Props = HTMLAttributes<'a'>;
+
+const props = Astro.props;
+---
+
+<a {...props} rel="noopener noreferrer"><slot /><ExternalSVG aria-hidden /></a>
+
+<style lang="scss">
+  svg {
+    margin-left: 0.4em;
+    width: 0.8em;
+    height: 0.8em;
+    text-decoration: none;
+  }
+</style>

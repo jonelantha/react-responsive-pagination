@@ -1,0 +1,44 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import ChevronSVG from './ChevronSVG.astro';
+
+type Props = HTMLAttributes<'a'>;
+
+const { ...rest } = Astro.props;
+---
+
+<a {...rest}><slot /><ChevronSVG aria-hidden clipped /></a>
+
+<style lang="scss">
+  @use '@styles/_vars.scss';
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    background: var(--color-link);
+    padding: 0.75rem 1rem;
+    color: #ffffff;
+    border-radius: vars.$border-radius;
+    box-shadow: var(--box-shadow);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+      color: #ffffff;
+      background: rgb(28, 100, 242, 0.75);
+    }
+
+    svg {
+      display: inline-block;
+      line-height: 1;
+      margin-left: 0.5rem;
+      height: 1rem;
+      width: 1rem;
+      transform: rotate(90deg);
+      flex-shrink: 0;
+    }
+  }
+</style>

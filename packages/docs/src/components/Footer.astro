@@ -1,0 +1,75 @@
+---
+import { getCollection } from 'astro:content';
+import ExternalLink from './ExternalLink.astro';
+import { getPageUrl } from '../utils';
+
+const { class: className, ...rest } = Astro.props;
+
+const links = (await getCollection('docs'))
+  .filter(doc => doc.data.footerNavOrder)
+  .sort((a, b) => a.data.footerNavOrder! - b.data.footerNavOrder!);
+---
+
+<footer class={className} {...rest}>
+  <section>
+    <h1>Useful Links</h1>
+    {
+      links.map(link => (
+        <a href={getPageUrl(link)}>
+          {link.data.footerNavTitle ?? link.data.navTitle}
+        </a>
+      ))
+    }
+    <ExternalLink
+      href="https://www.github.com/jonelantha/react-responsive-pagination"
+      >GitHub</ExternalLink
+    >
+    <ExternalLink href="https://www.npmjs.com/package/react-responsive-pagination"
+      >NPM Package</ExternalLink
+    >
+  </section>
+  <small>
+    Copyright &copy; 2019-{new Date().getFullYear()} &nbsp; jonelantha
+  </small>
+</footer>
+
+<style lang="scss">
+  @use '@styles/_util.scss';
+  @use '@styles/_vars.scss';
+
+  footer {
+    background: var(--footer-bg);
+    padding: 1em;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+
+    section {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
+      margin: 0.5em;
+      width: min(47em, 100% - 1em);
+
+      h1 {
+        margin-top: 0;
+        grid-column: 1 / -1;
+        font-size: 1em;
+        margin-bottom: 0.5em;
+        font-family: vars.$main-font-family;
+      }
+    }
+
+    small {
+      font-size: 1em;
+      margin-top: 1em;
+    }
+  }
+
+  a {
+    color: var(--color-footer-link);
+
+    &:hover {
+      color: var(--color-footer-link-hover);
+    }
+  }
+</style>

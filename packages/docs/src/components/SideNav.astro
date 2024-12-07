@@ -1,0 +1,373 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+import ExternalLink from './ExternalLink.astro';
+import ChevronSVG from './ChevronSVG.astro';
+import CloseSVG from './CloseSVG.astro';
+import { getPageUrl } from '../utils';
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'nav'>;
+
+const { class: className, ...rest } = Astro.props;
+
+const docs = (await getCollection('docs'))
+  .filter(doc => doc.data.sideNavOrder)
+  .sort((a, b) => a.data.sideNavOrder! - b.data.sideNavOrder!);
+
+const docsWithHeadings = await Promise.all(
+  docs.map(async doc => {
+    const renderResult = await render(doc);
+    const headings = renderResult.headings.filter(heading => heading.depth === 2);
+
+    return { ...doc, headings };
+  }),
+);
+
+function isActive(doc: CollectionEntry<'docs'>) {
+  return Astro.url.pathname === getPageUrl(doc);
+}
+
+function isExpanded(doc: CollectionEntry<'docs'>) {
+  return isActive(doc);
+}
+---
+
+<nav id="sideNav" class={className} {...rest}>
+  <div class="top-bar">
+    react-responsive-pagination
+    <button aria-label="Close navigation menu" id="closeSideNav">
+      <CloseSVG aria-hidden />
+    </button>
+  </div>
+  <ul class="root">
+    {
+      docsWithHeadings.map((doc, index) => (
+        <li class:list={{ expanded: isExpanded(doc) }}>
+          <div class="section">
+            <a href={getPageUrl(doc)} class:list={{ active: isActive(doc) }}>
+              {doc.data.navTitle}
+            </a>
+            <button
+              aria-label={`${
+                isExpanded(doc) ? 'Hide' : 'Show'
+              } '${doc.data.title}' sections`}
+              aria-expanded={isExpanded(doc) ? 'true' : 'false'}
+              aria-controls={`sections_${index}`}
+            >
+              <ChevronSVG aria-hidden />
+            </button>
+          </div>
+          <div class="expander">
+            <ul id={`sections_${index}`}>
+              {doc.data.addOverview && (
+                <li>
+                  <a href={getPageUrl(doc)}>Overview</a>
+                </li>
+              )}
+              {doc.headings.map(heading => (
+                <li>
+                  <a href={getPageUrl(doc, heading.slug)}>{heading.text}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </li>
+      ))
+    }
+    <li class="popup-only">
+      <a href="/live-demo">Live Demo</a>
+    </li>
+    <li class="popup-only">
+      <ExternalLink
+        href="https://www.github.com/jonelantha/react-responsive-pagination"
+      >
+        GitHub
+      </ExternalLink>
+    </li>
+  </ul>
+</nav>
+<style lang="scss">
+  @use '@styles/_util.scss';
+  @use '@styles/_vars.scss';
+
+  nav {
+    background: white;
+    overflow: auto;
+
+    @include util.for-static-nav {
+      .popup-only {
+        display: none;
+      }
+    }
+
+    div.top-bar {
+      padding-left: 1.5em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background-color: white;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+      font-weight: vars.$font-weight-semi-bold;
+
+      @include util.for-static-nav {
+        display: none;
+      }
+
+      button#closeSideNav {
+        cursor: pointer;
+        font-size: inherit;
+        margin: 0.5em;
+        padding: 0;
+        width: 2em;
+        height: 2em;
+        border: 0;
+        line-height: 1;
+        border-radius: vars.$border-radius;
+
+        color: var(--color-content);
+
+        svg {
+          width: 1rem;
+          height: 1rem;
+        }
+
+        background-color: transparent;
+
+        &:is(:hover, :focus-visible) {
+          background-color: var(--color-nav-bg-hover);
+        }
+      }
+    }
+
+    > ul {
+      list-style: none;
+      padding: 0.5em;
+      margin: 0;
+
+      li {
+        div.section {
+          display: flex;
+          flex-flow: row nowrap;
+          align-items: center;
+          position: relative;
+
+          a {
+            font-weight: vars.$font-weight-semi-bold;
+            padding-right: 2.5em;
+            flex: 1 0 0;
+
+            &.active {
+              background-color: var(--color-highlighted-background);
+            }
+          }
+
+          button {
+            cursor: pointer;
+            background: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            position: absolute;
+            right: 0;
+            height: 100%;
+            min-width: 2rem;
+
+            border: none;
+            border-radius: vars.$border-radius;
+
+            &:is(:hover, :focus-visible) {
+              background-color: var(--color-nav-bg-hover);
+            }
+
+            svg {
+              color: var(--color-content);
+              display: block;
+              height: 2rem;
+              width: 2rem;
+              transition: transform 200ms;
+              transform: rotate(90deg);
+            }
+          }
+        }
+
+        div.expander {
+          display: grid;
+          visibility: hidden;
+          grid-template-rows: 0fr;
+          transition:
+            grid-template-rows 350ms ease-in-out,
+            visibility 350ms ease-in-out;
+
+          ul {
+            list-style: none;
+            margin-left: 1em;
+            padding: 0;
+
+            overflow: hidden;
+          }
+        }
+
+        &.expanded {
+          div.section button svg {
+            transform: rotate(180deg);
+          }
+
+          div.expander {
+            grid-template-rows: 1fr;
+            visibility: initial;
+          }
+        }
+      }
+    }
+  }
+
+  a {
+    color: var(--color-content);
+    display: block;
+    text-decoration: none;
+    padding: 0.4em 0.5em 0.4em 1em;
+
+    line-height: 1.3;
+
+    border-radius: vars.$border-radius;
+
+    &:is(:hover, :focus-visible) {
+      background-color: var(--color-nav-bg-hover);
+      color: inherit;
+    }
+  }
+</style>
+
+<script>
+  import { isNavOpen } from '../store.js';
+
+  function setup() {
+    const sideNav = getSideNav();
+
+    if (!sideNav || sideNav.dataset.isSetup === 'true') return;
+
+    document.getElementById('closeSideNav')?.addEventListener('click', close);
+
+    for (const anchor of document.querySelectorAll('a')) {
+      anchor.addEventListener('click', close);
+    }
+
+    for (const topLevelLI of getTopLevelLIs()) {
+      const path = getTopLevelPath(topLevelLI);
+      const expandButton = getExpandButton(topLevelLI);
+
+      if (path !== undefined && expandButton) {
+        expandButton.addEventListener('click', () => toggleExpand(path));
+      }
+    }
+
+    sideNav.dataset.isSetup = 'true';
+  }
+
+  setup();
+
+  document.addEventListener('astro:page-load', () => {
+    setup();
+
+    previousScrollPos = undefined;
+
+    handleTopLevelChange(window.location.pathname);
+  });
+
+  let previousScrollPos: number | undefined;
+
+  document.addEventListener('astro:before-swap', () => {
+    const sideNav = getSideNav();
+
+    if (sideNav) {
+      previousScrollPos = document.getElementById('sideNav')?.scrollTop;
+    }
+  });
+
+  document.addEventListener('astro:after-swap', () => {
+    const sideNav = getSideNav();
+
+    if (sideNav && previousScrollPos) {
+      sideNav.scrollTop = previousScrollPos;
+    }
+  });
+
+  ///
+
+  function close() {
+    isNavOpen.set(false);
+  }
+
+  function handleTopLevelChange(activePath: string) {
+    highlightPage(activePath);
+
+    expand(activePath);
+  }
+
+  function highlightPage(activePath: string) {
+    for (const topLevelLI of getTopLevelLIs()) {
+      const isActive = activePath === getTopLevelPath(topLevelLI);
+
+      getTopLevelAnchor(topLevelLI)?.classList.toggle('active', isActive);
+    }
+  }
+
+  function getExpanded() {
+    const expandedTopLevel = getExpandedLevelLI();
+
+    if (expandedTopLevel) return getTopLevelPath(expandedTopLevel);
+  }
+
+  function toggleExpand(expandPath: string) {
+    expand(getExpanded() === expandPath ? undefined : expandPath);
+  }
+
+  function expand(expandPath: string | undefined) {
+    for (const topLevelLI of getTopLevelLIs()) {
+      const expanded = expandPath === getTopLevelPath(topLevelLI);
+
+      topLevelLI.classList.toggle('expanded', expanded);
+
+      const expandButton = getExpandButton(topLevelLI);
+      if (expandButton) {
+        expandButton.ariaLabel = expanded ? 'Hide' : 'Show';
+        expandButton.ariaExpanded = expanded ? 'true' : 'false';
+      }
+    }
+  }
+
+  ///
+
+  function getSideNav() {
+    return document.getElementById('sideNav');
+  }
+
+  function getTopLevelLIs() {
+    return document.querySelectorAll<HTMLLIElement>('#sideNav>ul>li');
+  }
+
+  function getExpandedLevelLI() {
+    return document.querySelector<HTMLLIElement>('#sideNav>ul>li.expanded');
+  }
+
+  function getTopLevelAnchor(topLevelLI: HTMLLIElement) {
+    return topLevelLI.querySelector('a');
+  }
+
+  function getExpandButton(topLevelLI: HTMLLIElement) {
+    return topLevelLI.querySelector('button');
+  }
+
+  function getTopLevelPath(topLevelLI: HTMLLIElement) {
+    const anchor = getTopLevelAnchor(topLevelLI);
+
+    if (anchor) return new URL(anchor.href).pathname;
+  }
+</script>

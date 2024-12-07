@@ -1,0 +1,9 @@
+.previous-justified {
+  margin-inline-end: auto;
+  --pagination-override-margin-inline-end: 0; /* <- minimum margin */
+}
+
+.next-justified {
+  margin-inline-start: auto;
+  --pagination-override-margin-inline-start: 0; /* <- minimum margin */
+}

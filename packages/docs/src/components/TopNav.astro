@@ -1,0 +1,174 @@
+---
+import { getCollection } from 'astro:content';
+import type { HTMLAttributes } from 'astro/types';
+import ExternalSVG from './ExternalSVG.astro';
+import HamburgerSVG from './HamburgerSVG.astro';
+import { getPageUrl } from '../utils';
+
+type Props = HTMLAttributes<'nav'>;
+
+const { class: className, ...rest } = Astro.props;
+
+const links = (await getCollection('docs'))
+  .filter(doc => doc.data.topNavOrder)
+  .sort((a, b) => a.data.topNavOrder! - b.data.topNavOrder!);
+---
+
+<nav id="topNav" class={className} {...rest}>
+  <button id="hamburger" aria-label="Open navigation menu">
+    <HamburgerSVG aria-hidden />
+  </button>
+  <a class="projectLink" href="/">
+    <span aria-hidden>🐼</span>
+    react-responsive-pagination
+  </a>
+  {links.map(doc => <a href={getPageUrl(doc)}>{doc.data.navTitle}</a>)}
+  <a
+    class="gitHubLink"
+    href="https://www.github.com/jonelantha/react-responsive-pagination"
+    rel="noopener noreferrer"
+  >
+    <img src="/GitHub-Mark-64px.png" aria-hidden />
+    GitHub
+    <ExternalSVG aria-hidden />
+  </a>
+</nav>
+<style lang="scss">
+  @use '@styles/_util.scss';
+  @use '@styles/_vars.scss';
+
+  nav {
+    $h-padding: 0.4em;
+    $h-item-left-margin: 0.5em;
+
+    background: white;
+    padding: 0.5em 0;
+
+    display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+
+    min-height: vars.$top-nav-min-height;
+
+    @include util.for-popup-nav {
+      .gitHubLink {
+        display: none;
+      }
+    }
+
+    @include util.for-top-nav-no-links {
+      .projectLink ~ a {
+        display: none;
+      }
+    }
+
+    a {
+      display: inline-flex;
+      align-items: center;
+
+      min-height: 2em;
+      margin: 0 0 0 $h-item-left-margin;
+      font-weight: vars.$font-weight-semi-bold;
+      text-decoration: none;
+      padding: 0 $h-padding;
+      color: var(--color-content);
+      border-radius: vars.$border-radius;
+
+      &:is(:hover, :focus-visible) {
+        color: initial;
+        background: var(--color-nav-bg-hover);
+      }
+    }
+
+    #hamburger {
+      cursor: pointer;
+      font-size: inherit;
+      box-sizing: content-box;
+      padding: 0;
+      min-height: 2em;
+      width: 1.75em;
+      margin: 0 0 0 $h-item-left-margin;
+      border: 0;
+      border-radius: vars.$border-radius;
+      padding: 0 $h-padding;
+
+      background: none;
+      &:is(:hover, :focus-visible) {
+        background-color: var(--color-nav-bg-hover);
+      }
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @include util.for-static-nav {
+        display: none;
+      }
+
+      svg {
+        color: var(--color-content);
+        width: 1.75rem;
+        height: 1.75rem;
+      }
+    }
+
+    .projectLink {
+      padding-left: calc($h-padding - 0.1em);
+
+      span {
+        font-size: 1.6em;
+        line-height: 1;
+        margin-right: 0.25em;
+      }
+    }
+
+    .gitHubLink {
+      img {
+        width: 1.25em;
+        height: 1.25em;
+        margin-right: 0.4em;
+      }
+
+      svg {
+        line-height: 1;
+        margin-left: 0.4em;
+        width: 0.8em;
+        height: 0.8em;
+      }
+    }
+  }
+</style>
+
+<script>
+  import { isNavOpen } from '../store.js';
+
+  function setup() {
+    const topNavElement = document.getElementById('topNav');
+
+    if (!topNavElement || topNavElement.dataset.isSetup === 'true') return;
+
+    document
+      .getElementById('hamburger')
+      ?.addEventListener('click', () => isNavOpen.set(true));
+
+    if (window.ResizeObserver) {
+      const observer = new ResizeObserver(() => {
+        const height = topNavElement.getBoundingClientRect().height;
+        document.documentElement.style.setProperty(
+          '--root-header-height',
+          `${height}px`,
+        );
+      });
+
+      observer.observe(topNavElement);
+    }
+
+    topNavElement.dataset.isSetup = 'true';
+  }
+
+  setup();
+
+  document.addEventListener('astro:page-load', () => {
+    setup();
+  });
+</script>

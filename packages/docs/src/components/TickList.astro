@@ -1,0 +1,25 @@
+---
+
+---
+
+<div>
+  <slot />
+</div>
+
+<style lang="scss">
+  @use '@styles/_vars.scss';
+
+  div {
+    :global(ul) {
+      border: var(--box-border);
+      border-radius: vars.$border-radius;
+      padding: 1rem;
+      list-style-type: '✅';
+      padding-left: 2.25rem;
+
+      :global(li) {
+        padding-left: 0.75rem;
+      }
+    }
+  }
+</style>

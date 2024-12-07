@@ -1,0 +1,66 @@
+---
+import CTALink from './CTALink.astro';
+
+interface Props {
+  title: string;
+  ctaLabel: string;
+  ctaLink: string;
+}
+
+const { title, ctaLink, ctaLabel } = Astro.props;
+---
+
+<section>
+  <h3>{title}</h3>
+  <slot />
+  <CTALink class="ctaLink" href={ctaLink}>{ctaLabel}</CTALink>
+</section>
+
+<style lang="scss">
+  @use '@styles/_vars.scss';
+
+  section {
+    border-radius: vars.$border-radius;
+    border: var(--box-border);
+    box-shadow: var(--box-shadow);
+    padding: 1rem;
+    display: grid;
+    row-gap: 1rem;
+    column-gap: 1.5rem;
+
+    align-items: center;
+
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      'title'
+      'example'
+      'cta';
+
+    @media screen and (min-width: 650px) {
+      grid-template-columns: 1fr max-content;
+      grid-template-rows: auto auto;
+      grid-template-areas:
+        'title cta'
+        'example cta';
+    }
+
+    h3 {
+      grid-area: title;
+      margin: 0;
+    }
+
+    div {
+      overflow: hidden;
+      grid-area: example;
+    }
+
+    .ctaLink {
+      grid-area: cta;
+      justify-self: end;
+      @media screen and (min-width: 650px) {
+        width: 8.5rem;
+      }
+    }
+  }
+</style>

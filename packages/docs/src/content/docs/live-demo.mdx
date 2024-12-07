@@ -1,0 +1,54 @@
+---
+title: 'Live demo and examples'
+description: 'react-responsive-pagination live demo and examples'
+navTitle: 'Live Demo'
+layout: ../../layouts/Standalone.astro
+topNavOrder: 1
+footerNavOrder: 3
+---
+
+import BootstrapThemeContainer from '@components/BootstrapThemeContainer.astro';
+import PaginationRenderer from '@components/PaginationRenderer.tsx';
+
+**Live Demo** - try resizing your browser to see the component automatically adjust to the available width.
+
+<BootstrapThemeContainer hasBorder striped shadow>
+  <PaginationRenderer client:load total={120} />
+</BootstrapThemeContainer>
+
+**NOTE**: the striped region illustrates the component's container, it's not part of the component 🙂
+
+## Example: Functional Component (using hooks)
+
+The example below is using Bootstrap styles, for more information see the [Bootstrap Usage Guide](/bootstrap-pagination)
+
+Alternatively, use [a ready made theme](/themes) or use [custom styles](/custom-styled-pagination)
+
+```jsx
+import React, { useState } from 'react';
+import ResponsivePagination from 'react-responsive-pagination';
+import 'bootstrap/dist/css/bootstrap.css'; // this example uses Bootstrap styles
+
+function MyApp() {
+  const totalPages = 120;
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  function handlePageChange(page) {
+    setCurrentPage(page);
+    // ... do something with `page`
+  }
+
+  return (
+    <ResponsivePagination
+      total={totalPages}
+      current={currentPage}
+      onPageChange={page => handlePageChange(page)}
+    />
+  );
+}
+```
+
+## Further Details
+
+For further details, see the [react-responsive-pagination documentation](/)

@@ -1,16 +1,14 @@
 {
-  "extends": "../../tsconfig",
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"],
   "compilerOptions": {
-    "module": "esnext",
-    "target": "esnext",
-    "jsx": "preserve",
-    "lib": ["dom", "esnext"],
-    "moduleResolution": "node",
-    "strict": true,
-    "noEmit": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true
-  },
-  "include": ["./src/**/*", "./content/**/*", "./gatsby-node.ts"]
+    "strictNullChecks": true,
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@styles/*": ["src/styles/*"],
+      "@props/*": ["src/content/props/*"]
+    }
+  }
 }

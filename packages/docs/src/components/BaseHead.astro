@@ -1,0 +1,47 @@
+---
+import '@styles/global.scss';
+import { ClientRouter } from 'astro:transitions';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const props = Astro.props;
+
+const siteTitle = 'react-responsive-pagination';
+const siteDescription = 'Responsive React pagination component';
+const siteAuthor = '@jonelantha';
+
+const title = `${props.title} | ${siteTitle}`;
+const metaDescription = props.description || siteDescription;
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={metaDescription} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={metaDescription} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:creator" content={siteAuthor} />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={metaDescription} />
+
+<ClientRouter />
