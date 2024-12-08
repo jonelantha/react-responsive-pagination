@@ -5,7 +5,7 @@ import { flushSync } from 'react-dom';
 
 export function useContentWidth(element: Element | undefined) {
   const [width, setWidth] = useState<number>();
-  const widthRef = useRef<number>();
+  const widthRef = useRef<number>(undefined);
 
   const syncWidth = useCallback(() => {
     const newWidth = element ? getContentWidth(element) : undefined;
