@@ -1,5 +1,12 @@
 # React Responsive Pagination Changelog
 
+# [2.10.0](https://github.com/jonelantha/react-responsive-pagination/compare/v2.9.1...v2.10.0) (2025-01-07)
+
+
+### Features
+
+* React 19 support ([088a47c](https://github.com/jonelantha/react-responsive-pagination/commit/088a47c31300d2f5c7db0b859ec72c4e3274f89e))
+
 ## [2.9.1](https://github.com/jonelantha/react-responsive-pagination/compare/v2.9.0...v2.9.1) (2024-12-08)
 
 
