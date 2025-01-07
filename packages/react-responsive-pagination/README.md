@@ -7,7 +7,7 @@
 [![Release](https://github.com/jonelantha/react-responsive-pagination/actions/workflows/release.yml/badge.svg)](https://github.com/jonelantha/react-responsive-pagination/actions/workflows/release.yml)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-An accessible responsive React pagination component which intelligently renders to the available width - for React 16, 17 or 18
+An accessible responsive React pagination component which intelligently renders to the available width - for React 19, 18, 17 & 16
 
 ✅ Fully accessible with aria tags for screen readers  
 ✅ Ready styled themes (or bring your own css)  
@@ -16,9 +16,9 @@ An accessible responsive React pagination component which intelligently renders 
 
 <a href="https://react-responsive-pagination.elantha.com/"><img src="./react-responsive-pagination.gif?raw=true" width="985" alt="react-responsive-pagination example" /></a>
 
-### ⚡️ [LIVE DEMO - try it out for yourself!](https://react-responsive-pagination.elantha.com/live-demo/) ⚡️
+**⚡️ [LIVE DEMO - try it out for yourself!](https://react-responsive-pagination.elantha.com/live-demo/) ⚡️**
 
-**⭐️ What's new:** August 2024 - SSR support
+**⭐️ What's new:** React 19 support
 
 **📕 Visit [https://react-responsive-pagination.elantha.com](https://react-responsive-pagination.elantha.com) to get started 🚀**
 
@@ -80,7 +80,7 @@ function MyApp() {
 
 ## ✔︎ Requirements / Compatibility
 
-- React 18, 17 and 16.8 upwards
+- React 19, 18, 17 and 16.8 upwards
 - Modern browsers only - not suitable for IE 11
 
 ## 🔧 Props
