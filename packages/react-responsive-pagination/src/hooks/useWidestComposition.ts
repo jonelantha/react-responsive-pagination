@@ -1,32 +1,31 @@
-import { useCallback, useState } from 'react';
+import { useRef, useState } from 'react';
 import { CompositionItem } from '../compositionItem.js';
 import { useAvailableWidth } from './useAvailableWidth.js';
-import { useFoutDetector } from './useFoutDetector.js';
+import { useItemWidthChangeDetector } from './useItemWidthChangeDetector.js';
 import { useWidthCalculator } from './useWidthCalculator.js';
 import { iteratorNext, lastWhere } from '../helpers/iterator.js';
 
-export function useWidestComposition(
+export function useWidestComposition<ContainerType extends Element>(
   narrowToWideCompositionsProvider: () => IterableIterator<CompositionItem[]>,
   maxWidth?: number,
 ): {
   items: CompositionItem[];
-  ref: (element: Element | null) => void;
+  ref: React.Ref<ContainerType>;
   visible: boolean;
   clearCache: () => void;
 } {
+  const containerRef = useRef<ContainerType | null>(null);
+
   const { widthCalculator, metricsRender, clearCache } = useWidthCalculator();
 
-  const foutDetectorRef = useFoutDetector(getItemsDomElements, clearCache);
-
-  const { width = 0, ref: availableWidthRef } = useAvailableWidth(maxWidth);
-
-  const ref = useCallback(
-    (element: Element | null) => {
-      foutDetectorRef.current = element;
-      availableWidthRef?.(element);
-    },
-    [foutDetectorRef, availableWidthRef],
+  useItemWidthChangeDetector(
+    metricsRender === undefined,
+    containerRef.current,
+    getItemsDomElements,
+    clearCache,
   );
+
+  const width = useAvailableWidth(containerRef.current, maxWidth) ?? 0;
 
   const [showPlaceholder, setShowPlaceholder] = useState(true);
   if (showPlaceholder) {
@@ -36,7 +35,7 @@ export function useWidestComposition(
       items: firstComposition ?? [],
       ref(containerElement) {
         setShowPlaceholder(false);
-        ref(containerElement);
+        containerRef.current = containerElement;
       },
       clearCache,
     };
@@ -48,7 +47,7 @@ export function useWidestComposition(
       items: metricsRender.items,
       ref(containerElement) {
         metricsRender.ref(containerElement);
-        ref(containerElement);
+        containerRef.current = containerElement;
       },
       clearCache,
     };
@@ -61,7 +60,7 @@ export function useWidestComposition(
       widthCalculator,
       width,
     ),
-    ref,
+    ref: containerRef,
     clearCache,
   };
 }
@@ -81,6 +80,6 @@ function getLargestFittingCompositionWithFallback(
   return lastWhere(narrowToWideCompositions, doesCompositionFit) ?? firstComposition;
 }
 
-function getItemsDomElements(viewDomElement: Element | null) {
-  return viewDomElement && Array.from(viewDomElement.children);
+function getItemsDomElements(viewDomElement: Element) {
+  return Array.from(viewDomElement.children);
 }

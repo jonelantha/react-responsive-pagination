@@ -68,6 +68,10 @@ export class TestHarnessPage {
     }, styleStr);
   }
 
+  async resetStyle() {
+    return this.setStyle('.pagination { font-size: inherit; }');
+  }
+
   presetLocator(type: string) {
     return this.page.locator(`#preset_${type}`);
   }
