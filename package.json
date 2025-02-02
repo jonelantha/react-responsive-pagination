@@ -3,6 +3,7 @@
   "workspaces": [
     "packages/**"
   ],
+  "type": "module",
   "scripts": {
     "start": "npm run start -w react-responsive-pagination",
     "build": "npm run build -w react-responsive-pagination",
@@ -13,7 +14,7 @@
     "browser-test-19": "npm run build -w test-harness && SERVE_COMMAND='npm run serve -w test-harness' npm run test-prod -w browser-test",
     "browser-test-18": "npm run build --prefix test-harness-react-18 && SERVE_COMMAND='npm run serve --prefix ../../test-harness-react-18' npm run test-prod -w browser-test",
     "browser-test-17": "npm run build --prefix test-harness-react-17 && SERVE_COMMAND='npm run serve --prefix ../../test-harness-react-17' npm run test-prod -w browser-test",
-    "start-docs": "npm run develop -w docs",
+    "start-docs": "npm run dev -w docs",
     "build-docs": "npm run build -w docs"
   },
   "dependencies": {

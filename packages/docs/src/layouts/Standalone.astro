@@ -1,0 +1,34 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+type Props = CollectionEntry<'docs'>['data'];
+
+const props = Astro.props;
+---
+
+<header>
+  <a href="/">react-responsive-pagination</a>
+</header>
+<main>
+  <article><slot /></article>
+</main>
+
+<style is:global lang="scss">
+  @use '@styles/_util.scss';
+  @use '@styles/_vars.scss';
+
+  body {
+    padding-block: vars.$spacing-vertical;
+    padding-inline: calc(0.5rem + util.linearRange(500px, 800px, 16px, 100vw));
+  }
+</style>
+<style lang="scss">
+  @use '@styles/_vars.scss';
+
+  header {
+    font-family: vars.$heading-font-family;
+    font-size: 1.5rem;
+    font-weight: vars.$font-weight-bold;
+    margin-bottom: 1rem;
+  }
+</style>

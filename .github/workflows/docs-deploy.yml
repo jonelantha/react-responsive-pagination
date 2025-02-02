@@ -31,17 +31,15 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-2
-      - name: Deploy Dev
-        uses: jonelantha/gatsby-s3-action@v3
+      - name: Dev - Deploy
         if: ${{ (github.event.inputs.docsEnv == 'dev' || github.ref == 'refs/heads/docs-beta') && success() }}
-        with:
-          dest-s3-bucket: ${{ secrets.DOCS_DEV_BUCKET }}
-          cloudfront-id-to-invalidate: ${{ secrets.DOCS_DEV_CLOUDFRONT }}
-          public-source-path: ./packages/docs/public
-      - name: Deploy Live
-        uses: jonelantha/gatsby-s3-action@v3
+        run: sh ./.github/scripts/docs-deploy.sh
+        env:
+          S3_BUCKET: ${{ secrets.DOCS_DEV_BUCKET }}
+          CLOUDFRONT_ID: ${{ secrets.DOCS_DEV_CLOUDFRONT }}
+      - name: Live - Deploy
         if: ${{ (github.event.inputs.docsEnv == 'live' || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/docs-live') && success() }}
-        with:
-          dest-s3-bucket: ${{ secrets.DOCS_LIVE_BUCKET }}
-          cloudfront-id-to-invalidate: ${{ secrets.DOCS_LIVE_CLOUDFRONT }}
-          public-source-path: ./packages/docs/public
+        run: sh ./.github/scripts/docs-deploy.sh
+        env:
+          S3_BUCKET: ${{ secrets.DOCS_LIVE_BUCKET }}
+          CLOUDFRONT_ID: ${{ secrets.DOCS_LIVE_CLOUDFRONT }}

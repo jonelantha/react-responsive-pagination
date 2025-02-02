@@ -1,0 +1,27 @@
+---
+export interface Props {
+  name: string;
+  type: string;
+  defaultValue?: string;
+}
+
+const { type, defaultValue, name } = Astro.props;
+---
+
+<tr>
+  <td>
+    <div id={name}>{name}</div>
+    <code>{type}</code>
+    <br />
+    <em>{defaultValue ? '(optional)' : '(required)'}</em>
+  </td>
+  <td><slot /></td>
+</tr>
+
+<style lang="scss">
+  @use '@styles/_vars.scss';
+
+  div {
+    font-weight: vars.$font-weight-bold;
+  }
+</style>

@@ -1,0 +1,134 @@
+---
+import TopNav from '@components/TopNav.astro';
+import SideNav from '@components/SideNav.astro';
+import Footer from '@components/Footer.astro';
+---
+
+<body>
+  <main>
+    <TopNav class="topNav" transition:persist transition:animate="none" />
+    <SideNav class="sideNav" transition:persist transition:animate="none" />
+    <div id="popupSideNavBackground"></div>
+    <article class="content"><slot /></article>
+    <Footer class="footer" />
+  </main>
+</body>
+
+<style is:global lang="scss">
+  @use '@styles/_util.scss';
+
+  body.popupSideNavVisible {
+    @include util.for-popup-nav {
+      overflow: hidden;
+    }
+  }
+</style>
+<style lang="scss">
+  @use '@styles/_util.scss';
+  @use '@styles/_vars.scss';
+
+  main {
+    --header-height: var(--root-header-height, #{vars.$top-nav-min-height});
+
+    display: grid;
+
+    grid-template-areas:
+      'top-nav top-nav'
+      'side-nav content'
+      'side-nav footer';
+    grid-template-columns: vars.$side-nav-width 1fr;
+    grid-template-rows: auto 1fr auto;
+
+    @include util.for-popup-nav {
+      grid-template-areas:
+        'top-nav'
+        'content'
+        'footer';
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .topNav {
+      grid-area: top-nav;
+      position: sticky;
+      top: 0;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+      z-index: 5;
+      width: 100%;
+    }
+
+    .sideNav {
+      grid-area: side-nav;
+      top: var(--header-height);
+      height: calc(100vh - var(--header-height));
+      position: sticky;
+      border-right: 1px solid var(--footer-bg);
+
+      @include util.for-popup-nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        height: 100vh;
+        border-right: 1px solid var(--footer-bg);
+        width: clamp(vars.$side-nav-width, 85%, 500px);
+
+        .popupSideNavVisible & {
+          display: initial;
+        }
+      }
+    }
+
+    #popupSideNavBackground {
+      display: none;
+
+      .popupSideNavVisible & {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 9;
+        background-color: rgba(0, 0, 0, 0.6);
+      }
+    }
+
+    .footer {
+      grid-area: footer;
+    }
+
+    .content {
+      grid-area: content;
+      padding-block-start: vars.$spacing-vertical;
+      padding-block-end: 3rem;
+      padding-inline: calc(0.5rem + util.linearRange(500px, 800px, 16px, 100vw));
+
+      min-width: 100px;
+
+      :global(h1),
+      :global(h2) {
+        /*${PropName}*/
+        scroll-margin-top: calc(var(--header-height) + 10px);
+      }
+    }
+  }
+</style>
+
+<script>
+  import { isNavOpen } from '../store.js';
+
+  isNavOpen.subscribe(state =>
+    document.querySelector('body')!.classList.toggle('popupSideNavVisible', state),
+  );
+
+  const mediaMatch = window.matchMedia(`not screen and (max-width: 930px)`);
+
+  mediaMatch.matches && isNavOpen.set(false);
+
+  mediaMatch.addEventListener(
+    'change',
+    () => mediaMatch.matches && isNavOpen.set(false),
+  );
+</script>

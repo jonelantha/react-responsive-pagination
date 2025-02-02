@@ -1,0 +1,17 @@
+---
+
+---
+
+<div>
+  <slot />
+</div>
+
+<style lang="scss">
+  @use '@styles/_vars.scss';
+
+  div {
+    display: grid;
+    width: min(55m, 100%);
+    gap: vars.$leading;
+  }
+</style>

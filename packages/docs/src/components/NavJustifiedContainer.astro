@@ -1,0 +1,21 @@
+---
+import PaginationContainer from './PaginationContainer.astro';
+import type { Props as PaginationContainerProps } from './PaginationContainer.astro';
+
+type Props = PaginationContainerProps;
+
+const props = Astro.props;
+---
+
+<PaginationContainer class="nav-justified-styles" {...props}>
+  <slot />
+</PaginationContainer>
+
+<style is:global lang="scss">
+  @use 'sass:meta';
+
+  .nav-justified-styles {
+    @include meta.load-css('react-responsive-pagination/themes/classic');
+    @include meta.load-css('@styles/navJustified');
+  }
+</style>
