@@ -230,7 +230,7 @@ function checkLegacyProps(props: { [key in string]: unknown }) {
       !legacyUsageWarnings.includes(legacyProp)
     ) {
       console.warn(
-        `react-responsive-pagination: '${legacyProp}' prop no longer supported, please see migration guide: https://react-responsive-pagination.elantha.com/migration/`,
+        `react-responsive-pagination: '${legacyProp}' prop no longer supported, please see migration guide: https://react-responsive-pagination.elantha.com/migration`,
       );
       legacyUsageWarnings.push(legacyProp);
     }

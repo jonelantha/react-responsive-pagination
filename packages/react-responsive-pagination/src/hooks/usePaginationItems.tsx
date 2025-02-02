@@ -77,7 +77,7 @@ function showReactElementLabelWarning() {
   if (reactElementLabelWarningShown) return;
 
   console.log(
-    'react-responsive-pagination: using React elements for labels is experimental, please see: https://react-responsive-pagination.elantha.com/faq/#using-react-components-for-labels',
+    'react-responsive-pagination: using React elements for labels is experimental, please see: https://react-responsive-pagination.elantha.com/faq#using-react-components-for-labels',
   );
   reactElementLabelWarningShown = true;
 }
