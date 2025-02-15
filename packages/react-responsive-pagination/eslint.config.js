@@ -14,12 +14,9 @@ export default tseslint.config({
   },
   extends: [
     eslint.configs.recommended,
-    ...tseslint.configs.recommended,
+    tseslint.configs.recommended,
     reactPlugin.configs.flat.recommended,
-    {
-      plugins: { 'jsx-a11y': pluginJsxA11y },
-      rules: pluginJsxA11y.configs.recommended.rules,
-    },
+    pluginJsxA11y.flatConfigs.recommended,
     {
       plugins: { 'react-hooks': pluginReactHooks },
       rules: pluginReactHooks.configs.recommended.rules,
