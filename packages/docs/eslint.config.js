@@ -21,7 +21,7 @@ export default tseslint.config(
     },
   },
   {
-    ignores: ['dist', '.astro'],
+    ignores: ['dist', '.astro', 'postcss.config.cjs'],
   },
   {
     rules: {
