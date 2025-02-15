@@ -1,11 +1,9 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import expressiveCode from 'astro-expressive-code';
 
-// https://astro.build/config
 export default defineConfig({
   site: 'https://react-responsive-pagination.elantha.com/',
   integrations: [
