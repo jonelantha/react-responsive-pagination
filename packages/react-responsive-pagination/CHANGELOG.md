@@ -1,5 +1,12 @@
 # React Responsive Pagination Changelog
 
+## [2.10.2](https://github.com/jonelantha/react-responsive-pagination/compare/v2.10.1...v2.10.2) (2025-02-16)
+
+
+### Bug Fixes
+
+* Package updates ([d81bfa9](https://github.com/jonelantha/react-responsive-pagination/commit/d81bfa98d891f00612c616800e574ee1fb26b966))
+
 ## [2.10.1](https://github.com/jonelantha/react-responsive-pagination/compare/v2.10.0...v2.10.1) (2025-02-02)
 
 
