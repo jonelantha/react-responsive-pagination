@@ -17,10 +17,7 @@ export default tseslint.config({
     tseslint.configs.recommended,
     reactPlugin.configs.flat.recommended,
     pluginJsxA11y.flatConfigs.recommended,
-    {
-      plugins: { 'react-hooks': pluginReactHooks },
-      rules: pluginReactHooks.configs.recommended.rules,
-    },
+    pluginReactHooks.configs['recommended-latest'],
   ],
   rules: {
     '@typescript-eslint/no-unused-expressions': [
