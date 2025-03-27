@@ -1,5 +1,12 @@
 # React Responsive Pagination Changelog
 
+## [2.10.5-beta.1](https://github.com/jonelantha/react-responsive-pagination/compare/v2.10.4...v2.10.5-beta.1) (2025-03-27)
+
+
+### Bug Fixes
+
+* Incorrect theme hover styles for mobile ([48b492a](https://github.com/jonelantha/react-responsive-pagination/commit/48b492abd1fdfb5a2f59da7406d58983e7fca560))
+
 ## [2.10.4](https://github.com/jonelantha/react-responsive-pagination/compare/v2.10.3...v2.10.4) (2025-03-27)
 
 
