@@ -65,23 +65,29 @@
   background-color: var(--pagination-bg, #fff);
   border: var(--pagination-border-width, 1px) solid
     var(--pagination-border-color, #dee2e6);
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
   .pagination .page-link {
     transition: none;
   }
 }
-.pagination .page-link:hover {
-  z-index: 2;
-  color: var(--pagination-hover-color, #0a58ca);
-  background-color: var(--pagination-hover-bg, #e9ecef);
-  border-color: var(
-    --pagination-hover-border-color,
-    var(--pagination-border-color, #dee2e6)
-  );
+@media (hover: hover) {
+  .pagination .page-link:hover {
+    z-index: 2;
+    color: var(--pagination-hover-color, #0a58ca);
+    background-color: var(--pagination-hover-bg, #e9ecef);
+    border-color: var(
+      --pagination-hover-border-color,
+      var(--pagination-border-color, #dee2e6)
+    );
+  }
 }
+
 .pagination .page-link:focus {
   z-index: 3;
   color: var(--pagination-focus-color, var(--pagination-hover-color, #0a58ca));
