@@ -66,22 +66,28 @@
     var(--pagination-border-color, #dee2e6);
   border-radius: var(--pagination-border-radius, 0.375rem);
   margin: 0 var(--pagination-item-margin-x, 0.2rem);
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
   .pagination .page-link {
     transition: none;
   }
 }
-.pagination .page-link:hover {
-  z-index: 2;
-  color: var(--pagination-hover-color, #0a58ca);
-  background-color: var(--pagination-hover-bg, #e9ecef);
-  border-color: var(
-    --pagination-hover-border-color,
-    var(--pagination-border-color, #dee2e6)
-  );
+
+@media (hover: hover) {
+  .pagination .page-link:hover {
+    z-index: 2;
+    color: var(--pagination-hover-color, #0a58ca);
+    background-color: var(--pagination-hover-bg, #e9ecef);
+    border-color: var(
+      --pagination-hover-border-color,
+      var(--pagination-border-color, #dee2e6)
+    );
+  }
 }
 .pagination .page-link:focus {
   z-index: 3;
