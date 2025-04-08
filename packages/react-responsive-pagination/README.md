@@ -14,15 +14,13 @@ An accessible responsive React pagination component which intelligently renders 
 ✅ Bootstrap 4 & 5 support built-in  
 ✅ Built for tree-shaking = minimum impact on the bundle
 
-<a href="https://react-responsive-pagination.elantha.com"><img src="./react-responsive-pagination.gif?raw=true" width="985" alt="react-responsive-pagination example" /></a>
+<a href="https://react-responsive-pagination.elantha.com"><picture><source media="(prefers-color-scheme: dark)" srcset="./react-responsive-pagination-dark.gif?raw=true" width="978"><img alt="react-responsive-pagination example" src="./react-responsive-pagination.gif?raw=true" width="978"></picture></a>
 
 **⚡️ [LIVE DEMO - try it out for yourself!](https://react-responsive-pagination.elantha.com/live-demo) ⚡️**
 
-**⭐️ What's new:** React 19 support
+**⭐️ What's new:** Dark Mode & React 19 support
 
 **📕 Visit [https://react-responsive-pagination.elantha.com](https://react-responsive-pagination.elantha.com) to get started 🚀**
-
-v1 user? See the [v1 migration guide](https://react-responsive-pagination.elantha.com/migration) to start using v2
 
 ## ⏳ Quick Start
 
@@ -33,7 +31,7 @@ npm install react-responsive-pagination
 ```jsx
 import React, { useState } from 'react';
 import ResponsivePagination from 'react-responsive-pagination';
-import 'react-responsive-pagination/themes/classic.css';
+import 'react-responsive-pagination/themes/classic-light-dark.css';
 // 👆 classic theme, see below for other theme / css options
 
 function MyApp() {
@@ -52,27 +50,25 @@ function MyApp() {
 
 ## Three ways to style:
 
-1. 🎨 **Custom styling**
-
-   Custom styles? No problem - see the [Custom Styles Guide](https://react-responsive-pagination.elantha.com/custom-styled-pagination)
-
-2. 🖼️ **Ready-to-go themes (NEW!)**
+1. 🖼️ **Ready-to-go themes**
 
    Just import one of the css themes into your project (as shown in the quickstart example above)
 
    ```
-   import 'react-responsive-pagination/themes/classic.css';
+   import 'react-responsive-pagination/themes/classic-light-dark.css';
    ```
 
-   | Theme         | Example                                                                                                                                                                                                                                                                            |
-   | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-   | classic.css   | <img src="./theme-previews/classic.png?raw=true" width="292" alt="classic pagination" />                                                                                                                                                                                           |
-   | bootstrap.css | <img src="./theme-previews/bootstrap.png?raw=true" width="250" alt="classic pagination" /><br />Bootstrap 5 styled pagination (without installing Bootstrap)<br />See [additional bootstrap options](https://react-responsive-pagination.elantha.com/bootstrap-pagination#options) |
-   | minimal.css   | <img src="./theme-previews/minimal.png?raw=true" width="169" alt="classic pagination" />                                                                                                                                                                                           |
+   | Theme                                                    | Example                                                                                                                                                                                                                        |
+   | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+   | classic-light-dark.css                                   | <picture><source media="(prefers-color-scheme: dark)" srcset="./theme-previews/classic-dark.png?raw=true" width="292"><img src="./theme-previews/classic.png?raw=true" width="292" alt="classic pagination" /></picture>       |
+   | bootstrap-light-dark.css<br />_(Bootstrap not required)_ | <picture><source media="(prefers-color-scheme: dark)" srcset="./theme-previews/bootstrap-dark.png?raw=true" width="250"><img src="./theme-previews/bootstrap.png?raw=true" width="250" alt="bootstrap pagination" /></picture> |
+   | minimal-light-dark.css                                   | <picture><source media="(prefers-color-scheme: dark)" srcset="./theme-previews/minimal-dark.png?raw=true" width="169"><img src="./theme-previews/minimal.png?raw=true" width="169" alt="minimal pagination" /></picture>       |
 
-   Please see the [Themes guide](https://react-responsive-pagination.elantha.com/themes) for more details (including overridable theme attributes)
+   Themes also available as light only, please see the [Themes guide](https://react-responsive-pagination.elantha.com/themes) for more details (including overridable theme attributes)
 
-   Want to create your own? See the [Custom Styles Guide](https://react-responsive-pagination.elantha.com/custom-styled-pagination)
+2. 🎨 **Custom CSS styling**
+
+   Custom CSS styles? No problem - see the [Custom Styles Guide](https://react-responsive-pagination.elantha.com/custom-styled-pagination)
 
 3. 🥾 **Bootstrap 4 and 5**
 
@@ -87,47 +83,9 @@ function MyApp() {
 
 ### Common Props
 
-| Prop                                                              | Description                                                                                                                                                                                                                                 |
-| ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **current**<br />`number`<br />(required)                         | The current active page. Indexed from 1                                                                                                                                                                                                     |
-| **total**<br />`number`<br />(required)                           | The total number of pages                                                                                                                                                                                                                   |
-| **onPageChange**<br />`(newPage: number) => void`<br />(required) | A callback handler which is called when the user clicks a new page, note that the active page will not change unless the `current` prop is updated to reflect the new page (as in the example above). The `newPage` value is indexed from 1 |
-| **maxWidth**<br />`number`<br />(optional)                        | The maximum width (in pixels) of the pagination component. Specify a value if you want to override the automatic sizing. Note this width may be exceeded in the case where it's not possible to output a small enough component             |
-
-### ClassName Props
-
-See [Overriding default classNames](https://react-responsive-pagination.elantha.com/custom-styled-pagination#overriding-default-classnames) for more information
-
-| Prop                                                    | Description                                                                                                                                                                                                                                                                                                                                     |
-| ------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **className**<br />`string`<br />(optional)             | Class name for the top level **<ul\>** container<br />Defaults to `pagination`, overrides **extraClassName** prop (below)                                                                                                                                                                                                                       |
-| **extraClassName**<br />`string`<br />(optional)        | Useful when using Bootstrap styles, extra classNames to be added to the top level **<ul\>** container. Use this prop to override the default justify value - for example to align elements to the start of the page use: `justify-content-start`<br />Defaults to `justify-content-center`, not applicable if **className** prop (above) is set |
-| **pageItemClassName**<br />`string`<br />(optional)     | Class name for all the **<li\>** elements<br />Defaults to `page-item`                                                                                                                                                                                                                                                                          |
-| **pageLinkClassName**<br />`string`<br />(optional)     | Class name for **<a\>** or **<span\>** child elements within an **<li\>** element: <br />`<li ...><a class='page-link'>1</a></li>`<br />Defaults to `page-link`                                                                                                                                                                                 |
-| **activeItemClassName**<br />`string`<br />(optional)   | Appended to **<li\>** class name for the active element:<br />`<li class='page-item active'><a class='page-link'>1</a></li>`<br />Defaults to `active`                                                                                                                                                                                          |
-| **disabledItemClassName**<br />`string`<br />(optional) | Appended to **<li\>** class name for non-clickable elements (disabled nav buttons and the break/ellipsis):<br />`<li class='page-item disabled'><span class='page-link'>...</span></li>`<br />Defaults to `disabled`                                                                                                                            |
-| **navClassName**<br />`string`<br />(optional)          | Appended to **\<li>** class name for nav items (`«` / `»` buttons):<br />`<li class='page-item my-nav'><span class='page-link'>«</span></li>`<br />By defaults is not output                                                                                                                                                                    |
-| **previousClassName**<br />`string`<br />(optional)     | Appended to **\<li>** class name for the nav previous button (`«`):<br />`<li class='page-item my-previous-button'><span class='page-link'>«</span></li>`<br />By defaults is not output                                                                                                                                                        |
-| **nextClassName**<br />`string`<br />(optional)         | Appended to **\<li>** class name for the nav next button (`»`):<br />`<li class='page-item my-next-button'><span class='page-link'>»</span></li>`<br />By defaults is not output                                                                                                                                                                |
-
-### Label Props
-
-| Prop                                                         | Description                                                                                                                                                                                                                        |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **previousLabel**<br />`string \| ReactNode`<br />(optional) | The label for the previous button, defaults to `«`<br /><br />See the [FAQ](https://react-responsive-pagination.elantha.com/faq#using-react-components-for-labels) for further information on using React components for this prop |
-| **nextLabel**<br />`string \| ReactNode`<br />(optional)     | The label for the next button, defaults to `»` <br /><br />See the [FAQ](https://react-responsive-pagination.elantha.com/faq#using-react-components-for-labels) for further information on using React components for this prop    |
-| **ariaPreviousLabel**<br />`string`<br />(optional)          | The accessibility ARIA label for the previous button, defaults to `Previous`                                                                                                                                                       |
-| **ariaNextLabel**<br />`string`<br />(optional)              | The accessibility ARIA label for the next button, defaults to `Next`                                                                                                                                                               |
-
-### Misc Props
-
-| Prop                                                       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **renderNav**<br />`boolean`<br />(optional)               | When set to `false` the nav buttons (**«**/**»**) will not be rendered. Defaults to `true`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| **narrowBehaviour**<br />`NarrowBehaviour`<br />(optional) | Specify that nav buttons (**«**/**»**) and/or the ellipsis (**…**) can be dropped for very narrow widths (useful if the component is used in narrow widths with high page numbers)<br />Valid behaviours should be imported from `react-responsive-pagination/narrowBehaviour`, [see example](https://react-responsive-pagination.elantha.com/props#misc-props)<br /><br />`dropEllipsis` - drop the ellipsis (**…**) for narrow widths<br />`dropNav` - drop the nav (**«**/**»**) for narrow widths<br />`dropFirstAndLast` - drop the first and last pages for narrow widths<br /><br />Use the `combine` helper to combine narrowBehaviours, example:<br />`narrowBehaviour={combine(dropNav, dropEllipsis)}` - drop the nav initially and then further drop the ellipsis if required<br />`combine` should also be imported from `react-responsive-pagination/narrowBehaviour` [see examples](https://react-responsive-pagination.elantha.com/props#misc-props) |
-
-See [Props Reference](https://react-responsive-pagination.elantha.com/props) for the full list
-
-## ℹ About Auto Sizing
-
-More info in the [FAQ](https://react-responsive-pagination.elantha.com/faq#about-auto-sizing)
+| Prop                                                                                   | Description                                                                                                                                                                                                                                 |
+| -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **current**<br />`number`<br />(required)                                              | The current active page. Indexed from 1                                                                                                                                                                                                     |
+| **total**<br />`number`<br />(required)                                                | The total number of pages                                                                                                                                                                                                                   |
+| **onPageChange**<br />`(newPage: number) => void`<br />(required)                      | A callback handler which is called when the user clicks a new page, note that the active page will not change unless the `current` prop is updated to reflect the new page (as in the example above). The `newPage` value is indexed from 1 |
+| _**[... many more props ...](https://react-responsive-pagination.elantha.com/props)**_ | **See [Props Reference](https://react-responsive-pagination.elantha.com/props) for the full list**                                                                                                                                          |

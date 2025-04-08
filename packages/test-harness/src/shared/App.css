@@ -4,5 +4,22 @@
 }
 
 #editable-style-block {
-  display: 'block';
+  display: block;
+}
+
+body {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+}
+
+@media (prefers-color-scheme: dark) {
+  body:not(:has([data-pagination-subtheme='light'])) {
+    color: var(--bs-body-color, #dee2e6);
+    background-color: var(--bs-body-bg, #212529);
+  }
+}
+
+body:has([data-pagination-subtheme='dark']) {
+  color: var(--bs-body-color, #dee2e6);
+  background-color: var(--bs-body-bg, #212529);
 }

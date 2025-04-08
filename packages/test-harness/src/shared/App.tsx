@@ -10,7 +10,14 @@ import {
 } from 'react-responsive-pagination/narrowBehaviour';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { Field, Formik } from 'formik';
-import { frameworkIds, getFrameworkStyles } from './frameworkStyles';
+import {
+  SubTheme,
+  subThemes,
+  frameworkIds,
+  getFrameworkStyles,
+  getThemeVariables,
+  getThemeVariableTestValue,
+} from './frameworkStyles';
 import { PresetId, presets } from './presets';
 import { createTestComponent } from './test-components';
 
@@ -53,6 +60,8 @@ const fields = {
 const initialValues = {
   renderPagination: true,
   presetId: 'none' as PresetId,
+  subTheme: '' as SubTheme,
+  testThemeVariable: '',
   propsAsJson: {
     total: '100',
     maxWidth: '',
@@ -84,7 +93,12 @@ const initialValues = {
   },
 };
 
-const cssExtraClassOptions = ['add-margin-padding', 'content-box', 'demo'];
+const cssExtraClassOptions = [
+  'add-margin-padding',
+  'content-box',
+  'demo',
+  'gh-dark',
+];
 
 const initialStyle = '.pagination { font-size: inherit; }';
 
@@ -102,7 +116,16 @@ function App() {
     <FrameworkStyles>
       <Formik initialValues={initialValues} onSubmit={() => {}}>
         {formik => (
-          <>
+          <div
+            className="wrapper"
+            data-bs-theme={formik.values.subTheme}
+            data-pagination-subtheme={formik.values.subTheme}
+          >
+            {formik.values.testThemeVariable && (
+              <style>
+                {`:root { ${formik.values.testThemeVariable}: ${getThemeVariableTestValue(formik.values.testThemeVariable)}; }`}
+              </style>
+            )}
             <div className={cssExtraClasses.join(' ')} id="paginationParent">
               {formik.values.renderPagination && (
                 <ResponsivePagination
@@ -144,6 +167,53 @@ function App() {
                         </label>
                       </div>
                     ))}
+                  </div>
+                </div>
+                <div className="mb-1 row">
+                  <label className="col-sm-4 col-form-label">Sub Theme</label>
+                  <div className="col-sm-8">
+                    {Object.entries(subThemes).map(([label, subTheme]) => (
+                      <div
+                        className="form-check form-check-inline align-middle"
+                        key={subTheme}
+                      >
+                        <Field
+                          type="radio"
+                          name="subTheme"
+                          id={`subTheme_${subTheme}`}
+                          className="form-check-input"
+                          value={subTheme}
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor={`subTheme_${subTheme}`}
+                        >
+                          {label}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="mb-1 row">
+                  <label className="col-sm-4 col-form-label">Test css var</label>
+                  <div className="col-sm-8">
+                    <select
+                      className="form-select"
+                      value={formik.values.testThemeVariable}
+                      onChange={e =>
+                        formik.setFieldValue(
+                          'testThemeColorVariable',
+                          e.target.value,
+                        )
+                      }
+                    >
+                      <option value="">Select</option>
+                      {getThemeVariables().map(colorVariable => (
+                        <option key={colorVariable} value={colorVariable}>
+                          {colorVariable}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                 </div>
                 <div className="mb-1 row">
@@ -260,7 +330,7 @@ function App() {
                 )}
               </form>
             </div>
-          </>
+          </div>
         )}
       </Formik>
     </FrameworkStyles>

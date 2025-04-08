@@ -15,22 +15,23 @@ import ClassicThemeContainer from '@components/ClassicThemeContainer.astro';
 import MinimalThemeContainer from '@components/MinimalThemeContainer.astro';
 import ThemeAttributes from '@components/ThemeAttributes.astro';
 import { Code } from 'astro-expressive-code/components';
+import TickList from '@components/TickList.astro';
 
 # Themes
 
-**react-responsive-pagination** is an easy to use React responsive pagination component which always outputs the right number of pagination elements for the width available, no guesswork needed
+**react-responsive-pagination** includes several pre-styled themes 'out of the box'
 
-**react-responsive-pagination** comes with a number of ready-to-go pre-styled themes, each theme is a pre-built configurable css stylesheet, ready to be included in a front-end project - see below for the list of available themes. All themes support overridable attributes, see [Configuring a theme](#configuring-a-theme-optional) for more details
+{/* prettier-ignore */}
+<TickList>
+  - **Dark Mode** - each theme comes in two flavours: **auto light / dark** or **light only**
+  - **Ready to go** - each theme is a pre-built configurable css stylesheet, just include the css file straight from the package
+  - **Customisable** - each theme supports overridable attributes - see [Configuring a theme](#configuring-a-theme-optional) for more details
+  
+</TickList>
 
-**See below for available themes**
+Want to create your own css? See the [Custom Styles](/custom-styled-pagination) guide
 
-## Installation
-
-Install **react-responsive-pagination** from npm:
-
-```bash
-npm install react-responsive-pagination
-```
+More info on the individual themes below
 
 ## Theme quick start
 
@@ -42,7 +43,7 @@ For example, using the **Classic** theme:
 import React, { useState } from 'react';
 import ResponsivePagination from 'react-responsive-pagination';
 
-import 'react-responsive-pagination/themes/classic.css';
+import 'react-responsive-pagination/themes/classic-light-dark.css';
 // ^ classic theme, see below for other themes
 // include this once in the project (preferrably the main index.js)
 
@@ -75,10 +76,14 @@ _(see [Configuring a theme](#configuring-a-theme-optional) for details on overri
 
 <ThemeAttributes>
 **Theme import:**  
-`import 'react-responsive-pagination/themes/classic.css';`
+`import 'react-responsive-pagination/themes/classic-light-dark.css';`   
+\- or -  
+`import 'react-responsive-pagination/themes/classic.css';` [light mode only]
 
-**Overiddable variables:**  
-See [common overridable variables](#common-overridable-variables) below or see the [theme css source](https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/main/packages/react-responsive-pagination/themes/classic.css) for the full list (with default values)
+**Theme documentation:**  
+See a full list of overridable variables:  
+[Classic theme (auto light or dark) documentation](https://github.com/jonelantha/react-responsive-pagination/tree/main/packages/react-responsive-pagination/themes/classic-light-dark.md)  
+[Classic theme (light only) documentation](https://github.com/jonelantha/react-responsive-pagination/tree/main/packages/react-responsive-pagination/themes/classic.md)
 
 </ThemeAttributes>
 
@@ -92,13 +97,15 @@ Bootstrap 5 styled pagination. Standalone styles, no need to install the full Bo
 
 <ThemeAttributes>
 **Theme import:**  
-`import 'react-responsive-pagination/themes/bootstrap.css';`
+`import 'react-responsive-pagination/themes/bootstrap-light-dark.css';`   
+\- or -  
+`import 'react-responsive-pagination/themes/bootstrap.css';` [light mode only]
 
-**Notes:**  
-See [additional Bootstrap options](/bootstrap-pagination#options)
-
-**Overiddable variables:**  
-See [common overridable variables](#common-overridable-variables) below or see the [theme css source](https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/main/packages/react-responsive-pagination/themes/bootstrap.css) for the full list (with default values)
+**Theme documentation:**  
+See a full list of overridable variables:  
+[Bootstrap theme (auto light or dark) documentation](https://github.com/jonelantha/react-responsive-pagination/tree/main/packages/react-responsive-pagination/themes/bootstrap-light-dark.md)  
+[Bootstrap theme (light only) documentation](https://github.com/jonelantha/react-responsive-pagination/tree/main/packages/react-responsive-pagination/themes/bootstrap.md)  
+Also see [additional Bootstrap options](/bootstrap-pagination#options)
 
 </ThemeAttributes>
 
@@ -110,10 +117,14 @@ See [common overridable variables](#common-overridable-variables) below or see t
 
 <ThemeAttributes>
 **Theme import:**  
-`import 'react-responsive-pagination/themes/minimal.css';`
+`import 'react-responsive-pagination/themes/minimal-light-dark.css';`   
+\- or -  
+`import 'react-responsive-pagination/themes/minimal.css';` [light mode only]
 
-**Overiddable variables:**  
-See [common overridable variables](#common-overridable-variables) below or see the [theme css source](https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/main/packages/react-responsive-pagination/themes/minimal.css) for the full list (with default values)
+**Theme documentation:**  
+See a full list of overridable variables:  
+[Minimal theme (auto light or dark) documentation](https://github.com/jonelantha/react-responsive-pagination/tree/main/packages/react-responsive-pagination/themes/minimal-light-dark.md)  
+[Minimal theme (light only) documentation](https://github.com/jonelantha/react-responsive-pagination/tree/main/packages/react-responsive-pagination/themes/minimal.md)
 
 </ThemeAttributes>
 
@@ -125,35 +136,35 @@ All themes are ready-to-go but various attributes can be overridden (if required
 
 ```css
 :root {
-  --pagination-color: #0d6efd;
-  --pagination-hover-color: #0a58ca;
+  --pagination-color-light: #0d6efd;
+  --pagination-hover-color-light: #0a58ca;
   /* etc */
 }
 ```
 
-See [Common overridable variables](#common-overridable-variables) below and also see the respective theme source files (linked above) for a full list of supported variables
+See [Common overridable variables](#common-overridable-variables) below and also see the respective theme documentation files (linked above) for a full list of supported variables
 
 ## Common overridable variables
 
 _(see the [Configuring a theme](#configuring-a-theme-optional) section above for details on overriding theme attributes)_
 
-| Variable                      | Description                                                                                                       |
-| ----------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `--pagination-font-family`    | Main font                                                                                                         |
-| `--pagination-font-weight`    | Main font weight, see [mdn font-weight](https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight) for options |
-| `--pagination-font-size`      | Font size                                                                                                         |
-| `--pagination-color`          | Text colour                                                                                                       |
-| `--pagination-bg`             | Background colour                                                                                                 |
-| `--pagination-hover-color`    | Text colour when hovering                                                                                         |
-| `--pagination-hover-bg`       | Background colour when hovering                                                                                   |
-| `--pagination-active-color`   | Text colour of active item                                                                                        |
-| `--pagination-active-bg`      | Background colour of active item                                                                                  |
-| `--pagination-disabled-color` | Text colour of disabled items                                                                                     |
-| `--pagination-disabled-bg`    | Background colour of disabled items                                                                               |
-| `--pagination-margin-top`     | Top margin of pagination component                                                                                |
-| `--pagination-margin-bottom`  | Bottom margin of pagination component                                                                             |
+| Variable                                                                    | Description                                                                                                       |
+| --------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `--pagination-font-family`                                                  | Main font                                                                                                         |
+| `--pagination-font-weight-light`<br />`--pagination-font-weight-dark`       | Main font weight, see [mdn font-weight](https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight) for options |
+| `--pagination-font-size`                                                    | Font size                                                                                                         |
+| `--pagination-color-light`<br />`--pagination-color-dark`                   | Text colour                                                                                                       |
+| `--pagination-bg-light`<br />`--pagination-bg-dark`                         | Background colour                                                                                                 |
+| `--pagination-hover-color-light`<br />`--pagination-hover-color-dark`       | Text colour when hovering                                                                                         |
+| `--pagination-hover-bg-light`<br />`--pagination-hover-bg-dark`             | Background colour when hovering                                                                                   |
+| `--pagination-active-color-light`<br />`--pagination-active-color-dark`     | Text colour of active item                                                                                        |
+| `--pagination-active-bg-light`<br />`--pagination-active-bg-dark`           | Background colour of active item                                                                                  |
+| `--pagination-disabled-color-light`<br />`--pagination-disabled-color-dark` | Text colour of disabled items                                                                                     |
+| `--pagination-disabled-bg-light`<br />`--pagination-disabled-bg-dark`       | Background colour of disabled items                                                                               |
+| `--pagination-margin-top`                                                   | Top margin of pagination component                                                                                |
+| `--pagination-margin-bottom`                                                | Bottom margin of pagination component                                                                             |
 
-Also please see each theme source files for a full list of variables supported by that theme (linked above in the respective theme section)
+Also please see the theme documentation files for a full list of variables supported by that theme (theme documentation files linked above in the respective theme section)
 
 ## Need custom css?
 
