@@ -4,5 +4,21 @@
 }
 
 #editable-style-block {
-  display: 'block';
+  display: block;
+}
+
+body {
+  --default-body-color: #212529;
+  --default-body-bg: #fff;
+
+  margin: 0;
+  color: var(--body-color, var(--bs-body-color, var(--default-body-color)));
+  background-color: var(--body-bg, var(--bs-body-bg, var(--default-body-bg)));
+}
+
+@media (prefers-color-scheme: dark) {
+  body:not([data-pagination-subtheme='light']) {
+    --default-body-color: #dee2e6;
+    --default-body-bg: #212529;
+  }
 }

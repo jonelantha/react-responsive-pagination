@@ -33,13 +33,15 @@ export class TestHarnessPage {
     });
   }
 
-  async goto(options?: { css?: string; notStrict?: boolean }) {
+  async goto(options?: { framework?: string; css?: string; notStrict?: boolean }) {
     const query = new URLSearchParams({
       ...(options?.css && { css: options?.css }),
       ...(options?.notStrict && { notStrict: '1' }),
     });
 
-    await this.page.goto(`${harnessUrl}bootstrap4?${query.toString()}`);
+    const framework = options?.framework || 'bootstrap4';
+
+    await this.page.goto(`${harnessUrl}${framework}?${query.toString()}`);
   }
 
   async setField(field: string, value: any) {

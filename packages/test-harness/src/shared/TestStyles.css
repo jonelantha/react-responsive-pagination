@@ -19,6 +19,10 @@
   box-sizing: content-box;
 }
 
+body:has(.gh-dark) {
+  --body-bg: #0d1117;
+}
+
 .demo .pagination {
   margin: 10px 10px 50px 10px;
 }
