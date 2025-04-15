@@ -7,16 +7,27 @@
 :root {
   --color-content: #1c1e21;
 
+  --main-bg: transparant;
+
+  --color-primary: #0d6efd;
+  --color-primary-hover: #0b5ed7;
+
   --color-link: #007bff;
   --color-link-hover: #0062cc; /*shade(0.2, colorLink);*/
 
-  --color-nav-bg-hover: #eeeeee;
+  --nav-bg-hover: #eeeeee;
 
   --color-highlighted-background: #e6eeff;
 
-  /*export const blockBg = '#eeeeee'; */
+  --side-nav-active-color: var(--color-content);
+  --side-nav-active-bg: #e6eeff;
+
+  --top-nav-bg: white;
+  --sidebar-bg: white;
+  --sidebar-static-bg: white;
 
   --footer-bg: #eeeeee;
+  --border-color: #eeeeee;
   --color-footer-link: #333333;
   --color-footer-link-hover: #282828; /* = shade(0.2, colorFooterLink); */
 
@@ -25,6 +36,43 @@
 
   --table-border-color: #dadde1;
   --table-stripe-color: #f5f6f7;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-content: #e3e3e3;
+
+    --main-bg: #1b1b1d;
+
+    --color-primary: #0d6efd;
+    --color-primary-hover: #0b5ed7;
+
+    --color-link: #6ea8fe;
+    --color-link-hover: #8bb9fe;
+
+    --color-highlighted-background: #ffffff1a;
+
+    --nav-bg-hover: rgba(255, 255, 255, 0.1);
+
+    --top-nav-bg: #242526;
+    --sidebar-bg: #242526;
+    --sidebar-static-bg: transparent;
+
+    --side-nav-active-color: #1c1e21;
+    --side-nav-active-bg: #e6eeff;
+
+    --footer-bg: #2b3137;
+    --border-color: #444950;
+
+    --color-footer-link: #e3e3e3;
+    --color-footer-link-hover: #ffffff; /* = shade(0.2, colorFooterLink); */
+
+    // --box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --box-border: 1px solid #444950;
+
+    --table-border-color: #444950;
+    --table-stripe-color: #242526;
+  }
 }
 
 html {
@@ -40,6 +88,7 @@ html {
 body {
   margin: 0;
   word-wrap: break-word;
+  background-color: var(--main-bg);
 }
 
 html {

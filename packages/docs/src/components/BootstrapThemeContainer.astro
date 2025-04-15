@@ -15,6 +15,8 @@ const props = Astro.props;
   @use 'sass:meta';
 
   .bootstrap-styles {
-    @include meta.load-css('react-responsive-pagination/themes/bootstrap');
+    @include meta.load-css(
+      'react-responsive-pagination/themes/bootstrap-light-dark'
+    );
   }
 </style>

@@ -15,25 +15,30 @@ import ClassicThemeContainer from '@components/ClassicThemeContainer.astro';
 import MinimalThemeContainer from '@components/MinimalThemeContainer.astro';
 import ThemeAttributes from '@components/ThemeAttributes.astro';
 import { Code } from 'astro-expressive-code/components';
-import TickList from '@components/TickList.astro';
+import TickListBox from '@components/TickListBox.astro';
 
 # Themes
 
 **react-responsive-pagination** includes several pre-styled themes 'out of the box'
 
 {/* prettier-ignore */}
-<TickList>
+<TickListBox>
   - **Dark Mode** - each theme comes in two flavours: **auto light / dark** or **light only**
   - **Ready to go** - each theme is a pre-built configurable css stylesheet, just include the css file straight from the package
   - **Customisable** - each theme supports overridable attributes - see [Configuring a theme](#configuring-a-theme-optional) for more details
-  
-</TickList>
+</TickListBox>
 
 Want to create your own css? See the [Custom Styles](/custom-styled-pagination) guide
 
 More info on the individual themes below
 
 ## Theme quick start
+
+First add the **react-responsive-pagination** package to your project:
+
+```bash
+npm install react-responsive-pagination
+```
 
 Using a theme is simple, just include the theme css file somewhere in your project (usually a root page or maybe the file where the global css file is being included).
 

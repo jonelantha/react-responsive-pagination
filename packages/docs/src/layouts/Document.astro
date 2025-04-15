@@ -62,7 +62,7 @@ import Footer from '@components/Footer.astro';
       top: var(--header-height);
       height: calc(100vh - var(--header-height));
       position: sticky;
-      border-right: 1px solid var(--footer-bg);
+      border-right: 1px solid var(--border-color);
 
       @include util.for-popup-nav {
         display: none;
@@ -71,7 +71,7 @@ import Footer from '@components/Footer.astro';
         left: 0;
         z-index: 10;
         height: 100vh;
-        border-right: 1px solid var(--footer-bg);
+        border-right: 1px solid var(--border-color);
         width: clamp(vars.$side-nav-width, 85%, 500px);
 
         .popupSideNavVisible & {
