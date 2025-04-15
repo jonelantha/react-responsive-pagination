@@ -19,7 +19,7 @@
   text-decoration: none;
 }
 
-.page-item a.page-link:hover {
+.page-item .page-link:hover {
   background-color: #cccccc;
 }
 
@@ -33,4 +33,22 @@
   color: #6c757d;
   pointer-events: none;
   cursor: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  .page-item .page-link {
+    color: #ffffff;
+  }
+
+  .page-item .page-link:hover {
+    background-color: #343a40;
+  }
+
+  .page-item.active .page-link {
+    background-color: #007bff;
+  }
+
+  .page-item.disabled .page-link {
+    color: #6c757d;
+  }
 }

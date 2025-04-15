@@ -92,13 +92,14 @@ function isExpanded(doc: CollectionEntry<'docs'>) {
   @use '@styles/_vars.scss';
 
   nav {
-    background: white;
+    background: var(--sidebar-bg);
     overflow: auto;
 
     @include util.for-static-nav {
       .popup-only {
         display: none;
       }
+      background: var(--sidebar-static-bg);
     }
 
     div.top-bar {
@@ -109,7 +110,7 @@ function isExpanded(doc: CollectionEntry<'docs'>) {
       position: sticky;
       top: 0;
       z-index: 1;
-      background-color: white;
+      background-color: var(--sidebar-static-bg);
       box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
       font-weight: vars.$font-weight-semi-bold;
 
@@ -138,7 +139,7 @@ function isExpanded(doc: CollectionEntry<'docs'>) {
         background-color: transparent;
 
         &:is(:hover, :focus-visible) {
-          background-color: var(--color-nav-bg-hover);
+          background-color: var(--nav-bg-hover);
         }
       }
     }
@@ -161,7 +162,14 @@ function isExpanded(doc: CollectionEntry<'docs'>) {
             flex: 1 0 0;
 
             &.active {
-              background-color: var(--color-highlighted-background);
+              color: var(--side-nav-active-color);
+              background-color: var(--side-nav-active-bg);
+
+              ~ button {
+                svg {
+                  color: var(--side-nav-active-color);
+                }
+              }
             }
           }
 
@@ -183,7 +191,7 @@ function isExpanded(doc: CollectionEntry<'docs'>) {
             border-radius: vars.$border-radius;
 
             &:is(:hover, :focus-visible) {
-              background-color: var(--color-nav-bg-hover);
+              background-color: var(--nav-bg-hover);
             }
 
             svg {
@@ -239,7 +247,7 @@ function isExpanded(doc: CollectionEntry<'docs'>) {
     border-radius: vars.$border-radius;
 
     &:is(:hover, :focus-visible) {
-      background-color: var(--color-nav-bg-hover);
+      background-color: var(--nav-bg-hover);
       color: inherit;
     }
   }
