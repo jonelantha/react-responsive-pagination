@@ -20,11 +20,7 @@ import ChoiceBlock from '@components/ChoiceBlock.astro';
 
 # react-responsive-pagination
 
-### _Take the guess work out of pagination_
-
-An npm React component for truly responsive pagination
-
-Pagination which always outputs the right number of links for the width available:
+**Truly responsive pagination** - always displays the right number of links for the width available:
 
 <BootstrapThemeContainer>
   <PaginationRenderer client:load />
@@ -36,22 +32,14 @@ _Try it for yourself, resize the window (or change the orientation of your devic
 <TickList>
   - Fully accessible with aria tags for screen readers  
   - Ready styled themes (or bring your own css)
-  - Bootstrap 4 & 5 support built-in
-  - High performance, no unnecessary renders
   - Built for tree-shaking = minimum impact on the bundle
-  - Modern hook based architecture with 100% TypeScript
-  - Backed by a comprehensive automated browser based test suite
 </TickList>
 
-## Getting Started
-
-```bash
-npm install react-responsive-pagination
-```
+## Getting started - 3 ways to style
 
 <ChoiceBlocksContainer>
   <ChoiceBlock
-    title="Want ready-styled pagination?"
+    title="1. Want ready-styled pagination?"
     ctaLabel="Themed Pagination"
     ctaLink="/themes"
   >
@@ -60,21 +48,21 @@ npm install react-responsive-pagination
     </ClassicThemeContainer>
   </ChoiceBlock>
   <ChoiceBlock
-    title="Already using Bootstrap?"
-    ctaLabel="Bootstrap Pagination"
-    ctaLink="/bootstrap-pagination"
-  >
-    <BootstrapThemeContainer noBottomMargin>
-      <PaginationRenderer client:load />
-    </BootstrapThemeContainer>
-  </ChoiceBlock>
-  <ChoiceBlock
-    title="Want to use custom styles?"
+    title="2. Want to use custom CSS styles?"
     ctaLabel="Custom Pagination"
     ctaLink="/custom-styled-pagination"
   >
     <CustomStyleContainer noBottomMargin>
       <PaginationRenderer client:load />
     </CustomStyleContainer>
+  </ChoiceBlock>
+  <ChoiceBlock
+    title="3. Already using Bootstrap CSS framework?"
+    ctaLabel="Bootstrap Pagination"
+    ctaLink="/bootstrap-pagination"
+  >
+    <BootstrapThemeContainer noBottomMargin>
+      <PaginationRenderer client:load />
+    </BootstrapThemeContainer>
   </ChoiceBlock>
 </ChoiceBlocksContainer>

@@ -1,27 +1,9 @@
 /*
---pagination-font-family
---pagination-font-weight
---pagination-line-height
---pagination-margin-top
---pagination-margin-bottom
---pagination-justify-content
---pagination-padding-y
---pagination-padding-x
---pagination-item-margin-x
---pagination-color
---pagination-bg
---pagination-border-width
---pagination-border-color
---pagination-border-radius
---pagination-hover-color
---pagination-hover-bg
---pagination-hover-border-color
---pagination-active-color
---pagination-active-bg
---pagination-active-border-color
---pagination-disabled-color
---pagination-disabled-bg
---pagination-disabled-border-color
+Classic theme [light only]
+(see ./classic-light-dark.css for auto light/dark version of this theme)
+
+Want to override color variables? See reference at:
+https://github.com/jonelantha/react-responsive-pagination/tree/main/packages/react-responsive-pagination/themes/classic.md
 */
 
 .pagination {

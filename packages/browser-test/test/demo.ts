@@ -4,12 +4,12 @@ const testHarness = new TestHarnessPage(page);
 
 const startWidth = 650;
 const endWidth = 500;
-const rate = 2;
+const rate = 1;
 
 jest.setTimeout(30000);
 
 beforeAll(async () => {
-  await testHarness.goto({ css: 'demo' });
+  await testHarness.goto({ framework: 'bootstrapLightDarkTheme', css: 'demo' });
 
   await page.setViewportSize({ width: startWidth, height: 200 });
 
@@ -23,26 +23,32 @@ beforeAll(async () => {
 });
 
 test('demo', async () => {
-  await page.waitForTimeout(15000);
+  await page.waitForTimeout(5000);
 
-  for (let i = 0; i <= 100; i += rate) {
-    const r = i / 100;
-    const width = Math.floor(startWidth - (startWidth - endWidth) * linear(r));
-    await page.setViewportSize({ width, height: 200 });
-    await page.waitForTimeout(10);
+  for (const colorScheme of ['light', 'dark'] as const) {
+    await page.emulateMedia({ colorScheme });
+
+    await page.waitForTimeout(15000);
+
+    for (let i = 0; i <= 100; i += rate) {
+      const r = i / 100;
+      const width = Math.floor(startWidth - (startWidth - endWidth) * linear(r));
+      await page.setViewportSize({ width, height: 200 });
+      await page.waitForTimeout(10);
+    }
+
+    await page.waitForTimeout(1000);
+
+    for (let i = 0; i <= 100; i += rate) {
+      const r = i / 100;
+      const width = Math.floor(endWidth + (startWidth - endWidth) * linear(r));
+      await page.setViewportSize({ width, height: 200 });
+      await page.waitForTimeout(10);
+    }
+
+    await page.waitForTimeout(5000);
   }
-
-  await page.waitForTimeout(1000);
-
-  for (let i = 0; i <= 100; i += rate) {
-    const r = i / 100;
-    const width = Math.floor(endWidth + (startWidth - endWidth) * linear(r));
-    await page.setViewportSize({ width, height: 200 });
-    await page.waitForTimeout(10);
-  }
-
-  await page.waitForTimeout(1000);
-});
+}, 60000);
 
 //http://npmjs.com/package/react-responsive-pagination?activeTab=readme
 

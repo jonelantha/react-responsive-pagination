@@ -4,6 +4,7 @@ import type { HTMLAttributes } from 'astro/types';
 import ExternalSVG from './ExternalSVG.astro';
 import HamburgerSVG from './HamburgerSVG.astro';
 import { getPageUrl } from '../utils';
+import GitHubSVG from './GitHubSVG.astro';
 
 type Props = HTMLAttributes<'nav'>;
 
@@ -28,7 +29,7 @@ const links = (await getCollection('docs'))
     href="https://www.github.com/jonelantha/react-responsive-pagination"
     rel="noopener noreferrer"
   >
-    <img src="/GitHub-Mark-64px.png" aria-hidden alt="" />
+    <GitHubSVG aria-hidden />
     GitHub
     <ExternalSVG aria-hidden />
   </a>
@@ -41,7 +42,7 @@ const links = (await getCollection('docs'))
     $h-padding: 0.4em;
     $h-item-left-margin: 0.5em;
 
-    background: white;
+    background: var(--top-nav-bg);
     padding: 0.5em 0;
 
     display: flex;
@@ -76,7 +77,7 @@ const links = (await getCollection('docs'))
 
       &:is(:hover, :focus-visible) {
         color: initial;
-        background: var(--color-nav-bg-hover);
+        background: var(--nav-bg-hover);
       }
     }
 
@@ -94,7 +95,7 @@ const links = (await getCollection('docs'))
 
       background: none;
       &:is(:hover, :focus-visible) {
-        background-color: var(--color-nav-bg-hover);
+        background-color: var(--nav-bg-hover);
       }
 
       display: flex;
@@ -123,13 +124,13 @@ const links = (await getCollection('docs'))
     }
 
     .gitHubLink {
-      img {
+      svg:first-child {
         width: 1.25em;
         height: 1.25em;
         margin-right: 0.4em;
       }
 
-      svg {
+      svg:last-child {
         line-height: 1;
         margin-left: 0.4em;
         width: 0.8em;

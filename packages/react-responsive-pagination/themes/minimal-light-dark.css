@@ -1,0 +1,140 @@
+/*
+Minimal theme [auto light / dark]
+
+Want to override color variables? See reference at:
+https://github.com/jonelantha/react-responsive-pagination/tree/main/packages/react-responsive-pagination/themes/minimal-light-dark.md
+*/
+
+.pagination {
+  --pagination-color: var(--pagination-color-light, #0d6efd);
+  --pagination-font-weight: var(--pagination-font-weight-light);
+  --pagination-active-color: var(--pagination-active-color-light, #fff);
+  --pagination-active-bg: var(--pagination-active-bg-light, #0d6efd);
+  --pagination-active-font-weight: var(
+    --pagination-active-font-weight-light,
+    var(--pagination-font-weight)
+  );
+  --pagination-bg: var(--pagination-bg-light, transparent);
+  --pagination-hover-color: var(
+    --pagination-hover-color-light,
+    var(--pagination-active-color)
+  );
+  --pagination-hover-bg: var(--pagination-hover-bg-light, var(--pagination-color));
+  --pagination-disabled-color: var(--pagination-disabled-color-light, #6c757d);
+  --pagination-disabled-bg: var(
+    --pagination-disabled-bg-light,
+    var(--pagination-bg)
+  );
+}
+
+@media (prefers-color-scheme: dark) {
+  .pagination:not([data-pagination-subtheme='light'] *) {
+    --pagination-color: var(--pagination-color-dark, #6ea8fe);
+    --pagination-font-weight: var(--pagination-font-weight-dark);
+    --pagination-active-color: var(--pagination-active-color-dark, #fff);
+    --pagination-active-font-weight: var(
+      --pagination-active-font-weight-dark,
+      var(--pagination-font-weight)
+    );
+    --pagination-active-bg: var(--pagination-active-bg-dark, #0d6efd);
+    --pagination-bg: var(--pagination-bg-dark, transparent);
+    --pagination-hover-color: var(
+      --pagination-hover-color-dark,
+      var(--pagination-active-color)
+    );
+    --pagination-hover-bg: var(--pagination-hover-bg-dark, var(--pagination-color));
+    --pagination-disabled-color: var(
+      --pagination-disabled-color-dark,
+      rgba(222, 226, 230, 0.75)
+    );
+    --pagination-disabled-bg: var(
+      --pagination-disabled-bg-dark,
+      var(--pagination-bg)
+    );
+  }
+}
+
+.pagination {
+  font-family: var(
+    --pagination-font-family,
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    'Noto Sans',
+    'Liberation Sans',
+    Arial,
+    sans-serif,
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    'Noto Color Emoji'
+  );
+  font-weight: var(--pagination-font-weight);
+  line-height: var(--pagination-line-height, 1.5);
+  display: flex;
+  padding-left: 0;
+  margin-top: var(--pagination-margin-top, 0);
+  margin-bottom: var(--pagination-margin-bottom, 0);
+  list-style: none;
+  justify-content: var(
+    --pagination-justify-content,
+    var(--pagination-justify-content-fb)
+  );
+}
+
+.pagination .page-link {
+  position: relative;
+  display: block;
+  padding: var(--pagination-padding-y, 0.25rem) var(--pagination-padding-x, 0.5rem);
+  font-size: var(--pagination-font-size, 1rem);
+  color: var(--pagination-color);
+  text-decoration: none;
+  background-color: var(--pagination-bg);
+  border-radius: var(--pagination-border-radius, 0.2rem);
+  margin: 0 var(--pagination-item-margin-x, 0);
+  transition:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pagination .page-link {
+    transition: none;
+  }
+}
+@media (hover: hover) {
+  .pagination .page-link:hover {
+    z-index: 2;
+    color: var(--pagination-hover-color);
+    background-color: var(--pagination-hover-bg);
+    text-decoration: var(--pagination-hover-text-decoration);
+  }
+}
+.pagination .page-link:focus {
+  z-index: 3;
+}
+.pagination .active > .page-link {
+  z-index: 3;
+  color: var(--pagination-active-color);
+  background-color: var(--pagination-active-bg);
+  font-weight: var(--pagination-active-font-weight);
+}
+
+.pagination .disabled > .page-link {
+  color: var(--pagination-disabled-color);
+  pointer-events: none;
+  background-color: var(--pagination-disabled-bg);
+}
+
+.pagination.justify-content-start {
+  --pagination-justify-content-fb: flex-start;
+}
+
+.pagination.justify-content-end {
+  --pagination-justify-content-fb: flex-end;
+}
+
+.pagination.justify-content-center {
+  --pagination-justify-content-fb: center;
+}
