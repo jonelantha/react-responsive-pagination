@@ -1,5 +1,12 @@
 # React Responsive Pagination Changelog
 
+# [2.11.0](https://github.com/jonelantha/react-responsive-pagination/compare/v2.10.5...v2.11.0) (2025-04-27)
+
+
+### Features
+
+* Adding dark mode to themes ([8f748ba](https://github.com/jonelantha/react-responsive-pagination/commit/8f748ba07dd69a52c0b5104504d24a14379e3659))
+
 ## [2.10.5](https://github.com/jonelantha/react-responsive-pagination/compare/v2.10.4...v2.10.5) (2025-03-30)
 
 
