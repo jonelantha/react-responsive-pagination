@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "bootstrap": "^5.3.0",
+    "bootstrap": "^5.3.6",
     "formik": "^2.4.2",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
@@ -15,9 +15,9 @@
   "devDependencies": {
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
-    "@vitejs/plugin-react": "^4.2.1",
-    "typescript": "^5.2.2",
-    "vite": "^6.0.3"
+    "@vitejs/plugin-react": "^4.4.1",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
   },
   "scripts": {
     "start": "vite --port 3001",
