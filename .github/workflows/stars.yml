@@ -1,0 +1,10 @@
+on:
+  watch:
+    types: [started]
+jobs:
+  test:
+    name: Notify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Abort
+        run: exit 1
