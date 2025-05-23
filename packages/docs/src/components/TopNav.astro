@@ -2,8 +2,9 @@
 import { getCollection } from 'astro:content';
 import type { HTMLAttributes } from 'astro/types';
 import HamburgerSVG from '../assets/hamburger.svg';
-import { getPageUrl } from '../utils';
+import { getPageUrl, getStarCount } from '../utils';
 import GitHubSVG from '../assets/github.svg';
+import StarSVG from '../assets/star.svg';
 
 type Props = HTMLAttributes<'nav'>;
 
@@ -12,6 +13,8 @@ const { class: className, ...rest } = Astro.props;
 const links = (await getCollection('docs'))
   .filter(doc => doc.data.topNavOrder)
   .sort((a, b) => a.data.topNavOrder! - b.data.topNavOrder!);
+
+const starCount = await getStarCount();
 ---
 
 <nav id="topNav" class={className} {...rest}>
@@ -29,25 +32,38 @@ const links = (await getCollection('docs'))
       </a>
     ))
   }
-  <a
-    class="gitHubLink"
-    href="https://www.github.com/jonelantha/react-responsive-pagination"
-    rel="noopener noreferrer"
-  >
-    <GitHubSVG aria-hidden />
-    GitHub
-  </a>
+  <div class="gitHubLinks">
+    <a
+      class="gitHubLink"
+      href="https://www.github.com/jonelantha/react-responsive-pagination"
+      rel="noopener noreferrer"
+    >
+      <GitHubSVG aria-hidden />
+      GitHub
+    </a>
+    <a
+      class="gitHubStarLink"
+      href="https://www.github.com/jonelantha/react-responsive-pagination/"
+      rel="noopener noreferrer"
+      aria-label=`${starCount} GitHub stars`
+    >
+      <StarSVG />
+      {starCount}
+    </a>
+  </div>
 </nav>
 <style lang="scss">
   @use '@styles/_util.scss';
   @use '@styles/_vars.scss';
 
   nav {
+    $nav-padding: 0.5em;
     $h-padding: 0.4em;
-    $h-item-left-margin: 0.5em;
+    $h-item-left-margin-wide: 0.75em;
+    $h-item-left-margin-compact: 0.5em;
 
     background: var(--top-nav-bg);
-    padding: 0.5em 0;
+    padding: $nav-padding;
 
     display: flex;
     flex-flow: row wrap;
@@ -55,14 +71,9 @@ const links = (await getCollection('docs'))
 
     min-height: vars.$top-nav-min-height;
 
-    @include util.for-popup-nav {
-      .gitHubLink {
-        display: none;
-      }
-    }
-
-    @include util.for-top-nav-no-links {
-      .projectLink ~ a {
+    .navLink {
+      @include util.for-less-than(730px) {
+        opacity: 0;
         display: none;
       }
     }
@@ -71,8 +82,10 @@ const links = (await getCollection('docs'))
       display: inline-flex;
       align-items: center;
 
-      min-height: 2em;
-      margin: 0 0 0 $h-item-left-margin;
+      min-block-size: 2em;
+      margin: 0;
+      margin-inline-end: calc(0.5rem + util.linearRange(860px, 1000px, 8px, 100vw));
+
       font-weight: vars.$font-weight-semi-bold;
       text-decoration: none;
       padding: 0 $h-padding;
@@ -89,10 +102,9 @@ const links = (await getCollection('docs'))
       cursor: pointer;
       font-size: inherit;
       box-sizing: content-box;
-      padding: 0;
-      min-height: 2em;
-      width: 1.75em;
-      margin: 0 0 0 $h-item-left-margin;
+      min-block-size: 2em;
+      inline-size: 1.75em;
+      margin: 0 $h-item-left-margin-compact 0 0;
       border: 0;
       border-radius: vars.$border-radius;
       padding: 0 $h-padding;
@@ -112,26 +124,90 @@ const links = (await getCollection('docs'))
 
       svg {
         color: var(--color-content);
-        width: 1.75rem;
-        height: 1.75rem;
+        block-size: 1.75rem;
+        inline-size: 1.75rem;
       }
     }
 
     .projectLink {
-      padding-left: calc($h-padding - 0.1em);
+      padding-inline-start: calc($h-padding - 0.1em);
 
       span {
         font-size: 1.6em;
         line-height: 1;
-        margin-right: 0.25em;
+        margin-inline-end: 0.25em;
+      }
+    }
+
+    .gitHubLinks {
+      display: flex;
+      margin-inline: auto 0;
+
+      transition: opacity 0.1s;
+      transition:
+        opacity 0.1s,
+        display 0.1s allow-discrete;
+
+      @include util.for-less-than(880px) {
+        display: none;
+        position: absolute;
+        inset-inline-end: $nav-padding;
+        opacity: 0;
       }
     }
 
     .gitHubLink {
+      margin-inline-end: 0;
       svg {
-        width: 1.25em;
-        height: 1.25em;
-        margin-right: 0.4em;
+        block-size: 1.25em;
+        inline-size: 1.25em;
+        margin-inline-end: 0.4em;
+      }
+    }
+
+    .gitHubStarLink {
+      margin: 0 0 0 0.4em;
+      position: relative;
+      border: 1px solid var(--star-border-color);
+      border-radius: vars.$border-radius;
+      font-size: 0.9em;
+      background-color: var(--star-background-color);
+
+      svg {
+        block-size: 1em;
+        inline-size: 1em;
+        margin-inline-end: 0.4em;
+      }
+
+      &::after,
+      &::before {
+        content: '';
+        inset-block-start: 50%;
+        position: absolute;
+        display: inline-block;
+        block-size: 0;
+        inline-size: 0;
+        border-color: transparent;
+        border-style: solid;
+      }
+
+      &::before {
+        border-inline-end-color: var(--star-background-color);
+        inset-inline-start: -5px;
+        margin-block-start: -6px;
+        border-width: 6px 6px 6px 0;
+      }
+
+      &:hover::before {
+        border-inline-end-color: var(--nav-bg-hover);
+      }
+
+      &::after {
+        z-index: -1;
+        border-inline-end-color: var(--star-border-color);
+        inset-inline-start: -6px;
+        margin-block-start: -7px;
+        border-width: 7px 7px 7px 0;
       }
     }
   }
