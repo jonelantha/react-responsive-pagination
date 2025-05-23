@@ -23,7 +23,13 @@ const links = (await getCollection('docs'))
     <span aria-hidden>🐼</span>
     react-responsive-pagination
   </a>
-  {links.map(doc => <a href={getPageUrl(doc)}>{doc.data.navTitle}</a>)}
+  {
+    links.map(doc => (
+      <a href={getPageUrl(doc)} class="navLink">
+        {doc.data.topNavTitle ?? doc.data.navTitle}
+      </a>
+    ))
+  }
   <a
     class="gitHubLink"
     href="https://www.github.com/jonelantha/react-responsive-pagination"
