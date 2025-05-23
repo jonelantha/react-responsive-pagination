@@ -7,15 +7,12 @@
   @return clamp(0px, $m * $x + $c, $endY);
 }
 
-@mixin for-popup-nav {
-  @media screen and (max-width: 930px) {
-    @content;
-  }
-}
-
 @mixin for-static-nav {
-  @media not screen and (max-width: 930px) {
-    @content;
+  &:global(.allow-static-nav),
+  :global(.allow-static-nav) & {
+    @media not screen and (max-width: 930px) {
+      @content;
+    }
   }
 }
 
