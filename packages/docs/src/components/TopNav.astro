@@ -1,10 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 import type { HTMLAttributes } from 'astro/types';
-import ExternalSVG from './ExternalSVG.astro';
-import HamburgerSVG from './HamburgerSVG.astro';
+import HamburgerSVG from '../assets/hamburger.svg';
 import { getPageUrl } from '../utils';
-import GitHubSVG from './GitHubSVG.astro';
+import GitHubSVG from '../assets/github.svg';
 
 type Props = HTMLAttributes<'nav'>;
 
@@ -37,7 +36,6 @@ const links = (await getCollection('docs'))
   >
     <GitHubSVG aria-hidden />
     GitHub
-    <ExternalSVG aria-hidden />
   </a>
 </nav>
 <style lang="scss">
@@ -130,17 +128,10 @@ const links = (await getCollection('docs'))
     }
 
     .gitHubLink {
-      svg:first-child {
+      svg {
         width: 1.25em;
         height: 1.25em;
         margin-right: 0.4em;
-      }
-
-      svg:last-child {
-        line-height: 1;
-        margin-left: 0.4em;
-        width: 0.8em;
-        height: 0.8em;
       }
     }
   }
