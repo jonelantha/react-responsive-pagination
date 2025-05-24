@@ -24,11 +24,13 @@ const { popupNavOnly = false } = Astro.props;
   @use '@styles/_util.scss';
   @use '@styles/_vars.scss';
 
-  body:global(.popup-side-nav) {
+  body.popup-side-nav {
     overflow: hidden;
 
-    @include util.for-static-nav {
-      overflow: initial;
+    &.allow-static-nav {
+      @include util.for-static-nav {
+        overflow: initial;
+      }
     }
   }
 
@@ -44,13 +46,15 @@ const { popupNavOnly = false } = Astro.props;
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr auto;
 
-    @include util.for-static-nav {
-      grid-template-areas:
-        'top-nav top-nav'
-        'side-nav content'
-        'side-nav footer';
-      grid-template-columns: vars.$side-nav-width 1fr;
-      grid-template-rows: auto 1fr auto;
+    .allow-static-nav & {
+      @include util.for-static-nav {
+        grid-template-areas:
+          'top-nav top-nav'
+          'side-nav content'
+          'side-nav footer';
+        grid-template-columns: vars.$side-nav-width 1fr;
+        grid-template-rows: auto 1fr auto;
+      }
     }
 
     .topNav {
@@ -78,15 +82,17 @@ const { popupNavOnly = false } = Astro.props;
         display: initial;
       }
 
-      @include util.for-static-nav {
-        display: initial;
-        position: sticky;
-        top: var(--header-height);
-        left: initial;
-        z-index: inherit;
-        height: calc(100vh - var(--header-height));
-        border-right: 1px solid var(--border-color);
-        width: initial;
+      body.allow-static-nav & {
+        @include util.for-static-nav {
+          display: initial;
+          position: sticky;
+          top: var(--header-height);
+          left: initial;
+          z-index: inherit;
+          height: calc(100vh - var(--header-height));
+          border-right: 1px solid var(--border-color);
+          width: initial;
+        }
       }
     }
 
@@ -102,7 +108,9 @@ const { popupNavOnly = false } = Astro.props;
         height: 100vh;
         z-index: 9;
         background-color: rgba(0, 0, 0, 0.6);
+      }
 
+      .popup-side-nav.allow-static-nav & {
         @include util.for-static-nav {
           display: none;
         }

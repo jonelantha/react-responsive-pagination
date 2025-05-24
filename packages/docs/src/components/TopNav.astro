@@ -116,8 +116,10 @@ const starCount = await getStarCount();
       align-items: center;
       justify-content: center;
 
-      @include util.for-static-nav {
-        display: none;
+      body.allow-static-nav & {
+        @include util.for-static-nav {
+          display: none;
+        }
       }
 
       svg {

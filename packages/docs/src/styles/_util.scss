@@ -8,11 +8,8 @@
 }
 
 @mixin for-static-nav {
-  &:global(.allow-static-nav),
-  :global(.allow-static-nav) & {
-    @media not screen and (max-width: 930px) {
-      @content;
-    }
+  @media not screen and (max-width: 930px) {
+    @content;
   }
 }
 
