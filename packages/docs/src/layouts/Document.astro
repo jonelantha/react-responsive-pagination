@@ -14,7 +14,7 @@ const { popupNavOnly = false } = Astro.props;
   <main>
     <TopNav class="topNav" transition:persist transition:animate="none" />
     <SideNav class="sideNav" transition:persist transition:animate="none" />
-    <div id="popupSideNavBackground"></div>
+    <div id="popupSideNavBackground" transition:persist></div>
     <article class="content"><slot /></article>
     <Footer class="footer" />
   </main>
@@ -145,6 +145,8 @@ const { popupNavOnly = false } = Astro.props;
     document.querySelector('body')!.classList.toggle('popup-side-nav', state),
   );
 
+  // bg could be made invisible by media query styles
+  // check when the bg is not visible and ensure popup state is in sync
   if ('IntersectionObserver' in window) {
     const popupSideNavBg = document.getElementById('popupSideNavBackground')!;
 
