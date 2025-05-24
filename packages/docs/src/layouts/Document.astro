@@ -2,30 +2,37 @@
 import TopNav from '@components/TopNav.astro';
 import SideNav from '@components/SideNav.astro';
 import Footer from '@components/Footer.astro';
+
+type Props = {
+  popupNavOnly?: boolean;
+};
+
+const { popupNavOnly = false } = Astro.props;
 ---
 
-<body>
+<body class:list={{ 'allow-static-nav': !popupNavOnly }}>
   <main>
     <TopNav class="topNav" transition:persist transition:animate="none" />
     <SideNav class="sideNav" transition:persist transition:animate="none" />
-    <div id="popupSideNavBackground"></div>
+    <div id="popupSideNavBackground" transition:persist></div>
     <article class="content"><slot /></article>
     <Footer class="footer" />
   </main>
 </body>
 
-<style is:global lang="scss">
-  @use '@styles/_util.scss';
-
-  body.popupSideNavVisible {
-    @include util.for-popup-nav {
-      overflow: hidden;
-    }
-  }
-</style>
 <style lang="scss">
   @use '@styles/_util.scss';
   @use '@styles/_vars.scss';
+
+  body.popup-side-nav {
+    overflow: hidden;
+
+    &.allow-static-nav {
+      @include util.for-static-nav {
+        overflow: initial;
+      }
+    }
+  }
 
   main {
     --header-height: var(--root-header-height, #{vars.$top-nav-min-height});
@@ -33,19 +40,21 @@ import Footer from '@components/Footer.astro';
     display: grid;
 
     grid-template-areas:
-      'top-nav top-nav'
-      'side-nav content'
-      'side-nav footer';
-    grid-template-columns: vars.$side-nav-width 1fr;
+      'top-nav'
+      'content'
+      'footer';
+    grid-template-columns: 1fr;
     grid-template-rows: auto 1fr auto;
 
-    @include util.for-popup-nav {
-      grid-template-areas:
-        'top-nav'
-        'content'
-        'footer';
-      grid-template-columns: 1fr;
-      grid-template-rows: auto 1fr auto;
+    .allow-static-nav & {
+      @include util.for-static-nav {
+        grid-template-areas:
+          'top-nav top-nav'
+          'side-nav content'
+          'side-nav footer';
+        grid-template-columns: vars.$side-nav-width 1fr;
+        grid-template-rows: auto 1fr auto;
+      }
     }
 
     .topNav {
@@ -59,23 +68,30 @@ import Footer from '@components/Footer.astro';
 
     .sideNav {
       grid-area: side-nav;
-      top: var(--header-height);
-      height: calc(100vh - var(--header-height));
-      position: sticky;
+
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      height: 100vh;
       border-right: 1px solid var(--border-color);
+      width: clamp(vars.$side-nav-width, 85%, 500px);
 
-      @include util.for-popup-nav {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 10;
-        height: 100vh;
-        border-right: 1px solid var(--border-color);
-        width: clamp(vars.$side-nav-width, 85%, 500px);
+      .popup-side-nav & {
+        display: initial;
+      }
 
-        .popupSideNavVisible & {
+      body.allow-static-nav & {
+        @include util.for-static-nav {
           display: initial;
+          position: sticky;
+          top: var(--header-height);
+          left: initial;
+          z-index: inherit;
+          height: calc(100vh - var(--header-height));
+          border-right: 1px solid var(--border-color);
+          width: initial;
         }
       }
     }
@@ -83,7 +99,7 @@ import Footer from '@components/Footer.astro';
     #popupSideNavBackground {
       display: none;
 
-      .popupSideNavVisible & {
+      .popup-side-nav & {
         display: block;
         position: fixed;
         top: 0;
@@ -92,6 +108,12 @@ import Footer from '@components/Footer.astro';
         height: 100vh;
         z-index: 9;
         background-color: rgba(0, 0, 0, 0.6);
+      }
+
+      .popup-side-nav.allow-static-nav & {
+        @include util.for-static-nav {
+          display: none;
+        }
       }
     }
 
@@ -120,15 +142,18 @@ import Footer from '@components/Footer.astro';
   import { isNavOpen } from '../store.js';
 
   isNavOpen.subscribe(state =>
-    document.querySelector('body')!.classList.toggle('popupSideNavVisible', state),
+    document.querySelector('body')!.classList.toggle('popup-side-nav', state),
   );
 
-  const mediaMatch = window.matchMedia(`not screen and (max-width: 930px)`);
+  // bg could be made invisible by media query styles
+  // check when the bg is not visible and ensure popup state is in sync
+  if ('IntersectionObserver' in window) {
+    const popupSideNavBg = document.getElementById('popupSideNavBackground')!;
 
-  mediaMatch.matches && isNavOpen.set(false);
+    const observer = new IntersectionObserver(
+      ([{ intersectionRatio }]) => intersectionRatio == 0 && isNavOpen.set(false),
+    );
 
-  mediaMatch.addEventListener(
-    'change',
-    () => mediaMatch.matches && isNavOpen.set(false),
-  );
+    observer.observe(popupSideNavBg);
+  }
 </script>

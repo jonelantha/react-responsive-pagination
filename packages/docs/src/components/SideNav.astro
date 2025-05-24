@@ -2,8 +2,8 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
 import ExternalLink from './ExternalLink.astro';
-import ChevronSVG from './ChevronSVG.astro';
-import CloseSVG from './CloseSVG.astro';
+import ChevronSVG from '../assets/chevron.svg';
+import CloseSVG from '../assets/close.svg';
 import { getPageUrl } from '../utils';
 import type { HTMLAttributes } from 'astro/types';
 
@@ -95,11 +95,13 @@ function isExpanded(doc: CollectionEntry<'docs'>) {
     background: var(--sidebar-bg);
     overflow: auto;
 
-    @include util.for-static-nav {
-      .popup-only {
-        display: none;
+    body.allow-static-nav & {
+      @include util.for-static-nav {
+        .popup-only {
+          display: none;
+        }
+        background: var(--sidebar-static-bg);
       }
-      background: var(--sidebar-static-bg);
     }
 
     div.top-bar {
@@ -114,8 +116,10 @@ function isExpanded(doc: CollectionEntry<'docs'>) {
       box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
       font-weight: vars.$font-weight-semi-bold;
 
-      @include util.for-static-nav {
-        display: none;
+      body.allow-static-nav & {
+        @include util.for-static-nav {
+          display: none;
+        }
       }
 
       button#closeSideNav {

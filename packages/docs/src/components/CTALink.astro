@@ -1,13 +1,13 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
-import ChevronSVG from './ChevronSVG.astro';
+import ChevronSVG from '../assets/chevron.svg';
 
 type Props = HTMLAttributes<'a'>;
 
 const { ...rest } = Astro.props;
 ---
 
-<a {...rest}><slot /><ChevronSVG aria-hidden clipped /></a>
+<a {...rest}><slot /><ChevronSVG aria-hidden viewBox="6 6 12 12" /></a>
 
 <style lang="scss">
   @use '@styles/_vars.scss';
