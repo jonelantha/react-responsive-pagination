@@ -50,7 +50,7 @@ function MyApp() {
 
 ## Three ways to style:
 
-1. 🖼️ **Ready-to-go themes**
+1. 🖼️ **[Ready-to-go themes](https://react-responsive-pagination.elantha.com/themes)**
 
    Just import one of the css themes into your project (as shown in the quickstart example above)
 
@@ -58,19 +58,19 @@ function MyApp() {
    import 'react-responsive-pagination/themes/classic-light-dark.css';
    ```
 
-   | Theme                                                    | Example                                                                                                                                                                                                                        |
-   | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-   | classic-light-dark.css                                   | <picture><source media="(prefers-color-scheme: dark)" srcset="./theme-previews/classic-dark.png?raw=true" width="292"><img src="./theme-previews/classic.png?raw=true" width="292" alt="classic pagination" /></picture>       |
-   | bootstrap-light-dark.css<br />_(Bootstrap not required)_ | <picture><source media="(prefers-color-scheme: dark)" srcset="./theme-previews/bootstrap-dark.png?raw=true" width="250"><img src="./theme-previews/bootstrap.png?raw=true" width="250" alt="bootstrap pagination" /></picture> |
-   | minimal-light-dark.css                                   | <picture><source media="(prefers-color-scheme: dark)" srcset="./theme-previews/minimal-dark.png?raw=true" width="169"><img src="./theme-previews/minimal.png?raw=true" width="169" alt="minimal pagination" /></picture>       |
+   | Theme                                                    | Example                                                                                                                                                                                                                                                                                                                                 |
+   | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+   | classic-light-dark.css                                   | <a href="https://react-responsive-pagination.elantha.com/themes#1-classic-theme"><picture><source media="(prefers-color-scheme: dark)" srcset="./theme-previews/classic-dark.png?raw=true" width="292"><img src="./theme-previews/classic.png?raw=true" width="292" alt="classic pagination" /></picture></a>                           |
+   | bootstrap-light-dark.css<br />_(Bootstrap not required)_ | <a href="https://react-responsive-pagination.elantha.com/themes#2-bootstrap-theme-without-bootstrap"><picture><source media="(prefers-color-scheme: dark)" srcset="./theme-previews/bootstrap-dark.png?raw=true" width="250"><img src="./theme-previews/bootstrap.png?raw=true" width="250" alt="bootstrap pagination" /></picture></a> |
+   | minimal-light-dark.css                                   | <a href="https://react-responsive-pagination.elantha.com/themes#3-minimal-theme"><picture><source media="(prefers-color-scheme: dark)" srcset="./theme-previews/minimal-dark.png?raw=true" width="169"><img src="./theme-previews/minimal.png?raw=true" width="169" alt="minimal pagination" /></picture></a>                           |
 
    Themes also available as light only, please see the [Themes guide](https://react-responsive-pagination.elantha.com/themes) for more details (including overridable theme attributes)
 
-2. 🎨 **Custom CSS styling**
+2. 🎨 **[Custom CSS styling](https://react-responsive-pagination.elantha.com/custom-styled-pagination)**
 
    Custom CSS styles? No problem - see the [Custom Styles Guide](https://react-responsive-pagination.elantha.com/custom-styled-pagination)
 
-3. 🥾 **Bootstrap 4 and 5**
+3. 🥾 **[Bootstrap 4 and 5](https://react-responsive-pagination.elantha.com/bootstrap-pagination)**
 
    Using Bootstrap in your project? **react-responsive-pagination** just works with Bootstrap (no need for any additional styles). See the [Bootstrap Getting Started Guide](https://react-responsive-pagination.elantha.com/bootstrap-pagination)
 
