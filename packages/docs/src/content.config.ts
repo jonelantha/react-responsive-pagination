@@ -8,6 +8,7 @@ const docs = defineCollection({
     description: z.string(),
     navTitle: z.string(),
     topNavOrder: z.number().optional(),
+    topNavTitle: z.string().optional(),
     footerNavTitle: z.string().optional(),
     path: z.string().optional(),
     sideNavOrder: z.number().optional(),

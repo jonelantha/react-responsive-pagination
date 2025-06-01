@@ -7,20 +7,14 @@
   @return clamp(0px, $m * $x + $c, $endY);
 }
 
-@mixin for-popup-nav {
-  @media screen and (max-width: 930px) {
-    @content;
-  }
-}
-
 @mixin for-static-nav {
   @media not screen and (max-width: 930px) {
     @content;
   }
 }
 
-@mixin for-top-nav-no-links {
-  @media screen and (max-width: 850px) {
+@mixin for-less-than($breakPoint) {
+  @media screen and (max-width: $breakPoint) {
     @content;
   }
 }

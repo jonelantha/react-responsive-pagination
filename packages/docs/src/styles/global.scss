@@ -26,6 +26,9 @@
   --sidebar-bg: white;
   --sidebar-static-bg: white;
 
+  --star-border-color: #dddddd;
+  --star-background-color: rgb(250, 250, 250);
+
   --footer-bg: #eeeeee;
   --border-color: #eeeeee;
   --color-footer-link: #333333;
@@ -52,11 +55,14 @@
 
     --color-highlighted-background: #ffffff1a;
 
-    --nav-bg-hover: rgba(255, 255, 255, 0.1);
+    --nav-bg-hover: #3c3c3c;
 
     --top-nav-bg: #242526;
     --sidebar-bg: #242526;
     --sidebar-static-bg: transparent;
+
+    --star-border-color: #444950;
+    --star-background-color: #333333;
 
     --side-nav-active-color: #6ea8fe;
     --side-nav-active-bg: var(--nav-bg-hover);
