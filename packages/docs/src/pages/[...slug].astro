@@ -1,6 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
 import Main from '../layouts/Main.astro';
+import Document from '../layouts/Document.astro';
 import { render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -16,5 +17,7 @@ const { Content } = await render(doc);
 ---
 
 <Main {...doc.data}>
-  <Content />
+  <Document popupNavOnly={doc.data.popupNavOnly}>
+    <Content />
+  </Document>
 </Main>
