@@ -8,12 +8,8 @@ const { content } = Astro.props;
   Array.isArray(content)
     ? content.map((part, index) => (
         <>
-          {index > 0 && (
-            <>
-              <wbr />{' '}
-            </>
-          )}
-          <span>{part}</span>
+          {index > 0 && <wbr />}
+          <span>{part}</span>{' '}
         </>
       ))
     : content
