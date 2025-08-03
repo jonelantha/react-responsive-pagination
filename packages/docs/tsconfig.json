@@ -6,6 +6,7 @@
     "strictNullChecks": true,
     "baseUrl": ".",
     "paths": {
+      "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
       "@styles/*": ["src/styles/*"],
       "@props/*": ["src/content/props/*"]

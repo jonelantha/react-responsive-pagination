@@ -1,3 +1,5 @@
+@use '@styles/_util.scss';
+
 $main-font-family:
   system-ui,
   -apple-system,
@@ -9,8 +11,9 @@ $main-font-family:
   'Apple Color Emoji',
   'Segoe UI Emoji',
   'Segoe UI Symbol';
-$mono-font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-  'Courier New', monospace;
+$mono-font-family:
+  SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+  monospace;
 
 $heading-font-family:
   'Trebuchet MS',
@@ -38,3 +41,8 @@ $border-radius: 0.4rem;
 
 $top-nav-min-height: 48px;
 $side-nav-width: 300px;
+
+$card-radius: 0.8rem;
+$cta-radius: 0.8rem;
+
+$content-padding-inline: calc(8px + util.linearRange(500px, 800px, 16px, 100vw));

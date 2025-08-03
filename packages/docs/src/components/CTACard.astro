@@ -1,0 +1,78 @@
+---
+import CTALink from '@components/CTALink.astro';
+
+export interface Props {
+  title: string;
+  cta: string;
+  ctaLink: string;
+}
+
+const { title, cta, ctaLink } = Astro.props;
+---
+
+<li>
+  <div class="title">{title}</div>
+  <slot />
+  <div class="body">
+    <slot name="body" />
+  </div>
+  <CTALink class="ctaLink" href={ctaLink}>Get Started {cta}</CTALink>
+</li>
+
+<style lang="scss">
+  @use '@styles/_vars.scss';
+
+  li {
+    text-align: center;
+    display: grid;
+    grid-template-areas:
+      'title'
+      'img'
+      'body'
+      'cta';
+    grid-template-rows: auto auto 1fr auto;
+    gap: 16px;
+
+    background-color: var(--cta-card-bg);
+    padding: 16px;
+    border-radius: vars.$card-radius;
+    border: 1px solid var(--card-border-color);
+
+    transition:
+      transform 200ms,
+      box-shadow 200ms;
+
+    @media (hover: hover) {
+      &:hover {
+        transform: scale(1.02) translate(0px, -5px);
+        box-shadow: var(--box-shadow);
+      }
+    }
+  }
+
+  .title {
+    grid-area: title;
+    font-weight: vars.$font-weight-bold;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+  }
+
+  .body {
+    grid-area: body;
+  }
+
+  .ctaLink {
+    grid-area: cta;
+  }
+
+  .title + :global(*) {
+    grid-area: img;
+    justify-self: center;
+    block-size: 120px;
+    inline-size: auto;
+  }
+
+  .title + :global(svg) {
+    display: block;
+  }
+</style>

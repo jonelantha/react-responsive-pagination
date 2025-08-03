@@ -1,0 +1,68 @@
+---
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<li>
+  <div class="layout">
+    <slot name="icon" />
+    <div class="title">{title}</div>
+    <div class="content"><slot /></div>
+  </div>
+</li>
+
+<style lang="scss">
+  @use '@styles/_vars.scss';
+
+  li {
+    container-type: inline-size;
+    background-color: var(--feature-card-bg);
+    padding: 16px;
+    border-radius: vars.$card-radius;
+    color: var(--color-content);
+
+    .layout {
+      display: grid;
+      grid-template-areas:
+        'icon'
+        'title'
+        'body';
+      grid-template-rows: auto auto 1fr;
+      gap: 8px;
+
+      @container (min-width: 13.5rem) {
+        grid-template-areas:
+          'icon title'
+          'body body';
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+      }
+
+      :global(*):last-child {
+        margin-block-end: 0;
+      }
+
+      :global(svg) {
+        grid-area: icon;
+        display: block;
+        inline-size: 44px;
+        block-size: 44px;
+      }
+
+      .title {
+        grid-area: title;
+        font-weight: vars.$font-weight-bold;
+        font-size: 1.4rem;
+        line-height: 1.5rem;
+        align-self: center;
+      }
+
+      .content {
+        grid-area: body;
+      }
+    }
+  }
+</style>

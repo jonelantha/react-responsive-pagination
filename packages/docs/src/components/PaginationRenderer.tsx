@@ -3,9 +3,9 @@ import ResponsivePagination from 'react-responsive-pagination';
 import type { ResponsivePaginationProps } from 'react-responsive-pagination';
 
 export default function PaginationRenderer(
-  props: Partial<ResponsivePaginationProps>,
+  props: Partial<ResponsivePaginationProps> & { initialPage?: number },
 ) {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(props.initialPage ?? 1);
 
   return (
     <div>

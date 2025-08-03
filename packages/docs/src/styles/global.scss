@@ -39,6 +39,12 @@
 
   --table-border-color: #dadde1;
   --table-stripe-color: #f5f6f7;
+
+  --cta-card-bg: white;
+  --feature-card-bg: #eeeeee;
+
+  --hero-highlight: rebeccapurple;
+  --hero-paragraph-color: #666;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -73,11 +79,17 @@
     --color-footer-link: #e3e3e3;
     --color-footer-link-hover: #ffffff; /* = shade(0.2, colorFooterLink); */
 
-    // --box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    //    --box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     --box-border: 1px solid #444950;
 
     --table-border-color: #444950;
     --table-stripe-color: #242526;
+
+    --cta-card-bg: #1b1b1d;
+    --feature-card-bg: #242526;
+
+    --hero-highlight: hsl(270, 90%, 60%);
+    --hero-paragraph-color: #ccc;
   }
 }
 
