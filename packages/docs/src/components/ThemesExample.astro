@@ -1,0 +1,61 @@
+---
+import BootstrapThemeContainer from '@components/BootstrapThemeContainer.astro';
+import PaginationRenderer from '@components/PaginationRenderer.tsx';
+import ClassicThemeContainer from '@components/ClassicThemeContainer.astro';
+import MinimalThemeContainer from '@components/MinimalThemeContainer.astro';
+
+const { ...rest } = Astro.props;
+---
+
+<div class="outer" {...rest}>
+  <div class="inner">
+    <BootstrapThemeContainer noBottomMargin>
+      <PaginationRenderer client:load initialPage={1} total={5} />
+    </BootstrapThemeContainer>
+    <MinimalThemeContainer noBottomMargin>
+      <PaginationRenderer client:load initialPage={8} total={10} />
+    </MinimalThemeContainer>
+    <ClassicThemeContainer noBottomMargin>
+      <PaginationRenderer client:load initialPage={5} total={5} />
+    </ClassicThemeContainer>
+  </div>
+</div>
+
+<style lang="scss">
+  @use '@styles/_vars.scss';
+
+  .outer {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    pointer-events: none;
+
+    mask:
+      linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 10%,
+        rgba(0, 0, 0, 1) 90%,
+        rgba(0, 0, 0, 0) 100%
+      ),
+      linear-gradient(
+        to left,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 10%,
+        rgba(0, 0, 0, 1) 90%,
+        rgba(0, 0, 0, 0) 100%
+      );
+    mask-composite: intersect;
+  }
+
+  .inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    inline-size: 325px;
+    margin-left: 50%;
+    transform: translate(-50%, 0) rotate(-10deg);
+  }
+</style>

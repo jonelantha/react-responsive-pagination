@@ -7,13 +7,14 @@ type Props = HTMLAttributes<'a'>;
 const { ...rest } = Astro.props;
 ---
 
-<a {...rest}><slot /><ChevronSVG aria-hidden viewBox="6 6 12 12" /></a>
+<a {...rest}><span><slot /></span><ChevronSVG aria-hidden viewBox="6 6 12 12" /></a>
 
 <style lang="scss">
   @use '@styles/_vars.scss';
 
   a {
-    display: flex;
+    display: inline-flex;
+    container-type: inline-size;
     align-items: center;
     justify-content: space-between;
     font-size: 1.1rem;
@@ -21,9 +22,22 @@ const { ...rest } = Astro.props;
     background: var(--color-primary);
     padding: 0.75rem 1rem;
     color: #ffffff;
-    border-radius: vars.$border-radius;
+    border-radius: 0.8rem;
     box-shadow: var(--box-shadow);
     text-decoration: none;
+    font-weight: 500;
+
+    @container (max-width: 15rem) {
+      span {
+        font-size: 1rem;
+      }
+    }
+
+    @container (max-width: 14rem) {
+      span {
+        letter-spacing: -1px;
+      }
+    }
 
     &:hover {
       text-decoration: none;

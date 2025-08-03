@@ -1,0 +1,48 @@
+---
+import BreakableLines from './BreakableLines.astro';
+
+type Props = { title: string | string[]; hasBackground?: boolean };
+
+const { title, hasBackground } = Astro.props;
+---
+
+<section
+  class:list={{
+    'has-background': hasBackground,
+  }}
+>
+  <h2><BreakableLines content={title} /></h2>
+  <slot />
+</section>
+
+<style lang="scss">
+  @use '@styles/_vars.scss';
+
+  section {
+    --v-spacing: 2rem;
+
+    padding-block: var(--v-spacing);
+    padding-inline: vars.$content-padding-inline;
+
+    @media screen and (max-width: 40rem) {
+      --v-spacing: 1.5rem;
+    }
+
+    &.has-background {
+      background:
+        radial-gradient(at 10% 10%, rgba(102, 51, 153, 0.3) 0px, transparent 50%),
+        radial-gradient(at 10% 90%, rgba(13, 109, 253, 0.3) 0px, transparent 50%),
+        radial-gradient(at 90% 10%, rgba(13, 109, 253, 0.3) 0px, transparent 50%),
+        radial-gradient(at 90% 90%, rgba(102, 51, 153, 0.3) 0px, transparent 50%);
+    }
+  }
+
+  h2 {
+    margin-block: 0 var(--v-spacing);
+    text-align: center;
+
+    @media screen and (max-width: 35rem) {
+      font-size: 1.5rem;
+    }
+  }
+</style>

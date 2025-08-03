@@ -1,0 +1,38 @@
+---
+
+---
+
+<section>
+  <slot />
+</section>
+
+<style lang="scss">
+  @use '@styles/_vars.scss';
+
+  section {
+    display: block;
+    margin-inline: auto;
+    padding-inline: vars.$content-padding-inline;
+    max-inline-size: 40rem;
+    margin-block-end: 3rem;
+
+    @media screen and (max-width: 40rem) {
+      margin-block-end: 2rem;
+
+      :global(h1) {
+        margin-block-start: 1.25rem;
+        font-size: 2rem;
+      }
+    }
+
+    :global(h1 span) {
+      color: var(--hero-highlight);
+    }
+
+    :global(p) {
+      font-weight: 500;
+      font-size: 1.2rem;
+      color: var(--hero-paragraph-color);
+    }
+  }
+</style>

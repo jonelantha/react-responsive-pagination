@@ -1,0 +1,21 @@
+---
+
+---
+
+<ul>
+  <slot />
+</ul>
+
+<style lang="scss">
+  @use '@styles/_vars.scss';
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+
+    gap: 16px;
+  }
+</style>

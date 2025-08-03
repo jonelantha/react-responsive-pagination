@@ -1,0 +1,32 @@
+---
+import ArrowSVG from '@assets/arrow.svg';
+---
+
+<div>
+  <ArrowSVG />
+  <slot />
+</div>
+
+<style lang="scss">
+  @use '@styles/_vars.scss';
+
+  div {
+    margin-block: 0.5rem 2.5rem;
+    padding-inline: vars.$content-padding-inline;
+    text-align: center;
+    max-inline-size: max-content;
+    margin-inline: auto;
+
+    font-family:
+      'Segoe Print', 'Bradley Hand', Chilanka, TSCu_Comic, casual, cursive;
+    font-weight: normal;
+    font-size: 1.6rem;
+    line-height: 1.2;
+
+    svg {
+      display: inline-block;
+      inline-size: auto;
+      block-size: 30px;
+    }
+  }
+</style>

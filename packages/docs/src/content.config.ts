@@ -15,6 +15,7 @@ const docs = defineCollection({
     footerNavOrder: z.number(),
     addOverview: z.boolean().optional(),
     popupNavOnly: z.boolean().optional(),
+    noArticlePadding: z.boolean().optional(),
   }),
 });
 

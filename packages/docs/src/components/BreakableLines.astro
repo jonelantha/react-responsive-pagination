@@ -1,0 +1,26 @@
+---
+type Props = { content: string | string[] };
+
+const { content } = Astro.props;
+---
+
+{
+  Array.isArray(content)
+    ? content.map((part, index) => (
+        <>
+          {index > 0 && (
+            <>
+              <wbr />{' '}
+            </>
+          )}
+          <span>{part}</span>
+        </>
+      ))
+    : content
+}
+
+<style lang="scss">
+  span {
+    white-space: nowrap;
+  }
+</style>

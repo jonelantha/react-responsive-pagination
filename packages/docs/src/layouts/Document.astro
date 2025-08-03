@@ -5,12 +5,18 @@ import Footer from '@components/Footer.astro';
 
 type Props = {
   popupNavOnly?: boolean;
+  noArticlePadding?: boolean;
 };
 
-const { popupNavOnly = false } = Astro.props;
+const { popupNavOnly = false, noArticlePadding = false } = Astro.props;
 ---
 
-<body class:list={{ 'allow-static-nav': !popupNavOnly }}>
+<body
+  class:list={{
+    'allow-static-nav': !popupNavOnly,
+    'article-padding': !noArticlePadding,
+  }}
+>
   <main>
     <TopNav class="topNav" transition:persist transition:animate="none" />
     <SideNav class="sideNav" transition:persist transition:animate="none" />
@@ -123,11 +129,13 @@ const { popupNavOnly = false } = Astro.props;
 
     .content {
       grid-area: content;
-      padding-block-start: vars.$spacing-vertical;
-      padding-block-end: 3rem;
-      padding-inline: calc(0.5rem + util.linearRange(500px, 800px, 16px, 100vw));
 
       min-width: 100px;
+
+      body.article-padding & {
+        padding-block: vars.$spacing-vertical 3rem;
+        padding-inline: vars.$content-padding-inline;
+      }
 
       :global(h1),
       :global(h2) {

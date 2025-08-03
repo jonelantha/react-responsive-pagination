@@ -7,61 +7,100 @@ path: '/'
 sideNavOrder: 1
 footerNavOrder: 1
 addOverview: true
+popupNavOnly: true
+noArticlePadding: true
 ---
 
-import TickList from '@components/TickList.astro';
+import Hero from '@components/Hero.astro';
+import ThemesExample from '@components/ThemesExample.astro';
 import BootstrapThemeContainer from '@components/BootstrapThemeContainer.astro';
 import PaginationRenderer from '@components/PaginationRenderer.tsx';
-import ChoiceBlocksContainer from '@components/ChoiceBlocksContainer.astro';
-import ClassicThemeContainer from '@components/ClassicThemeContainer.astro';
-import CustomStyleContainer from '@components/CustomStyleContainer.astro';
-import ChoiceBlock from '@components/ChoiceBlock.astro';
+import DemoLabel from '@components/DemoLabel.astro';
+import BreakableLines from '@components/BreakableLines.astro';
+import LandingSection from '@components/LandingSection.astro';
+import CTACard from '@components/CTACard.astro';
+import CTACardGroup from '@components/CTACardGroup.astro';
+import FeatureCard from '@components/FeatureCard.astro';
+import FeatureCardGroup from '@components/FeatureCardGroup.astro';
 
-# react-responsive-pagination
-
-**Truly responsive pagination** - always displays the right number of links for the width available:
-
-<BootstrapThemeContainer>
-  <PaginationRenderer client:load />
-</BootstrapThemeContainer>
-
-_Try it for yourself, resize the window (or change the orientation of your device)_
+import UniversalAccessSVG from '@assets/universal-access.svg';
+import CSSSVG from '@assets/css.svg';
+import PaletteSVG from '@assets/palette.svg';
+import TreeSVG from '@assets/tree.svg';
+import BootstrapSVG from '@assets/bootstrap.svg';
+import StarSVG from '@assets/star-filled.svg';
 
 {/* prettier-ignore */}
-<TickList>
-  - Fully accessible with aria tags for screen readers  
-  - Ready styled themes (or bring your own css)
-  - Built for tree-shaking = minimum impact on the bundle
-</TickList>
+<Hero>
+  # Truly <span>Responsive Pagination</span>…<br />Always!
+  
+  React npm pagination component for displaying the maximum number of page links for the width available
+  
+  Customisable with plenty of options
+</Hero>
 
-## Getting started - 3 ways to style
+<BootstrapThemeContainer noBottomMargin>
+  <PaginationRenderer total={35} client:load />
+</BootstrapThemeContainer>
 
-<ChoiceBlocksContainer>
-  <ChoiceBlock
-    title="1. Want ready-styled pagination?"
-    ctaLabel="Themed Pagination"
-    ctaLink="/themes"
-  >
-    <ClassicThemeContainer noBottomMargin>
-      <PaginationRenderer client:load />
-    </ClassicThemeContainer>
-  </ChoiceBlock>
-  <ChoiceBlock
-    title="2. Want to use custom CSS styles?"
-    ctaLabel="Custom Pagination"
-    ctaLink="/custom-styled-pagination"
-  >
-    <CustomStyleContainer noBottomMargin>
-      <PaginationRenderer client:load />
-    </CustomStyleContainer>
-  </ChoiceBlock>
-  <ChoiceBlock
-    title="3. Already using Bootstrap CSS framework?"
-    ctaLabel="Bootstrap Pagination"
-    ctaLink="/bootstrap-pagination"
-  >
-    <BootstrapThemeContainer noBottomMargin>
-      <PaginationRenderer client:load />
-    </BootstrapThemeContainer>
-  </ChoiceBlock>
-</ChoiceBlocksContainer>
+<DemoLabel>
+  <>Try it out!</>
+  <br />
+  <BreakableLines content={['Resize your browser…', 'or rotate your device!']} />
+</DemoLabel>
+
+<LandingSection title={['Getting Started -', '3 Ways To Style:']} hasBackground>
+  <CTACardGroup>
+    <CTACard title="Built-in Themes" cta="with Themes" ctaLink="/themes">
+      <ThemesExample aria-hidden />
+      <Fragment slot="body">
+        <>**3 built-in themes to choose from**</>
+        <br />
+        <>Fully configurable with css vars</>
+        <br />
+        <>Supports light & dark modes</>
+      </Fragment>
+    </CTACard>
+    <CTACard
+      title="Custom CSS"
+      cta="with Your CSS"
+      ctaLink="/custom-styled-pagination"
+    >
+      <CSSSVG aria-hidden />
+      <Fragment slot="body">
+        <>**Easily create custom css**</>
+        <br />
+        <>Starter templates and full documentation</>
+      </Fragment>
+    </CTACard>
+    <CTACard title="Bootstrap" cta="with Bootstrap" ctaLink="/bootstrap-pagination">
+      <BootstrapSVG aria-hidden />
+      <Fragment slot="body">
+        <>**Using Bootstrap?**</>
+        <br />
+        <>Seamless support for Bootstrap 4 & 5 including many options</>
+      </Fragment>
+    </CTACard>
+  </CTACardGroup>
+</LandingSection>
+
+<LandingSection title="Including many great features…">
+  <FeatureCardGroup title="Including many great features…">
+    <FeatureCard title="Accessible">
+      <UniversalAccessSVG aria-hidden slot="icon" />
+      Fully accessible with aria attributes for screen readers
+    </FeatureCard>
+    <FeatureCard title="Customisable">
+      <PaletteSVG aria-hidden slot="icon" />
+      Ready-styled themes, bring your own css or use Bootstrap
+    </FeatureCard>
+    <FeatureCard title="Tree-shakable">
+      <TreeSVG aria-hidden slot="icon" />
+      Built for minimum impact on the bundle
+    </FeatureCard>
+    <FeatureCard title="Modern Codebase">
+      <StarSVG aria-hidden slot="icon" />
+      100% TypeScript, hook-based and browser-based testing CI
+    </FeatureCard>
+  </FeatureCardGroup>
+</LandingSection>
