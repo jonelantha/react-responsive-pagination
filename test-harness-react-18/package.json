@@ -4,20 +4,20 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "bootstrap": "^5.3.6",
+    "bootstrap": "^5.3.8",
     "formik": "^2.4.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-responsive-pagination": "file:../packages/react-responsive-pagination",
-    "react-router-dom": "^7.6.0",
-    "serve": "^14.2.0"
+    "react-router-dom": "^7.9.2",
+    "serve": "^14.2.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "@vitejs/plugin-react": "^4.4.1",
-    "typescript": "^5.8.3",
-    "vite": "^6.3.5"
+    "@vitejs/plugin-react": "^5.0.3",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.7"
   },
   "scripts": {
     "start": "vite --port 3001",
