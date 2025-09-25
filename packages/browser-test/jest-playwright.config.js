@@ -18,7 +18,7 @@ if (process.env.PROD_TEST) {
     ...commonConfig,
     launchOptions: {
       headless: false,
-      slowMo: process.env.SLOWMO ?? null,
+      ...(process.env.SLOWMO && { slowMo: process.env.SLOWMO }),
     },
     browsers: getBrowsers(process.env.BROWSER ?? 'chromium'),
   };
