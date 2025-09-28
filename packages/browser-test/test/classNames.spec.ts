@@ -1,14 +1,21 @@
+import { test as base, expect } from '@playwright/test';
 import { TestHarnessPage } from './test-harness-page';
 
-const testHarness = new TestHarnessPage(page, { throwOnError: true });
+export const test = base.extend<{
+  testHarness: TestHarnessPage;
+}>({
+  testHarness: async ({ page }, use) => {
+    const testHarness = new TestHarnessPage(page, { throwOnError: true });
 
-beforeAll(async () => {
-  await testHarness.goto();
+    await testHarness.goto();
 
-  await page.setViewportSize({ width: 700, height: 700 });
+    await page.setViewportSize({ width: 700, height: 700 });
+
+    await use(testHarness);
+  },
 });
 
-beforeEach(async () => {
+test.beforeEach(async ({ testHarness }) => {
   await testHarness.setField('className', undefined);
   await testHarness.setField('extraClassName', undefined);
   await testHarness.setField('pageItemClassName', undefined);
@@ -20,45 +27,52 @@ beforeEach(async () => {
   await testHarness.setField('nextClassName', undefined);
 });
 
-describe('Setting extraClassName', () => {
-  test.each([
+test.describe('Setting extraClassName', () => {
+  for (const [extraClassProp, expectedFullClass] of [
     [undefined, 'pagination justify-content-center'],
     ['', 'pagination'],
     ['justify-content-start', 'pagination justify-content-start'],
-  ])('will have expected class', async (extraClassProp, expectedFullClass) => {
-    await testHarness.setField('extraClassName', extraClassProp);
+  ]) {
+    test(`will have expected class for extraClassName=${extraClassProp}`, async ({
+      testHarness,
+    }) => {
+      await testHarness.setField('extraClassName', extraClassProp);
 
-    await testHarness.waitForNextFrame();
+      await testHarness.waitForNextFrame();
 
-    const fullClass = await testHarness.paginationLocator().getAttribute('class');
+      const fullClass = await testHarness.paginationLocator().getAttribute('class');
 
-    expect(fullClass).toBe(expectedFullClass);
-  });
+      expect(fullClass).toBe(expectedFullClass);
+    });
+  }
 });
 
-describe('classNames', () => {
-  test.each([
+test.describe('classNames', () => {
+  for (const [field, value] of [
     ['className', 'alt-pagination'],
     ['pageItemClassName', 'alt-page-item'],
     ['pageLinkClassName', 'alt-page-link'],
     ['activeItemClassName', 'alt-active'],
     ['disabledItemClassName', 'alt-disabled'],
-  ])('setting %p to %p renders correctly', async (field, value) => {
-    await testHarness.setField(field, value);
+  ]) {
+    test(`setting ${field} to ${value} renders correctly`, async ({
+      testHarness,
+    }) => {
+      await testHarness.setField(field, value);
 
-    await testHarness.waitForNextFrame();
+      await testHarness.waitForNextFrame();
 
-    const paginationHtml = await testHarness.getPaginationHtml();
+      const paginationHtml = await testHarness.getPaginationHtml();
 
-    expect(paginationHtml).toMatchSnapshot();
-  });
+      expect(paginationHtml).toMatchSnapshot();
+    });
+  }
 });
 
-describe('nav classNames', () => {
-  describe.each([{ navEnabled: true }, { navEnabled: false }])(
-    'with navEnabled = $navEnabled',
-    ({ navEnabled }) => {
-      beforeAll(async () => {
+test.describe('nav classNames', () => {
+  for (const navEnabled of [true, false]) {
+    test.describe(`with navEnabled = ${navEnabled}`, () => {
+      test.beforeEach(async ({ testHarness }) => {
         if (navEnabled) {
           await testHarness.setField('total', 10);
           await testHarness.setField('current', 3);
@@ -67,14 +81,15 @@ describe('nav classNames', () => {
         }
       });
 
-      test.each([
+      for (const { nav, previous, next } of [
         { nav: undefined, previous: undefined, next: undefined },
         { nav: undefined, previous: 'previous', next: 'next' },
         { nav: 'nav', previous: undefined, next: undefined },
         { nav: 'nav', previous: 'previous', next: 'next' },
-      ])(
-        'setting navClassName=$nav, previousClassName=$previous, nextClassName=$next renders correctly',
-        async ({ nav, previous, next }) => {
+      ]) {
+        test(`setting navClassName=${nav}, previousClassName=${previous}, nextClassName=${next} renders correctly`, async ({
+          testHarness,
+        }) => {
           await testHarness.setField('navClassName', nav);
           await testHarness.setField('previousClassName', previous);
           await testHarness.setField('nextClassName', next);
@@ -83,8 +98,8 @@ describe('nav classNames', () => {
 
           const paginationHtml = await testHarness.getPaginationHtml();
           expect(paginationHtml).toMatchSnapshot();
-        },
-      );
-    },
-  );
+        });
+      }
+    });
+  }
 });

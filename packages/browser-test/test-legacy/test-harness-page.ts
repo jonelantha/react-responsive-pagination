@@ -41,7 +41,7 @@ export class TestHarnessPage {
 
     const framework = options?.framework || 'bootstrap4';
 
-    await this.page.goto(`/${framework}?${query.toString()}`);
+    await this.page.goto(`${harnessUrl}/${framework}?${query.toString()}`);
   }
 
   async setField(field: string, value: any) {

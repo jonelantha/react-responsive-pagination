@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@playwright/test": "^1.55.1",
     "@types/jest": "^29.5.3",
     "@types/node": "^22.15.19",
     "expect-playwright": "^0.8.0",
@@ -15,7 +16,10 @@
     "typescript": "^5.8.3"
   },
   "scripts": {
-    "test-dev": "jest --runInBand",
-    "test-prod": "PROD_TEST=1 jest --runInBand"
+    "jest-test-dev": "jest --runInBand test-legacy",
+    "jest-test-prod": "PROD_TEST=1 jest --runInBand",
+    "test-dev": "npx playwright test --headed",
+    "test-dev-chrome": "npm run test-dev -- --project=chromium",
+    "test-prod": "npx playwright test"
   }
 }
