@@ -1,35 +1,42 @@
+import { test as base, expect } from '@playwright/test';
 import { TestHarnessPage } from './test-harness-page';
 
-const testHarness = new TestHarnessPage(page, { throwOnError: true });
+const test = base.extend<{
+  testHarness: TestHarnessPage;
+}>({
+  testHarness: async ({ page }, use) => {
+    const testHarness = new TestHarnessPage(page, { throwOnError: true });
 
-beforeAll(async () => {
-  await testHarness.setupEndOfFramePromise();
+    await testHarness.setupEndOfFramePromise();
 
-  await testHarness.goto({ notStrict: true });
+    await testHarness.goto({ notStrict: true });
 
-  await page.setViewportSize({ width: 700, height: 700 });
+    await page.setViewportSize({ width: 700, height: 700 });
+
+    await use(testHarness);
+  },
 });
 
-describe('Initial appearance', () => {
-  beforeEach(async () => {
+test.describe('Initial appearance', () => {
+  test.beforeEach(async ({ testHarness }) => {
     await testHarness.hidePagination();
 
     await testHarness.paginationLocator().waitFor({ state: 'detached' });
   });
 
-  test('does not cause excessive react renders', async () => {
+  test('does not cause excessive react renders', async ({ testHarness }) => {
     await testHarness.resetRenderCount();
 
     await testHarness.showPagination();
 
-    testHarness.paginationLocator().waitFor({ state: 'visible' });
+    await testHarness.paginationLocator().waitFor({ state: 'visible' });
 
     const numberOfRenders = await testHarness.getRenderCount();
 
     expect(numberOfRenders).toBe(5);
   });
 
-  test('renders fully before repaint', async () => {
+  test('renders fully before repaint', async ({ page }) => {
     const snapshot = await page.evaluate(async () => {
       document.getElementById('renderPagination')!.click();
 
@@ -38,30 +45,30 @@ describe('Initial appearance', () => {
       return document.querySelector('ul.pagination')?.innerHTML;
     });
 
-    await expect(snapshot).toMatchSnapshot();
+    expect(snapshot).toMatchSnapshot();
   });
 });
 
-describe('Style change', () => {
-  beforeEach(async () => {
+test.describe('Style change', () => {
+  test.beforeEach(async ({ testHarness }) => {
     await testHarness.setStyle('.pagination { font-size: inherit; }');
   });
 
-  test('does not cause excessive react renders', async () => {
+  test('does not cause excessive react renders', async ({ page, testHarness }) => {
     await testHarness.resetRenderCount();
 
     await testHarness.setStyle('.pagination { font-size: 40px; }');
 
     await testHarness.waitForNextFrame();
 
-    await expect(page).toHaveSelectorCount('ul > *', 13);
+    await expect(page.locator('ul > *')).toHaveCount(13);
 
     const numberOfRenders = await testHarness.getRenderCount();
 
     expect(numberOfRenders).toBe(3);
   });
 
-  test('renders fully before repaint', async () => {
+  test('renders fully before repaint', async ({ page }) => {
     const numberOfElements = await page.evaluate(async () => {
       document.getElementById('editable-style-block')!.innerHTML =
         '.pagination { font-size: 40px; }';
@@ -71,32 +78,34 @@ describe('Style change', () => {
       return document.querySelector('ul.pagination')?.children.length;
     });
 
-    await expect(numberOfElements).toBe(13);
+    expect(numberOfElements).toBe(13);
   });
 });
 
-describe('Resize', () => {
-  beforeEach(async () => {
+test.describe('Resize', () => {
+  test.beforeEach(async ({ page, testHarness }) => {
+    await testHarness.setStyle('.pagination { font-size: 40px; }');
+
     await page.evaluate(async () => {
       document.getElementById('paginationParent')!.style.width = '';
     });
   });
 
-  test('does not cause excessive react renders', async () => {
+  test('does not cause excessive react renders', async ({ page, testHarness }) => {
     await testHarness.resetRenderCount();
 
     await page.setViewportSize({ width: 500, height: 700 });
 
     await testHarness.waitForNextFrame();
 
-    await expect(page).toHaveSelectorCount('ul > *', 9);
+    await expect(page.locator('ul > *')).toHaveCount(9);
 
     const numberOfRenders = await testHarness.getRenderCount();
 
     expect(numberOfRenders).toBe(1);
   });
 
-  test('renders fully before repaint', async () => {
+  test('renders fully before repaint', async ({ page }) => {
     const numberOfElements = await page.evaluate(async () => {
       document.getElementById('paginationParent')!.style.width = '500px';
 
@@ -105,6 +114,6 @@ describe('Resize', () => {
       return document.querySelector('ul.pagination')?.children.length;
     });
 
-    await expect(numberOfElements).toBe(9);
+    expect(numberOfElements).toBe(9);
   });
 });
