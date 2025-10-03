@@ -1,5 +1,5 @@
-import { test as base, expect } from '@playwright/test';
-import { TestHarnessPage } from './test-harness-page';
+import { test as baseTest, expect } from '@playwright/test';
+import { serialTestFixture } from './test-harness-page';
 
 const testCssClasses = ['', 'add-margin-padding', 'add-margin-padding,content-box'];
 
@@ -8,19 +8,13 @@ const testWidths = [
   850, 950,
 ];
 
-const test = base.extend<{
-  testHarness: TestHarnessPage;
-}>({
-  testHarness: async ({ page }, use) => {
-    const testHarness = new TestHarnessPage(page, { throwOnError: true });
-
-    await use(testHarness);
-  },
-});
-
 for (const cssClasses of testCssClasses) {
-  test.describe(`Auto sizing with classes ${cssClasses}`, () => {
-    test.beforeEach(async ({ testHarness }) => {
+  baseTest.describe(`Auto sizing with classes ${cssClasses}`, () => {
+    baseTest.describe.configure({ mode: 'serial' });
+
+    const test = serialTestFixture();
+
+    test.beforeAll(async ({ testHarness }) => {
       await testHarness.goto({ css: cssClasses });
 
       await testHarness.setField('total', 100);
@@ -43,8 +37,12 @@ for (const cssClasses of testCssClasses) {
   });
 }
 
-test.describe('Auto sizing after total change', () => {
-  test.beforeEach(async ({ testHarness }) => {
+baseTest.describe('Auto sizing after total change', () => {
+  baseTest.describe.configure({ mode: 'serial' });
+
+  const test = serialTestFixture();
+
+  test.beforeAll(async ({ testHarness }) => {
     await testHarness.goto();
 
     await testHarness.setField('total', 100);
