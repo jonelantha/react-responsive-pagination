@@ -9,5 +9,5 @@
     "isolatedModules": true,
     "esModuleInterop": true
   },
-  "include": ["test-legacy", "test"]
+  "include": ["test"]
 }
