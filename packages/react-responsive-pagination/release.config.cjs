@@ -27,6 +27,12 @@ function getNormalConfig() {
       ['@semantic-release/commit-analyzer', getCommitAnalyzerConfig()],
       '@semantic-release/release-notes-generator',
       [
+        '@semantic-release/exec',
+        {
+          prepareCmd: 'npm run build',
+        },
+      ],
+      [
         '@semantic-release/changelog',
         {
           changelogTitle: '# React Responsive Pagination Changelog',
