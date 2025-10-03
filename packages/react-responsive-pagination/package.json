@@ -4,7 +4,10 @@
   "description": "React component for responsive pagination",
   "author": "jonelantha",
   "license": "MIT",
-  "repository": "github:jonelantha/react-responsive-pagination",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonelantha/react-responsive-pagination.git"
+  },
   "homepage": "https://react-responsive-pagination.elantha.com",
   "type": "module",
   "main": "./dist/index.js",
