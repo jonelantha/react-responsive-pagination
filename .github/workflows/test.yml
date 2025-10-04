@@ -16,6 +16,9 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
+      - name: Install test-harness-react-18 dependencies
+        working-directory: ./test-harness-react-18
+        run: npm ci
       - name: Install test-harness-react-17 dependencies
         working-directory: ./test-harness-react-17
         run: npm ci
@@ -31,3 +34,9 @@ jobs:
         run: npm run browser-test-18
       - name: Test React 17
         run: npm run browser-test-17
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: packages/browser-test/playwright-report/
+          retention-days: 30

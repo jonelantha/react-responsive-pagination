@@ -17,7 +17,7 @@ export function setupThrowOnError(
       return;
     }
 
-    if (type === 'error' || type === 'warn') {
+    if (type === 'error' || type === 'warning') {
       console.error(text);
       throw new Error(text);
     }

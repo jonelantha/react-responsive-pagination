@@ -1,14 +1,15 @@
+import { test } from '@playwright/test';
 import { TestHarnessPage } from './test-harness-page';
-
-const testHarness = new TestHarnessPage(page);
 
 const startWidth = 650;
 const endWidth = 500;
 const rate = 1;
 
-jest.setTimeout(30000);
+test('demo', async ({ page }) => {
+  test.setTimeout(100_000);
 
-beforeAll(async () => {
+  const testHarness = new TestHarnessPage(page, { throwOnError: true });
+
   await testHarness.goto({ framework: 'bootstrapLightDarkTheme', css: 'demo' });
 
   await page.setViewportSize({ width: startWidth, height: 200 });
@@ -20,9 +21,7 @@ beforeAll(async () => {
   await page.evaluate(() => {
     document.documentElement.scrollTop = 0;
   });
-});
 
-test('demo', async () => {
   await page.waitForTimeout(5000);
 
   for (const colorScheme of ['light', 'dark'] as const) {
@@ -48,7 +47,7 @@ test('demo', async () => {
 
     await page.waitForTimeout(5000);
   }
-}, 60000);
+});
 
 //http://npmjs.com/package/react-responsive-pagination?activeTab=readme
 

@@ -1,6 +1,8 @@
-import { Page } from 'playwright';
+import { Browser, Page } from 'playwright';
 import { setupThrowOnError, stringifyWithUndefined } from './helper';
 import { URLSearchParams } from 'url';
+import { test } from '@playwright/test';
+
 import 'test-harness/src/shared/window.d.ts';
 
 export class TestHarnessPage {
@@ -41,7 +43,7 @@ export class TestHarnessPage {
 
     const framework = options?.framework || 'bootstrap4';
 
-    await this.page.goto(`${harnessUrl}${framework}?${query.toString()}`);
+    await this.page.goto(`/${framework}?${query.toString()}`);
   }
 
   async setField(field: string, value: any) {
@@ -99,4 +101,30 @@ declare global {
   interface Window {
     endOfFramePromise: () => Promise<void>;
   }
+}
+
+async function createGlobalTestHarness(browser: Browser) {
+  const context = await browser.newContext();
+
+  const page = await context.newPage();
+
+  return new TestHarnessPage(page, { throwOnError: true });
+}
+
+export function serialTestFixture() {
+  let globalTestHarness: TestHarnessPage | undefined;
+
+  return test.extend<{ testHarness: TestHarnessPage }>({
+    testHarness: async ({ browser }, use) => {
+      globalTestHarness ??= await createGlobalTestHarness(browser);
+
+      await use(globalTestHarness);
+    },
+
+    page: async ({ browser }, use) => {
+      globalTestHarness ??= await createGlobalTestHarness(browser);
+
+      await use(globalTestHarness.page);
+    },
+  });
 }
