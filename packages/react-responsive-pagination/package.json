@@ -43,7 +43,6 @@
     "start": "rimraf dist/ && tsc --project ./tsconfig.dev.json --watch",
     "test": "jest",
     "lint": "eslint src --report-unused-disable-directives",
-    "prepublishOnly": "npm run build",
     "release": "rm ../../package.json && semantic-release",
     "previewReleaseNotes": "semantic-release --dry-run",
     "api-extractor": "api-extractor run --local --verbose",
