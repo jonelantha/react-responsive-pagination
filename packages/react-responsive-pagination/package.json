@@ -6,7 +6,8 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jonelantha/react-responsive-pagination.git"
+    "url": "git+https://github.com/jonelantha/react-responsive-pagination.git",
+    "directory": "packages/react-responsive-pagination"
   },
   "homepage": "https://react-responsive-pagination.elantha.com",
   "type": "module",
