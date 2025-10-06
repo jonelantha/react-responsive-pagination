@@ -2,6 +2,7 @@
   "extends": "./tsconfig.comp",
   "compilerOptions": {
     "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
     "module": "node20"
   }
 }

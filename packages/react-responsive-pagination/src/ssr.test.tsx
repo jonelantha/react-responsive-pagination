@@ -1,4 +1,4 @@
-import Pagination from './index.js';
+import Pagination from './index.tsx';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
