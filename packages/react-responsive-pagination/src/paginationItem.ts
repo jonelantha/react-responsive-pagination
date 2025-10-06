@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { CompositionItem } from './compositionItem.js';
+import type { CompositionItem } from './compositionItem.ts';
 
 type BaseItem = {
   type: string;

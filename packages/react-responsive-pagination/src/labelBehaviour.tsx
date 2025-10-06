@@ -1,6 +1,6 @@
 import React from 'react';
 import type { ReactNode } from 'react';
-import { PaginationItem } from './paginationItem.js';
+import type { PaginationItem } from './paginationItem.ts';
 
 /**
  * @public

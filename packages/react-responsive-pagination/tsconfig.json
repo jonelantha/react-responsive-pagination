@@ -9,7 +9,8 @@
     "jsx": "react",
     "declaration": true,
     "outDir": "./dist",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "rewriteRelativeImportExtensions": true
   },
   "include": ["./src"]
 }

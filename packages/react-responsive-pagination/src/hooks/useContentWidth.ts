@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { getContentWidth } from '../helpers/style.js';
-import { useIsomorphicLayoutEffect } from '../helpers/react.js';
+import { getContentWidth } from '../helpers/style.ts';
+import { useIsomorphicLayoutEffect } from '../helpers/react.ts';
 import { flushSync } from 'react-dom';
 
 export function useContentWidth(element: Element | undefined) {

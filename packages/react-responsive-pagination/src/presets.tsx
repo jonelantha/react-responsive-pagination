@@ -1,4 +1,5 @@
-import { LabelBehaviour, srOnlySpanLabel } from './labelBehaviour.js';
+import type { LabelBehaviour } from './labelBehaviour.ts';
+import { srOnlySpanLabel } from './labelBehaviour.ts';
 
 /**
  * @public

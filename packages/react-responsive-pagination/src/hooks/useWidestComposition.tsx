@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react';
-import { CompositionItem } from '../compositionItem.js';
-import { useAvailableWidth } from './useAvailableWidth.js';
-import { useFoutDetector } from './useFoutDetector.js';
-import { useWidthCalculator } from './useWidthCalculator.js';
-import { iteratorNext, lastWhere } from '../helpers/iterator.js';
+import type { CompositionItem } from '../compositionItem.ts';
+import { useAvailableWidth } from './useAvailableWidth.ts';
+import { useFoutDetector } from './useFoutDetector.ts';
+import { useWidthCalculator } from './useWidthCalculator.ts';
+import { iteratorNext, lastWhere } from '../helpers/iterator.ts';
 
 export function useWidestComposition(
   narrowToWideCompositionsProvider: () => IterableIterator<CompositionItem[]>,

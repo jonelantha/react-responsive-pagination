@@ -26,6 +26,7 @@ export default defineConfig({
     pluginReactHooks.configs['recommended-latest'],
   ],
   rules: {
+    '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/no-unused-expressions': [
       'error',
       { allowShortCircuit: true },
