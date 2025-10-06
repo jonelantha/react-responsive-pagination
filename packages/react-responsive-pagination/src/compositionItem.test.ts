@@ -1,5 +1,5 @@
+import type { CompositionItem } from './compositionItem.ts';
 import {
-  CompositionItem,
   containsEllipsis,
   createEllipsis,
   createNavNext,
@@ -7,7 +7,7 @@ import {
   createPage,
   isEllipsis,
   isNav,
-} from './compositionItem.js';
+} from './compositionItem.ts';
 
 describe('isNav', () => {
   test('returns true if the previous nav item', () => {

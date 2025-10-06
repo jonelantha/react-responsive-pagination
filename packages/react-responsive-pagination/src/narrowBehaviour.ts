@@ -1,5 +1,5 @@
+import type { CompositionItem } from './compositionItem.ts';
 import {
-  CompositionItem,
   containsEllipsis,
   createEllipsis,
   getLastPage,
@@ -8,8 +8,8 @@ import {
   isPageWithNumber,
   compositionMatches,
   compositionMatchesEnd,
-} from './compositionItem.js';
-import { findLastIndex } from './helpers/util.js';
+} from './compositionItem.ts';
+import { findLastIndex } from './helpers/util.ts';
 
 /**
  * NarrowBehaviours will yield their narrowest composition first and then

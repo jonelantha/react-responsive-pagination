@@ -1,6 +1,6 @@
 import { useRef } from 'react';
-import { useIsomorphicLayoutEffect } from '../helpers/react.js';
-import { getWidth } from '../helpers/style.js';
+import { useIsomorphicLayoutEffect } from '../helpers/react.ts';
+import { getWidth } from '../helpers/style.ts';
 import { flushSync } from 'react-dom';
 
 export function useFoutDetector(

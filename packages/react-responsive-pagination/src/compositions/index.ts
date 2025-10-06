@@ -1,12 +1,12 @@
 import {
-  CompositionItem,
   createActivePage,
   createNavNext,
   createNavPrevious,
-} from '../compositionItem.js';
-import { zipIterators } from '../helpers/iterator.js';
-import { NarrowBehaviour } from '../narrowBehaviour.js';
-import { narrowToWideRanges } from './ranges.js';
+} from '../compositionItem.ts';
+import type { CompositionItem } from '../compositionItem.ts';
+import { zipIterators } from '../helpers/iterator.ts';
+import type { NarrowBehaviour } from '../narrowBehaviour.ts';
+import { narrowToWideRanges } from './ranges.ts';
 
 export function* narrowToWideCompositions({
   current,

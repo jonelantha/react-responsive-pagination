@@ -1,10 +1,10 @@
 import { isValidElement, useEffect } from 'react';
 import type { ReactNode } from 'react';
-import { narrowToWideCompositions } from '../compositions/index.js';
-import { sanatizeInteger, sanatizeBoolean } from '../helpers/util.js';
-import { NarrowBehaviour } from '../narrowBehaviour.js';
-import { compositionToPaginationItems } from '../paginationItem.js';
-import { useWidestComposition } from './useWidestComposition.js';
+import { narrowToWideCompositions } from '../compositions/index.ts';
+import { sanatizeInteger, sanatizeBoolean } from '../helpers/util.ts';
+import type { NarrowBehaviour } from '../narrowBehaviour.ts';
+import { compositionToPaginationItems } from '../paginationItem.ts';
+import { useWidestComposition } from './useWidestComposition.ts';
 
 export function usePaginationItems(
   inputCurrent: number,

@@ -1,4 +1,4 @@
-import { UnsupportedValueError } from './helpers/util.js';
+import { UnsupportedValueError } from './helpers/util.ts';
 
 type CompositionPage = { type: 'page'; page: number };
 type CompositionActivePage = { type: 'active'; page: number };

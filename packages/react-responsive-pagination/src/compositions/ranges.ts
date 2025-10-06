@@ -1,4 +1,4 @@
-import { createEllipsis, createPage } from '../compositionItem.js';
+import { createEllipsis, createPage } from '../compositionItem.ts';
 
 function* narrowToWidePaginationItemRanges(
   start: number,

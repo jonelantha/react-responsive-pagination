@@ -1,6 +1,6 @@
-import { narrowToWideCompositions } from './index.js';
-import { dropNavThenEllipsis } from '../narrowBehaviour.js';
-import { shorthandOf } from '../compositionItem.test.js';
+import { narrowToWideCompositions } from './index.ts';
+import { dropNavThenEllipsis } from '../narrowBehaviour.ts';
+import { shorthandOf } from '../compositionItem.test.ts';
 
 const defaultParams = { narrowBehaviour: undefined, renderNav: true };
 

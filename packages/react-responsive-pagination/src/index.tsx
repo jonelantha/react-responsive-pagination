@@ -1,15 +1,16 @@
 import React, { memo, useEffect } from 'react';
 import type { ReactNode, FC } from 'react';
 import PropTypes from 'prop-types';
-import { usePaginationItems } from './hooks/usePaginationItems.js';
-import { preventDefault } from './helpers/dom.js';
-import { NarrowBehaviour } from './narrowBehaviour.js';
-import { defaultLabelBehaviour, LabelBehaviour } from './labelBehaviour.js';
-import { incRenderCount } from './debug.js';
+import { usePaginationItems } from './hooks/usePaginationItems.ts';
+import { preventDefault } from './helpers/dom.ts';
+import type { NarrowBehaviour } from './narrowBehaviour.ts';
+import type { LabelBehaviour } from './labelBehaviour.ts';
+import { defaultLabelBehaviour } from './labelBehaviour.ts';
+import { incRenderCount } from './debug.ts';
 
-export * from './narrowBehaviour.js';
-export * from './presets.js';
-export * from './labelBehaviour.js';
+export * from './narrowBehaviour.ts';
+export * from './presets.ts';
+export * from './labelBehaviour.ts';
 
 declare const process: { env: { NODE_ENV: string } };
 

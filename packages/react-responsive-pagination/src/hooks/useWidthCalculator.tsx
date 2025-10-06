@@ -1,13 +1,13 @@
 import { useState, useCallback } from 'react';
-import { getElementWidth, getNonContentWidth } from '../helpers/style.js';
+import { getElementWidth, getNonContentWidth } from '../helpers/style.ts';
+import type { CompositionItem } from '../compositionItem.ts';
 import {
-  CompositionItem,
   createActivePage,
   createEllipsis,
   createNavNext,
   createNavPrevious,
   createPage,
-} from '../compositionItem.js';
+} from '../compositionItem.ts';
 
 export function useWidthCalculator(): MetricsRenderResult | CalculatorResult {
   const [widthCalculator, setWidthCalculator] = useState<

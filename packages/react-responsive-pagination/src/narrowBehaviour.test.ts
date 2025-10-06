@@ -1,13 +1,13 @@
-import { shorthandOf, fromShorthand } from './compositionItem.test.js';
+import { shorthandOf, fromShorthand } from './compositionItem.test.ts';
+import type { NarrowBehaviour } from './narrowBehaviour.ts';
 import {
-  NarrowBehaviour,
   combine,
   dropEllipsis,
   dropEllipsisThenNav,
   dropFirstAndLast,
   dropNav,
   dropNavThenEllipsis,
-} from './narrowBehaviour.js';
+} from './narrowBehaviour.ts';
 
 describe('dropNav', () => {
   test('will drop nav', () => {
