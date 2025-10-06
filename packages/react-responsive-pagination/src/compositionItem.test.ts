@@ -1,4 +1,5 @@
-import type { CompositionItem } from './compositionItem.ts';
+import { test, describe } from 'node:test';
+import { deepStrictEqual } from 'node:assert';
 import {
   containsEllipsis,
   createEllipsis,
@@ -8,24 +9,25 @@ import {
   isEllipsis,
   isNav,
 } from './compositionItem.ts';
+import type { CompositionItem } from './compositionItem.ts';
 
 describe('isNav', () => {
   test('returns true if the previous nav item', () => {
     const navPrevious = createNavPrevious(undefined);
 
-    expect(isNav(navPrevious)).toBe(true);
+    deepStrictEqual(isNav(navPrevious), true);
   });
 
   test('returns true if the next nav item', () => {
     const navNext = createNavNext(undefined);
 
-    expect(isNav(navNext)).toBe(true);
+    deepStrictEqual(isNav(navNext), true);
   });
 
   test('returns false if not a nav item', () => {
     const page = createPage(1);
 
-    expect(isNav(page)).toBe(false);
+    deepStrictEqual(isNav(page), false);
   });
 });
 
@@ -33,19 +35,19 @@ describe('isEllipsis', () => {
   test('returns true if the left hand ellipsis', () => {
     const lhEllipsis = createEllipsis('L');
 
-    expect(isEllipsis(lhEllipsis)).toBe(true);
+    deepStrictEqual(isEllipsis(lhEllipsis), true);
   });
 
   test('returns true if the right hand ellipsis', () => {
     const rhEllipsis = createEllipsis('R');
 
-    expect(isEllipsis(rhEllipsis)).toBe(true);
+    deepStrictEqual(isEllipsis(rhEllipsis), true);
   });
 
   test('returns false if not an ellipsis item', () => {
     const page = createPage(1);
 
-    expect(isEllipsis(page)).toBe(false);
+    deepStrictEqual(isEllipsis(page), false);
   });
 });
 
@@ -53,19 +55,19 @@ describe('containsEllipsis', () => {
   test('returns true if the composition contains a left hand ellipsis', () => {
     const composition = fromShorthand(['<3', 1, '…L', 4, '*5', 6, '>6']);
 
-    expect(containsEllipsis(composition)).toBe(true);
+    deepStrictEqual(containsEllipsis(composition), true);
   });
 
   test('returns true if the composition contains a right hand ellipsis', () => {
     const composition = fromShorthand(['<3', 1, '*2', 3, '…R', 6, '>3']);
 
-    expect(containsEllipsis(composition)).toBe(true);
+    deepStrictEqual(containsEllipsis(composition), true);
   });
 
   test('returns false if no ellipsis item', () => {
     const composition = fromShorthand(['<3', 1, '*2', 3, '>3']);
 
-    expect(containsEllipsis(composition)).toBe(false);
+    deepStrictEqual(containsEllipsis(composition), false);
   });
 });
 

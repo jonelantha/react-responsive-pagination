@@ -41,7 +41,7 @@
   "scripts": {
     "build": "npm run lint && rimraf dist/ && tsc --project ./tsconfig.prod.json && npm run api-extractor && npm run copy-extra-types",
     "start": "rimraf dist/ && tsc --project ./tsconfig.dev.json --watch",
-    "test": "jest",
+    "test": "node --test \"src/**/*.test.ts\"",
     "lint": "eslint src --report-unused-disable-directives",
     "release": "rm ../../package.json && semantic-release",
     "previewReleaseNotes": "semantic-release --dry-run",
