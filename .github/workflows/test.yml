@@ -28,6 +28,8 @@ jobs:
         run: npm run build
       - name: Unit Tests
         run: npm run test
+      - name: Integration Tests
+        run: npm run integration-test
       - name: Test React 19
         run: npm run browser-test-19
       - name: Test React 18

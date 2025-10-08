@@ -2,6 +2,7 @@
   "name": "browser-test",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@playwright/test": "^1.55.1",
     "playwright": "^1.52.0",
