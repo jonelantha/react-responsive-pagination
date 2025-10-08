@@ -1,5 +1,5 @@
 import { test, describe } from 'node:test';
-import { deepStrictEqual } from 'node:assert';
+import { deepEqual, equal } from 'node:assert';
 import { narrowToWideCompositions } from './index.ts';
 import { dropNavThenEllipsis } from '../narrowBehaviour.ts';
 import { shorthandOf } from '../compositionItem.test.ts';
@@ -14,7 +14,7 @@ describe('narrowToWideCompositions - total', () => {
       total: 0,
     });
 
-    deepStrictEqual(compositions.next().done, true);
+    equal(compositions.next().done, true);
   });
 });
 
@@ -27,7 +27,7 @@ describe('narrowToWideCompositions - current', () => {
     }).next().value;
 
     const expected = ['<', '*1', 2, '…R', 5, '>2'];
-    deepStrictEqual(shorthandOf(narrowestComposition), expected);
+    deepEqual(shorthandOf(narrowestComposition), expected);
   });
 
   test('clamps current down to total', () => {
@@ -38,7 +38,7 @@ describe('narrowToWideCompositions - current', () => {
     }).next().value;
 
     const expected = ['<4', 1, '…L', 4, '*5', '>'];
-    deepStrictEqual(shorthandOf(narrowestComposition), expected);
+    deepEqual(shorthandOf(narrowestComposition), expected);
   });
 });
 
@@ -51,7 +51,7 @@ describe('narrowToWideCompositions - smallest compositions', () => {
     }).next().value;
 
     const expected = ['<4', 1, '…L', 4, '*5', 6, '…R', 10, '>6'];
-    deepStrictEqual(shorthandOf(narrowestComposition), expected);
+    deepEqual(shorthandOf(narrowestComposition), expected);
   });
 
   test('will not use ellipsis to replace a single number at the start', () => {
@@ -62,7 +62,7 @@ describe('narrowToWideCompositions - smallest compositions', () => {
     }).next().value;
 
     const expected = ['<3', 1, 2, 3, '*4', 5, '…R', 10, '>5'];
-    deepStrictEqual(shorthandOf(narrowestComposition), expected);
+    deepEqual(shorthandOf(narrowestComposition), expected);
   });
 
   test('will not use ellipsis to replace a single number at the end', () => {
@@ -73,7 +73,7 @@ describe('narrowToWideCompositions - smallest compositions', () => {
     }).next().value;
 
     const expected = ['<6', 1, '…L', 6, '*7', 8, 9, 10, '>8'];
-    deepStrictEqual(shorthandOf(narrowestComposition), expected);
+    deepEqual(shorthandOf(narrowestComposition), expected);
   });
 
   test('will not use ellipsis to replace a single number at both side', () => {
@@ -84,7 +84,7 @@ describe('narrowToWideCompositions - smallest compositions', () => {
     }).next().value;
 
     const expected = ['<3', 1, 2, 3, '*4', 5, 6, 7, '>5'];
-    deepStrictEqual(shorthandOf(narrowestComposition), expected);
+    deepEqual(shorthandOf(narrowestComposition), expected);
   });
 });
 
@@ -96,7 +96,7 @@ describe('narrowToWideCompositions - small range compositions', () => {
       total: 1,
     }).next().value;
 
-    deepStrictEqual(shorthandOf(narrowestComposition), ['<', '*1', '>']);
+    deepEqual(shorthandOf(narrowestComposition), ['<', '*1', '>']);
   });
 
   test('handles 2 pages correctly', () => {
@@ -106,7 +106,7 @@ describe('narrowToWideCompositions - small range compositions', () => {
       total: 2,
     }).next().value;
 
-    deepStrictEqual(shorthandOf(narrowestComposition), ['<', '*1', 2, '>2']);
+    deepEqual(shorthandOf(narrowestComposition), ['<', '*1', 2, '>2']);
   });
 
   test('handles 3 pages correctly', () => {
@@ -116,7 +116,7 @@ describe('narrowToWideCompositions - small range compositions', () => {
       total: 3,
     }).next().value;
 
-    deepStrictEqual(shorthandOf(narrowestComposition), ['<', '*1', 2, 3, '>2']);
+    deepEqual(shorthandOf(narrowestComposition), ['<', '*1', 2, 3, '>2']);
   });
 });
 
@@ -137,10 +137,10 @@ describe('narrowToWideCompositions - widening compositions', () => {
     ];
 
     for (const expected of expectedCompositions) {
-      deepStrictEqual(shorthandOf(compositions.next().value), expected);
+      deepEqual(shorthandOf(compositions.next().value), expected);
     }
 
-    deepStrictEqual(compositions.next().done, true);
+    equal(compositions.next().done, true);
   });
 
   test('will expand evenly until the start is fully expanded', () => {
@@ -159,10 +159,10 @@ describe('narrowToWideCompositions - widening compositions', () => {
     ];
 
     for (const expected of expectedCompositions) {
-      deepStrictEqual(shorthandOf(compositions.next().value), expected);
+      deepEqual(shorthandOf(compositions.next().value), expected);
     }
 
-    deepStrictEqual(compositions.next().done, true);
+    equal(compositions.next().done, true);
   });
 
   test('will expand evenly until the end is fully expanded', () => {
@@ -181,10 +181,10 @@ describe('narrowToWideCompositions - widening compositions', () => {
     ];
 
     for (const expected of expectedCompositions) {
-      deepStrictEqual(shorthandOf(compositions.next().value), expected);
+      deepEqual(shorthandOf(compositions.next().value), expected);
     }
 
-    deepStrictEqual(compositions.next().done, true);
+    equal(compositions.next().done, true);
   });
 });
 
@@ -206,10 +206,10 @@ describe('narrowToWideCompositions - narrowBehaviour', () => {
     ];
 
     for (const expected of expectedCompositions) {
-      deepStrictEqual(shorthandOf(compositions.next().value), expected);
+      deepEqual(shorthandOf(compositions.next().value), expected);
     }
 
-    deepStrictEqual(compositions.next().done, true);
+    equal(compositions.next().done, true);
   });
 });
 
@@ -223,6 +223,6 @@ describe('narrowToWideCompositions - renderNav', () => {
     }).next().value;
 
     const expected = [1, '*2', 3, '…R', 6];
-    deepStrictEqual(shorthandOf(narrowestComposition), expected);
+    deepEqual(shorthandOf(narrowestComposition), expected);
   });
 });
