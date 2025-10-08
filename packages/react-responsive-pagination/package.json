@@ -39,10 +39,11 @@
   ],
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "npm run lint && rimraf dist/ && tsc --project ./tsconfig.prod.json && npm run api-extractor && npm run copy-extra-types",
-    "start": "rimraf dist/ && tsc --project ./tsconfig.dev.json --watch",
+    "build": "npm run lint && npm run clean && tsc --project ./tsconfig.prod.json && npm run api-extractor && npm run copy-extra-types",
+    "start": "npm run clean && tsc --project ./tsconfig.dev.json --watch",
     "test": "node --test \"src/**/*.test.ts\"",
     "lint": "eslint src --report-unused-disable-directives",
+    "clean": "node -e \"fs.rmSync('./dist', { recursive: true, force: true });\"",
     "release": "rm ../../package.json && semantic-release",
     "previewReleaseNotes": "semantic-release --dry-run",
     "api-extractor": "api-extractor run --local --verbose",
@@ -79,7 +80,6 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "rimraf": "^6.0.1",
     "semantic-release": "^24.2.4",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.32.1"
