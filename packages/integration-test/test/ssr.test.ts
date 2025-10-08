@@ -18,22 +18,18 @@ describe('ssr', () => {
   });
 
   test('renders without console errors or warnings', () => {
-    const mockConsole = makeMockConsole();
+    using mockConsole = makeMockConsole();
 
-    try {
-      const component = jsx(Pagination, {
-        current: 1,
-        total: 5,
-        onPageChange: () => {},
-      });
+    const component = jsx(Pagination, {
+      current: 1,
+      total: 5,
+      onPageChange: () => {},
+    });
 
-      renderToString(component);
+    renderToString(component);
 
-      equal(mockConsole.error.mock.callCount(), 0);
-      equal(mockConsole.warn.mock.callCount(), 0);
-    } finally {
-      mockConsole.restore();
-    }
+    equal(mockConsole.error.mock.callCount(), 0);
+    equal(mockConsole.warn.mock.callCount(), 0);
   });
 });
 
@@ -47,10 +43,12 @@ function makeMockConsole() {
   console.error = mockConsoleError;
   console.warn = mockConsoleWarn;
 
-  const restore = () => {
-    console.error = originalConsoleError;
-    console.warn = originalConsoleWarn;
+  return {
+    error: mockConsoleError,
+    warn: mockConsoleWarn,
+    [Symbol.dispose]: () => {
+      console.error = originalConsoleError;
+      console.warn = originalConsoleWarn;
+    },
   };
-
-  return { error: mockConsoleError, warn: mockConsoleWarn, restore };
 }
