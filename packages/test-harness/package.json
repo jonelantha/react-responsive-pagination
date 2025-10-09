@@ -6,15 +6,11 @@
   "dependencies": {
     "bootstrap": "^5.3.6",
     "formik": "^2.4.2",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
     "react-responsive-pagination": "file:../react-responsive-pagination",
     "react-router-dom": "^7.6.0",
     "serve": "^14.2.0"
   },
   "devDependencies": {
-    "@types/react": "^19.0.1",
-    "@types/react-dom": "^19.0.1",
     "@vitejs/plugin-react": "^5.0.3",
     "eslint": "^9.9.1",
     "eslint-plugin-react": "^7.35.0",
