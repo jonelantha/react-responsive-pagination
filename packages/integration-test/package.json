@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "dependencies": {
-    "react-responsive-pagination": "file:../react-responsive-pagination"
-  },
   "scripts": {
     "test": "node --test \"test/**/*.test.ts\""
   }
