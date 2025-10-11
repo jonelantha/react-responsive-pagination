@@ -9,7 +9,6 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-responsive-pagination": "file:../packages/react-responsive-pagination",
-    "react-router-dom": "^7.9.2",
     "serve": "^14.2.5"
   },
   "devDependencies": {

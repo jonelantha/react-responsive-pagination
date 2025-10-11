@@ -8,7 +8,7 @@ import {
   dropNavThenEllipsis,
   dropFirstAndLast,
 } from 'react-responsive-pagination/narrowBehaviour';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useCallback } from 'react';
 import { Field, Formik } from 'formik';
 import {
   SubTheme,
@@ -21,6 +21,7 @@ import {
 import { PresetId, presets } from './presets';
 import { createTestComponent } from './test-components';
 import { BodyThemeSetter } from './BodyThemeSetter';
+import { tryJsonParse, useUrlQueryToggles } from './util';
 
 import './TestStyles.css';
 import './App.css';
@@ -104,7 +105,7 @@ const cssExtraClassOptions = [
 const initialStyle = '.pagination { font-size: inherit; }';
 
 function App() {
-  const { frameworkId: activeFrameworkId } = useParams<'frameworkId'>();
+  const [activeFrameworkId, setActiveFrameworkId] = useFrameworkId();
 
   const FrameworkStyles = getFrameworkStyles(activeFrameworkId);
 
@@ -156,9 +157,7 @@ function App() {
                           className="form-check-input"
                           id={frameworkId}
                           checked={frameworkId === activeFrameworkId}
-                          onChange={() => {
-                            window.location.href = frameworkId;
-                          }}
+                          onChange={() => setActiveFrameworkId(frameworkId)}
                         />
                         <label className="form-check-label" htmlFor={frameworkId}>
                           {frameworkId}
@@ -358,7 +357,7 @@ function getNarrowBehaviour({
   } else if (Array.isArray(narrowBehaviourNames)) {
     const narrowBehaviours = narrowBehaviourNames
       .map(getSingleNarrowBehaviour)
-      .filter(notUndefined);
+      .filter(x => x !== undefined);
 
     return { narrowBehaviour: combine(...narrowBehaviours) };
   }
@@ -379,30 +378,14 @@ function getSingleNarrowBehaviour(narrowBehaviourName: unknown) {
   }
 }
 
-function useUrlQueryToggles(
-  field: string,
-  validValues: string[],
-): [activeValues: string[], toggleValue: (value: string, toggle: boolean) => void] {
-  const [search, setSearch] = useSearchParams();
+function useFrameworkId(): [string, (frameworkId: string) => void] {
+  const frameworkId = window.location.pathname.replace(/^\//, '') || 'bootstrap4';
 
-  const activeValues =
-    search
-      .get(field)
-      ?.split(',')
-      .filter(value => validValues.includes(value)) ?? [];
+  const setFrameworkId = useCallback((frameworkId: string) => {
+    window.location.href = frameworkId;
+  }, []);
 
-  function toggleValue(value: string, toggle: boolean) {
-    const newActiveValues = new Set(activeValues);
-    if (toggle) {
-      newActiveValues.add(value);
-    } else {
-      newActiveValues.delete(value);
-    }
-
-    setSearch({ [field]: [...newActiveValues].join(',') });
-  }
-
-  return [activeValues, toggleValue];
+  return [frameworkId, setFrameworkId];
 }
 
 function parseJsonFields<K extends string>(jsonValues: {
@@ -421,14 +404,6 @@ function parseJsonFields<K extends string>(jsonValues: {
   return props;
 }
 
-function tryJsonParse(str: string) {
-  try {
-    return JSON.parse(str);
-  } catch {
-    return undefined;
-  }
-}
-
 function getFieldValue(value: unknown) {
   const testComponent = createTestComponent(value);
   if (testComponent) return testComponent;
@@ -436,8 +411,4 @@ function getFieldValue(value: unknown) {
   if (value === 'hrefTestFn()') return (page: number) => `/test-page/${page}`;
 
   return value;
-}
-
-function notUndefined<T>(x: T | undefined): x is T {
-  return x !== undefined;
 }

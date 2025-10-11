@@ -1,5 +1,4 @@
 import React, { ReactElement, Suspense } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { resetRenderCount, getRenderCount } from 'react-responsive-pagination/debug';
 
 import App from './App';
@@ -18,12 +17,7 @@ export async function start(
 
   const app = (
     <Suspense fallback={null}>
-      <BrowserRouter>
-        <Routes>
-          <Route path=":frameworkId" element={<App />} />
-          <Route index element={<Navigate to="/bootstrap4" replace />} />
-        </Routes>
-      </BrowserRouter>
+      <App />
     </Suspense>
   );
 
