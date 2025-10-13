@@ -30,6 +30,8 @@ jobs:
         run: npm run test
       - name: Integration Tests
         run: npm run integration-test
+      - name: Build test harness library
+        run: npm run build-test-harness-lib
       - name: Test React 19
         run: npm run browser-test-19
       - name: Test React 18

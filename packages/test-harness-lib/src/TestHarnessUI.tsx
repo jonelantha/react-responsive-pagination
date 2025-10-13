@@ -24,7 +24,7 @@ import { BodyThemeSetter } from './BodyThemeSetter';
 import { tryJsonParse, useUrlQueryToggles } from './util';
 
 import './TestStyles.css';
-import './App.css';
+import './TestHarness.css';
 
 const fields = {
   renderPagination: 'Render Pagination',
@@ -104,7 +104,7 @@ const cssExtraClassOptions = [
 
 const initialStyle = '.pagination { font-size: inherit; }';
 
-function App() {
+function TestHarnessUI() {
   const [activeFrameworkId, setActiveFrameworkId] = useFrameworkId();
 
   const FrameworkStyles = getFrameworkStyles(activeFrameworkId);
@@ -334,7 +334,7 @@ function App() {
   );
 }
 
-export default App;
+export default TestHarnessUI;
 
 function getLabelBehaviour({
   labelBehaviour,

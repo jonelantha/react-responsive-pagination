@@ -10,6 +10,8 @@
     "release": "npm run release -w react-responsive-pagination",
     "test": "npm run test -w react-responsive-pagination",
     "integration-test": "npm run test -w integration-test",
+    "start-test-harness-lib": "npm run start -w test-harness-lib",
+    "build-test-harness-lib": "npm run build -w test-harness-lib",
     "start-test-harness": "npm run start -w test-harness",
     "browser-test-dev": "npm run test-dev-chrome -w browser-test",
     "browser-test-19": "npm run build -w test-harness && SERVE_COMMAND='npm run serve -w test-harness' PORT=3000 npm run test-prod -w browser-test",

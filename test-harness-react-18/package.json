@@ -4,12 +4,10 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "bootstrap": "^5.3.8",
-    "formik": "^2.4.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-responsive-pagination": "file:../packages/react-responsive-pagination",
-    "serve": "^14.2.5"
+    "serve": "^14.2.5",
+    "test-harness-lib": "file:../packages/test-harness-lib"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

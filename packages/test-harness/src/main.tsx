@@ -1,8 +1,13 @@
 import { createRoot } from 'react-dom/client';
-import { start } from './shared/main';
+// @ts-ignore
+import { setup } from 'test-harness-lib';
+// @ts-ignore
+import TestHarnessApp from 'test-harness-lib/TestHarnessApp';
 
-start((children, rootElement) => {
-  const root = createRoot(rootElement);
+import 'test-harness-lib/index.css';
 
-  root.render(children);
-});
+await setup();
+
+const root = createRoot(document.getElementById('root')!);
+
+root.render(<TestHarnessApp />);

@@ -1,4 +1,11 @@
 import ReactDOM from 'react-dom';
-import { start } from './shared/main';
+// @ts-ignore
+import { setup } from 'test-harness-lib';
+// @ts-ignore
+import TestHarnessApp from 'test-harness-lib/TestHarnessApp';
 
-start(ReactDOM.render);
+import 'test-harness-lib/index.css';
+
+await setup();
+
+ReactDOM.render(<TestHarnessApp />, document.getElementById('root'));

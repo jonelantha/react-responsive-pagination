@@ -1,0 +1,24 @@
+{
+  "name": "test-harness-lib",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "bootstrap": "^5.3.6",
+    "formik": "^2.4.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.3",
+    "vite": "^7.1.7"
+  },
+  "scripts": {
+    "start": "vite build --watch",
+    "build": "tsc && vite build",
+    "lint": "eslint src --report-unused-disable-directives"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./TestHarnessApp": "./dist/TestHarnessApp.js",
+    "./index.css": "./dist/index.css"
+  }
+}
