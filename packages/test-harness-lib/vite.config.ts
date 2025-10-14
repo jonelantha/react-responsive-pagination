@@ -6,11 +6,8 @@ export default defineConfig({
   build: {
     lib: {
       formats: ['es'],
-      entry: {
-        index: new URL('src/index.ts', import.meta.url).pathname,
-        TestHarnessApp: new URL('src/TestHarnessApp.tsx', import.meta.url).pathname,
-      },
-      cssFileName: 'index',
+      entry: new URL('src/index.tsx', import.meta.url).pathname,
+      fileName: 'index',
       name: 'test-harness-lib',
     },
     rollupOptions: {
