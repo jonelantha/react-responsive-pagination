@@ -14,9 +14,9 @@
     "build-test-harness-lib": "npm run build -w test-harness-lib",
     "start-test-harness": "npm run start -w test-harness",
     "browser-test-dev": "npm run test-dev-chrome -w browser-test",
-    "browser-test-19": "npm run build -w test-harness && SERVE_COMMAND='npm run serve -w test-harness' PORT=3000 npm run test-prod -w browser-test",
-    "browser-test-18": "npm run build --prefix test-harness-react-18 && SERVE_COMMAND='npm run serve --prefix ../../test-harness-react-18' PORT=3000 npm run test-prod -w browser-test",
-    "browser-test-17": "npm run build --prefix test-harness-react-17 && SERVE_COMMAND='npm run serve --prefix ../../test-harness-react-17' PORT=3000 npm run test-prod -w browser-test",
+    "browser-test-19": "npm run build -w test-harness && SERVE_COMMAND='npm run preview -w test-harness' PORT=3000 npm run test-prod -w browser-test",
+    "browser-test-18": "npm run build --prefix test-harness-react-18 && SERVE_COMMAND='npm run preview --prefix ../../test-harness-react-18' PORT=3000 npm run test-prod -w browser-test",
+    "browser-test-17": "npm run build --prefix test-harness-react-17 && SERVE_COMMAND='npm run preview --prefix ../../test-harness-react-17' PORT=3000 npm run test-prod -w browser-test",
     "start-docs": "npm run dev -w docs",
     "build-docs": "npm run build -w docs"
   },
