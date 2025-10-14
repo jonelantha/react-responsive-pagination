@@ -3,11 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "dependencies": {},
-  "devDependencies": {
-    "@vitejs/plugin-react": "^5.0.3",
-    "vite": "^7.1.7"
-  },
   "scripts": {
     "start": "vite --port 3001",
     "build": "tsc && vite build",

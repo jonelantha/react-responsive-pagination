@@ -23,6 +23,7 @@
   "dependencies": {
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.1",
+    "@vitejs/plugin-react": "5.0.4",
     "eslint": "9.37.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "eslint-plugin-react": "7.37.5",
@@ -32,6 +33,7 @@
     "react-dom": "19.2.0",
     "react-responsive-pagination": "file:./packages/react-responsive-pagination",
     "typescript": "^5.8.3",
-    "typescript-eslint": "8.46.0"
+    "typescript-eslint": "8.46.0",
+    "vite": "7.1.10"
   }
 }

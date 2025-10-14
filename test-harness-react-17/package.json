@@ -10,9 +10,7 @@
   },
   "devDependencies": {
     "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "@vitejs/plugin-react": "^5.0.3",
-    "vite": "^7.1.7"
+    "@types/react-dom": "^17.0.0"
   },
   "scripts": {
     "start": "vite --port 3001",

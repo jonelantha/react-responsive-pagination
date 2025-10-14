@@ -7,10 +7,6 @@
     "bootstrap": "^5.3.6",
     "formik": "^2.4.2"
   },
-  "devDependencies": {
-    "@vitejs/plugin-react": "^5.0.3",
-    "vite": "^7.1.7"
-  },
   "scripts": {
     "start": "vite build --watch",
     "build": "tsc && vite build",
