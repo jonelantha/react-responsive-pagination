@@ -1,8 +1,9 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import TestHarnessUI from './TestHarnessUI';
 import { resetRenderCount, getRenderCount } from 'react-responsive-pagination/debug';
+import type { TestHarnessApp as TestHarnessAppType } from '../index';
 
-export function TestHarnessApp() {
+export const TestHarnessApp: typeof TestHarnessAppType = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const notStrict = Boolean(urlParams.get('notStrict'));
 
@@ -23,7 +24,7 @@ export function TestHarnessApp() {
   ) : (
     <React.StrictMode>{testHarness}</React.StrictMode>
   );
-}
+};
 
 async function setup() {
   window.resetRenderCount = resetRenderCount;

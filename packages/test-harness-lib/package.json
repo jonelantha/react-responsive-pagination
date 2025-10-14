@@ -17,8 +17,11 @@
     "lint": "eslint src --report-unused-disable-directives"
   },
   "exports": {
-    ".": "./dist/index.js",
-    "./TestHarnessApp": "./dist/TestHarnessApp.js",
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./dist/index.js"
+    },
     "./index.css": "./dist/index.css"
-  }
+  },
+  "types": "./index.d.ts"
 }

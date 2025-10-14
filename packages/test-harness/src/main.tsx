@@ -1,5 +1,4 @@
 import { createRoot } from 'react-dom/client';
-// @ts-ignore
 import { TestHarnessApp } from 'test-harness-lib';
 
 import 'test-harness-lib/index.css';
