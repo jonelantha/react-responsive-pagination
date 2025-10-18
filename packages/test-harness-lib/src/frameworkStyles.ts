@@ -1,12 +1,12 @@
 import { lazy } from 'react';
 
-import bootstrapThemeUrl from 'react-responsive-pagination/themes/bootstrap.css?raw';
-import bootstrapLightDarkThemeUrl from 'react-responsive-pagination/themes/bootstrap-light-dark.css?raw';
-import minimalThemeUrl from 'react-responsive-pagination/themes/minimal.css?raw';
-import minimalLightDarkThemeUrl from 'react-responsive-pagination/themes/minimal-light-dark.css?raw';
-import classicThemeUrl from 'react-responsive-pagination/themes/classic.css?raw';
-import classicLightDarkThemeUrl from 'react-responsive-pagination/themes/classic-light-dark.css?raw';
-import bootstrap5Css from 'bootstrap/dist/css/bootstrap.css?raw';
+import bootstrapThemeUrl from 'react-responsive-pagination/themes/bootstrap.css?url';
+import bootstrapLightDarkThemeUrl from 'react-responsive-pagination/themes/bootstrap-light-dark.css?url';
+import minimalThemeUrl from 'react-responsive-pagination/themes/minimal.css?url';
+import minimalLightDarkThemeUrl from 'react-responsive-pagination/themes/minimal-light-dark.css?url';
+import classicThemeUrl from 'react-responsive-pagination/themes/classic.css?url';
+import classicLightDarkThemeUrl from 'react-responsive-pagination/themes/classic-light-dark.css?url';
+import bootstrap5Url from 'bootstrap/dist/css/bootstrap.css?url';
 
 const frameworkStyles = {
   bootstrap400: cssLazyLoadComponent(
@@ -15,13 +15,13 @@ const frameworkStyles = {
   bootstrap4: cssLazyLoadComponent(
     'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css',
   ),
-  bootstrap5: styleLazyLoadComponent(bootstrap5Css),
-  bootstrapTheme: styleLazyLoadComponent(bootstrapThemeUrl),
-  bootstrapLightDarkTheme: styleLazyLoadComponent(bootstrapLightDarkThemeUrl),
-  minimalTheme: styleLazyLoadComponent(minimalThemeUrl),
-  minimalLightDarkTheme: styleLazyLoadComponent(minimalLightDarkThemeUrl),
-  classicTheme: styleLazyLoadComponent(classicThemeUrl),
-  classicLightDarkTheme: styleLazyLoadComponent(classicLightDarkThemeUrl),
+  bootstrap5: cssLazyLoadComponent(bootstrap5Url),
+  bootstrapTheme: cssLazyLoadComponent(bootstrapThemeUrl),
+  bootstrapLightDarkTheme: cssLazyLoadComponent(bootstrapLightDarkThemeUrl),
+  minimalTheme: cssLazyLoadComponent(minimalThemeUrl),
+  minimalLightDarkTheme: cssLazyLoadComponent(minimalLightDarkThemeUrl),
+  classicTheme: cssLazyLoadComponent(classicThemeUrl),
+  classicLightDarkTheme: cssLazyLoadComponent(classicLightDarkThemeUrl),
 };
 
 export const frameworkIds = Object.keys(frameworkStyles);
@@ -46,16 +46,6 @@ function cssLazyLoadComponent(cssUrl: string) {
       document.head.appendChild(cssLinkElement);
       cssLinkElement.onload = resolve;
     });
-
-    return { default: ({ children }: { children: React.JSX.Element }) => children };
-  });
-}
-
-function styleLazyLoadComponent(css: string) {
-  return lazy(async () => {
-    const styleElement = document.createElement('style');
-    styleElement.innerHTML = css;
-    document.head.appendChild(styleElement);
 
     return { default: ({ children }: { children: React.JSX.Element }) => children };
   });
