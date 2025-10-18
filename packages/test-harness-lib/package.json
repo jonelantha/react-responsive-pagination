@@ -3,21 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "dependencies": {
-    "bootstrap": "^5.3.6",
-    "formik": "^2.4.2"
-  },
   "scripts": {
-    "start": "vite build --watch",
-    "build": "tsc && vite build",
     "lint": "eslint src --report-unused-disable-directives"
-  },
-  "exports": {
-    ".": {
-      "types": "./index.d.ts",
-      "default": "./dist/index.js"
-    },
-    "./index.css": "./dist/index.css"
-  },
-  "types": "./index.d.ts"
+  }
 }

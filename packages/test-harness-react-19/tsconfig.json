@@ -12,6 +12,6 @@
     "jsx": "react-jsx",
     "allowJs": false
   },
-  "include": ["src"],
+  "include": ["src", "../test-harness-lib/src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -1,9 +1,6 @@
 {
   "extends": "../../tsconfig",
   "compilerOptions": {
-    "paths": {
-      "react": ["./node_modules/@types/react"]
-    },
     "target": "ES2020",
     "lib": ["esnext", "DOM", "DOM.Iterable"],
     "module": "ESNext",
@@ -15,6 +12,6 @@
     "jsx": "react-jsx",
     "allowJs": false
   },
-  "include": ["src"],
+  "include": ["src", "../test-harness-lib/src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
