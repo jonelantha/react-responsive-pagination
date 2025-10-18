@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { JSX, useEffect, useState } from 'react';
 
 type PageFontsAndStylesProps = {
   cssUrl: string;
-  children: React.ReactNode;
+  children: JSX.Element;
 };
 
 export function PageFontsAndStyles({ cssUrl, children }: PageFontsAndStylesProps) {
