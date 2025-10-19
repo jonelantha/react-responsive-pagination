@@ -1,24 +1,29 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 import TestHarnessUI from './TestHarnessUI';
 import { resetRenderCount, getRenderCount } from 'react-responsive-pagination/debug';
+import { frameworkCssUrls, FrameworkId } from './frameworkStyles';
+import { PageFontsAndStyles } from './PageFontsAndStyles';
 
 import './TestStyles.css';
 import './TestHarness.css';
 
+window.resetRenderCount = resetRenderCount;
+window.getRenderCount = getRenderCount;
+
+console.log(React.version);
+
 export function TestHarnessApp() {
+  const [activeFrameworkId, setActiveFrameworkId] = useFrameworkId('bootstrap4');
   const urlParams = new URLSearchParams(window.location.search);
   const notStrict = Boolean(urlParams.get('notStrict'));
 
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    if (!ready) {
-      setup().then(() => setReady(true));
-    }
-  }, [ready]);
-
   const testHarness = (
-    <Suspense fallback={null}>{ready && <TestHarnessUI />}</Suspense>
+    <PageFontsAndStyles cssUrl={frameworkCssUrls[activeFrameworkId]}>
+      <TestHarnessUI
+        activeFrameworkId={activeFrameworkId}
+        setActiveFrameworkId={setActiveFrameworkId}
+      />
+    </PageFontsAndStyles>
   );
 
   return notStrict ? (
@@ -28,23 +33,17 @@ export function TestHarnessApp() {
   );
 }
 
-async function setup() {
-  window.resetRenderCount = resetRenderCount;
-  window.getRenderCount = getRenderCount;
+function useFrameworkId(
+  defaultFrameworkId: FrameworkId,
+): [FrameworkId, (frameworkId: FrameworkId) => void] {
+  const urlFrameworkId = window.location.pathname.replace(/^\//, '');
 
-  await windowLoadPromise();
+  const frameworkId =
+    urlFrameworkId in frameworkCssUrls ? (urlFrameworkId as FrameworkId) : undefined;
 
-  await document.fonts.load('16px Roboto');
+  const setFrameworkId = useCallback((frameworkId: FrameworkId) => {
+    window.location.href = frameworkId;
+  }, []);
 
-  console.log(React.version);
-}
-
-function windowLoadPromise() {
-  return new Promise<void>(resolve => {
-    if (document.readyState === 'complete') {
-      resolve();
-    } else {
-      window.addEventListener('load', () => resolve());
-    }
-  });
+  return [frameworkId ?? defaultFrameworkId, setFrameworkId];
 }
