@@ -1,5 +1,5 @@
 import { Browser, Page } from 'playwright';
-import { setupThrowOnError, stringifyWithUndefined } from './helper';
+import { setupThrowOnError, stringifyWithUndefined } from './helper.ts';
 import { URLSearchParams } from 'url';
 import { test } from '@playwright/test';
 

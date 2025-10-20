@@ -16,9 +16,12 @@
     "browser-test-18": "npm run build -w test-harness-react-18 && SERVE_COMMAND='npm run preview -w test-harness-react-18' PORT=3000 npm run test-prod -w browser-test",
     "browser-test-17": "npm run build -w test-harness-react-17 && SERVE_COMMAND='npm run preview -w test-harness-react-17' PORT=3000 npm run test-prod -w browser-test",
     "start-docs": "npm run dev -w docs",
-    "build-docs": "npm run build -w docs"
+    "build-docs": "npm run build -w docs",
+    "tsc": "npm run tsc-config && npm run tsc --workspaces",
+    "tsc-config": "tsc --p ./tsconfig/tsconfig.config-files.json"
   },
   "dependencies": {
+    "@types/eslint-plugin-jsx-a11y": "6.10.1",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.1",
     "@vitejs/plugin-react": "5.0.4",

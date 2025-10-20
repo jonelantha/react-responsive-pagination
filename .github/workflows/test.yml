@@ -20,6 +20,8 @@ jobs:
         run: npx playwright install --with-deps
       - name: Build
         run: npm run build
+      - name: Typescript check
+        run: npm run tsc
       - name: Unit Tests
         run: npm run test
       - name: Integration Tests
