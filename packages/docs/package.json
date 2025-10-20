@@ -8,7 +8,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint",
-    "tsc": "tsc"
+    "tsc": "astro sync && tsc"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.1",
