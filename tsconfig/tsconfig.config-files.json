@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.node",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "skipLibCheck": true,
+    "noEmit": true
+  },
+  "include": ["../**/vite.config.*", "../**/eslint.config.*", "../**/.prettierrc.*"]
+}

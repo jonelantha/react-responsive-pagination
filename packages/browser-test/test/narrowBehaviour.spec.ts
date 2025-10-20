@@ -1,5 +1,5 @@
 import { test as base, expect } from '@playwright/test';
-import { TestHarnessPage } from './test-harness-page';
+import { TestHarnessPage } from './test-harness-page.ts';
 
 const testWidths = [150, 200, 250];
 

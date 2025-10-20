@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig",
+  "extends": "../../tsconfig/tsconfig.code-styles",
   "compilerOptions": {
     "target": "ES2020",
     "lib": ["DOM", "ES2017"],

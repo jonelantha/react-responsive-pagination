@@ -1,5 +1,5 @@
 import { test as baseTest, expect } from '@playwright/test';
-import { serialTestFixture } from './test-harness-page';
+import { serialTestFixture } from './test-harness-page.ts';
 
 const testCssClasses = ['', 'add-margin-padding', 'add-margin-padding,content-box'];
 

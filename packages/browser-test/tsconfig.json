@@ -1,13 +1,10 @@
 {
-  "extends": "../../tsconfig",
+  "extends": "../../tsconfig/tsconfig.node",
   "compilerOptions": {
-    "target": "es2020",
-    "lib": ["dom"],
-    "module": "es2020",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "esModuleInterop": true
+    "lib": ["DOM"],
+    "skipLibCheck": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true
   },
-  "include": ["test"]
+  "include": ["test", "playwright.config.ts"]
 }

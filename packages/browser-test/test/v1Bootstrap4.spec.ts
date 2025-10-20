@@ -1,5 +1,5 @@
 import { test as baseTest, expect } from '@playwright/test';
-import { serialTestFixture } from './test-harness-page';
+import { serialTestFixture } from './test-harness-page.ts';
 
 const testWidths = [
   1000, 900, 800, 700, 600, 500, 400, 300, 200, 100, 250, 350, 450, 550, 650, 750,

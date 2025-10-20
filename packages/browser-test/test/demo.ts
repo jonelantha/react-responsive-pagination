@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { TestHarnessPage } from './test-harness-page';
+import { TestHarnessPage } from './test-harness-page.ts';
 
 const startWidth = 650;
 const endWidth = 500;
