@@ -1,8 +1,11 @@
-const { execSync } = require('child_process');
+import type { GlobalConfig } from 'semantic-release';
+import { execSync } from 'node:child_process';
+import process from 'node:process';
+import packageJson from './package.json' with { type: 'json' };
 
-module.exports = isDryRun() ? getDryRunConfig() : getNormalConfig();
+export default isDryRun() ? getDryRunConfig() : getNormalConfig();
 
-function getDryRunConfig() {
+function getDryRunConfig(): GlobalConfig {
   return {
     repositoryUrl: getLocalRepoUrl(),
     branches: getCurrentBranch(),
@@ -10,11 +13,13 @@ function getDryRunConfig() {
       ['@semantic-release/commit-analyzer', getCommitAnalyzerConfig()],
       '@semantic-release/release-notes-generator',
     ],
+    tagFormat: 'v${version}',
   };
 }
 
-function getNormalConfig() {
+function getNormalConfig(): GlobalConfig {
   return {
+    repositoryUrl: getRepositoryUrl(),
     branches: [
       '+([0-9])?(.{+([0-9]),x}).x',
       'main',
@@ -42,6 +47,7 @@ function getNormalConfig() {
         },
       ],
     ],
+    tagFormat: 'v${version}',
   };
 }
 
@@ -64,4 +70,14 @@ function getLocalRepoUrl() {
 
 function getCurrentBranch() {
   return execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
+}
+
+function getRepositoryUrl() {
+  const repositoryUrl = packageJson?.repository?.url;
+
+  if (typeof repositoryUrl !== 'string') {
+    throw new Error(`unexpected repository URL ${repositoryUrl}`);
+  }
+
+  return repositoryUrl;
 }
