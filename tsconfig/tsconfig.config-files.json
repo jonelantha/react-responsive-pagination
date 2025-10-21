@@ -6,10 +6,6 @@
     "skipLibCheck": true,
     "noEmit": true
   },
-  "include": [
-    "../**/vite.config.*",
-    "../**/eslint.config.*",
-    "../**/.prettierrc.*",
-    "../**/release.config.*"
-  ]
+  "include": ["../**/*.config.*", "../**/.prettierrc.*"],
+  "exclude": ["../**/docs/**/content.config.*"]
 }
