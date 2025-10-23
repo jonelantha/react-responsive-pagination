@@ -11,6 +11,7 @@
     "test-dev": "npx playwright test --headed",
     "test-dev-chrome": "npm run test-dev -- --project=chromium",
     "test-prod": "npx playwright test",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "lint": "eslint"
   }
 }

@@ -39,10 +39,10 @@
   ],
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "npm run lint && npm run clean && tsc --project ./tsconfig.prod.json && npm run api-extractor && npm run copy-extra-types",
+    "build": "npm run clean && tsc --project ./tsconfig.prod.json && npm run api-extractor && npm run copy-extra-types",
     "start": "npm run clean && tsc --project ./tsconfig.dev.json --watch",
     "test": "node --test \"src/**/*.test.ts\"",
-    "lint": "eslint src --report-unused-disable-directives",
+    "lint": "eslint",
     "clean": "node -e \"fs.rmSync('./dist', { recursive: true, force: true });\"",
     "release": "rm ../../package.json && semantic-release",
     "previewReleaseNotes": "semantic-release --dry-run",

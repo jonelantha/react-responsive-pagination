@@ -18,7 +18,8 @@
     "start-docs": "npm run dev -w docs",
     "build-docs": "npm run build -w docs",
     "tsc": "npm run tsc-config && npm run tsc --workspaces",
-    "tsc-config": "tsc --p ./tsconfig/tsconfig.config-files.json"
+    "tsc-config": "tsc --p ./tsconfig/tsconfig.config-files.json",
+    "lint": "npm run lint --workspaces"
   },
   "dependencies": {
     "@types/eslint-plugin-jsx-a11y": "6.10.1",
