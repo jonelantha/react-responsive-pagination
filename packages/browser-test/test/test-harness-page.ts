@@ -1,4 +1,4 @@
-import { Browser, Page } from 'playwright';
+import type { Browser, Page } from 'playwright';
 import { setupThrowOnError, stringifyWithUndefined } from './helper.ts';
 import { URLSearchParams } from 'url';
 import { test } from '@playwright/test';
@@ -46,7 +46,7 @@ export class TestHarnessPage {
     await this.page.goto(`/${framework}?${query.toString()}`);
   }
 
-  async setField(field: string, value: any) {
+  async setField(field: string, value: unknown) {
     await this.page.locator(`#${field}AsJson`).fill(stringifyWithUndefined(value));
   }
 

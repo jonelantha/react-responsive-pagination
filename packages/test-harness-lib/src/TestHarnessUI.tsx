@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import ResponsivePagination from 'react-responsive-pagination';
 import { srOnlySpanLabel } from 'react-responsive-pagination/labelBehaviour';
 import {
@@ -9,15 +10,15 @@ import {
   dropFirstAndLast,
 } from 'react-responsive-pagination/narrowBehaviour';
 import { Field, Formik } from 'formik';
+import type { SubTheme, FrameworkId } from './frameworkStyles';
 import {
-  SubTheme,
   subThemes,
   frameworkIds,
   getThemeVariables,
   getThemeVariableTestValue,
-  FrameworkId,
 } from './frameworkStyles';
-import { PresetId, presets } from './presets';
+import type { PresetId } from './presets';
+import { presets } from './presets';
 import { createTestComponent } from './test-components';
 import { BodyThemeSetter } from './BodyThemeSetter';
 import { tryJsonParse, useUrlQueryToggles } from './util';
