@@ -55,14 +55,14 @@ function linear(x: number) {
   return x;
 }
 
-function easeOutSine(x: number) {
-  return Math.sin((x * Math.PI) / 2);
-}
+// function easeOutSine(x: number) {
+//   return Math.sin((x * Math.PI) / 2);
+// }
 
-function easeOutQuad(x: number) {
-  return 1 - (1 - x) * (1 - x);
-}
+// function easeOutQuad(x: number) {
+//   return 1 - (1 - x) * (1 - x);
+// }
 
-function easeOutCubic(x: number) {
-  return 1 - Math.pow(1 - x, 3);
-}
+// function easeOutCubic(x: number) {
+//   return 1 - Math.pow(1 - x, 3);
+// }

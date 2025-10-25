@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { SubTheme } from './frameworkStyles';
+import type { SubTheme } from './frameworkStyles';
 
 export function BodyThemeSetter({ theme }: { theme: SubTheme }) {
   useEffect(() => {

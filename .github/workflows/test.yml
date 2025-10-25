@@ -22,6 +22,8 @@ jobs:
         run: npm run build
       - name: Typescript check
         run: npm run tsc
+      - name: Lint check
+        run: npm run lint
       - name: Unit Tests
         run: npm run test
       - name: Integration Tests

@@ -18,7 +18,8 @@
     "start-docs": "npm run dev -w docs",
     "build-docs": "npm run build -w docs",
     "tsc": "npm run tsc-config && npm run tsc --workspaces",
-    "tsc-config": "tsc --p ./tsconfig/tsconfig.config-files.json"
+    "tsc-config": "tsc --p ./tsconfig/tsconfig.config-files.json",
+    "lint": "npm run lint --workspaces"
   },
   "dependencies": {
     "@types/eslint-plugin-jsx-a11y": "6.10.1",
@@ -26,17 +27,17 @@
     "@types/react-dom": "19.2.1",
     "@vitejs/plugin-react": "5.0.4",
     "bootstrap": "5.3.8",
-    "eslint": "9.37.0",
+    "eslint": "9.38.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "eslint-plugin-react": "7.37.5",
-    "eslint-plugin-react-hooks": "5.2.0",
+    "eslint-plugin-react-hooks": "7.0.1",
     "formik": "2.4.6",
     "prettier": "^3.2.5",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-responsive-pagination": "file:./packages/react-responsive-pagination",
     "typescript": "^5.8.3",
-    "typescript-eslint": "8.46.0",
+    "typescript-eslint": "8.46.2",
     "vite": "7.1.10"
   }
 }

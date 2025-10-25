@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "lint": "eslint src --report-unused-disable-directives",
+    "lint": "eslint",
     "tsc": "tsc"
   }
 }

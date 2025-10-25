@@ -1,4 +1,4 @@
-import { ConsoleMessage, Page } from 'playwright';
+import type { ConsoleMessage, Page } from 'playwright';
 
 export function setupThrowOnError(
   page: Page,
@@ -32,6 +32,6 @@ async function getConsoleText(message: ConsoleMessage) {
   return message.text().replace(/%s/g, () => args[argCounter++]);
 }
 
-export function stringifyWithUndefined(value: any) {
+export function stringifyWithUndefined(value: unknown) {
   return value === undefined ? 'undefined' : JSON.stringify(value);
 }
