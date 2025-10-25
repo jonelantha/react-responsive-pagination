@@ -25,7 +25,7 @@ export const baseReactLegacyRuntimeConfig = defineConfig([
   baseTsConfig,
   reactPlugin.configs.flat.recommended,
   pluginJsxA11y.flatConfigs.recommended,
-  pluginReactHooks.configs['recommended-latest'],
+  pluginReactHooks.configs.flat.recommended,
   {
     settings: {
       react: { version: 'detect' },
