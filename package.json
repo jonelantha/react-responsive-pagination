@@ -25,7 +25,7 @@
     "@types/eslint-plugin-jsx-a11y": "6.10.1",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.1",
-    "@vitejs/plugin-react": "5.0.4",
+    "@vitejs/plugin-react": "5.1.0",
     "bootstrap": "5.3.8",
     "eslint": "9.38.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
@@ -36,8 +36,8 @@
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-responsive-pagination": "file:./packages/react-responsive-pagination",
-    "typescript": "^5.8.3",
+    "typescript": "5.9.3",
     "typescript-eslint": "8.46.2",
-    "vite": "7.1.10"
+    "vite": "7.1.12"
   }
 }
