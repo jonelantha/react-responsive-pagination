@@ -7,7 +7,7 @@ import pluginJsxA11y from 'eslint-plugin-jsx-a11y';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
 import { defineConfig } from 'eslint/config';
 
-export const baseTsConfig = defineConfig([
+export const baseTsNoParseConfig = defineConfig([
   eslint.configs.recommended,
   tseslint.configs.recommended,
   {
@@ -17,6 +17,20 @@ export const baseTsConfig = defineConfig([
         'error',
         { allowShortCircuit: true },
       ],
+    },
+  },
+]);
+
+export const baseTsConfig = defineConfig([
+  baseTsNoParseConfig,
+  {
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+      },
+    },
+    rules: {
+      '@typescript-eslint/no-deprecated': 'error',
     },
   },
 ]);

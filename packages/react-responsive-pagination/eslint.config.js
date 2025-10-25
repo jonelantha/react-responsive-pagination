@@ -1,9 +1,28 @@
 // @ts-check
 
 import { defineConfig } from 'eslint/config';
-import { baseReactLegacyRuntimeConfig } from '../../eslint.config.js';
+import {
+  baseReactLegacyRuntimeConfig,
+  baseTsNoParseConfig,
+} from '../../eslint.config.js';
+
+const stubs = [
+  '**/labelBehaviour.d.ts',
+  '**/narrowBehaviour.d.ts',
+  '**/presets.d.ts',
+  './labelBehaviour.js',
+  './narrowBehaviour.js',
+  './presets.js',
+];
 
 export default defineConfig([
   { ignores: ['./dist', './temp'] },
-  baseReactLegacyRuntimeConfig,
+  {
+    ignores: stubs,
+    extends: [baseReactLegacyRuntimeConfig],
+  },
+  {
+    files: stubs,
+    extends: [baseTsNoParseConfig],
+  },
 ]);

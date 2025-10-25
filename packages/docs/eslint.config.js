@@ -3,7 +3,7 @@
 import astroEslintParser from 'astro-eslint-parser';
 import eslintPluginAstro from 'eslint-plugin-astro';
 import { defineConfig } from 'eslint/config';
-import { baseReactConfig, baseTsConfig } from '../../eslint.config.js';
+import { baseReactConfig, baseTsNoParseConfig } from '../../eslint.config.js';
 
 export default defineConfig([
   {
@@ -14,7 +14,7 @@ export default defineConfig([
     extends: [
       eslintPluginAstro.configs.recommended,
       eslintPluginAstro.configs['flat/jsx-a11y-recommended'],
-      baseTsConfig,
+      baseTsNoParseConfig,
     ],
     languageOptions: {
       parser: astroEslintParser,
