@@ -1,31 +1,12 @@
 name: Deploy Docs Dev
 on: workflow_dispatch
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+  call-deploy:
     permissions:
       id-token: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-      - name: Use Node.js
-        uses: actions/setup-node@v5
-        with:
-          node-version: 24
-          cache: 'npm'
-      - name: Install dependencies
-        run: npm ci
-      - name: Build component
-        run: npm run build
-      - name: Build docs
-        run: npm run build-docs
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v5
-        with:
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-          aws-region: eu-west-2
-      - name: Dev - Deploy
-        run: sh ./.github/scripts/docs-deploy.sh
-        env:
-          S3_BUCKET: ${{ secrets.DOCS_DEV_BUCKET }}
-          CLOUDFRONT_ID: ${{ secrets.DOCS_DEV_CLOUDFRONT }}
+      contents: read
+    uses: ./.github/workflows/docs-deploy.yml
+    secrets:
+      aws-deploy-role-arn: ${{ secrets.AWS_ROLE_ARN }}
+      s3-bucket: ${{ secrets.DOCS_DEV_BUCKET }}
+      cloudfront-id: ${{ secrets.DOCS_DEV_CLOUDFRONT }}

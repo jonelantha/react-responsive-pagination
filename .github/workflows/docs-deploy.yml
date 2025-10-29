@@ -1,0 +1,41 @@
+name: Docs deploy
+
+on:
+  workflow_call:
+    secrets:
+      s3-bucket:
+        required: true
+      cloudfront-id:
+        required: true
+      aws-deploy-role-arn:
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Use Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build component
+        run: npm run build
+      - name: Build docs
+        run: npm run build-docs
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v5
+        with:
+          role-to-assume: ${{ secrets.aws-deploy-role-arn }}
+          aws-region: eu-west-2
+      - name: Copy files to S3
+        run: |
+          aws s3 sync --delete ./packages/docs/dist/ s3://${{ secrets.s3-bucket }} --cache-control "public, max-age=0, must-revalidate, s-maxage=31536000"
+          aws s3 cp s3://${{ secrets.s3-bucket }} s3://${{ secrets.s3-bucket }} --exclude "*" --include "_astro/*" --recursive --cache-control "public, max-age=31536000, immutable, s-maxage=31536000"
+      - name: Invalidate CloudFront
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.cloudfront-id }} --paths "/*"
