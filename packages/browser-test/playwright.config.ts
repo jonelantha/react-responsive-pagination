@@ -9,7 +9,7 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: 0,
-  reporter: 'html',
+  reporter: process.env.CI ? 'github' : 'html',
   use: {
     trace: 'on-first-retry',
     baseURL,
