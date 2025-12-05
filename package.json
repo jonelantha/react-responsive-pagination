@@ -23,21 +23,21 @@
   },
   "dependencies": {
     "@types/eslint-plugin-jsx-a11y": "6.10.1",
-    "@types/react": "19.2.2",
-    "@types/react-dom": "19.2.2",
-    "@vitejs/plugin-react": "5.1.0",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "5.1.1",
     "bootstrap": "5.3.8",
-    "eslint": "9.38.0",
+    "eslint": "9.39.1",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "7.0.1",
-    "formik": "2.4.6",
-    "prettier": "^3.2.5",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
+    "formik": "2.4.9",
+    "prettier": "3.7.4",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
     "react-responsive-pagination": "file:./packages/react-responsive-pagination",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.46.2",
-    "vite": "7.1.12"
+    "typescript-eslint": "8.48.1",
+    "vite": "7.2.6"
   }
 }
