@@ -47,6 +47,7 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
     nextLabel,
     ariaPreviousLabel,
     ariaNextLabel,
+    ariaPageLabel,
     renderNav = true,
     ariaCurrentAttr = true,
     linkHref = 'hash',
@@ -63,6 +64,7 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
       nextLabel,
       ariaPreviousLabel,
       ariaNextLabel,
+      ariaPageLabel,
       renderNav,
     },
   );
@@ -183,6 +185,7 @@ export type ResponsivePaginationProps = {
   nextLabel?: string | ReactNode;
   ariaPreviousLabel?: string;
   ariaNextLabel?: string;
+  ariaPageLabel?: (page: number, active: boolean) => string | undefined;
   renderNav?: boolean;
   ariaCurrentAttr?: boolean;
   linkHref?: ((page: number) => string) | 'hash' | 'omit';
@@ -209,6 +212,7 @@ ResponsivePagination.propTypes = {
   nextLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   ariaPreviousLabel: PropTypes.string,
   ariaNextLabel: PropTypes.string,
+  ariaPageLabel: PropTypes.func,
   renderNav: PropTypes.bool,
   ariaCurrentAttr: PropTypes.bool,
   linkHref: PropTypes.oneOfType([

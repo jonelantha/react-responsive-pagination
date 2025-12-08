@@ -15,6 +15,7 @@ export function usePaginationItems(
     previousLabel?: string | ReactNode;
     ariaNextLabel?: string;
     ariaPreviousLabel?: string;
+    ariaPageLabel?: (page: number, active: boolean) => string | undefined;
     renderNav?: boolean;
     narrowBehaviour?: NarrowBehaviour;
   },

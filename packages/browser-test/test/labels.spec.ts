@@ -87,4 +87,16 @@ test.describe('Labels', () => {
       expect(paginationHtml).toMatchSnapshot();
     });
   }
+
+  for (const ariaPageLabel of [undefined, 'ariaPageLabelTestFn()']) {
+    test(`Setting ariaPageLabel to ${ariaPageLabel}`, async ({ testHarness }) => {
+      await testHarness.setField('ariaPageLabel', ariaPageLabel);
+
+      await testHarness.waitForNextFrame();
+
+      const paginationHtml = await testHarness.getPaginationHtml();
+
+      expect(paginationHtml).toMatchSnapshot();
+    });
+  }
 });

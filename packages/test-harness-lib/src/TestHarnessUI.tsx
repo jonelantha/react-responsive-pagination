@@ -45,6 +45,7 @@ const fields = {
     nextLabel: 'Next Label',
     ariaPreviousLabel: 'Aria Previous Label',
     ariaNextLabel: 'Aria Next Label',
+    ariaPageLabel: 'Aria Page Label Fn',
     renderNav: 'Render Navigation',
     ariaCurrentAttr: 'ariaCurrent Attr',
     linkHref: 'linkHref',
@@ -81,6 +82,7 @@ const initialValues = {
     nextLabel: 'undefined',
     ariaPreviousLabel: 'undefined',
     ariaNextLabel: 'undefined',
+    ariaPageLabel: 'undefined',
     renderNav: 'undefined',
     ariaCurrentAttr: 'undefined',
     linkHref: 'undefined',
@@ -395,7 +397,17 @@ function getFieldValue(value: unknown) {
   const testComponent = createTestComponent(value);
   if (testComponent) return testComponent;
 
-  if (value === 'hrefTestFn()') return (page: number) => `/test-page/${page}`;
+  if (value === 'hrefTestFn()') return hrefTestFn;
+
+  if (value === 'ariaPageLabelTestFn()') return ariaPageLabelTestFn;
 
   return value;
+}
+
+function hrefTestFn(page: number) {
+  return `/test-page/${page}`;
+}
+
+function ariaPageLabelTestFn(page: number, active: boolean) {
+  return active ? `active ${page}` : `page ${page}`;
 }
