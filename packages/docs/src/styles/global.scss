@@ -172,6 +172,10 @@ h6 {
   margin-top: calc(1.25 * vars.$leading);
 }
 
+div.expressive-code {
+  margin-bottom: vars.$leading;
+}
+
 article {
   & > *:first-child {
     margin-top: 0 !important;
@@ -200,9 +204,7 @@ article {
     }
   }
 
-  & > div.expressive-code,
-  & > ul,
-  & > p {
+  & > ul {
     margin-bottom: vars.$leading;
   }
 

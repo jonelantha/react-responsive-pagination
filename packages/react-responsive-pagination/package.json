@@ -69,10 +69,10 @@
     "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
-    "@microsoft/api-extractor": "7.53.3",
+    "@microsoft/api-extractor": "7.55.1",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@types/prop-types": "^15.7.5",
-    "semantic-release": "^24.2.4"
+    "semantic-release": "25.0.2"
   }
 }

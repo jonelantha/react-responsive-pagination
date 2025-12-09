@@ -18,6 +18,17 @@ import PropDef from '@components/PropDef.astro';
   <PropDef name='ariaNextLabel' type='string' defaultValue='Next'>
     The accessibility ARIA label for the next button, defaults to `Next`
   </PropDef>
+  <PropDef name='ariaPageLabel' type='(page: number, active: boolean) => string | undefined' defaultValue='true'>
+    The accessibility ARIA label for page links - expects a function which takes the page number and active boolean and returns the ARIA label (or undefined), example:
+
+    ```jsx
+    <ResponsivePagination
+      //...
+      ariaPageLabel={(page, active) => (active ? `Active Page ${page}` : `Goto Page ${page}`)}
+    />
+    ```
+
+  </PropDef>
   <PropDef name='ariaCurrentAttr' type='boolean' defaultValue='true'>
     Set to false to prevent output of `aria-current='page'` for the active page **\<li>**
 

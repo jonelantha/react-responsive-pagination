@@ -45,12 +45,14 @@ export function compositionToPaginationItems(
     nextLabel?: string | ReactNode;
     ariaPreviousLabel?: string;
     ariaNextLabel?: string;
+    ariaPageLabel?: (page: number, active: boolean) => string | undefined;
   },
 ): PaginationItem[] {
   const previousLabel = options?.previousLabel || '«';
   const a11yPreviousLabel = options?.ariaPreviousLabel || 'Previous';
   const nextLabel = options?.nextLabel || '»';
   const a11yNextLabel = options?.ariaNextLabel || 'Next';
+  const ariaPageLabel = options?.ariaPageLabel;
 
   return compositionItems.map(({ type, page }) => {
     switch (type) {
@@ -85,6 +87,7 @@ export function compositionToPaginationItems(
           type: 'page',
           key: `${type}_${page}`,
           label: page.toString(),
+          a11yLabel: ariaPageLabel?.(page, type === 'active'),
           gotoPage: page,
           active: type === 'active',
         };
