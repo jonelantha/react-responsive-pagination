@@ -1,5 +1,17 @@
 # React Responsive Pagination Changelog
 
+# [2.12.0](https://github.com/jonelantha/react-responsive-pagination/compare/v2.11.3...v2.12.0) (2025-12-09)
+
+
+### Bug Fixes
+
+* package-updates ([1241d2f](https://github.com/jonelantha/react-responsive-pagination/commit/1241d2fdbeb8fa9f822724eb5e0867f03dfd08cf))
+
+
+### Features
+
+* New `ariaPageLabel` prop to add aria labels for links ([d477579](https://github.com/jonelantha/react-responsive-pagination/commit/d477579bcda0cebf9aee194a776affd83eacba96))
+
 ## [2.11.3](https://github.com/jonelantha/react-responsive-pagination/compare/v2.11.2...v2.11.3) (2025-10-06)
 
 
