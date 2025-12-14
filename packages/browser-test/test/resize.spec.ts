@@ -1,7 +1,13 @@
 import { test as baseTest, expect } from '@playwright/test';
 import { serialTestFixture } from './test-harness-page.ts';
 
-const testCssClasses = ['', 'add-margin-padding', 'add-margin-padding,content-box'];
+const testCssClasses = [
+  '',
+  'add-margin-padding',
+  'add-margin-padding,content-box',
+  'gap',
+  'gap,add-margin-padding',
+];
 
 const testWidths = [
   1000, 900, 800, 700, 600, 500, 400, 300, 200, 100, 250, 350, 450, 550, 650, 750,

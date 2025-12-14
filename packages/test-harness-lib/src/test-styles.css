@@ -15,6 +15,13 @@
   }
 }
 
+.gap {
+  .pagination {
+    background: pink;
+    gap: 10px;
+  }
+}
+
 .content-box * {
   box-sizing: content-box;
 }

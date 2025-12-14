@@ -1,5 +1,9 @@
 import { useState, useCallback } from 'react';
-import { getElementWidth, getNonContentWidth } from '../helpers/style.ts';
+import {
+  getElementWidth,
+  getNonContentWidth,
+  getColumnGap,
+} from '../helpers/style.ts';
 import type { CompositionItem } from '../compositionItem.ts';
 import {
   createActivePage,
@@ -56,12 +60,14 @@ function getMetricsFromMetricsRender(containerElement: Element | null) {
 
   return [
     getNonContentWidth(containerElement),
+    getColumnGap(containerElement),
     ...Array.from(containerElement.children).map(getElementWidth),
   ] as Metrics;
 }
 
 function createWidthCalculator([
   outerFrameWidth,
+  columnGap,
   pageSingleDigitWidth,
   pageDoubleDigitWidth,
   activeSingleDigitWidth,
@@ -108,7 +114,9 @@ function createWidthCalculator([
   };
 
   return (items: CompositionItem[]) =>
-    outerFrameWidth + items.reduce((acc, item) => acc + getItemWidth(item), 0);
+    outerFrameWidth +
+    columnGap * Math.max(items.length - 1, 0) +
+    items.reduce((acc, item) => acc + getItemWidth(item), 0);
 }
 
 const itemsToMeasure: ItemsToMeasure = [
@@ -125,6 +133,7 @@ const itemsToMeasure: ItemsToMeasure = [
 
 type Metrics = [
   OuterWidth: number,
+  Gap: number,
   PageSingleDigit: number,
   PageDoubleDigit: number,
   ActiveSingleDigit: number,

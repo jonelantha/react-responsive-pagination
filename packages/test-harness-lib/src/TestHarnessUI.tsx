@@ -100,6 +100,7 @@ const initialValues = {
 const cssExtraClassOptions = [
   'add-margin-padding',
   'content-box',
+  'gap',
   'demo',
   'gh-dark',
 ];
