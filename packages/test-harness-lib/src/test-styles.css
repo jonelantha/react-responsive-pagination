@@ -1,18 +1,18 @@
 .add-margin-padding {
   background: yellow;
   padding: 11px;
-}
 
-.add-margin-padding .pagination {
-  background: red;
-  margin: 20px;
-  padding: 15px;
-  border: 4px solid black;
-}
+  .pagination {
+    background: red;
+    margin: 20px;
+    padding: 15px;
+    border: 4px solid black;
 
-.add-margin-padding .page-item {
-  margin: 10px;
-  border: 4px solid black;
+    .page-item {
+      margin: 10px;
+      border: 4px solid black;
+    }
+  }
 }
 
 .content-box * {
@@ -23,12 +23,14 @@ body:has(.gh-dark) {
   --body-bg: #0d1117;
 }
 
-.demo .pagination {
-  margin: 10px 10px 50px 10px;
-}
+.demo {
+  .pagination {
+    margin: 10px 10px 50px 10px;
 
-.demo .pagination.justify-content-center {
-  justify-content: flex-start !important;
+    &.justify-content-center {
+      justify-content: flex-start !important;
+    }
+  }
 }
 
 /* Alternative classNames */

@@ -23,8 +23,8 @@ import { createTestComponent } from './test-components';
 import { BodyThemeSetter } from './BodyThemeSetter';
 import { tryJsonParse, useUrlQueryToggles } from './util';
 
-import './TestStyles.css';
-import './TestHarness.css';
+import './test-styles.css';
+import './main.css';
 
 const fields = {
   renderPagination: 'Render Pagination',

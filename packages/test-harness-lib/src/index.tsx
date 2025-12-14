@@ -5,9 +5,6 @@ import type { FrameworkId } from './frameworkStyles';
 import { frameworkCssUrls } from './frameworkStyles';
 import { PageFontsAndStyles } from './PageFontsAndStyles';
 
-import './TestStyles.css';
-import './TestHarness.css';
-
 window.resetRenderCount = resetRenderCount;
 window.getRenderCount = getRenderCount;
 
