@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import ResponsivePagination from 'react-responsive-pagination';
 import { srOnlySpanLabel } from 'react-responsive-pagination/labelBehaviour';
 import {
@@ -9,7 +8,7 @@ import {
   dropNavThenEllipsis,
   dropFirstAndLast,
 } from 'react-responsive-pagination/narrowBehaviour';
-import { Field, Formik } from 'formik';
+import { Formik } from 'formik';
 import type { SubTheme, FrameworkId } from './frameworkStyles';
 import {
   subThemes,
@@ -22,6 +21,15 @@ import { presets } from './presets';
 import { createTestComponent } from './test-components';
 import { BodyThemeSetter } from './BodyThemeSetter';
 import { tryJsonParse, useUrlQueryToggles } from './util';
+import {
+  Container,
+  RadioGroupRow,
+  SelectRow,
+  StyleRow,
+  CheckboxGroupRow,
+  CheckboxRow,
+  TextFieldRow,
+} from './components';
 
 import './test-styles.css';
 import './main.css';
@@ -63,7 +71,7 @@ const fields = {
 const initialValues = {
   renderPagination: true,
   presetId: 'none' as PresetId,
-  subTheme: '' as SubTheme,
+  subTheme: 'none' as SubTheme,
   testThemeVariable: '',
   propsAsJson: {
     total: '100',
@@ -148,157 +156,72 @@ function TestHarnessUI({
               />
             )}
           </div>
-          <div className="container">
+          <Container>
             <form>
-              <div className="mb-1 row">
-                <label className="col-sm-4 col-form-label">CSS Framework</label>
-                <div className="col-sm-8">
-                  {frameworkIds.map(frameworkId => (
-                    <div
-                      className="form-check form-check-inline align-middle"
-                      key={frameworkId}
-                    >
-                      <input
-                        type="radio"
-                        className="form-check-input"
-                        id={frameworkId}
-                        checked={frameworkId === activeFrameworkId}
-                        onChange={() => setActiveFrameworkId(frameworkId)}
-                      />
-                      <label className="form-check-label" htmlFor={frameworkId}>
-                        {frameworkId}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="mb-1 row">
-                <label className="col-sm-4 col-form-label">Sub Theme</label>
-                <div className="col-sm-8">
-                  {Object.entries(subThemes).map(([label, subTheme]) => (
-                    <div
-                      className="form-check form-check-inline align-middle"
-                      key={subTheme}
-                    >
-                      <Field
-                        type="radio"
-                        name="subTheme"
-                        id={`subTheme_${subTheme}`}
-                        className="form-check-input"
-                        value={subTheme}
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor={`subTheme_${subTheme}`}
-                      >
-                        {label}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="mb-1 row">
-                <label className="col-sm-4 col-form-label">Test css var</label>
-                <div className="col-sm-8">
-                  <select
-                    className="form-select"
-                    value={formik.values.testThemeVariable}
-                    onChange={e =>
-                      formik.setFieldValue('testThemeColorVariable', e.target.value)
-                    }
-                  >
-                    <option value="">Select</option>
-                    {getThemeVariables().map(colorVariable => (
-                      <option key={colorVariable} value={colorVariable}>
-                        {colorVariable}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-              <div className="mb-1 row">
-                <label className="col-sm-4 col-form-label">Preset</label>
-                <div className="col-sm-8">
-                  {Object.keys(presets).map(presetName => (
-                    <div
-                      className="form-check form-check-inline align-middle"
-                      key={presetName}
-                    >
-                      <Field
-                        type="radio"
-                        name="presetId"
-                        id={`preset_${presetName}`}
-                        className="form-check-input"
-                        value={presetName}
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor={`preset_${presetName}`}
-                      >
-                        {presetName}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="mb-1 row">
-                <label className="col-sm-4 col-form-label">Style (non-React)</label>
-                <div className="col-sm-8">
-                  <style
-                    id="editable-style-block"
-                    className="form-control"
-                    contentEditable
-                    suppressContentEditableWarning
-                  >
-                    {initialStyle}
-                  </style>
-                </div>
-              </div>
-              <div className="mb-1 row">
-                <label className="col-sm-4 col-form-label">
-                  Additional Pagination CSS (React)
-                </label>
-                <div className="col-sm-8">
-                  {cssExtraClassOptions.map(value => (
-                    <div
-                      className="form-check form-check-inline align-middle"
-                      key={value}
-                    >
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id={value}
-                        value={value}
-                        checked={cssExtraClasses.includes(value)}
-                        onChange={event =>
-                          toggleCssExtraClass(value, event.target.checked)
-                        }
-                      />
-                      <label className="form-check-label" htmlFor={value}>
-                        {value}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="mb-1 row">
-                <label
-                  htmlFor="renderPagination"
-                  className="col-sm-4 col-form-label"
+              <RadioGroupRow
+                label="CSS Framework"
+                radios={frameworkIds.map(value => ({
+                  id: `frameworkId_${value}`,
+                  name: 'frameworkId',
+                  value,
+                  checked: activeFrameworkId === value,
+                  onChange: () => setActiveFrameworkId(value),
+                }))}
+              />
+              <RadioGroupRow
+                label="Sub Theme"
+                radios={subThemes.map(value => ({
+                  id: `subTheme_${value}`,
+                  ...formik.getFieldProps({
+                    name: 'subTheme',
+                    type: 'radio',
+                    value,
+                  }),
+                }))}
+              />
+              <SelectRow
+                label="Test css var"
+                options={getThemeVariables()}
+                {...formik.getFieldProps('testThemeVariable')}
+              />
+              <RadioGroupRow
+                label="Preset"
+                radios={Object.keys(presets).map(value => ({
+                  id: `preset_${value}`,
+                  ...formik.getFieldProps({
+                    name: 'presetId',
+                    type: 'radio',
+                    value,
+                  }),
+                }))}
+              />
+              <StyleRow label="Style (non-React)">
+                <style
+                  id="editable-style-block"
+                  contentEditable
+                  suppressContentEditableWarning
                 >
-                  Render Pagination
-                </label>
-                <div className="col-sm-2 ">
-                  <div className="form-check">
-                    <Field
-                      name="renderPagination"
-                      type="checkbox"
-                      className="form-check-input"
-                      id="renderPagination"
-                    />
-                  </div>
-                </div>
-              </div>
+                  {initialStyle}
+                </style>
+              </StyleRow>
+              <CheckboxGroupRow
+                label="Additional Pagination CSS (React)"
+                checkboxes={cssExtraClassOptions.map(option => ({
+                  id: option,
+                  value: option,
+                  checked: cssExtraClasses.includes(option),
+                  onChange: event =>
+                    toggleCssExtraClass(option, event.target.checked),
+                }))}
+              />
+              <CheckboxRow
+                label="Render Pagination"
+                id="renderPagination"
+                {...formik.getFieldProps({
+                  name: 'renderPagination',
+                  type: 'checkbox',
+                })}
+              />
               {(
                 [
                   'propsAsJson',
@@ -307,27 +230,17 @@ function TestHarnessUI({
                 ] as const
               ).map(group =>
                 Object.entries(fields[group]).map(([field, title]) => (
-                  <div className="mb-1 row" key={field}>
-                    <label
-                      htmlFor={`${field}AsJson`}
-                      className="col-sm-4 col-form-label"
-                    >
-                      {title} (JSON)
-                    </label>
-                    <div className="col-sm-2">
-                      <Field
-                        name={`${group}.${field}`}
-                        type="text"
-                        className="form-control"
-                        id={`${field}AsJson`}
-                        spellCheck="false"
-                      />
-                    </div>
-                  </div>
+                  <TextFieldRow
+                    key={field}
+                    label={`${title} (JSON)`}
+                    id={`${field}AsJson`}
+                    spellCheck={false}
+                    {...formik.getFieldProps(`${group}.${field}`)}
+                  />
                 )),
               )}
             </form>
-          </div>
+          </Container>
         </>
       )}
     </Formik>

@@ -24,13 +24,9 @@ export type FrameworkId = keyof typeof frameworkCssUrls;
 
 export const frameworkIds = Object.keys(frameworkCssUrls) as FrameworkId[];
 
-export const subThemes = {
-  Auto: '',
-  Light: 'light',
-  Dark: 'dark',
-} as const;
+export const subThemes = ['none', 'light', 'dark'] as const;
 
-export type SubTheme = (typeof subThemes)[keyof typeof subThemes];
+export type SubTheme = (typeof subThemes)[number];
 
 const baseThemeVariables = [
   '--pagination-color',
