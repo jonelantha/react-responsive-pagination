@@ -19,7 +19,7 @@ import {
 import type { PresetId } from './presets';
 import { presets } from './presets';
 import { createTestComponent } from './test-components';
-import { BodyThemeSetter } from './BodyThemeSetter';
+import { BodyThemeSetter } from './components/BodyThemeSetter';
 import { tryJsonParse, useUrlQueryToggles } from './util';
 import { InputRow } from './components/InputRow';
 import { Container } from './components/Container';

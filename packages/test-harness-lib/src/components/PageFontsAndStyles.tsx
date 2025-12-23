@@ -1,32 +1,21 @@
 import type { JSX } from 'react';
-import { useEffect, useState, createContext, useContext } from 'react';
-import type { FrameworkId } from './frameworkStyles';
-import { frameworkCssUrls } from './frameworkStyles';
+import { useEffect, useState } from 'react';
 
 type PageFontsAndStylesProps = {
-  frameworkId: FrameworkId;
+  cssUrl: string;
   children: JSX.Element;
 };
 
-export function PageFontsAndStyles({
-  frameworkId,
-  children,
-}: PageFontsAndStylesProps) {
+export function PageFontsAndStyles({ cssUrl, children }: PageFontsAndStylesProps) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
     if (!ready) {
-      setupPageFontsAndStyles(frameworkCssUrls[frameworkId]).then(() =>
-        setReady(true),
-      );
+      setupPageFontsAndStyles(cssUrl).then(() => setReady(true));
     }
-  }, [ready, frameworkId]);
+  }, [ready, cssUrl]);
 
-  return ready ? (
-    <FrameworkIdContext.Provider value={frameworkId}>
-      {children}
-    </FrameworkIdContext.Provider>
-  ) : null;
+  return ready ? children : null;
 }
 
 async function setupPageFontsAndStyles(cssUrl: string | undefined) {
@@ -56,10 +45,4 @@ export async function addCss(cssUrl: string) {
     document.head.appendChild(cssLinkElement);
     cssLinkElement.onload = resolve;
   });
-}
-
-export const FrameworkIdContext = createContext<FrameworkId | undefined>(undefined);
-
-export function useFrameworkId() {
-  return useContext(FrameworkIdContext);
 }

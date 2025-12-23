@@ -1,4 +1,4 @@
-import { useFrameworkId } from '../PageFontsAndStyles';
+import { useFrameworkId } from '../frameworkStyles';
 
 type ContainerProps = {
   children: React.ReactNode;

@@ -1,4 +1,4 @@
-import { useFrameworkId } from '../PageFontsAndStyles';
+import { useFrameworkId } from '../frameworkStyles';
 import { type CellSize, FormRow } from './FormRow';
 
 type InputRowProps = {

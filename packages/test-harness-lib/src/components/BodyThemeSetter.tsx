@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
-import type { SubTheme } from './frameworkStyles';
 
-export function BodyThemeSetter({ theme }: { theme: SubTheme }) {
+export function BodyThemeSetter({ theme }: { theme: string }) {
   useEffect(() => {
     document.body.setAttribute('data-bs-theme', theme);
     document.body.setAttribute('data-pagination-subtheme', theme);

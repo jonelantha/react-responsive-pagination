@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { useFrameworkId } from '../PageFontsAndStyles';
+import { useFrameworkId } from '../frameworkStyles';
 
 type FormRowProps = {
   label: string;

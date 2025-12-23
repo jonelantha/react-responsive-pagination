@@ -1,3 +1,5 @@
+import { createContext, useContext } from 'react';
+
 import bootstrapThemeUrl from 'react-responsive-pagination/themes/bootstrap.css?url';
 import bootstrapLightDarkThemeUrl from 'react-responsive-pagination/themes/bootstrap-light-dark.css?url';
 import minimalThemeUrl from 'react-responsive-pagination/themes/minimal.css?url';
@@ -25,6 +27,10 @@ export const frameworkCssUrls = {
 export type FrameworkId = keyof typeof frameworkCssUrls;
 
 export const frameworkIds = Object.keys(frameworkCssUrls) as FrameworkId[];
+
+export const FrameworkIdContext = createContext<FrameworkId | undefined>(undefined);
+
+export const useFrameworkId = () => useContext(FrameworkIdContext);
 
 export const subThemes = ['none', 'light', 'dark'] as const;
 
