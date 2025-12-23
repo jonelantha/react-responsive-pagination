@@ -73,7 +73,7 @@ export class TestHarnessPage {
   }
 
   presetLocator(type: string) {
-    return this.page.locator(`#preset_${type}`);
+    return this.page.locator(`#presetId_${type}`);
   }
 
   async waitForNextFrame() {

@@ -22,6 +22,7 @@
     "lint": "npm run lint --workspaces"
   },
   "dependencies": {
+    "@tailwindcss/vite": "4.1.18",
     "@types/eslint-plugin-jsx-a11y": "6.10.1",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
@@ -36,6 +37,7 @@
     "react": "19.2.1",
     "react-dom": "19.2.1",
     "react-responsive-pagination": "file:./packages/react-responsive-pagination",
+    "tailwindcss": "4.1.18",
     "typescript": "5.9.3",
     "typescript-eslint": "8.48.1",
     "vite": "7.2.6"

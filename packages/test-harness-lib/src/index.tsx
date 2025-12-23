@@ -16,7 +16,7 @@ export function TestHarnessApp() {
   const notStrict = Boolean(urlParams.get('notStrict'));
 
   const testHarness = (
-    <PageFontsAndStyles cssUrl={frameworkCssUrls[activeFrameworkId]}>
+    <PageFontsAndStyles frameworkId={activeFrameworkId}>
       <TestHarnessUI
         activeFrameworkId={activeFrameworkId}
         setActiveFrameworkId={setActiveFrameworkId}

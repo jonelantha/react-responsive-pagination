@@ -1,30 +1,38 @@
 import type { JSX } from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, createContext, useContext } from 'react';
+import type { FrameworkId } from './frameworkStyles';
+import { frameworkCssUrls } from './frameworkStyles';
 
 type PageFontsAndStylesProps = {
-  cssUrl: string;
+  frameworkId: FrameworkId;
   children: JSX.Element;
 };
 
-export function PageFontsAndStyles({ cssUrl, children }: PageFontsAndStylesProps) {
+export function PageFontsAndStyles({
+  frameworkId,
+  children,
+}: PageFontsAndStylesProps) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
     if (!ready) {
-      setupPageFontsAndStyles(cssUrl).then(() => setReady(true));
+      setupPageFontsAndStyles(frameworkCssUrls[frameworkId]).then(() =>
+        setReady(true),
+      );
     }
-  }, [ready, cssUrl]);
+  }, [ready, frameworkId]);
 
-  return ready ? children : null;
+  return ready ? (
+    <FrameworkIdContext.Provider value={frameworkId}>
+      {children}
+    </FrameworkIdContext.Provider>
+  ) : null;
 }
 
-async function setupPageFontsAndStyles(cssUrl: string) {
+async function setupPageFontsAndStyles(cssUrl: string | undefined) {
   await windowLoadPromise();
 
-  await Promise.all([
-    await document.fonts.load('16px Roboto'),
-    await addCss(cssUrl),
-  ]);
+  await Promise.all([document.fonts.load('16px Roboto'), cssUrl && addCss(cssUrl)]);
 
   await new Promise(resolve => setTimeout(resolve, 100));
 }
@@ -48,4 +56,10 @@ export async function addCss(cssUrl: string) {
     document.head.appendChild(cssLinkElement);
     cssLinkElement.onload = resolve;
   });
+}
+
+export const FrameworkIdContext = createContext<FrameworkId | undefined>(undefined);
+
+export function useFrameworkId() {
+  return useContext(FrameworkIdContext);
 }

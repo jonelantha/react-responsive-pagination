@@ -1,16 +1,32 @@
+import { useFrameworkId } from '../PageFontsAndStyles';
 import { FormRow } from './FormRow';
 
 type CheckboxRowProps = {
   label: string;
-  name: string;
-} & React.InputHTMLAttributes<HTMLInputElement>;
+  id: string;
+  children: (attrs: { className: string; id: string }) => React.ReactNode;
+};
 
-export function CheckboxRow({ label, ...inputProps }: CheckboxRowProps) {
+export function CheckboxRow({ label, id, children }: CheckboxRowProps) {
+  const styles = useStyles();
+
   return (
-    <FormRow label={label} cellCols={2} htmlFor={inputProps.id}>
-      <div className="form-check">
-        <input type="checkbox" className="form-check-input" {...inputProps} />
-      </div>
+    <FormRow label={label} cellSize="small" htmlFor={id}>
+      <div className={styles.cell}>{children({ className: styles.input, id })}</div>
     </FormRow>
   );
+}
+
+function useStyles() {
+  const frameworkId = useFrameworkId();
+
+  return frameworkId === 'tailwind'
+    ? {
+        cell: 'flex items-center',
+        input: 'w-4 h-4 rounded border-gray-300',
+      }
+    : {
+        cell: 'form-check',
+        input: 'form-check-input',
+      };
 }

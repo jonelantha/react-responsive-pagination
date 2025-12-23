@@ -8,7 +8,7 @@ import {
   dropNavThenEllipsis,
   dropFirstAndLast,
 } from 'react-responsive-pagination/narrowBehaviour';
-import { Formik } from 'formik';
+import { Field, Formik } from 'formik';
 import type { SubTheme, FrameworkId } from './frameworkStyles';
 import {
   subThemes,
@@ -21,15 +21,11 @@ import { presets } from './presets';
 import { createTestComponent } from './test-components';
 import { BodyThemeSetter } from './BodyThemeSetter';
 import { tryJsonParse, useUrlQueryToggles } from './util';
-import {
-  Container,
-  RadioGroupRow,
-  SelectRow,
-  StyleRow,
-  CheckboxGroupRow,
-  CheckboxRow,
-  TextFieldRow,
-} from './components';
+import { InputRow } from './components/InputRow';
+import { Container } from './components/Container';
+import { CheckboxRow } from './components/CheckboxRow';
+import { GroupRow } from './components/GroupRow';
+import { FieldSelect } from './components/FieldSelect';
 
 import './test-styles.css';
 import './main.css';
@@ -158,70 +154,67 @@ function TestHarnessUI({
           </div>
           <Container>
             <form>
-              <RadioGroupRow
+              <GroupRow
                 label="CSS Framework"
-                radios={frameworkIds.map(value => ({
-                  id: `frameworkId_${value}`,
-                  name: 'frameworkId',
-                  value,
-                  checked: activeFrameworkId === value,
-                  onChange: () => setActiveFrameworkId(value),
-                }))}
+                name="frameworkId"
+                values={frameworkIds}
+                input={attrs => (
+                  <input
+                    type="radio"
+                    {...attrs}
+                    checked={activeFrameworkId === attrs.value}
+                    onChange={() => setActiveFrameworkId(attrs.value)}
+                  />
+                )}
               />
-              <RadioGroupRow
+              <GroupRow
                 label="Sub Theme"
-                radios={subThemes.map(value => ({
-                  id: `subTheme_${value}`,
-                  ...formik.getFieldProps({
-                    name: 'subTheme',
-                    type: 'radio',
-                    value,
-                  }),
-                }))}
+                name="subTheme"
+                values={Object.values(subThemes)}
+                input={props => <Field type="radio" {...props} />}
               />
-              <SelectRow
-                label="Test css var"
-                options={getThemeVariables()}
-                {...formik.getFieldProps('testThemeVariable')}
-              />
-              <RadioGroupRow
+              <InputRow label="Test css var" id="testThemeVariable">
+                {attrs => (
+                  <FieldSelect
+                    name="testThemeVariable"
+                    options={getThemeVariables()}
+                    {...attrs}
+                  />
+                )}
+              </InputRow>
+              <GroupRow
                 label="Preset"
-                radios={Object.keys(presets).map(value => ({
-                  id: `preset_${value}`,
-                  ...formik.getFieldProps({
-                    name: 'presetId',
-                    type: 'radio',
-                    value,
-                  }),
-                }))}
+                name="presetId"
+                values={Object.keys(presets)}
+                input={props => <Field type="radio" {...props} />}
               />
-              <StyleRow label="Style (non-React)">
-                <style
-                  id="editable-style-block"
-                  contentEditable
-                  suppressContentEditableWarning
-                >
-                  {initialStyle}
-                </style>
-              </StyleRow>
-              <CheckboxGroupRow
+              <InputRow label="Style (non-React)" id="editable-style-block">
+                {attrs => (
+                  <style {...attrs} contentEditable suppressContentEditableWarning>
+                    {initialStyle}
+                  </style>
+                )}
+              </InputRow>
+              <GroupRow
                 label="Additional Pagination CSS (React)"
-                checkboxes={cssExtraClassOptions.map(option => ({
-                  id: option,
-                  value: option,
-                  checked: cssExtraClasses.includes(option),
-                  onChange: event =>
-                    toggleCssExtraClass(option, event.target.checked),
-                }))}
+                name="cssExtraClasses"
+                values={cssExtraClassOptions}
+                input={attrs => (
+                  <input
+                    type="checkbox"
+                    {...attrs}
+                    checked={cssExtraClasses.includes(attrs.value)}
+                    onChange={event =>
+                      toggleCssExtraClass(attrs.value, event.target.checked)
+                    }
+                  />
+                )}
               />
-              <CheckboxRow
-                label="Render Pagination"
-                id="renderPagination"
-                {...formik.getFieldProps({
-                  name: 'renderPagination',
-                  type: 'checkbox',
-                })}
-              />
+              <CheckboxRow label="Render Pagination" id="renderPagination">
+                {attrs => (
+                  <Field type="checkbox" name="renderPagination" {...attrs} />
+                )}
+              </CheckboxRow>
               {(
                 [
                   'propsAsJson',
@@ -230,13 +223,21 @@ function TestHarnessUI({
                 ] as const
               ).map(group =>
                 Object.entries(fields[group]).map(([field, title]) => (
-                  <TextFieldRow
+                  <InputRow
                     key={field}
                     label={`${title} (JSON)`}
                     id={`${field}AsJson`}
-                    spellCheck={false}
-                    {...formik.getFieldProps(`${group}.${field}`)}
-                  />
+                    cellSize="small"
+                  >
+                    {attrs => (
+                      <Field
+                        type="text"
+                        name={`${group}.${field}`}
+                        spellCheck={false}
+                        {...attrs}
+                      />
+                    )}
+                  </InputRow>
                 )),
               )}
             </form>
