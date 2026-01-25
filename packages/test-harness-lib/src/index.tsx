@@ -5,7 +5,7 @@ import {
   type FrameworkId,
   frameworkCssUrls,
   FrameworkIdContext,
-} from './test-support/frameworkStyles';
+} from './test-support/framework-styles';
 import { PageFontsAndStyles } from './components/PageFontsAndStyles';
 
 window.resetRenderCount = resetRenderCount;

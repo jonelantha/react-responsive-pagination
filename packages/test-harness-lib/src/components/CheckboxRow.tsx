@@ -1,4 +1,4 @@
-import { useFrameworkId } from '../test-support/frameworkStyles';
+import { useFrameworkId } from '../test-support/framework-styles';
 import { FormRow } from './FormRow';
 
 type CheckboxRowProps = {

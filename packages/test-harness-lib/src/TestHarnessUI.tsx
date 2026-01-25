@@ -9,13 +9,13 @@ import {
   dropFirstAndLast,
 } from 'react-responsive-pagination/narrowBehaviour';
 import { Field, Formik } from 'formik';
-import type { SubTheme, FrameworkId } from './test-support/frameworkStyles';
+import type { SubTheme, FrameworkId } from './test-support/framework-styles';
 import {
   subThemes,
   frameworkIds,
   getThemeVariables,
   getThemeVariableTestValue,
-} from './test-support/frameworkStyles';
+} from './test-support/framework-styles';
 import { type PresetId, presets } from './test-support/presets';
 import { createTestComponent } from './test-support/test-components';
 import { BodyThemeSetter } from './components/BodyThemeSetter';
