@@ -1,4 +1,4 @@
-import { useFrameworkId } from '../frameworkStyles';
+import { useFrameworkId } from '../test-support/frameworkStyles';
 
 type ContainerProps = {
   children: React.ReactNode;

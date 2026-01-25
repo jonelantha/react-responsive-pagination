@@ -3,7 +3,7 @@ import { setupThrowOnError, stringifyWithUndefined } from './helper.ts';
 import { URLSearchParams } from 'url';
 import { test } from '@playwright/test';
 
-import '../../test-harness-lib/src/window.d.ts';
+import '../../test-harness-lib/src/global.d.ts';
 
 export class TestHarnessPage {
   page: Page;

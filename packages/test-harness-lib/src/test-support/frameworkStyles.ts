@@ -7,7 +7,7 @@ import minimalLightDarkThemeUrl from 'react-responsive-pagination/themes/minimal
 import classicThemeUrl from 'react-responsive-pagination/themes/classic.css?url';
 import classicLightDarkThemeUrl from 'react-responsive-pagination/themes/classic-light-dark.css?url';
 import bootstrap5Url from 'bootstrap/dist/css/bootstrap.css?url';
-import tailwindUrl from './tailwind.css?url';
+import tailwindUrl from '../css/tailwind.css?url';
 
 export const frameworkCssUrls = {
   bootstrap400:

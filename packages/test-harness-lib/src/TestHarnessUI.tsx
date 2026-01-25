@@ -9,26 +9,25 @@ import {
   dropFirstAndLast,
 } from 'react-responsive-pagination/narrowBehaviour';
 import { Field, Formik } from 'formik';
-import type { SubTheme, FrameworkId } from './frameworkStyles';
+import type { SubTheme, FrameworkId } from './test-support/frameworkStyles';
 import {
   subThemes,
   frameworkIds,
   getThemeVariables,
   getThemeVariableTestValue,
-} from './frameworkStyles';
-import type { PresetId } from './presets';
-import { presets } from './presets';
-import { createTestComponent } from './test-components';
+} from './test-support/frameworkStyles';
+import { type PresetId, presets } from './test-support/presets';
+import { createTestComponent } from './test-support/test-components';
 import { BodyThemeSetter } from './components/BodyThemeSetter';
-import { tryJsonParse, useUrlQueryToggles } from './util';
+import { tryJsonParse, useUrlQueryToggles } from './test-support/util';
 import { InputRow } from './components/InputRow';
 import { Container } from './components/Container';
 import { CheckboxRow } from './components/CheckboxRow';
 import { GroupRow } from './components/GroupRow';
 import { FieldSelect } from './components/FieldSelect';
 
-import './test-styles.css';
-import './main.css';
+import './css/test-styles.css';
+import './css/main.css';
 
 const fields = {
   renderPagination: 'Render Pagination',

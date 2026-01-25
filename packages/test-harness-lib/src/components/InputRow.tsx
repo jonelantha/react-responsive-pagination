@@ -1,4 +1,4 @@
-import { useFrameworkId } from '../frameworkStyles';
+import { useFrameworkId } from '../test-support/frameworkStyles';
 import { type CellSize, FormRow } from './FormRow';
 
 type InputRowProps = {

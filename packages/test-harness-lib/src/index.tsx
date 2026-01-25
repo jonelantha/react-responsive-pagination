@@ -1,8 +1,11 @@
 import React, { useCallback } from 'react';
 import TestHarnessUI from './TestHarnessUI';
 import { resetRenderCount, getRenderCount } from 'react-responsive-pagination/debug';
-import type { FrameworkId } from './frameworkStyles';
-import { frameworkCssUrls, FrameworkIdContext } from './frameworkStyles';
+import {
+  type FrameworkId,
+  frameworkCssUrls,
+  FrameworkIdContext,
+} from './test-support/frameworkStyles';
 import { PageFontsAndStyles } from './components/PageFontsAndStyles';
 
 window.resetRenderCount = resetRenderCount;
