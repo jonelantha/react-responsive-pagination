@@ -60,3 +60,7 @@ export function tryJsonParse(str: string) {
     return undefined;
   }
 }
+
+export function stringifyWithUndefined(value: unknown) {
+  return value === undefined ? 'undefined' : JSON.stringify(value);
+}

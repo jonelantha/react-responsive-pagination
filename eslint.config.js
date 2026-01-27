@@ -17,6 +17,10 @@ export const baseTsNoParseConfig = defineConfig([
         'error',
         { allowShortCircuit: true },
       ],
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { destructuredArrayIgnorePattern: '^_' },
+      ],
     },
   },
 ]);

@@ -1,37 +1,32 @@
 import ResponsivePagination from 'react-responsive-pagination';
-import { srOnlySpanLabel } from 'react-responsive-pagination/labelBehaviour';
-import {
-  combine,
-  dropEllipsis,
-  dropEllipsisThenNav,
-  dropNav,
-  dropNavThenEllipsis,
-  dropFirstAndLast,
-} from 'react-responsive-pagination/narrowBehaviour';
 import { Field, Formik } from 'formik';
 import type { SubTheme, FrameworkId } from './test-support/framework-styles';
 import {
   subThemes,
   frameworkIds,
   getThemeVariables,
-  getThemeVariableTestValue,
 } from './test-support/framework-styles';
 import { type PresetId, presets } from './test-support/presets';
 import { createTestComponent } from './test-support/test-components';
+import { useUrlQueryToggles } from './test-support/util';
+import { ariaPageLabelTestFn, hrefTestFn } from './test-support/test-functions';
+import { getLabelBehaviour } from './test-support/label-behaviour';
+import { getNarrowBehaviour } from './test-support/narrow-behaviour';
 import { BodyThemeSetter } from './components/BodyThemeSetter';
-import { tryJsonParse, useUrlQueryToggles } from './test-support/util';
 import { InputRow } from './components/InputRow';
 import { Container } from './components/Container';
 import { CheckboxRow } from './components/CheckboxRow';
 import { GroupRow } from './components/GroupRow';
 import { FieldSelect } from './components/FieldSelect';
+import { JsonTextField } from './components/JsonTextField';
 
 import './css/test-styles.css';
 import './css/main.css';
+import { TestThemeVariableSetter } from './components/TestThemeVariableSetter';
 
 const fields = {
   renderPagination: 'Render Pagination',
-  propsAsJson: {
+  props: {
     total: 'Total Pages',
     maxWidth: 'Max Width',
     current: 'Current Page',
@@ -53,51 +48,31 @@ const fields = {
     ariaCurrentAttr: 'ariaCurrent Attr',
     linkHref: 'linkHref',
   },
-  labelBehaviourFieldsAsJson: {
+  labelBehaviourFields: {
     labelBehaviour: 'Label Behaviour',
     srOnlyClassName: 'SR Only className',
     a11yActiveLabel: 'a11y Active Label',
   },
-  narrowBehaviourFieldsAsJson: {
+  narrowBehaviourFields: {
     narrowBehaviourNames: 'Narrow Behaviour',
   },
 };
+
+type PropFields = keyof typeof fields.props;
+type LabelBehaviourFields = keyof typeof fields.labelBehaviourFields;
+type NarrowBehaviourFields = keyof typeof fields.narrowBehaviourFields;
 
 const initialValues = {
   renderPagination: true,
   presetId: 'none' as PresetId,
   subTheme: 'none' as SubTheme,
   testThemeVariable: '',
-  propsAsJson: {
-    total: '100',
-    maxWidth: '',
-    current: '0',
-    className: 'undefined',
-    extraClassName: 'undefined',
-    pageItemClassName: 'undefined',
-    pageLinkClassName: 'undefined',
-    activeItemClassName: 'undefined',
-    disabledItemClassName: 'undefined',
-    navClassName: 'undefined',
-    previousClassName: 'undefined',
-    nextClassName: 'undefined',
-    previousLabel: 'undefined',
-    nextLabel: 'undefined',
-    ariaPreviousLabel: 'undefined',
-    ariaNextLabel: 'undefined',
-    ariaPageLabel: 'undefined',
-    renderNav: 'undefined',
-    ariaCurrentAttr: 'undefined',
-    linkHref: 'undefined',
-  },
-  labelBehaviourFieldsAsJson: {
-    labelBehaviour: 'undefined',
-    srOnlyClassName: 'undefined',
-    a11yActiveLabel: 'undefined',
-  },
-  narrowBehaviourFieldsAsJson: {
-    narrowBehaviourNames: 'undefined',
-  },
+  props: {
+    total: 100,
+    current: 0,
+  } as { [key in PropFields]: unknown },
+  labelBehaviourFields: {} as { [key in LabelBehaviourFields]: unknown },
+  narrowBehaviourFields: {} as { [key in NarrowBehaviourFields]: unknown },
 };
 
 const cssExtraClassOptions = [
@@ -128,29 +103,21 @@ function TestHarnessUI({
     <Formik initialValues={initialValues} onSubmit={() => {}}>
       {formik => (
         <>
-          <BodyThemeSetter theme={formik.values.subTheme} />
-          {formik.values.testThemeVariable && (
-            <style>
-              {`:root { ${formik.values.testThemeVariable}: ${getThemeVariableTestValue(formik.values.testThemeVariable)}; }`}
-            </style>
-          )}
           <div className={cssExtraClasses.join(' ')} id="paginationParent">
             {formik.values.renderPagination && (
               <ResponsivePagination
                 {...presets[formik.values.presetId]}
-                onPageChange={page =>
-                  formik.setFieldValue('propsAsJson.current', JSON.stringify(page))
-                }
-                {...parseJsonFields(formik.values.propsAsJson)}
-                {...getLabelBehaviour(
-                  parseJsonFields(formik.values.labelBehaviourFieldsAsJson),
-                )}
+                onPageChange={page => formik.setFieldValue('props.current', page)}
+                {...transformProps(formik.values.props)}
+                {...getLabelBehaviour(formik.values.labelBehaviourFields)}
                 {...getNarrowBehaviour(
-                  parseJsonFields(formik.values.narrowBehaviourFieldsAsJson),
+                  formik.values.narrowBehaviourFields.narrowBehaviourNames,
                 )}
               />
             )}
           </div>
+          <BodyThemeSetter theme={formik.values.subTheme} />
+          <TestThemeVariableSetter variable={formik.values.testThemeVariable} />
           <Container>
             <form>
               <GroupRow
@@ -215,11 +182,7 @@ function TestHarnessUI({
                 )}
               </CheckboxRow>
               {(
-                [
-                  'propsAsJson',
-                  'labelBehaviourFieldsAsJson',
-                  'narrowBehaviourFieldsAsJson',
-                ] as const
+                ['props', 'labelBehaviourFields', 'narrowBehaviourFields'] as const
               ).map(group =>
                 Object.entries(fields[group]).map(([field, title]) => (
                   <InputRow
@@ -229,12 +192,7 @@ function TestHarnessUI({
                     cellSize="small"
                   >
                     {attrs => (
-                      <Field
-                        type="text"
-                        name={`${group}.${field}`}
-                        spellCheck={false}
-                        {...attrs}
-                      />
+                      <JsonTextField name={`${group}.${field}`} {...attrs} />
                     )}
                   </InputRow>
                 )),
@@ -249,65 +207,23 @@ function TestHarnessUI({
 
 export default TestHarnessUI;
 
-function getLabelBehaviour({
-  labelBehaviour,
-  srOnlyClassName,
-  a11yActiveLabel,
-}: { [K in keyof (typeof fields)['labelBehaviourFieldsAsJson']]: string }) {
-  if (labelBehaviour === 'srOnlySpanLabel') {
-    return { labelBehaviour: srOnlySpanLabel({ srOnlyClassName, a11yActiveLabel }) };
-  }
-}
-
-function getNarrowBehaviour({
-  narrowBehaviourNames,
-}: {
-  narrowBehaviourNames: unknown;
+function transformProps<K extends string>(props: {
+  [key in K]: unknown;
 }) {
-  const narrowBehaviour = getSingleNarrowBehaviour(narrowBehaviourNames);
-  if (narrowBehaviour) {
-    return { narrowBehaviour };
-  } else if (Array.isArray(narrowBehaviourNames)) {
-    const narrowBehaviours = narrowBehaviourNames
-      .map(getSingleNarrowBehaviour)
-      .filter(x => x !== undefined);
+  const transformedProps = {} as { [key in K]: any }; // eslint-disable-line @typescript-eslint/no-explicit-any
 
-    return { narrowBehaviour: combine(...narrowBehaviours) };
-  }
-}
-
-function getSingleNarrowBehaviour(narrowBehaviourName: unknown) {
-  switch (narrowBehaviourName) {
-    case 'dropEllipsis':
-      return dropEllipsis;
-    case 'dropNav':
-      return dropNav;
-    case 'dropEllipsisThenNav':
-      return dropEllipsisThenNav;
-    case 'dropNavThenEllipsis':
-      return dropNavThenEllipsis;
-    case 'dropFirstAndLast':
-      return dropFirstAndLast;
-  }
-}
-
-function parseJsonFields<K extends string>(jsonValues: {
-  [key in K]: string;
-}) {
-  const props = {} as { [key in K]: any }; // eslint-disable-line @typescript-eslint/no-explicit-any
-
-  (Object.keys(jsonValues) as K[]).forEach(field => {
-    const value = getFieldValue(tryJsonParse(jsonValues[field]));
+  (Object.keys(props) as K[]).forEach(field => {
+    const value = transformProp(props[field]);
 
     if (value !== undefined) {
-      props[field] = value;
+      transformedProps[field] = value;
     }
   });
 
-  return props;
+  return transformedProps;
 }
 
-function getFieldValue(value: unknown) {
+function transformProp(value: unknown) {
   const testComponent = createTestComponent(value);
   if (testComponent) return testComponent;
 
@@ -316,12 +232,4 @@ function getFieldValue(value: unknown) {
   if (value === 'ariaPageLabelTestFn()') return ariaPageLabelTestFn;
 
   return value;
-}
-
-function hrefTestFn(page: number) {
-  return `/test-page/${page}`;
-}
-
-function ariaPageLabelTestFn(page: number, active: boolean) {
-  return active ? `active ${page}` : `page ${page}`;
 }
