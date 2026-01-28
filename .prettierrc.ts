@@ -7,6 +7,8 @@ const config: Config = {
   singleQuote: true,
   printWidth: 85,
   arrowParens: 'avoid',
+  plugins: ['prettier-plugin-tailwindcss'],
+  tailwindFunctions: ['tw'],
 };
 
 export default config;
