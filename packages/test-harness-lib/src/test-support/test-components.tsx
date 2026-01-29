@@ -1,33 +1,14 @@
 import { Component } from 'react';
 
-export function createTestComponent(value: unknown) {
-  switch (value) {
-    case '<PreviousLabel />':
-      return <PreviousLabel />;
-
-    case '<NextLabel />':
-      return <NextLabel />;
-
-    case '<Anonymous />':
-      return <div>Anonymous</div>;
-
-    case '<AnonymousFragment />':
-      return <>Anonymous</>;
-
-    case '<TestClass />':
-      return <TestClass />;
-  }
-}
-
-function PreviousLabel() {
+export function PreviousLabel() {
   return <div>Previous</div>;
 }
 
-function NextLabel() {
+export function NextLabel() {
   return <div>Next</div>;
 }
 
-class TestClass extends Component {
+export class TestClass extends Component {
   render() {
     return <div>Class</div>;
   }

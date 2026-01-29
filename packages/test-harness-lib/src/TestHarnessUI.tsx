@@ -7,7 +7,7 @@ import {
   getThemeVariables,
 } from './test-support/framework-styles';
 import { type PresetId, presets } from './test-support/presets';
-import { createTestComponent } from './test-support/test-components';
+import { NextLabel, PreviousLabel, TestClass } from './test-support/test-components';
 import { useUrlQueryToggles } from './test-support/util';
 import { ariaPageLabelTestFn, hrefTestFn } from './test-support/test-functions';
 import { getLabelBehaviour } from './test-support/label-behaviour';
@@ -19,10 +19,10 @@ import { CheckboxRow } from './components/CheckboxRow';
 import { GroupRow } from './components/GroupRow';
 import { FieldSelect } from './components/FieldSelect';
 import { JsonTextField } from './components/JsonTextField';
+import { TestThemeVariableSetter } from './components/TestThemeVariableSetter';
 
 import './css/test-styles.css';
 import './css/main.css';
-import { TestThemeVariableSetter } from './components/TestThemeVariableSetter';
 
 const fields = {
   renderPagination: 'Render Pagination',
@@ -224,12 +224,28 @@ function transformProps<K extends string>(props: {
 }
 
 function transformProp(value: unknown) {
-  const testComponent = createTestComponent(value);
-  if (testComponent) return testComponent;
+  switch (value) {
+    case '<PreviousLabel />':
+      return <PreviousLabel />;
 
-  if (value === 'hrefTestFn()') return hrefTestFn;
+    case '<NextLabel />':
+      return <NextLabel />;
 
-  if (value === 'ariaPageLabelTestFn()') return ariaPageLabelTestFn;
+    case '<Anonymous />':
+      return <div>Anonymous</div>;
+
+    case '<AnonymousFragment />':
+      return <>Anonymous</>;
+
+    case '<TestClass />':
+      return <TestClass />;
+
+    case 'hrefTestFn()':
+      return hrefTestFn;
+
+    case 'ariaPageLabelTestFn()':
+      return ariaPageLabelTestFn;
+  }
 
   return value;
 }
