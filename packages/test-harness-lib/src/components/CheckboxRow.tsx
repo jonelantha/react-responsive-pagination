@@ -1,10 +1,11 @@
+import type { ReactNode } from 'react';
 import { useFrameworkId } from '../test-support/framework-styles';
 import { FormRow } from './FormRow';
 
 type CheckboxRowProps = {
   label: string;
   id: string;
-  children: (attrs: { className: string; id: string }) => React.ReactNode;
+  children: (attrs: { className: string; id: string }) => ReactNode;
 };
 
 export function CheckboxRow({ label, id, children }: CheckboxRowProps) {

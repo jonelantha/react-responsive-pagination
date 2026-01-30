@@ -1,8 +1,8 @@
 import { useField } from 'formik';
 import { stringifyWithUndefined, tryJsonParse } from '../test-support/util';
-import { useCallback, useEffect, useState } from 'react';
+import { type HTMLAttributes, useCallback, useEffect, useState } from 'react';
 
-type JsonTextFieldProps = { name: string } & React.HTMLAttributes<HTMLInputElement>;
+type JsonTextFieldProps = { name: string } & HTMLAttributes<HTMLInputElement>;
 
 export function JsonTextField({ name, ...rest }: JsonTextFieldProps) {
   const [_, { value: parentValue }, { setValue: setParentValue }] = useField(name);

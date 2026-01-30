@@ -1,10 +1,11 @@
+import type { ReactNode } from 'react';
 import { useFrameworkId } from '../test-support/framework-styles';
 import { type CellSize, FormRow } from './FormRow';
 
 type InputRowProps = {
   label: string;
   id: string;
-  children: (attrs: { className: string; id: string }) => React.ReactNode;
+  children: (attrs: { className: string; id: string }) => ReactNode;
   cellSize?: CellSize;
 };
 

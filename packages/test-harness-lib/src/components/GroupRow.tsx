@@ -1,3 +1,4 @@
+import type { InputHTMLAttributes, ReactNode } from 'react';
 import { useFrameworkId } from '../test-support/framework-styles';
 import { FormRow } from './FormRow';
 
@@ -5,9 +6,7 @@ type GroupRowProps<T extends string> = {
   label: string;
   name: string;
   values: T[];
-  input: (
-    attrs: { value: T } & React.InputHTMLAttributes<HTMLInputElement>,
-  ) => React.ReactNode;
+  input: (attrs: { value: T } & InputHTMLAttributes<HTMLInputElement>) => ReactNode;
 };
 
 export function GroupRow<T extends string>({
@@ -20,14 +19,16 @@ export function GroupRow<T extends string>({
 
   return (
     <FormRow label={label} flexCell>
-      {values.map(value => (
-        <div className={styles.inputParent} key={value}>
-          {input({ name, id: `${name}_${value}`, className: styles.input, value })}
-          <label className={styles.label} htmlFor={`${name}_${value}`}>
-            {value}
-          </label>
-        </div>
-      ))}
+      <>
+        {values.map(value => (
+          <div className={styles.inputParent} key={value}>
+            {input({ name, id: `${name}_${value}`, className: styles.input, value })}
+            <label className={styles.label} htmlFor={`${name}_${value}`}>
+              {value}
+            </label>
+          </div>
+        ))}
+      </>
     </FormRow>
   );
 }

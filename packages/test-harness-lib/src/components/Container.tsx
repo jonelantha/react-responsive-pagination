@@ -1,7 +1,8 @@
+import type { ReactNode } from 'react';
 import { useFrameworkId } from '../test-support/framework-styles';
 
 type ContainerProps = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export function Container({ children }: ContainerProps) {
