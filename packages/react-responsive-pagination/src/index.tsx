@@ -35,10 +35,12 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
     maxWidth,
     narrowBehaviour,
     className,
+    containerClassName,
     extraClassName = 'justify-content-center',
     pageItemClassName = 'page-item',
     pageLinkClassName = 'page-link',
     activeItemClassName = 'active',
+    inactiveItemClassName = '',
     disabledItemClassName = 'disabled',
     navClassName,
     previousClassName,
@@ -74,9 +76,11 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
   }, [
     clearCache,
     className,
+    containerClassName,
     pageItemClassName,
     pageLinkClassName,
     activeItemClassName,
+    inactiveItemClassName,
     disabledItemClassName,
     navClassName,
     previousClassName,
@@ -88,6 +92,8 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
   function getContainerClassName() {
     if (className !== undefined) {
       return className;
+    } else if (containerClassName !== undefined) {
+      return containerClassName;
     } else if (extraClassName) {
       return `pagination ${extraClassName}`;
     } else {
@@ -108,7 +114,7 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
             key={item.key}
             className={classNames([
               pageItemClassName,
-              item.active && activeItemClassName,
+              item.active ? activeItemClassName : inactiveItemClassName,
               item.type === 'next' && (nextClassName ?? navClassName),
               item.type === 'previous' && (previousClassName ?? navClassName),
             ])}
@@ -172,10 +178,12 @@ export type ResponsivePaginationProps = {
   maxWidth?: number;
   narrowBehaviour?: NarrowBehaviour;
   className?: string;
+  containerClassName?: string;
   extraClassName?: string;
   pageItemClassName?: string;
   pageLinkClassName?: string;
   activeItemClassName?: string;
+  inactiveItemClassName?: string;
   disabledItemClassName?: string;
   disabledLinkClassName?: string;
   navClassName?: string;
@@ -199,10 +207,12 @@ ResponsivePagination.propTypes = {
   maxWidth: PropTypes.number,
   narrowBehaviour: PropTypes.func,
   className: PropTypes.string,
+  containerClassName: PropTypes.string,
   extraClassName: PropTypes.string,
   pageItemClassName: PropTypes.string,
   pageLinkClassName: PropTypes.string,
   activeItemClassName: PropTypes.string,
+  inactiveItemClassName: PropTypes.string,
   disabledItemClassName: PropTypes.string,
   disabledLinkClassName: PropTypes.string,
   navClassName: PropTypes.string,

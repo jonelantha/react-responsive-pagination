@@ -17,26 +17,57 @@ export const test = base.extend<{
 
 test.beforeEach(async ({ testHarness }) => {
   await testHarness.setField('className', undefined);
+  await testHarness.setField('containerClassName', undefined);
   await testHarness.setField('extraClassName', undefined);
   await testHarness.setField('pageItemClassName', undefined);
   await testHarness.setField('pageLinkClassName', undefined);
   await testHarness.setField('activeItemClassName', undefined);
+  await testHarness.setField('inactiveItemClassName', undefined);
   await testHarness.setField('disabledItemClassName', undefined);
   await testHarness.setField('navClassName', undefined);
   await testHarness.setField('previousClassName', undefined);
   await testHarness.setField('nextClassName', undefined);
 });
 
-test.describe('Setting extraClassName', () => {
-  for (const [extraClassProp, expectedFullClass] of [
-    [undefined, 'pagination justify-content-center'],
-    ['', 'pagination'],
-    ['justify-content-start', 'pagination justify-content-start'],
+test.describe('container class', () => {
+  for (const { props, expectedFullClass } of [
+    {
+      props: {},
+      expectedFullClass: 'pagination justify-content-center',
+    },
+    {
+      props: { extraClassName: '' },
+      expectedFullClass: 'pagination',
+    },
+    {
+      props: { extraClassName: 'justify-content-start' },
+      expectedFullClass: 'pagination justify-content-start',
+    },
+    {
+      props: { className: 'custom-pagination', extraClassName: 'extra-ignored' },
+      expectedFullClass: 'custom-pagination',
+    },
+    {
+      props: {
+        containerClassName: 'custom-pagination',
+        extraClassName: 'extra-ignored',
+      },
+      expectedFullClass: 'custom-pagination',
+    },
+    {
+      props: {
+        className: 'className-pagination-takes-precedence',
+        containerClassName: 'custom-pagination',
+      },
+      expectedFullClass: 'className-pagination-takes-precedence',
+    },
   ]) {
-    test(`will have expected class for extraClassName=${extraClassProp}`, async ({
+    test(`will have expected class for ${JSON.stringify(props)}`, async ({
       testHarness,
     }) => {
-      await testHarness.setField('extraClassName', extraClassProp);
+      await testHarness.setField('className', props.className);
+      await testHarness.setField('containerClassName', props.containerClassName);
+      await testHarness.setField('extraClassName', props.extraClassName);
 
       await testHarness.waitForNextFrame();
 
@@ -53,6 +84,7 @@ test.describe('classNames', () => {
     ['pageItemClassName', 'alt-page-item'],
     ['pageLinkClassName', 'alt-page-link'],
     ['activeItemClassName', 'alt-active'],
+    ['inactiveItemClassName', 'alt-inactive'],
     ['disabledItemClassName', 'alt-disabled'],
   ]) {
     test(`setting ${field} to ${value} renders correctly`, async ({
