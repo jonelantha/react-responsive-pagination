@@ -6,5 +6,9 @@
   "scripts": {
     "lint": "eslint",
     "tsc": "tsc"
+  },
+  "dependencies": {
+    "class-variance-authority": "0.7.1",
+    "tailwind-merge": "3.4.0"
   }
 }

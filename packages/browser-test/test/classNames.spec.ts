@@ -27,6 +27,7 @@ test.beforeEach(async ({ testHarness }) => {
   await testHarness.setField('navClassName', undefined);
   await testHarness.setField('previousClassName', undefined);
   await testHarness.setField('nextClassName', undefined);
+  await testHarness.setField('classMerge', undefined);
 });
 
 test.describe('container class', () => {
@@ -132,6 +133,29 @@ test.describe('nav classNames', () => {
           expect(paginationHtml).toMatchSnapshot();
         });
       }
+    });
+  }
+});
+
+test.describe('classMerge', () => {
+  for (const { classMerge, expectedClass } of [
+    { classMerge: undefined, expectedClass: 'bg-grey-500 border bg-grey-800' },
+    { classMerge: 'twMerge()', expectedClass: 'border bg-grey-800' },
+  ]) {
+    test(`setting classMerge to ${classMerge} merges classes correctly`, async ({
+      testHarness,
+    }) => {
+      await testHarness.setField('classMerge', classMerge);
+      await testHarness.setField('pageItemClassName', 'bg-grey-500');
+      await testHarness.setField('disabledItemClassName', 'border bg-grey-800');
+
+      await testHarness.waitForNextFrame();
+
+      const firstChildClass = await testHarness
+        .paginationFirstChildLocator()
+        .getAttribute('class');
+
+      expect(firstChildClass).toBe(expectedClass);
     });
   }
 });

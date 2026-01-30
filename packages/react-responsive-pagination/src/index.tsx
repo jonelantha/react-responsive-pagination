@@ -45,6 +45,7 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
     navClassName,
     previousClassName,
     nextClassName,
+    classMerge = defaultClassMerge,
     previousLabel,
     nextLabel,
     ariaPreviousLabel,
@@ -85,6 +86,7 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
     navClassName,
     previousClassName,
     nextClassName,
+    classMerge,
   ]);
 
   if (items.length === 0) return null;
@@ -112,7 +114,7 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
           // item = ClickableItem
           <li
             key={item.key}
-            className={classNames([
+            className={classNames(classMerge, [
               pageItemClassName,
               item.active ? activeItemClassName : inactiveItemClassName,
               item.type === 'next' && (nextClassName ?? navClassName),
@@ -133,7 +135,7 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
           // item = NonClickableItem
           <li
             key={item.key}
-            className={classNames([
+            className={classNames(classMerge, [
               pageItemClassName,
               disabledItemClassName,
               item.type === 'next' && (nextClassName ?? navClassName),
@@ -151,8 +153,11 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
   );
 }
 
-function classNames(names: (string | false | undefined)[]) {
-  return names.filter(name => name).join(' ');
+function classNames(
+  classMerge: (classNames: string[]) => string,
+  names: (string | false | undefined)[],
+) {
+  return classMerge(names.filter((name): name is string => Boolean(name)));
 }
 
 function getHref(
@@ -167,6 +172,8 @@ function getHref(
     return undefined;
   }
 }
+
+const defaultClassMerge = (classNames: string[]) => classNames.join(' ');
 
 /**
  * @public
@@ -189,6 +196,7 @@ export type ResponsivePaginationProps = {
   navClassName?: string;
   previousClassName?: string;
   nextClassName?: string;
+  classMerge?: (classNames: string[]) => string;
   previousLabel?: string | ReactNode;
   nextLabel?: string | ReactNode;
   ariaPreviousLabel?: string;
@@ -218,6 +226,7 @@ ResponsivePagination.propTypes = {
   navClassName: PropTypes.string,
   previousClassName: PropTypes.string,
   nextClassName: PropTypes.string,
+  classMerge: PropTypes.func,
   previousLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   nextLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   ariaPreviousLabel: PropTypes.string,

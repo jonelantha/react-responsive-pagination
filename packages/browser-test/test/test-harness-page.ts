@@ -62,6 +62,10 @@ export class TestHarnessPage {
     return this.page.locator('#paginationParent > ul');
   }
 
+  paginationFirstChildLocator() {
+    return this.page.locator('#paginationParent > ul > li').first();
+  }
+
   editableStyleBlockLocator() {
     return this.page.locator('#editable-style-block');
   }

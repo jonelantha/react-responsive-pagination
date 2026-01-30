@@ -20,6 +20,7 @@ import { GroupRow } from './components/GroupRow';
 import { FieldSelect } from './components/FieldSelect';
 import { JsonTextField } from './components/JsonTextField';
 import { TestThemeVariableSetter } from './components/TestThemeVariableSetter';
+import { twMerge } from 'tailwind-merge';
 
 import './css/test-styles.css';
 import './css/main.css';
@@ -41,6 +42,7 @@ const fields = {
     navClassName: 'Nav className',
     previousClassName: 'Previous className',
     nextClassName: 'Next className',
+    classMerge: 'Class Merge Function',
     previousLabel: 'Previous Label',
     nextLabel: 'Next Label',
     ariaPreviousLabel: 'Aria Previous Label',
@@ -247,6 +249,9 @@ function transformProp(value: unknown) {
 
     case 'ariaPageLabelTestFn()':
       return ariaPageLabelTestFn;
+
+    case 'twMerge()':
+      return twMerge;
   }
 
   return value;
