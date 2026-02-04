@@ -9,7 +9,7 @@ export default defineConfig({
   integrations: [
     react(),
     expressiveCode({
-      themes: ['dark-plus'],
+      themes: ['light-plus', 'dark-plus'],
       styleOverrides: {
         codeFontSize: '0.9rem',
         frames: { frameBoxShadowCssValue: 'none' },

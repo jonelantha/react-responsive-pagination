@@ -30,14 +30,14 @@
   --star-background-color: rgb(250, 250, 250);
 
   --footer-bg: #eeeeee;
-  --border-color: #eeeeee;
+  --border-color: #d9d9d9;
   --color-footer-link: #333333;
   --color-footer-link-hover: #282828; /* = shade(0.2, colorFooterLink); */
 
   --box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  --box-border: 1px solid #eeeeee;
+  --box-border: 1px solid #d9d9d9;
 
-  --table-border-color: #dadde1;
+  --table-border-color: #d9d9d9;
   --table-stripe-color: #f5f6f7;
 
   --cta-card-bg: white;
@@ -107,6 +107,8 @@ body {
   margin: 0;
   word-wrap: break-word;
   background-color: var(--main-bg);
+  --ec-brdWd: 1px;
+  --ec-brdCol: var(--border-color);
 }
 
 html {
