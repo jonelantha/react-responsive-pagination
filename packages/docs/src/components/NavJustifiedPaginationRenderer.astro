@@ -1,0 +1,21 @@
+---
+import PaginationRenderer, {
+  type PaginationRendererProps,
+} from './PaginationRenderer';
+
+type Props = PaginationRendererProps;
+
+const { ...rest } = Astro.props;
+---
+
+<PaginationRenderer {...rest} className="nav-justified-styles" client:load />
+
+<style is:global lang="scss">
+  @use 'sass:meta';
+
+  .nav-justified-styles {
+    @include meta.load-css('react-responsive-pagination/themes/classic-light-dark');
+    @include meta.load-css('@styles/navJustified');
+  }
+</style>
+

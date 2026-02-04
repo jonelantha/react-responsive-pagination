@@ -9,8 +9,8 @@ footerNavOrder: 5
 addOverview: true
 ---
 
-import BootstrapThemeContainer from '@components/BootstrapThemeContainer.astro';
-import PaginationRenderer from '@components/PaginationRenderer.tsx';
+import PaginationContainer from '@components/PaginationContainer.astro';
+import BootstrapThemePaginationRenderer from '@components/BootstrapThemePaginationRenderer.astro';
 import PropsTable from '@components/PropsTable.astro';
 import CommonProps from '@props/commonProps.mdx';
 import LabelProps from '@props/labelProps.mdx';
@@ -22,9 +22,9 @@ import NarrowProps from '@props/narrowProps.mdx';
 
 **react-responsive-pagination** is ready to go with Bootstrap framework styles - see examples below
 
-<BootstrapThemeContainer hasBorder>
-  <PaginationRenderer client:load />
-</BootstrapThemeContainer>
+<PaginationContainer hasBorder>
+  <BootstrapThemePaginationRenderer />
+</PaginationContainer>
 
 Not using Bootstrap framework? No problem, see the available ready-to-go [themes](/themes) including a standalone Bootstrap theme
 
@@ -78,9 +78,9 @@ If needed, the ARIA labels can also be changed by setting the `ariaPreviousLabel
 
 **Example - Text labels**
 
-<BootstrapThemeContainer hasBorder>
-  <PaginationRenderer previousLabel="Previous" nextLabel="Next" client:load />
-</BootstrapThemeContainer>
+<PaginationContainer hasBorder>
+  <BootstrapThemePaginationRenderer previousLabel="Previous" nextLabel="Next" />
+</PaginationContainer>
 
 ```jsx
 <ResponsivePagination /*...*/ previousLabel="Previous" nextLabel="Next" />
@@ -88,9 +88,9 @@ If needed, the ARIA labels can also be changed by setting the `ariaPreviousLabel
 
 **Example - Single arrow labels**
 
-<BootstrapThemeContainer hasBorder>
-  <PaginationRenderer previousLabel="‹" nextLabel="›" client:load />
-</BootstrapThemeContainer>
+<PaginationContainer hasBorder>
+  <BootstrapThemePaginationRenderer previousLabel="‹" nextLabel="›" />
+</PaginationContainer>
 
 ```jsx
 <ResponsivePagination /*...*/ previousLabel="‹" nextLabel="›" />
@@ -102,9 +102,9 @@ Don't include the navigation buttons by setting `renderNav` to **false**:
 
 **Example - No navigation buttons**
 
-<BootstrapThemeContainer hasBorder>
-  <PaginationRenderer renderNav={false} client:load />
-</BootstrapThemeContainer>
+<PaginationContainer hasBorder>
+  <BootstrapThemePaginationRenderer renderNav={false} />
+</PaginationContainer>
 
 ```jsx
 <ResponsivePagination /*...*/ renderNav={false} />
@@ -122,9 +122,9 @@ Change how the pagination is positioned by setting the `extraClassName` prop to 
 
 **Example - align pagination left:**
 
-<BootstrapThemeContainer>
-  <PaginationRenderer extraClassName="justify-content-start" client:load />
-</BootstrapThemeContainer>
+<PaginationContainer hasBorder>
+  <BootstrapThemePaginationRenderer extraClassName="justify-content-start" />
+</PaginationContainer>
 
 ```jsx
 <ResponsivePagination /*...*/ extraClassName="justify-content-start" />

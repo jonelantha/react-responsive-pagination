@@ -2,13 +2,20 @@ import { useState } from 'react';
 import ResponsivePagination from 'react-responsive-pagination';
 import type { ResponsivePaginationProps } from 'react-responsive-pagination';
 
-export default function PaginationRenderer(
-  props: Partial<ResponsivePaginationProps> & { initialPage?: number },
-) {
-  const [currentPage, setCurrentPage] = useState(props.initialPage ?? 1);
+export type PaginationRendererProps = Partial<ResponsivePaginationProps> & {
+  initialPage?: number;
+  className?: string;
+};
+
+export default function PaginationRenderer({
+  initialPage,
+  className,
+  ...props
+}: PaginationRendererProps) {
+  const [currentPage, setCurrentPage] = useState(initialPage ?? 1);
 
   return (
-    <div>
+    <div className={className}>
       <ResponsivePagination
         current={currentPage}
         onPageChange={setCurrentPage}

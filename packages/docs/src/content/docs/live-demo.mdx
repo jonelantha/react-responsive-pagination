@@ -7,16 +7,16 @@ footerNavOrder: 3
 popupNavOnly: true
 ---
 
-import BootstrapThemeContainer from '@components/BootstrapThemeContainer.astro';
-import PaginationRenderer from '@components/PaginationRenderer.tsx';
+import PaginationContainer from '@components/PaginationContainer.astro';
+import BootstrapThemePaginationRenderer from '@components/BootstrapThemePaginationRenderer.astro';
 
 # Live Demo
 
 Try resizing your browser to see the component automatically adjust to the available width
 
-<BootstrapThemeContainer hasBorder striped shadow>
-  <PaginationRenderer client:load total={120} />
-</BootstrapThemeContainer>
+<PaginationContainer hasBorder striped shadow>
+  <BootstrapThemePaginationRenderer total={120} />
+</PaginationContainer>
 
 **NOTE**: the striped region illustrates the component's container, it's not part of the component 🙂
 

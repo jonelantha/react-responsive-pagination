@@ -1,23 +1,23 @@
 ---
-import BootstrapThemeContainer from '@components/BootstrapThemeContainer.astro';
-import PaginationRenderer from '@components/PaginationRenderer.tsx';
-import ClassicThemeContainer from '@components/ClassicThemeContainer.astro';
-import MinimalThemeContainer from '@components/MinimalThemeContainer.astro';
+import PaginationContainer from '@components/PaginationContainer.astro';
+import ClassicThemePaginationRenderer from '@components/ClassicThemePaginationRenderer.astro';
+import BootstrapThemePaginationRenderer from '@components/BootstrapThemePaginationRenderer.astro';
+import MinimalThemePaginationRenderer from '@components/MinimalThemePaginationRenderer.astro';
 
 const { ...rest } = Astro.props;
 ---
 
 <div class="outer" {...rest}>
   <div class="inner">
-    <BootstrapThemeContainer noBottomMargin>
-      <PaginationRenderer client:load initialPage={1} total={5} />
-    </BootstrapThemeContainer>
-    <MinimalThemeContainer noBottomMargin>
-      <PaginationRenderer client:load initialPage={8} total={10} />
-    </MinimalThemeContainer>
-    <ClassicThemeContainer noBottomMargin>
-      <PaginationRenderer client:load initialPage={5} total={5} />
-    </ClassicThemeContainer>
+    <PaginationContainer noBottomMargin>
+      <BootstrapThemePaginationRenderer initialPage={1} total={5} />
+    </PaginationContainer>
+    <PaginationContainer noBottomMargin>
+      <MinimalThemePaginationRenderer initialPage={8} total={10} />
+    </PaginationContainer>
+    <PaginationContainer noBottomMargin>
+      <ClassicThemePaginationRenderer initialPage={5} total={5} />
+    </PaginationContainer>
   </div>
 </div>
 

@@ -1,0 +1,20 @@
+---
+import PaginationRenderer, {
+  type PaginationRendererProps,
+} from './PaginationRenderer';
+
+type Props = PaginationRendererProps;
+
+const { ...rest } = Astro.props;
+---
+
+<PaginationRenderer {...rest} className="custom-styles" client:load />
+
+<style is:global lang="scss">
+  @use 'sass:meta';
+
+  .custom-styles {
+    @include meta.load-css('@styles/customStyles');
+  }
+</style>
+

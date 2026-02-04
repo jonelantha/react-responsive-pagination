@@ -13,8 +13,8 @@ noArticlePadding: true
 
 import Hero from '@components/Hero.astro';
 import ThemesExample from '@components/ThemesExample.astro';
-import BootstrapThemeContainer from '@components/BootstrapThemeContainer.astro';
-import PaginationRenderer from '@components/PaginationRenderer.tsx';
+import PaginationContainer from '@components/PaginationContainer.astro';
+import BootstrapThemePaginationRenderer from '@components/BootstrapThemePaginationRenderer.astro';
 import DemoLabel from '@components/DemoLabel.astro';
 import BreakableLines from '@components/BreakableLines.astro';
 import LandingSection from '@components/LandingSection.astro';
@@ -39,9 +39,9 @@ import StarSVG from '@assets/star-filled.svg';
   Customisable with plenty of options
 </Hero>
 
-<BootstrapThemeContainer noBottomMargin>
-  <PaginationRenderer total={35} client:load />
-</BootstrapThemeContainer>
+<PaginationContainer noBottomMargin>
+  <BootstrapThemePaginationRenderer total={35} />
+</PaginationContainer>
 
 <DemoLabel>
   <>Try it out!</>

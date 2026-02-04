@@ -8,12 +8,12 @@ footerNavOrder: 6
 addOverview: true
 ---
 
-import PaginationRenderer from '@components/PaginationRenderer.tsx';
+import BootstrapThemePaginationRenderer from '@components/BootstrapThemePaginationRenderer.astro';
+import CustomStylePaginationRenderer from '@components/CustomStylePaginationRenderer.astro';
+import NavJustifiedPaginationRenderer from '@components/NavJustifiedPaginationRenderer.astro';
 import customStyles from '@styles/customStyles.css?raw';
 import navJustifiedStyles from '@styles/navJustified.css?raw';
-import BootstrapThemeContainer from '@components/BootstrapThemeContainer.astro';
-import CustomStyleContainer from '@components/CustomStyleContainer.astro';
-import NavJustifiedContainer from '@components/NavJustifiedContainer.astro';
+import PaginationContainer from '@components/PaginationContainer.astro';
 import PropsTable from '@components/PropsTable.astro';
 import ClassNameProps from '@props/classNameProps.mdx';
 import LabelProps from '@props/labelProps.mdx';
@@ -25,9 +25,10 @@ import { Code } from 'astro-expressive-code/components';
 
 **react-responsive-pagination** is easy to completely customise, just add custom css to your project using this guide
 
-<CustomStyleContainer hasBorder>
-  <PaginationRenderer client:load />
-</CustomStyleContainer>
+<PaginationContainer hasBorder>
+  <CustomStylePaginationRenderer />
+</PaginationContainer>
+
 Don't want to create custom css? See the available ready-to-go [themes](/themes)
 
 Using Bootstrap 5.x or 4.x? No problem, see the [Bootstrap Pagination](/bootstrap-pagination) guide
@@ -72,9 +73,9 @@ To create custom styles for **react-responsive-pagination** simply include some 
 
 ## Example
 
-<CustomStyleContainer hasBorder>
-  <PaginationRenderer client:load />
-</CustomStyleContainer>
+<PaginationContainer hasBorder>
+  <CustomStylePaginationRenderer />
+</PaginationContainer>
 
 <Code code={customStyles} lang="css" title="pagination.css" />
 
@@ -150,9 +151,9 @@ Change the default labels for the previous and next buttons by setting the `prev
 
 **Example - Text labels**
 
-<BootstrapThemeContainer hasBorder>
-  <PaginationRenderer previousLabel="Previous" nextLabel="Next" client:load />
-</BootstrapThemeContainer>
+<PaginationContainer hasBorder>
+  <BootstrapThemePaginationRenderer previousLabel="Previous" nextLabel="Next" />
+</PaginationContainer>
 ```jsx
 <ResponsivePagination /*...*/ previousLabel="Previous" nextLabel="Next" />
 ```
@@ -163,14 +164,13 @@ Aligning the previous and next buttons to the start and end of the row is possib
 
 **Example**
 
-<NavJustifiedContainer hasBorder inlinePadding>
-  <PaginationRenderer
+<PaginationContainer hasBorder inlinePadding>
+  <NavJustifiedPaginationRenderer
     total={15}
     previousClassName="previous-justified"
     nextClassName="next-justified"
-    client:load
   />
-</NavJustifiedContainer>
+</PaginationContainer>
 
 ```jsx
 <ResponsivePagination
