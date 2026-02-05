@@ -8,6 +8,7 @@ footerNavOrder: 6
 addOverview: true
 ---
 
+import PaginationAndCode from '@components/PaginationAndCode.astro';
 import BootstrapThemePaginationRenderer from '@components/BootstrapThemePaginationRenderer.astro';
 import CustomStylePaginationRenderer from '@components/CustomStylePaginationRenderer.astro';
 import NavJustifiedPaginationRenderer from '@components/NavJustifiedPaginationRenderer.astro';
@@ -25,7 +26,7 @@ import { Code } from 'astro-expressive-code/components';
 
 **react-responsive-pagination** is easy to completely customise, just add custom css to your project using this guide
 
-<PaginationContainer hasBorder>
+<PaginationContainer>
   <CustomStylePaginationRenderer />
 </PaginationContainer>
 
@@ -73,7 +74,7 @@ To create custom styles for **react-responsive-pagination** simply include some 
 
 ## Example
 
-<PaginationContainer hasBorder>
+<PaginationContainer>
   <CustomStylePaginationRenderer />
 </PaginationContainer>
 
@@ -151,12 +152,12 @@ Change the default labels for the previous and next buttons by setting the `prev
 
 **Example - Text labels**
 
-<PaginationContainer hasBorder>
+<PaginationAndCode>
   <BootstrapThemePaginationRenderer previousLabel="Previous" nextLabel="Next" />
-</PaginationContainer>
-```jsx
-<ResponsivePagination /*...*/ previousLabel="Previous" nextLabel="Next" />
-```
+  ```jsx
+  <ResponsivePagination /*...*/ previousLabel="Previous" nextLabel="Next" />
+  ```
+</PaginationAndCode>
 
 ## Justifying Previous / Next Buttons
 
@@ -164,21 +165,19 @@ Aligning the previous and next buttons to the start and end of the row is possib
 
 **Example**
 
-<PaginationContainer hasBorder inlinePadding>
-  <NavJustifiedPaginationRenderer
-    total={15}
+<PaginationAndCode>
+  <BootstrapThemePaginationRenderer
     previousClassName="previous-justified"
     nextClassName="next-justified"
   />
-</PaginationContainer>
-
-```jsx
-<ResponsivePagination
-  //...
-  previousClassName="previous-justified"
-  nextClassName="next-justified"
-/>
-```
+  ```jsx
+  <ResponsivePagination
+    //...
+    previousClassName="previous-justified"
+    nextClassName="next-justified"
+  />
+  ```
+</PaginationAndCode>
 
 <Code code={navJustifiedStyles} lang="css" />
 

@@ -12,7 +12,6 @@ export default defineConfig({
       themes: ['light-plus', 'dark-plus'],
       styleOverrides: {
         codeFontSize: '0.9rem',
-        frames: { frameBoxShadowCssValue: 'none' },
       },
     }),
     mdx(),

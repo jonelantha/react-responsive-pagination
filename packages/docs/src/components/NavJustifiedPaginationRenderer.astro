@@ -14,8 +14,9 @@ const { ...rest } = Astro.props;
   @use 'sass:meta';
 
   .nav-justified-styles {
+    padding-inline: 1rem;
+
     @include meta.load-css('react-responsive-pagination/themes/classic-light-dark');
     @include meta.load-css('@styles/navJustified');
   }
 </style>
-

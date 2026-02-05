@@ -9,6 +9,7 @@ footerNavOrder: 5
 addOverview: true
 ---
 
+import PaginationAndCode from '@components/PaginationAndCode.astro';
 import PaginationContainer from '@components/PaginationContainer.astro';
 import BootstrapThemePaginationRenderer from '@components/BootstrapThemePaginationRenderer.astro';
 import PropsTable from '@components/PropsTable.astro';
@@ -22,7 +23,7 @@ import NarrowProps from '@props/narrowProps.mdx';
 
 **react-responsive-pagination** is ready to go with Bootstrap framework styles - see examples below
 
-<PaginationContainer hasBorder>
+<PaginationContainer>
   <BootstrapThemePaginationRenderer />
 </PaginationContainer>
 
@@ -78,23 +79,21 @@ If needed, the ARIA labels can also be changed by setting the `ariaPreviousLabel
 
 **Example - Text labels**
 
-<PaginationContainer hasBorder>
+<PaginationAndCode>
   <BootstrapThemePaginationRenderer previousLabel="Previous" nextLabel="Next" />
-</PaginationContainer>
-
-```jsx
-<ResponsivePagination /*...*/ previousLabel="Previous" nextLabel="Next" />
-```
+  ```jsx
+  <ResponsivePagination /*...*/ previousLabel="Previous" nextLabel="Next" />
+  ```
+</PaginationAndCode>
 
 **Example - Single arrow labels**
 
-<PaginationContainer hasBorder>
+<PaginationAndCode>
   <BootstrapThemePaginationRenderer previousLabel="‹" nextLabel="›" />
-</PaginationContainer>
-
-```jsx
-<ResponsivePagination /*...*/ previousLabel="‹" nextLabel="›" />
-```
+  ```jsx
+  <ResponsivePagination /*...*/ previousLabel="‹" nextLabel="›" />
+  ```
+</PaginationAndCode>
 
 ### No navigation buttons
 
@@ -102,13 +101,12 @@ Don't include the navigation buttons by setting `renderNav` to **false**:
 
 **Example - No navigation buttons**
 
-<PaginationContainer hasBorder>
+<PaginationAndCode>
   <BootstrapThemePaginationRenderer renderNav={false} />
-</PaginationContainer>
-
-```jsx
-<ResponsivePagination /*...*/ renderNav={false} />
-```
+  ```jsx
+  <ResponsivePagination /*...*/ renderNav={false} />
+  ```
+</PaginationAndCode>
 
 ### Alignment / Justify
 
@@ -122,13 +120,12 @@ Change how the pagination is positioned by setting the `extraClassName` prop to 
 
 **Example - align pagination left:**
 
-<PaginationContainer hasBorder>
+<PaginationAndCode>
   <BootstrapThemePaginationRenderer extraClassName="justify-content-start" />
-</PaginationContainer>
-
-```jsx
-<ResponsivePagination /*...*/ extraClassName="justify-content-start" />
-```
+  ```jsx
+  <ResponsivePagination /*...*/ extraClassName="justify-content-start" />
+  ```
+</PaginationAndCode>
 
 ## Props Reference
 
