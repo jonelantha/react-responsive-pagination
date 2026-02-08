@@ -1,9 +1,13 @@
 ---
 import BreakableLines from './BreakableLines.astro';
 
-type Props = { title: string | string[]; hasBackground?: boolean };
+type Props = {
+  title: string | string[];
+  hasBackground?: boolean;
+  anchorId?: string;
+};
 
-const { title, hasBackground } = Astro.props;
+const { title, hasBackground, anchorId } = Astro.props;
 ---
 
 <section
@@ -11,7 +15,7 @@ const { title, hasBackground } = Astro.props;
     'has-background': hasBackground,
   }}
 >
-  <h2><BreakableLines content={title} /></h2>
+  <h2 id={anchorId}><BreakableLines content={title} /></h2>
   <slot />
 </section>
 

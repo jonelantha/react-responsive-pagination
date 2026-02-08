@@ -21,6 +21,7 @@ import CTACard from '@components/CTACard.astro';
 import CTACardGroup from '@components/CTACardGroup.astro';
 import FeatureCard from '@components/FeatureCard.astro';
 import FeatureCardGroup from '@components/FeatureCardGroup.astro';
+import LandingCTA from '@components/LandingCTA.astro';
 
 import UniversalAccessSVG from '@assets/universal-access.svg';
 import CSSSVG from '@assets/css.svg';
@@ -46,7 +47,13 @@ import StarSVG from '@assets/star-filled.svg';
   <BreakableLines content={['Resize your browser…', 'or rotate your device!']} />
 </DemoLabel>
 
-<LandingSection title={['Getting Started -', '3 Ways To Style:']} hasBackground>
+<LandingCTA href="#getting-started" />
+
+<LandingSection
+  title={['Getting Started -', '3 Ways To Style:']}
+  anchorId="getting-started"
+  hasBackground
+>
   <CTACardGroup>
     <CTACard title="Built-in Themes" cta="Themes" ctaLink="/themes">
       <ThemesExample aria-hidden />

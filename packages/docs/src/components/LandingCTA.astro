@@ -1,0 +1,55 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import ChevronSVG from '../assets/chevron.svg';
+
+type Props = HTMLAttributes<'a'>;
+
+const { ...rest } = Astro.props;
+---
+
+<div>
+  <a {...rest}>
+    Get Started
+    <ChevronSVG aria-hidden viewBox="6 6 12 12" />
+  </a>
+</div>
+
+<style lang="scss">
+  @use '@styles/_vars.scss';
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-block: 1.5rem;
+
+    a {
+      background: var(--color-primary);
+      color: #ffffff;
+      border-radius: vars.$cta-radius;
+      box-shadow: var(--box-shadow);
+      text-decoration: none;
+
+      padding: 0.75rem 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 500;
+      font-size: 1.1rem;
+      line-height: 1.5;
+
+      &:hover {
+        background: var(--color-primary-hover);
+      }
+
+      svg {
+        display: inline-block;
+        line-height: 1;
+        height: 1rem;
+        width: 1rem;
+        transform: rotate(90deg);
+        margin-inline-start: 0.5rem;
+      }
+    }
+  }
+</style>
