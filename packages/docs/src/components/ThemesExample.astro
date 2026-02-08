@@ -6,7 +6,7 @@ import MinimalThemePaginationRenderer from '@components/MinimalThemePaginationRe
 const { ...rest } = Astro.props;
 ---
 
-<div class="outer" {...rest}>
+<div class="outer" {...rest} inert>
   <div class="inner">
     <BootstrapThemePaginationRenderer initialPage={1} total={5} />
     <MinimalThemePaginationRenderer initialPage={8} total={10} />

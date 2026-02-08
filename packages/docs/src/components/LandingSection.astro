@@ -21,8 +21,7 @@ const { title, hasBackground } = Astro.props;
   section {
     --v-spacing: 2rem;
 
-    padding-block: var(--v-spacing);
-    padding-inline: vars.$landing-padding-inline;
+    padding-block-start: var(--v-spacing);
 
     @media screen and (max-width: 40rem) {
       --v-spacing: 1.5rem;
@@ -38,7 +37,7 @@ const { title, hasBackground } = Astro.props;
   }
 
   h2 {
-    margin-block: 0 var(--v-spacing);
+    margin: 0;
     text-align: center;
 
     @media screen and (max-width: 35rem) {

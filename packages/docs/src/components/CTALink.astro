@@ -7,37 +7,27 @@ type Props = HTMLAttributes<'a'>;
 const { ...rest } = Astro.props;
 ---
 
-<a {...rest}><span><slot /></span><ChevronSVG aria-hidden viewBox="6 6 12 12" /></a>
+<a {...rest}>
+  <div>
+    <span>
+      <span class="start">Start</span>
+      <span class="get-started">Get Started</span>
+      with <slot />
+    </span>
+    <ChevronSVG aria-hidden viewBox="6 6 12 12" />
+  </div>
+</a>
 
 <style lang="scss">
   @use '@styles/_vars.scss';
 
   a {
-    display: inline-flex;
     container-type: inline-size;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 1.1rem;
-    line-height: 1.5;
     background: var(--color-primary);
-    padding: 0.75rem 1rem;
     color: #ffffff;
     border-radius: vars.$cta-radius;
     box-shadow: var(--box-shadow);
     text-decoration: none;
-    font-weight: 500;
-
-    @container (max-width: 15rem) {
-      span {
-        font-size: 1rem;
-      }
-    }
-
-    @container (max-width: 14rem) {
-      span {
-        letter-spacing: -1px;
-      }
-    }
 
     &:hover {
       text-decoration: none;
@@ -45,14 +35,49 @@ const { ...rest } = Astro.props;
       background: var(--color-primary-hover);
     }
 
-    svg {
-      display: inline-block;
-      line-height: 1;
-      margin-left: 0.5rem;
-      height: 1rem;
-      width: 1rem;
-      transform: rotate(90deg);
-      flex-shrink: 0;
+    div {
+      padding: 0.75rem 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 500;
+      font-size: 1.1rem;
+      line-height: 1.5;
+
+      .start {
+        display: none;
+      }
+
+      svg {
+        display: inline-block;
+        line-height: 1;
+        height: 1rem;
+        width: 1rem;
+        transform: rotate(90deg);
+      }
+
+      @container (max-width: 16.5rem) {
+        .start {
+          display: unset;
+        }
+
+        .get-started {
+          display: none;
+        }
+      }
+
+      @container (max-width: 13rem) {
+        justify-content: center;
+
+        svg {
+          display: none;
+        }
+      }
+
+      @container (max-width: 12rem) {
+        font-size: 1rem;
+        letter-spacing: -0.5px;
+      }
     }
   }
 </style>

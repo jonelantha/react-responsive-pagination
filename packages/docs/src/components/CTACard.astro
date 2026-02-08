@@ -11,18 +11,21 @@ const { title, cta, ctaLink } = Astro.props;
 ---
 
 <li>
+  <a class="cardLink" href={ctaLink} aria-hidden="true" tabindex="-1">&nbsp;</a>
   <div class="title">{title}</div>
   <slot />
   <div class="body">
     <slot name="body" />
   </div>
-  <CTALink class="ctaLink" href={ctaLink}>Get Started {cta}</CTALink>
+  <CTALink class="ctaLink" href={ctaLink}>{cta}</CTALink>
 </li>
 
 <style lang="scss">
   @use '@styles/_vars.scss';
 
   li {
+    position: relative;
+
     text-align: center;
     display: grid;
     grid-template-areas:
@@ -32,6 +35,8 @@ const { title, cta, ctaLink } = Astro.props;
       'cta';
     grid-template-rows: auto auto 1fr auto;
     gap: 16px;
+
+    overflow: hidden;
 
     background-color: var(--cta-card-bg);
     padding: 16px;
@@ -50,6 +55,12 @@ const { title, cta, ctaLink } = Astro.props;
     }
   }
 
+  .cardLink {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
   .title {
     grid-area: title;
     font-weight: vars.$font-weight-bold;
@@ -63,6 +74,7 @@ const { title, cta, ctaLink } = Astro.props;
 
   .ctaLink {
     grid-area: cta;
+    z-index: 2;
   }
 
   .title + :global(*) {
