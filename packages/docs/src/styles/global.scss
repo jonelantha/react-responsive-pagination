@@ -243,6 +243,7 @@ article {
   }
 
   td > code,
+  li > code,
   p > strong > code,
   p > code {
     background-color: var(--color-highlighted-background);
@@ -265,4 +266,16 @@ article {
       margin-top: 0.25rem;
     }
   } */
+}
+
+@media (prefers-color-scheme: light) {
+  .dark-mode-only {
+    display: none !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .light-mode-only {
+    display: none !important;
+  }
 }

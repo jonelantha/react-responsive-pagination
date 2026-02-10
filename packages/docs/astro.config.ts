@@ -3,6 +3,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import expressiveCode from 'astro-expressive-code';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://react-responsive-pagination.elantha.com/',
@@ -18,4 +19,9 @@ export default defineConfig({
     sitemap(),
   ],
   trailingSlash: 'never',
+
+  vite: {
+    // @ts-expect-error incorrect tailwindcss types
+    plugins: [tailwindcss()],
+  },
 });

@@ -1,0 +1,306 @@
+---
+title: 'Responsive Tailwind Pagination Component'
+description: 'React npm responsive Tailwind pagination component'
+navTitle: 'Tailwind Usage & Examples'
+topNavTitle: 'Tailwind'
+topNavOrder: 2
+sideNavOrder: 3
+footerNavOrder: 4
+addOverview: true
+---
+
+import TailwindPaginationRenderer from '@components/TailwindPaginationRenderer.astro';
+import PaginationAndCode from '@components/PaginationAndCode.astro';
+import PropsTable from '@components/PropsTable.astro';
+import CommonProps from '@props/commonProps.mdx';
+import LabelProps from '@props/labelProps.mdx';
+import ExtraClassNameProp from '@props/extraClassNameProp.mdx';
+import RenderNavProps from '@props/renderNavProps.mdx';
+import NarrowProps from '@props/narrowProps.mdx';
+import ClassNameProps from '@props/classNameProps.mdx';
+import { Code } from 'astro-expressive-code/components';
+import {
+  makeFullTwExampleCode,
+  makeTwExampleCode,
+  twExamples,
+} from '@components/tailwind-examples.ts';
+
+# Tailwind Usage & Examples
+
+**react-responsive-pagination** fully supports Tailwind styling - see [Quick Start](#quick-start) and [Examples](#examples) below
+
+Not using Tailwind? See the [Bootstrap Guide](/bootstrap-pagination), the [Custom CSS Guide](/custom-styled-pagination) or the [Included themes](/themes)
+
+## Installation
+
+```bash
+npm install react-responsive-pagination
+```
+
+## Quick Start
+
+<div className="light-mode-only">
+  **NOTE** - this example is light only - for light & dark mode, see more
+  [examples](#examples) below
+  <PaginationAndCode>
+    <TailwindPaginationRenderer {...twExamples.basicLight} />
+    <Code code={makeFullTwExampleCode(twExamples.basicLight)} lang="jsx" />
+  </PaginationAndCode>
+</div>
+
+<div className="dark-mode-only">
+  **NOTE** - this example is dark only - for light & dark mode, see more
+  [examples](#examples) below
+  <PaginationAndCode>
+    <TailwindPaginationRenderer {...twExamples.basicDark} />
+    <Code code={makeFullTwExampleCode(twExamples.basicDark)} lang="jsx" />
+  </PaginationAndCode>
+</div>
+
+## Examples
+
+**NOTE:** All examples are for Tailwind CSS v3+
+
+### Material Tailwind Rounded (light + dark)
+
+Inspired by https://www.material-tailwind.com/docs/html/pagination#rounded-pagination
+
+<PaginationAndCode>
+  <TailwindPaginationRenderer {...twExamples.materialRounded} />
+  <Code code={makeTwExampleCode(twExamples.materialRounded)} lang="jsx" />
+</PaginationAndCode>
+
+### Material Tailwind Circular (light + dark)
+
+Inspired by https://www.material-tailwind.com/docs/html/pagination#circular-pagination
+
+<PaginationAndCode>
+  <TailwindPaginationRenderer {...twExamples.materialCircular} />
+  <Code code={makeTwExampleCode(twExamples.materialCircular)} lang="jsx" />
+</PaginationAndCode>
+
+### Material Tailwind Group (light + dark)
+
+Inspired by https://www.material-tailwind.com/docs/html/pagination#pagination-group
+
+<PaginationAndCode>
+  <TailwindPaginationRenderer {...twExamples.materialGrouped} />
+  <Code code={makeTwExampleCode(twExamples.materialGrouped)} lang="jsx" />
+</PaginationAndCode>
+
+### Preline (light + dark)
+
+Inspired by https://preline.co/docs/pagination.html#example
+
+<PaginationAndCode>
+  <TailwindPaginationRenderer {...twExamples.preline} />
+  <Code code={makeTwExampleCode(twExamples.preline)} lang="jsx" />
+</PaginationAndCode>
+
+### Tailwind Plus (light + dark)
+
+Inspired by https://tailwindcss.com/plus/ui-blocks/application-ui/navigation/pagination
+
+<PaginationAndCode>
+  <TailwindPaginationRenderer {...twExamples.plus} />
+  <Code code={makeTwExampleCode(twExamples.plus)} lang="jsx" />
+</PaginationAndCode>
+
+## How Tailwind Styling Works
+
+There are six className props for styling with Tailwind classes:
+
+```jsx
+<ResponsivePagination
+  containerClassName="" // class for top-level <ul> container
+  pageItemClassName="" // base class for all <li> items, combined with one (and only one) of the three classes below
+  activeItemClassName="" // appended to <li> for active/selected page
+  inactiveItemClassName="" // appended to <li> for non-active but clickable pages (including nav elements)
+  disabledItemClassName="" // appended to <li> for disabled nav elements and ellipsis
+  pageLinkClassName="" // class for the <a> or <span> inside each <li>
+  // ... other props
+/>
+```
+
+These six props are applied like this (more details in the table below):
+
+{/* prettier-ignore */}
+```html
+<!-- container -->
+<ul class="{containerClassName}">
+  <!-- active / selected item -->
+  <li class="{pageItemClassName} {activeItemClassName}">
+    <a class="{pageLinkClassName}" href="#">1</a>
+  </li>
+  <!-- non-active clickable items -->
+  <li class="{pageItemClassName} {inactiveItemClassName}">
+    <a class="{pageLinkClassName}" href="#">2</a>
+  </li>
+  <!-- disabled items (ellipsis ... or nav) -->
+  <li class="{pageItemClassName} {disabledItemClassName}">
+    <span class="{pageLinkClassName}">...</span>
+  </li>
+  <!-- ... more pagination elements -->
+</ul>
+```
+
+| ClassName Prop          | Notes                                                                                                                                                                                                                                                                                    |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `containerClassName`    | Classes for the top-level **\<ul>** container (use for layout/positioning)<br />Typically a flex parent with gap or margin between items                                                                                                                                                 |
+| `pageItemClassName`     | Sets the base classes for all child **\<li>** elements<br />Might include border, rounding, text size and transition styles<br />**NOTE:** One (and only one) of `activeItemClassName`, `inactiveItemClassName` & `disabledItemClassName` will always be added to each **\<li>** element |
+| `activeItemClassName`   | Appended to `pageItemClassName` for active/selected page<br /> Might include background color, text color and shadow styles                                                                                                                                                              |
+| `inactiveItemClassName` | Appended to `pageItemClassName` for all non-active but clickable pages (including nav elements)<br /> Might include text color and hover styles for background                                                                                                                           |
+| `disabledItemClassName` | Appended to `pageItemClassName` for disabled nav elements and ellipsis (&hellip;)<br /> Might include opacity and pointer-events-none styles                                                                                                                                             |
+| `pageLinkClassName`     | Classes for **\<a>** or **\<span>** elements inside each **\<li>**<br /> Might include padding and focus styles                                                                                                                                                                          |
+
+**Further Info:**
+
+- See [Advanced Tailwind Usage](#advanced-tailwind-usage) below for tips on reusing styles and integrating with **tailwind-merge** or **CVA**
+- See [Props Reference](#props-reference) for more props
+
+## General Options
+
+### Previous and Next Labels
+
+Change the default labels for the previous and next buttons by setting the `previousLabel` and `nextLabel` props, see examples below
+
+If needed, the ARIA labels can also be changed by setting the `ariaPreviousLabel` and `ariaNextLabel` props, please see [Props Reference](#props-reference) below
+
+**Example - Text labels**
+
+<PaginationAndCode>
+  <TailwindPaginationRenderer
+    {...twExamples.materialRounded}
+    previousLabel="Previous"
+    nextLabel="Next"
+  />
+  ```jsx
+  <ResponsivePagination /*...*/ previousLabel="Previous" nextLabel="Next" />
+  ```
+</PaginationAndCode>
+
+**Example - Single arrow labels**
+
+<PaginationAndCode>
+  <TailwindPaginationRenderer
+    {...twExamples.materialRounded}
+    previousLabel="‹"
+    nextLabel="›"
+  />
+  ```jsx
+  <ResponsivePagination /*...*/ previousLabel="‹" nextLabel="›" />
+  ```
+</PaginationAndCode>
+
+### No navigation buttons
+
+Don't include the navigation buttons by setting `renderNav` to **false**:
+
+**Example - No navigation buttons**
+
+<PaginationAndCode>
+  <TailwindPaginationRenderer {...twExamples.materialRounded} renderNav={false} />
+  ```jsx
+  <ResponsivePagination /*...*/ renderNav={false} />
+  ```
+</PaginationAndCode>
+
+## Advanced Tailwind Usage
+
+### Tip: Reusing style props
+
+To reuse styles, an alternative to creating a wrapper component is to extract the className props onto an object and spread them where\*\* \*\*needed:
+
+```jsx
+// define styles once
+export const paginationStyles = {
+  containerClassName: 'flex justify-center gap-1',
+  pageItemClassName: 'inline-flex items-center rounded-md border text-sm',
+  activeItemClassName: 'border-slate-800 bg-slate-800 text-white shadow-sm ...',
+  inactiveItemClassName: 'border-slate-300 text-slate-600 hover:bg-slate-800 ...',
+  disabledItemClassName: 'pointer-events-none border-slate-300 text-slate-600 ...',
+  pageLinkClassName: 'px-3 py-2',
+};
+
+// import and spread where needed
+import { paginationStyles } from './paginationStyles';
+
+<ResponsivePagination /*...*/ {...paginationStyles} />;
+```
+
+### tailwind-merge / twMerge
+
+It should be possible to arrange Tailwind classes so they don't conflict but if [tailwind-merge](https://www.npmjs.com/package/tailwind-merge) is required then just add `twMerge` to the **classMerge** prop:
+
+```jsx
+import { twMerge } from 'tailwind-merge';
+
+<ResponsivePagination /*...*/ classMerge={twMerge} />;
+```
+
+### CVA (Class Variance Authority)
+
+[CVA (class-variance-authority)](https://cva.style/) can also be used to create item states, see example below
+
+Note that in this case `pageItemClassName` should be `""`
+
+```jsx
+const pageItem = cva('inline-flex items-center rounded-lg text-sm text-gray-800', {
+  variants: {
+    type: {
+      active: 'bg-gray-200 hover:bg-gray-100',
+      inactive: 'hover:bg-gray-100',
+      disabled: 'pointer-events-none opacity-50',
+    },
+  },
+});
+
+<ResponsivePagination
+  containerClassName="flex justify-center gap-x-1"
+  pageItemClassName=""
+  activeItemClassName={pageItem({ type: 'active' })}
+  inactiveItemClassName={pageItem({ type: 'inactive' })}
+  disabledItemClassName={pageItem({ type: 'disabled' })}
+  pageLinkClassName="px-3 py-2 focus:z-20"
+  // ... other props
+/>;
+```
+
+### Conditional classes for pageLinkClassName
+
+**NOTE** This is usually not required, most styling can be achieved with the standard className props
+
+For advanced cases where child element (**\<a>** or **\<span>**) styles need to depend on parent state, you can use Tailwind's [arbitrary variant syntax](https://tailwindcss.com/docs/hover-focus-and-other-states#using-arbitrary-variants)
+
+**How it works:**
+
+1. Add a marker class to `activeItemClassName` (for example `"active"`)
+2. Use `[.active_&]:` prefix in `pageLinkClassName` to apply styles only when the parent **\<li>** has the `active` class
+
+**Example - Different focus rings for active vs inactive pages:**
+
+The [Tailwind Plus example](#tailwind-plus-light--dark) above demonstrates this pattern with a differnet focus outline for active vs inactive pages:
+
+```jsx
+<ResponsivePagination
+  activeItemClassName="active z-10 bg-indigo-600 text-white"
+  pageLinkClassName="px-4 py-2 focus:z-20 focus:outline-offset-0 [.active_&]:focus-visible:outline-2 [.active_&]:focus-visible:outline-offset-2 [.active_&]:focus-visible:outline-indigo-600"
+  // ... other props
+/>
+```
+
+**NOTE:** This requires Tailwind CSS v3+
+
+## Props Reference
+
+A selection of props which may be helpful when using Tailwind styles - for the full list of props see [Props Reference](/props)
+
+<PropsTable>
+  <CommonProps />
+  <ClassNameProps />
+  <LabelProps />
+  <RenderNavProps />
+  <NarrowProps />
+</PropsTable>
+
+See [Props Reference](/props) for the full list of props
