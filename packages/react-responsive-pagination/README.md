@@ -12,7 +12,7 @@ Perfect for responsive dashboards, tables and any layout that resizes
 ✅ Automatically adapts to container width (no CSS breakpoints needed)  
 ✅ Fully accessible with aria tags for screen readers  
 ✅ React 16+ and SSR-friendly (Next.js, Remix and similar)  
-✅ Many styling options: 3 built-in themes, Tailwind, Custom CSS & Bootstrap - see [styling options](#-styling-options) below
+✅ [Many styling options](#-styling-options): Built-in themes, Tailwind, Custom CSS & Bootstrap
 
 <a href="https://react-responsive-pagination.elantha.com"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/react-responsive-pagination-dark.gif" width="978"><img alt="react-responsive-pagination example" src="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/react-responsive-pagination.gif" width="978"></picture></a>
 
@@ -46,16 +46,16 @@ function MyApp() {
 }
 ```
 
-- `current` (number): active page number
-- `total` (number): total number of pages
-- `onPageChange` (page: number) => void: function called with the new page number
+- `current` _number_: active page number
+- `total` _number_: total number of pages
+- `onPageChange` _(page: number) => void_: callback when new page selected
 - ... many more props - see [full props list](https://react-responsive-pagination.elantha.com/props)
 
-See [styling options](#-styling-options) below for guides on styling
+See [styling options](#-styling-options) below for links to styling guides
 
 ## 🎨 Styling options
 
-|                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                             |
+| Option                                                                                                                                                                                                                                                                                                                                                                                   | More Info                                                                                                                                                                                                                   |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/tailwind/readme-assets/themes-dark.png" width="100"><img alt="Themes Example" src="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/tailwind/readme-assets/themes-light.png" width="100"></picture> | **Built-in themes**<br />3 themes available, fine tune with css vars, light & dark modes<br />[Included Themes >](#-included-themes) &nbsp; &nbsp; [Themes Guide >](https://react-responsive-pagination.elantha.com/themes) |
 | <img alt="Tailwind logo" src="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/tailwind/readme-assets/tailwind.svg" width="100" height="100" />                                                                                                                                                                                                       | **Tailwind**<br />Optimised for Tailwind including plenty of examples and documentation<br />[Tailwind Guide >](https://react-responsive-pagination.elantha.com/tailwind-pagination)                                        |
@@ -64,7 +64,7 @@ See [styling options](#-styling-options) below for guides on styling
 
 ## 🔋 Included Themes
 
-As well as the styling options mentioned above, these ready-to-go themes are available in the package - just import one of the css themes into your project as shown in the [quickstart](#-quick-start) example above
+As well as the styling options above, these three ready-to-go themes are available in the package - just import one of the css themes into your project as shown in the [quickstart](#-quick-start) example above
 
 ```
 import 'react-responsive-pagination/themes/classic-light-dark.css';
