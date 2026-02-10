@@ -37,6 +37,8 @@ test.describe('Pagination navigation', () => {
 
       await page.click(`text="${linkToClick}"`);
 
+      await testHarness.waitForNextFrame();
+
       const paginationHtml = await testHarness.getPaginationHtml();
       expect(paginationHtml).toMatchSnapshot();
 
