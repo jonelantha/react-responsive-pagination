@@ -2,25 +2,23 @@
 
 ![npm version](https://img.shields.io/npm/v/react-responsive-pagination.svg?style=flat)
 ![minzipped size](https://img.shields.io/bundlephobia/minzip/react-responsive-pagination)
+![GitHub stars](https://img.shields.io/github/stars/jonelantha/react-responsive-pagination?style=flat)
 ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
-[![Test](https://github.com/jonelantha/react-responsive-pagination/actions/workflows/test.yml/badge.svg)](https://github.com/jonelantha/react-responsive-pagination/actions/workflows/test.yml)
-[![Release](https://github.com/jonelantha/react-responsive-pagination/actions/workflows/release.yml/badge.svg)](https://github.com/jonelantha/react-responsive-pagination/actions/workflows/release.yml)
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-An accessible responsive React pagination component which intelligently renders to the available width - for React 19, 18, 17 & 16
+**An accessible responsive React pagination component which intelligently renders to the available width**
 
+Perfect for responsive dashboards, tables and any layout that resizes
+
+✅ Automatically adapts to container width (no CSS breakpoints needed)  
 ✅ Fully accessible with aria tags for screen readers  
-✅ Ready styled themes (or bring your own css)  
-✅ Bootstrap 4 & 5 support built-in  
-✅ Built for tree-shaking = minimum impact on the bundle
+✅ React 16+ and SSR-friendly (Next.js, Remix and similar)  
+✅ Many styling options: 3 built-in themes, Tailwind, Custom CSS & Bootstrap - see [styling options](#-styling-options) below
 
 <a href="https://react-responsive-pagination.elantha.com"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/react-responsive-pagination-dark.gif" width="978"><img alt="react-responsive-pagination example" src="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/react-responsive-pagination.gif" width="978"></picture></a>
 
 **⚡️ [LIVE DEMO - try it out for yourself!](https://react-responsive-pagination.elantha.com/live-demo) ⚡️**
 
-**⭐️ What's new:** Dark Mode & React 19 support
-
-**📕 Visit [https://react-responsive-pagination.elantha.com](https://react-responsive-pagination.elantha.com) to get started 🚀**
+**📕 [Visit the docs](https://react-responsive-pagination.elantha.com) to explore themes, styling options & props 🚀**
 
 ## ⏳ Quick Start
 
@@ -48,44 +46,38 @@ function MyApp() {
 }
 ```
 
-## Three ways to style:
+- `current` (number): active page number
+- `total` (number): total number of pages
+- `onPageChange` (page: number) => void: function called with the new page number
+- ... many more props - see [full props list](https://react-responsive-pagination.elantha.com/props)
 
-1. 🖼️ **[Ready-to-go themes](https://react-responsive-pagination.elantha.com/themes)**
+See [styling options](#-styling-options) below for guides on styling
 
-   Just import one of the css themes into your project (as shown in the quickstart example above)
+## 🎨 Styling options
 
-   ```
-   import 'react-responsive-pagination/themes/classic-light-dark.css';
-   ```
+|                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                             |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/tailwind/readme-assets/themes-dark.png" width="100"><img alt="Themes Example" src="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/tailwind/readme-assets/themes-light.png" width="100"></picture> | **Built-in themes**<br />3 themes available, fine tune with css vars, light & dark modes<br />[Included Themes >](#-included-themes) &nbsp; &nbsp; [Themes Guide >](https://react-responsive-pagination.elantha.com/themes) |
+| <img alt="Tailwind logo" src="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/tailwind/readme-assets/tailwind.svg" width="100" height="100" />                                                                                                                                                                                                       | **Tailwind**<br />Optimised for Tailwind including plenty of examples and documentation<br />[Tailwind Guide >](https://react-responsive-pagination.elantha.com/tailwind-pagination)                                        |
+| <img alt="CSS logo" src="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/tailwind/readme-assets/css.svg" width="100" height="100" />                                                                                                                                                                                                                 | **Custom CSS**<br />Easily use your own CSS with starter templates and full documentation<br />[Custom CSS Guide >](https://react-responsive-pagination.elantha.com/custom-styled-pagination)                               |
+| <img alt="Bootstrap logo" src="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/tailwind/readme-assets/bootstrap.svg" width="100" height="100" />                                                                                                                                                                                                     | **Bootstrap**<br />Seamless Bootstrap 4 & 5 support including many options<br />[Bootstrap Guide >](https://react-responsive-pagination.elantha.com/bootstrap-pagination)                                                   |
 
-   | Theme                                                    | Example                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-   | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-   | classic-light-dark.css                                   | <a href="https://react-responsive-pagination.elantha.com/themes#1-classic-theme"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/theme-previews/classic-dark.png" width="292"><img src="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/theme-previews/classic.png" width="292" alt="classic pagination" /></picture></a>                           |
-   | bootstrap-light-dark.css<br />_(Bootstrap not required)_ | <a href="https://react-responsive-pagination.elantha.com/themes#2-bootstrap-theme-without-bootstrap"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/theme-previews/bootstrap-dark.png" width="250"><img src="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/theme-previews/bootstrap.png" width="250" alt="bootstrap pagination" /></picture></a> |
-   | minimal-light-dark.css                                   | <a href="https://react-responsive-pagination.elantha.com/themes#3-minimal-theme"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/theme-previews/minimal-dark.png" width="169"><img src="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/theme-previews/minimal.png" width="169" alt="minimal pagination" /></picture></a>                           |
+## 🔋 Included Themes
 
-   Themes also available as light only, please see the [Themes guide](https://react-responsive-pagination.elantha.com/themes) for more details (including overridable theme attributes)
+As well as the styling options mentioned above, these ready-to-go themes are available in the package - just import one of the css themes into your project as shown in the [quickstart](#-quick-start) example above
 
-2. 🎨 **[Custom CSS styling](https://react-responsive-pagination.elantha.com/custom-styled-pagination)**
+```
+import 'react-responsive-pagination/themes/classic-light-dark.css';
+```
 
-   Custom CSS styles? No problem - see the [Custom Styles Guide](https://react-responsive-pagination.elantha.com/custom-styled-pagination)
+| Theme                                                    | Example                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| classic-light-dark.css                                   | <a href="https://react-responsive-pagination.elantha.com/themes#1-classic-theme"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/theme-previews/classic-dark.png" width="292"><img src="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/theme-previews/classic.png" width="292" alt="classic pagination" /></picture></a>                           |
+| bootstrap-light-dark.css<br />_(Bootstrap not required)_ | <a href="https://react-responsive-pagination.elantha.com/themes#2-bootstrap-theme-without-bootstrap"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/theme-previews/bootstrap-dark.png" width="250"><img src="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/theme-previews/bootstrap.png" width="250" alt="bootstrap pagination" /></picture></a> |
+| minimal-light-dark.css                                   | <a href="https://react-responsive-pagination.elantha.com/themes#3-minimal-theme"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/theme-previews/minimal-dark.png" width="169"><img src="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/theme-previews/minimal.png" width="169" alt="minimal pagination" /></picture></a>                           |
 
-3. 🥾 **[Bootstrap 4 and 5](https://react-responsive-pagination.elantha.com/bootstrap-pagination)**
+Themes also available as light only, please see the [Themes guide](https://react-responsive-pagination.elantha.com/themes) for more details (including overridable theme attributes)
 
-   Using Bootstrap in your project? **react-responsive-pagination** just works with Bootstrap (no need for any additional styles). See the [Bootstrap Getting Started Guide](https://react-responsive-pagination.elantha.com/bootstrap-pagination)
+## ℹ️ More Info
 
-## ✔︎ Requirements / Compatibility
-
-- React 19, 18, 17 and 16.8 upwards
-- Modern browsers only - not suitable for IE 11
-
-## 🔧 Props
-
-### Common Props
-
-| Prop                                                                                   | Description                                                                                                                                                                                                                                 |
-| -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **current**<br />`number`<br />(required)                                              | The current active page. Indexed from 1                                                                                                                                                                                                     |
-| **total**<br />`number`<br />(required)                                                | The total number of pages                                                                                                                                                                                                                   |
-| **onPageChange**<br />`(newPage: number) => void`<br />(required)                      | A callback handler which is called when the user clicks a new page, note that the active page will not change unless the `current` prop is updated to reflect the new page (as in the example above). The `newPage` value is indexed from 1 |
-| _**[... many more props ...](https://react-responsive-pagination.elantha.com/props)**_ | **See [Props Reference](https://react-responsive-pagination.elantha.com/props) for the full list**                                                                                                                                          |
+[Visit the docs](https://react-responsive-pagination.elantha.com) to explore themes, styling options & props

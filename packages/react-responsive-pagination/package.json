@@ -58,6 +58,8 @@
     "react",
     "reactjs",
     "react-component",
+    "tailwind",
+    "react tailwind pagination",
     "bootstrap",
     "react bootstrap pagination"
   ],
