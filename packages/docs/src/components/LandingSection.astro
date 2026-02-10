@@ -27,7 +27,7 @@ const { title, hasBackground, anchorId } = Astro.props;
 
     padding-block-start: var(--v-spacing);
 
-    @media screen and (max-width: 40rem) {
+    @media screen and (max-width: vars.$landing-reduced-margins-breakpoint) {
       --v-spacing: 1.5rem;
     }
 

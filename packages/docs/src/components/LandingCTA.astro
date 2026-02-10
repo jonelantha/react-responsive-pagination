@@ -21,7 +21,11 @@ const { ...rest } = Astro.props;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-block: 1.5rem;
+    margin-block: 2rem;
+
+    @media screen and (max-width: vars.$landing-reduced-margins-breakpoint) {
+      margin-block: 1.5rem;
+    }
 
     a {
       background: var(--color-primary);
