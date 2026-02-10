@@ -1,5 +1,19 @@
 # React Responsive Pagination Changelog
 
+# [2.13.0-beta.1](https://github.com/jonelantha/react-responsive-pagination/compare/v2.12.0...v2.13.0-beta.1) (2026-02-10)
+
+
+### Bug Fixes
+
+* Package updates ([9de1055](https://github.com/jonelantha/react-responsive-pagination/commit/9de1055642a074d64abf193eb97415cee8554b9c))
+
+
+### Features
+
+* css `gap` support ([cd00429](https://github.com/jonelantha/react-responsive-pagination/commit/cd0042942e66eefe276e0eae307e77f03eaa8589))
+* New classMerge prop to allow override of class string merging ([d6d5272](https://github.com/jonelantha/react-responsive-pagination/commit/d6d527239b6b42fd9d57f8854e6414e72cb52e7c))
+* New props: containerClassName & inactiveItemClassName ([fd18b25](https://github.com/jonelantha/react-responsive-pagination/commit/fd18b25d87929bc140bce6f293a7b9b098a225f2))
+
 # [2.12.0](https://github.com/jonelantha/react-responsive-pagination/compare/v2.11.3...v2.12.0) (2025-12-09)
 
 
