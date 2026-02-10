@@ -2,8 +2,8 @@
 title: 'Custom Styles Guide'
 description: 'React npm responsive pagination component with custom styling'
 navTitle: 'Custom CSS'
-topNavOrder: 3
-sideNavOrder: 4
+topNavOrder: 4
+sideNavOrder: 5
 footerNavOrder: 6
 addOverview: true
 ---
@@ -30,9 +30,9 @@ import { Code } from 'astro-expressive-code/components';
   <CustomStylePaginationRenderer />
 </PaginationContainer>
 
-Don't want to create custom css? See the available ready-to-go [themes](/themes)
-
-Using Bootstrap 5.x or 4.x? No problem, see the [Bootstrap Pagination](/bootstrap-pagination) guide
+Don't want to create custom css? See the [included themes](/themes) or
+alternatively see the [Tailwind Guide](/tailwind-pagination) or the [Bootstrap
+Guide](/bootstrap-pagination)
 
 ## Quick Start
 
@@ -106,6 +106,7 @@ If needed, you can easily override the default class names by adding the followi
 | `pageItemClassName`     | Class name for all the **\<li>** elements                                                                 |
 | `pageLinkClassName`     | Class name for **\<a>** or **\<span>** child elements within an **\<li>** element                         |
 | `activeItemClassName`   | Appended to **\<li>** class name for the active element                                                   |
+| `inactiveItemClassName` | Appended to **\<li>** class name for the inactive element (defaults to `""`)                              |
 | `disabledItemClassName` | Appended to **\<li>** class name for non-clickable elements (disabled nav buttons and the break/ellipsis) |
 | `navClassName`          | Appended to **\<li>** class name for both nav buttons                                                     |
 | `previousClassName`     | Appended to **\<li>** class name for previous nav button (overrides `navClassName`)                       |
@@ -166,7 +167,7 @@ Aligning the previous and next buttons to the start and end of the row is possib
 **Example**
 
 <PaginationAndCode>
-  <BootstrapThemePaginationRenderer
+  <NavJustifiedPaginationRenderer
     previousClassName="previous-justified"
     nextClassName="next-justified"
   />
@@ -193,3 +194,5 @@ A selection of props which may be helpful when using custom styles - for the ful
   <RenderNavProps />
   <NarrowProps />
 </PropsTable>
+
+See [Props Reference](/props) for the full list of props

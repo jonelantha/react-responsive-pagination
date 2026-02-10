@@ -2,8 +2,8 @@
 title: 'Migration from v1'
 description: 'Migration from react-responsive-pagination v1'
 navTitle: 'Migration from v1'
-sideNavOrder: 8
-footerNavOrder: 9
+sideNavOrder: 9
+footerNavOrder: 10
 addOverview: true
 ---
 
@@ -25,7 +25,7 @@ import { srOnlySpanLabel } from 'react-responsive-pagination/labelBehaviour';
 
 //...
 
-<ResponsivePagination /*...*/ labelBehaviour={srOnlySpanLabel()} />
+<ResponsivePagination /*...*/ labelBehaviour={srOnlySpanLabel()} />;
 ```
 
 ## Removing Bootstrap 5 preset
@@ -64,10 +64,10 @@ import { srOnlySpanLabel } from 'react-responsive-pagination/labelBehaviour';
 
 <ResponsivePagination //...
   labelBehaviour={srOnlySpanLabel({
-    srOnlyClassName: 'my-sr-only',    // include either or both
+    srOnlyClassName: 'my-sr-only', // include either or both
     a11yActiveLabel: 'active-label',
   })}
-/>
+/>;
 ```
 
 ## 'narrowStrategy' migration

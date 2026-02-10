@@ -28,6 +28,7 @@ import CSSSVG from '@assets/css.svg';
 import PaletteSVG from '@assets/palette.svg';
 import TreeSVG from '@assets/tree.svg';
 import BootstrapSVG from '@assets/bootstrap.svg';
+import TailwindSVG from '@assets/tailwind.svg';
 import StarSVG from '@assets/star-filled.svg';
 
 {/* prettier-ignore */}
@@ -36,7 +37,7 @@ import StarSVG from '@assets/star-filled.svg';
   
   React npm pagination component for displaying the maximum number of page links for the width available
   
-  Customisable with plenty of options
+  Tailwind, Bootstrap, Custom CSS and built-in themes
 </Hero>
 
 <BootstrapThemePaginationRenderer total={35} />
@@ -50,7 +51,7 @@ import StarSVG from '@assets/star-filled.svg';
 <LandingCTA href="#getting-started" />
 
 <LandingSection
-  title={['Getting Started -', '3 Ways To Style:']}
+  title={['Getting Started -', '4 Ways To Style:']}
   anchorId="getting-started"
   hasBackground
 >
@@ -63,6 +64,14 @@ import StarSVG from '@assets/star-filled.svg';
         <>Fine tune with css vars</>
         <br />
         <>Light & dark modes</>
+      </Fragment>
+    </CTACard>
+    <CTACard title="Tailwind" cta="Tailwind" ctaLink="/tailwind-pagination">
+      <TailwindSVG aria-hidden />
+      <Fragment slot="body">
+        <>**Using Tailwind CSS?**</>
+        <br />
+        <>Plenty of examples and documentation</>
       </Fragment>
     </CTACard>
     <CTACard title="Custom CSS" cta="Your CSS" ctaLink="/custom-styled-pagination">
@@ -92,7 +101,7 @@ import StarSVG from '@assets/star-filled.svg';
     </FeatureCard>
     <FeatureCard title="Customisable">
       <PaletteSVG aria-hidden slot="icon" />
-      Ready-styled themes, bring your own css or use Bootstrap
+      Ready-styled themes, use Tailwind, bring your own css or use Bootstrap
     </FeatureCard>
     <FeatureCard title="Tree-shakable">
       <TreeSVG aria-hidden slot="icon" />
