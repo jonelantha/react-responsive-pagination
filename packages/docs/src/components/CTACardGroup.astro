@@ -16,11 +16,13 @@
       group.addEventListener('focusin', ({ target }) => {
         if (!(target instanceof HTMLElement)) return;
 
-        const item = target.closest('li');
+        if (!target.matches(':focus-visible')) return;
 
-        if (!item || !group.contains(item)) return;
+        const card = target.closest('li');
 
-        item.scrollIntoView({ behavior: 'auto', inline: 'nearest' });
+        if (!card || !group.contains(card)) return;
+
+        card.scrollIntoView({ behavior: 'auto', inline: 'nearest' });
       });
     });
   }
