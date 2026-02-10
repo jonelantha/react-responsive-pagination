@@ -218,10 +218,12 @@ article {
     margin-bottom: vars.$leading;
   }
 
-  & > table {
-    display: block;
-    width: 100%;
+  & > div.table-wrapper {
     overflow-x: auto;
+  }
+
+  & > table,
+  & > div > table {
     border-collapse: collapse;
     margin-bottom: vars.$leading;
 
