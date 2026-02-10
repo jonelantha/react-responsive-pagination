@@ -219,6 +219,9 @@ article {
   }
 
   & > table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
     border-collapse: collapse;
     margin-bottom: vars.$leading;
 
