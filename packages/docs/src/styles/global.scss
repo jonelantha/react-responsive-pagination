@@ -105,10 +105,6 @@ html {
   text-size-adjust: 100%;
 
   height: 100%;
-
-  @media (prefers-reduced-motion: no-preference) {
-    scroll-behavior: smooth;
-  }
 }
 
 body {
@@ -117,10 +113,6 @@ body {
   background-color: var(--main-bg);
   --ec-brdWd: 1px;
   --ec-brdCol: var(--border-color);
-
-  @media (prefers-reduced-motion: no-preference) {
-    scroll-behavior: smooth;
-  }
 }
 
 p {
