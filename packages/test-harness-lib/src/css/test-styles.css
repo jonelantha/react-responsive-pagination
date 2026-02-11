@@ -1,0 +1,101 @@
+.add-margin-padding {
+  background: yellow;
+  padding: 11px;
+
+  .pagination {
+    background: red;
+    margin: 20px;
+    padding: 15px;
+    border: 4px solid black;
+
+    .page-item {
+      margin: 10px;
+      border: 4px solid black;
+    }
+  }
+}
+
+.gap {
+  .pagination {
+    background: pink;
+    gap: 10px;
+  }
+}
+
+.content-box * {
+  box-sizing: content-box;
+}
+
+body:has(.gh-dark) {
+  --body-bg: #0d1117;
+}
+
+.demo {
+  .pagination {
+    margin: 10px 10px 50px 10px;
+
+    &.justify-content-center {
+      justify-content: flex-start !important;
+    }
+  }
+}
+
+/* Alternative classNames */
+
+.alt-pagination {
+  font-family: 'Roboto';
+  justify-content: center;
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+}
+
+.alt-page-link {
+  position: relative;
+  display: block;
+  margin: 0 10px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.alt-active > * {
+  font-weight: bold;
+}
+
+.alt-disabled > * {
+  color: #6c757d;
+  pointer-events: none;
+  cursor: auto;
+}
+
+.alt-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.previous-auto-margin {
+  margin-inline-end: auto;
+  --pagination-override-margin-inline-end: 0;
+}
+
+.previous-auto-margin-large {
+  margin-inline-end: auto;
+  --pagination-override-margin-inline-end: 100px;
+}
+
+.next-auto-margin {
+  margin-inline-start: auto;
+  --pagination-override-margin-inline-start: 0;
+}
+
+.next-auto-margin-large {
+  margin-inline-start: auto;
+  --pagination-override-margin-inline-start: 100px;
+}

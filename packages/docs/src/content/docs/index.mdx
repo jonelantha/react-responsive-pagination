@@ -13,8 +13,7 @@ noArticlePadding: true
 
 import Hero from '@components/Hero.astro';
 import ThemesExample from '@components/ThemesExample.astro';
-import BootstrapThemeContainer from '@components/BootstrapThemeContainer.astro';
-import PaginationRenderer from '@components/PaginationRenderer.tsx';
+import BootstrapThemePaginationRenderer from '@components/BootstrapThemePaginationRenderer.astro';
 import DemoLabel from '@components/DemoLabel.astro';
 import BreakableLines from '@components/BreakableLines.astro';
 import LandingSection from '@components/LandingSection.astro';
@@ -22,12 +21,14 @@ import CTACard from '@components/CTACard.astro';
 import CTACardGroup from '@components/CTACardGroup.astro';
 import FeatureCard from '@components/FeatureCard.astro';
 import FeatureCardGroup from '@components/FeatureCardGroup.astro';
+import LandingCTA from '@components/LandingCTA.astro';
 
 import UniversalAccessSVG from '@assets/universal-access.svg';
 import CSSSVG from '@assets/css.svg';
 import PaletteSVG from '@assets/palette.svg';
 import TreeSVG from '@assets/tree.svg';
 import BootstrapSVG from '@assets/bootstrap.svg';
+import TailwindSVG from '@assets/tailwind.svg';
 import StarSVG from '@assets/star-filled.svg';
 
 {/* prettier-ignore */}
@@ -36,12 +37,10 @@ import StarSVG from '@assets/star-filled.svg';
   
   React npm pagination component for displaying the maximum number of page links for the width available
   
-  Customisable with plenty of options
+  Tailwind, Bootstrap, Custom CSS and built-in themes
 </Hero>
 
-<BootstrapThemeContainer noBottomMargin>
-  <PaginationRenderer total={35} client:load />
-</BootstrapThemeContainer>
+<BootstrapThemePaginationRenderer total={35} />
 
 <DemoLabel>
   <>Try it out!</>
@@ -49,36 +48,46 @@ import StarSVG from '@assets/star-filled.svg';
   <BreakableLines content={['Resize your browser…', 'or rotate your device!']} />
 </DemoLabel>
 
-<LandingSection title={['Getting Started -', '3 Ways To Style:']} hasBackground>
+<LandingCTA href="#getting-started" />
+
+<LandingSection
+  title={['Getting Started -', '4 Ways To Style:']}
+  headingId="getting-started"
+  hasBackground
+>
   <CTACardGroup>
-    <CTACard title="Built-in Themes" cta="with Themes" ctaLink="/themes">
+    <CTACard title="Built-in Themes" cta="Themes" ctaLink="/themes">
       <ThemesExample aria-hidden />
       <Fragment slot="body">
-        <>**3 built-in themes to choose from**</>
+        <>**3 themes available**</>
         <br />
-        <>Fully configurable with css vars</>
+        <>Fine tune with css vars</>
         <br />
-        <>Supports light & dark modes</>
+        <>Light & dark modes</>
       </Fragment>
     </CTACard>
-    <CTACard
-      title="Custom CSS"
-      cta="with Your CSS"
-      ctaLink="/custom-styled-pagination"
-    >
+    <CTACard title="Tailwind" cta="Tailwind" ctaLink="/tailwind-pagination">
+      <TailwindSVG aria-hidden />
+      <Fragment slot="body">
+        <>**Using Tailwind CSS?**</>
+        <br />
+        <>Plenty of examples and documentation</>
+      </Fragment>
+    </CTACard>
+    <CTACard title="Custom CSS" cta="Your CSS" ctaLink="/custom-styled-pagination">
       <CSSSVG aria-hidden />
       <Fragment slot="body">
-        <>**Easily create custom css**</>
+        <>**Use your own CSS**</>
         <br />
         <>Starter templates and full documentation</>
       </Fragment>
     </CTACard>
-    <CTACard title="Bootstrap" cta="with Bootstrap" ctaLink="/bootstrap-pagination">
+    <CTACard title="Bootstrap" cta="Bootstrap" ctaLink="/bootstrap-pagination">
       <BootstrapSVG aria-hidden />
       <Fragment slot="body">
         <>**Using Bootstrap?**</>
         <br />
-        <>Seamless support for Bootstrap 4 & 5 including many options</>
+        <>Supports Bootstrap 4 & 5 with many options</>
       </Fragment>
     </CTACard>
   </CTACardGroup>
@@ -92,7 +101,7 @@ import StarSVG from '@assets/star-filled.svg';
     </FeatureCard>
     <FeatureCard title="Customisable">
       <PaletteSVG aria-hidden slot="icon" />
-      Ready-styled themes, bring your own css or use Bootstrap
+      Ready-styled themes, use Tailwind, bring your own css or use Bootstrap
     </FeatureCard>
     <FeatureCard title="Tree-shakable">
       <TreeSVG aria-hidden slot="icon" />

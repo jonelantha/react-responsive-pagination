@@ -3,14 +3,15 @@ title: 'Responsive Bootstrap Pagination Component'
 description: 'React npm responsive Bootstrap pagination component'
 navTitle: 'Bootstrap Usage'
 topNavTitle: 'Bootstrap'
-topNavOrder: 4
-sideNavOrder: 5
+topNavOrder: 3
+sideNavOrder: 4
 footerNavOrder: 5
 addOverview: true
 ---
 
-import BootstrapThemeContainer from '@components/BootstrapThemeContainer.astro';
-import PaginationRenderer from '@components/PaginationRenderer.tsx';
+import PaginationAndCode from '@components/PaginationAndCode.astro';
+import PaginationContainer from '@components/PaginationContainer.astro';
+import BootstrapThemePaginationRenderer from '@components/BootstrapThemePaginationRenderer.astro';
 import PropsTable from '@components/PropsTable.astro';
 import CommonProps from '@props/commonProps.mdx';
 import LabelProps from '@props/labelProps.mdx';
@@ -22,13 +23,13 @@ import NarrowProps from '@props/narrowProps.mdx';
 
 **react-responsive-pagination** is ready to go with Bootstrap framework styles - see examples below
 
-<BootstrapThemeContainer hasBorder>
-  <PaginationRenderer client:load />
-</BootstrapThemeContainer>
+<PaginationContainer>
+  <BootstrapThemePaginationRenderer />
+</PaginationContainer>
 
-Not using Bootstrap framework? No problem, see the available ready-to-go [themes](/themes) including a standalone Bootstrap theme
+Not using Bootstrap framework? No problem, see the [included themes](/themes) featuring a standalone Bootstrap theme
 
-Want to create your own css? See the [Custom Styles](/custom-styled-pagination) guide
+Alternatively, see the [Tailwind Guide](/tailwind-pagination) or the [Custom Styles Guide](/custom-styled-pagination) guide
 
 ## Installation
 
@@ -78,23 +79,21 @@ If needed, the ARIA labels can also be changed by setting the `ariaPreviousLabel
 
 **Example - Text labels**
 
-<BootstrapThemeContainer hasBorder>
-  <PaginationRenderer previousLabel="Previous" nextLabel="Next" client:load />
-</BootstrapThemeContainer>
-
-```jsx
-<ResponsivePagination /*...*/ previousLabel="Previous" nextLabel="Next" />
-```
+<PaginationAndCode>
+  <BootstrapThemePaginationRenderer previousLabel="Previous" nextLabel="Next" />
+  ```jsx
+  <ResponsivePagination /*...*/ previousLabel="Previous" nextLabel="Next" />
+  ```
+</PaginationAndCode>
 
 **Example - Single arrow labels**
 
-<BootstrapThemeContainer hasBorder>
-  <PaginationRenderer previousLabel="‹" nextLabel="›" client:load />
-</BootstrapThemeContainer>
-
-```jsx
-<ResponsivePagination /*...*/ previousLabel="‹" nextLabel="›" />
-```
+<PaginationAndCode>
+  <BootstrapThemePaginationRenderer previousLabel="‹" nextLabel="›" />
+  ```jsx
+  <ResponsivePagination /*...*/ previousLabel="‹" nextLabel="›" />
+  ```
+</PaginationAndCode>
 
 ### No navigation buttons
 
@@ -102,13 +101,12 @@ Don't include the navigation buttons by setting `renderNav` to **false**:
 
 **Example - No navigation buttons**
 
-<BootstrapThemeContainer hasBorder>
-  <PaginationRenderer renderNav={false} client:load />
-</BootstrapThemeContainer>
-
-```jsx
-<ResponsivePagination /*...*/ renderNav={false} />
-```
+<PaginationAndCode>
+  <BootstrapThemePaginationRenderer renderNav={false} />
+  ```jsx
+  <ResponsivePagination /*...*/ renderNav={false} />
+  ```
+</PaginationAndCode>
 
 ### Alignment / Justify
 
@@ -122,13 +120,12 @@ Change how the pagination is positioned by setting the `extraClassName` prop to 
 
 **Example - align pagination left:**
 
-<BootstrapThemeContainer>
-  <PaginationRenderer extraClassName="justify-content-start" client:load />
-</BootstrapThemeContainer>
-
-```jsx
-<ResponsivePagination /*...*/ extraClassName="justify-content-start" />
-```
+<PaginationAndCode>
+  <BootstrapThemePaginationRenderer extraClassName="justify-content-start" />
+  ```jsx
+  <ResponsivePagination /*...*/ extraClassName="justify-content-start" />
+  ```
+</PaginationAndCode>
 
 ## Props Reference
 
@@ -141,3 +138,5 @@ A selection of props which may be helpful when using Bootstrap styles - for the 
   <RenderNavProps />
   <NarrowProps />
 </PropsTable>
+
+See [Props Reference](/props) for the full list of props

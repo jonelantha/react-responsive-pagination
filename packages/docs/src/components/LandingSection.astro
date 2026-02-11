@@ -1,9 +1,13 @@
 ---
 import BreakableLines from './BreakableLines.astro';
 
-type Props = { title: string | string[]; hasBackground?: boolean };
+type Props = {
+  title: string | string[];
+  hasBackground?: boolean;
+  headingId?: string;
+};
 
-const { title, hasBackground } = Astro.props;
+const { title, hasBackground, headingId } = Astro.props;
 ---
 
 <section
@@ -11,7 +15,7 @@ const { title, hasBackground } = Astro.props;
     'has-background': hasBackground,
   }}
 >
-  <h2><BreakableLines content={title} /></h2>
+  <h2 id={headingId}><BreakableLines content={title} /></h2>
   <slot />
 </section>
 
@@ -21,10 +25,9 @@ const { title, hasBackground } = Astro.props;
   section {
     --v-spacing: 2rem;
 
-    padding-block: var(--v-spacing);
-    padding-inline: vars.$landing-padding-inline;
+    padding-block-start: var(--v-spacing);
 
-    @media screen and (max-width: 40rem) {
+    @media screen and (max-width: vars.$landing-reduced-margins-breakpoint) {
       --v-spacing: 1.5rem;
     }
 
@@ -38,7 +41,7 @@ const { title, hasBackground } = Astro.props;
   }
 
   h2 {
-    margin-block: 0 var(--v-spacing);
+    margin: 0 vars.$landing-padding-inline;
     text-align: center;
 
     @media screen and (max-width: 35rem) {

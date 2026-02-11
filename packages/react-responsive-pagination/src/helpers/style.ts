@@ -42,11 +42,32 @@ export function getNonContentWidth(element: Element) {
   );
 }
 
+export function getColumnGap(element: Element) {
+  const style = getComputedStyle(element);
+
+  const columnGap = style.columnGap;
+
+  if (columnGap === 'normal' || !columnGap) return 0;
+
+  if (columnGap.indexOf('px') === -1) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.log(`react-responsive-pagination: gap not supported: ${columnGap}`);
+    }
+    return 0;
+  }
+
+  return styleMetricToIntRounded(columnGap);
+}
+
 export function getWidth(element: Element) {
   return element.getBoundingClientRect().width;
 }
 
-// V3-TODO: round up
 function styleMetricToInt(styleAttribute: string | null) {
   return styleAttribute ? parseInt(styleAttribute) : 0;
+}
+
+// V3-TODO: use for all metrics
+function styleMetricToIntRounded(styleAttribute: string) {
+  return Math.ceil(parseFloat(styleAttribute));
 }

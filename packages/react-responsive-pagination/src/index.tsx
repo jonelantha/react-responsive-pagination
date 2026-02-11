@@ -35,14 +35,17 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
     maxWidth,
     narrowBehaviour,
     className,
+    containerClassName,
     extraClassName = 'justify-content-center',
     pageItemClassName = 'page-item',
     pageLinkClassName = 'page-link',
     activeItemClassName = 'active',
+    inactiveItemClassName = '',
     disabledItemClassName = 'disabled',
     navClassName,
     previousClassName,
     nextClassName,
+    classMerge = defaultClassMerge,
     previousLabel,
     nextLabel,
     ariaPreviousLabel,
@@ -74,13 +77,16 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
   }, [
     clearCache,
     className,
+    containerClassName,
     pageItemClassName,
     pageLinkClassName,
     activeItemClassName,
+    inactiveItemClassName,
     disabledItemClassName,
     navClassName,
     previousClassName,
     nextClassName,
+    classMerge,
   ]);
 
   if (items.length === 0) return null;
@@ -88,6 +94,8 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
   function getContainerClassName() {
     if (className !== undefined) {
       return className;
+    } else if (containerClassName !== undefined) {
+      return containerClassName;
     } else if (extraClassName) {
       return `pagination ${extraClassName}`;
     } else {
@@ -106,9 +114,9 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
           // item = ClickableItem
           <li
             key={item.key}
-            className={classNames([
+            className={classNames(classMerge, [
               pageItemClassName,
-              item.active && activeItemClassName,
+              item.active ? activeItemClassName : inactiveItemClassName,
               item.type === 'next' && (nextClassName ?? navClassName),
               item.type === 'previous' && (previousClassName ?? navClassName),
             ])}
@@ -127,7 +135,7 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
           // item = NonClickableItem
           <li
             key={item.key}
-            className={classNames([
+            className={classNames(classMerge, [
               pageItemClassName,
               disabledItemClassName,
               item.type === 'next' && (nextClassName ?? navClassName),
@@ -145,8 +153,11 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
   );
 }
 
-function classNames(names: (string | false | undefined)[]) {
-  return names.filter(name => name).join(' ');
+function classNames(
+  classMerge: (classNames: string[]) => string,
+  names: (string | false | undefined)[],
+) {
+  return classMerge(names.filter((name): name is string => Boolean(name)));
 }
 
 function getHref(
@@ -162,6 +173,8 @@ function getHref(
   }
 }
 
+const defaultClassMerge = (classNames: string[]) => classNames.join(' ');
+
 /**
  * @public
  */
@@ -172,15 +185,18 @@ export type ResponsivePaginationProps = {
   maxWidth?: number;
   narrowBehaviour?: NarrowBehaviour;
   className?: string;
+  containerClassName?: string;
   extraClassName?: string;
   pageItemClassName?: string;
   pageLinkClassName?: string;
   activeItemClassName?: string;
+  inactiveItemClassName?: string;
   disabledItemClassName?: string;
   disabledLinkClassName?: string;
   navClassName?: string;
   previousClassName?: string;
   nextClassName?: string;
+  classMerge?: (classNames: string[]) => string;
   previousLabel?: string | ReactNode;
   nextLabel?: string | ReactNode;
   ariaPreviousLabel?: string;
@@ -199,15 +215,18 @@ ResponsivePagination.propTypes = {
   maxWidth: PropTypes.number,
   narrowBehaviour: PropTypes.func,
   className: PropTypes.string,
+  containerClassName: PropTypes.string,
   extraClassName: PropTypes.string,
   pageItemClassName: PropTypes.string,
   pageLinkClassName: PropTypes.string,
   activeItemClassName: PropTypes.string,
+  inactiveItemClassName: PropTypes.string,
   disabledItemClassName: PropTypes.string,
   disabledLinkClassName: PropTypes.string,
   navClassName: PropTypes.string,
   previousClassName: PropTypes.string,
   nextClassName: PropTypes.string,
+  classMerge: PropTypes.func,
   previousLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   nextLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   ariaPreviousLabel: PropTypes.string,

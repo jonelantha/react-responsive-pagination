@@ -3,20 +3,25 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import expressiveCode from 'astro-expressive-code';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://react-responsive-pagination.elantha.com/',
   integrations: [
     react(),
     expressiveCode({
-      themes: ['dark-plus'],
+      themes: ['light-plus', 'dark-plus'],
       styleOverrides: {
         codeFontSize: '0.9rem',
-        frames: { frameBoxShadowCssValue: 'none' },
       },
     }),
     mdx(),
     sitemap(),
   ],
   trailingSlash: 'never',
+
+  vite: {
+    // @ts-expect-error incorrect tailwindcss types
+    plugins: [tailwindcss()],
+  },
 });

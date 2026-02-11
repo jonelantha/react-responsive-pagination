@@ -1,46 +1,48 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import ResponsivePagination from 'react-responsive-pagination';
-import { srOnlySpanLabel } from 'react-responsive-pagination/labelBehaviour';
-import {
-  combine,
-  dropEllipsis,
-  dropEllipsisThenNav,
-  dropNav,
-  dropNavThenEllipsis,
-  dropFirstAndLast,
-} from 'react-responsive-pagination/narrowBehaviour';
 import { Field, Formik } from 'formik';
-import type { SubTheme, FrameworkId } from './frameworkStyles';
+import type { SubTheme, FrameworkId } from './test-support/framework-styles';
 import {
   subThemes,
   frameworkIds,
   getThemeVariables,
-  getThemeVariableTestValue,
-} from './frameworkStyles';
-import type { PresetId } from './presets';
-import { presets } from './presets';
-import { createTestComponent } from './test-components';
-import { BodyThemeSetter } from './BodyThemeSetter';
-import { tryJsonParse, useUrlQueryToggles } from './util';
+} from './test-support/framework-styles';
+import { type PresetId, presets } from './test-support/presets';
+import { NextLabel, PreviousLabel, TestClass } from './test-support/test-components';
+import { useUrlQueryToggles } from './test-support/util';
+import { ariaPageLabelTestFn, hrefTestFn } from './test-support/test-functions';
+import { getLabelBehaviour } from './test-support/label-behaviour';
+import { getNarrowBehaviour } from './test-support/narrow-behaviour';
+import { BodyThemeSetter } from './components/BodyThemeSetter';
+import { InputRow } from './components/InputRow';
+import { Container } from './components/Container';
+import { CheckboxRow } from './components/CheckboxRow';
+import { GroupRow } from './components/GroupRow';
+import { FieldSelect } from './components/FieldSelect';
+import { JsonTextField } from './components/JsonTextField';
+import { TestThemeVariableSetter } from './components/TestThemeVariableSetter';
+import { twMerge } from 'tailwind-merge';
 
-import './TestStyles.css';
-import './TestHarness.css';
+import './css/test-styles.css';
+import './css/main.css';
 
 const fields = {
   renderPagination: 'Render Pagination',
-  propsAsJson: {
+  props: {
     total: 'Total Pages',
     maxWidth: 'Max Width',
     current: 'Current Page',
     className: 'className',
+    containerClassName: 'Container className',
     extraClassName: 'Extra Class',
     pageItemClassName: 'Page item className',
     pageLinkClassName: 'Page link className',
     activeItemClassName: 'Active className',
+    inactiveItemClassName: 'Inactive className',
     disabledItemClassName: 'Disabled item className',
     navClassName: 'Nav className',
     previousClassName: 'Previous className',
     nextClassName: 'Next className',
+    classMerge: 'Class Merge Function',
     previousLabel: 'Previous Label',
     nextLabel: 'Next Label',
     ariaPreviousLabel: 'Aria Previous Label',
@@ -50,56 +52,37 @@ const fields = {
     ariaCurrentAttr: 'ariaCurrent Attr',
     linkHref: 'linkHref',
   },
-  labelBehaviourFieldsAsJson: {
+  labelBehaviourFields: {
     labelBehaviour: 'Label Behaviour',
     srOnlyClassName: 'SR Only className',
     a11yActiveLabel: 'a11y Active Label',
   },
-  narrowBehaviourFieldsAsJson: {
+  narrowBehaviourFields: {
     narrowBehaviourNames: 'Narrow Behaviour',
   },
 };
 
+type PropFields = keyof typeof fields.props;
+type LabelBehaviourFields = keyof typeof fields.labelBehaviourFields;
+type NarrowBehaviourFields = keyof typeof fields.narrowBehaviourFields;
+
 const initialValues = {
   renderPagination: true,
   presetId: 'none' as PresetId,
-  subTheme: '' as SubTheme,
+  subTheme: 'none' as SubTheme,
   testThemeVariable: '',
-  propsAsJson: {
-    total: '100',
-    maxWidth: '',
-    current: '0',
-    className: 'undefined',
-    extraClassName: 'undefined',
-    pageItemClassName: 'undefined',
-    pageLinkClassName: 'undefined',
-    activeItemClassName: 'undefined',
-    disabledItemClassName: 'undefined',
-    navClassName: 'undefined',
-    previousClassName: 'undefined',
-    nextClassName: 'undefined',
-    previousLabel: 'undefined',
-    nextLabel: 'undefined',
-    ariaPreviousLabel: 'undefined',
-    ariaNextLabel: 'undefined',
-    ariaPageLabel: 'undefined',
-    renderNav: 'undefined',
-    ariaCurrentAttr: 'undefined',
-    linkHref: 'undefined',
-  },
-  labelBehaviourFieldsAsJson: {
-    labelBehaviour: 'undefined',
-    srOnlyClassName: 'undefined',
-    a11yActiveLabel: 'undefined',
-  },
-  narrowBehaviourFieldsAsJson: {
-    narrowBehaviourNames: 'undefined',
-  },
+  props: {
+    total: 100,
+    current: 0,
+  } as { [key in PropFields]: unknown },
+  labelBehaviourFields: {} as { [key in LabelBehaviourFields]: unknown },
+  narrowBehaviourFields: {} as { [key in NarrowBehaviourFields]: unknown },
 };
 
 const cssExtraClassOptions = [
   'add-margin-padding',
   'content-box',
+  'gap',
   'demo',
   'gh-dark',
 ];
@@ -124,209 +107,102 @@ function TestHarnessUI({
     <Formik initialValues={initialValues} onSubmit={() => {}}>
       {formik => (
         <>
-          <BodyThemeSetter theme={formik.values.subTheme} />
-          {formik.values.testThemeVariable && (
-            <style>
-              {`:root { ${formik.values.testThemeVariable}: ${getThemeVariableTestValue(formik.values.testThemeVariable)}; }`}
-            </style>
-          )}
           <div className={cssExtraClasses.join(' ')} id="paginationParent">
             {formik.values.renderPagination && (
               <ResponsivePagination
                 {...presets[formik.values.presetId]}
-                onPageChange={page =>
-                  formik.setFieldValue('propsAsJson.current', JSON.stringify(page))
-                }
-                {...parseJsonFields(formik.values.propsAsJson)}
-                {...getLabelBehaviour(
-                  parseJsonFields(formik.values.labelBehaviourFieldsAsJson),
-                )}
+                onPageChange={page => formik.setFieldValue('props.current', page)}
+                {...transformProps(formik.values.props)}
+                {...getLabelBehaviour(formik.values.labelBehaviourFields)}
                 {...getNarrowBehaviour(
-                  parseJsonFields(formik.values.narrowBehaviourFieldsAsJson),
+                  formik.values.narrowBehaviourFields.narrowBehaviourNames,
                 )}
               />
             )}
           </div>
-          <div className="container">
+          <BodyThemeSetter theme={formik.values.subTheme} />
+          <TestThemeVariableSetter variable={formik.values.testThemeVariable} />
+          <Container>
             <form>
-              <div className="mb-1 row">
-                <label className="col-sm-4 col-form-label">CSS Framework</label>
-                <div className="col-sm-8">
-                  {frameworkIds.map(frameworkId => (
-                    <div
-                      className="form-check form-check-inline align-middle"
-                      key={frameworkId}
-                    >
-                      <input
-                        type="radio"
-                        className="form-check-input"
-                        id={frameworkId}
-                        checked={frameworkId === activeFrameworkId}
-                        onChange={() => setActiveFrameworkId(frameworkId)}
-                      />
-                      <label className="form-check-label" htmlFor={frameworkId}>
-                        {frameworkId}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="mb-1 row">
-                <label className="col-sm-4 col-form-label">Sub Theme</label>
-                <div className="col-sm-8">
-                  {Object.entries(subThemes).map(([label, subTheme]) => (
-                    <div
-                      className="form-check form-check-inline align-middle"
-                      key={subTheme}
-                    >
-                      <Field
-                        type="radio"
-                        name="subTheme"
-                        id={`subTheme_${subTheme}`}
-                        className="form-check-input"
-                        value={subTheme}
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor={`subTheme_${subTheme}`}
-                      >
-                        {label}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="mb-1 row">
-                <label className="col-sm-4 col-form-label">Test css var</label>
-                <div className="col-sm-8">
-                  <select
-                    className="form-select"
-                    value={formik.values.testThemeVariable}
-                    onChange={e =>
-                      formik.setFieldValue('testThemeColorVariable', e.target.value)
-                    }
-                  >
-                    <option value="">Select</option>
-                    {getThemeVariables().map(colorVariable => (
-                      <option key={colorVariable} value={colorVariable}>
-                        {colorVariable}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-              <div className="mb-1 row">
-                <label className="col-sm-4 col-form-label">Preset</label>
-                <div className="col-sm-8">
-                  {Object.keys(presets).map(presetName => (
-                    <div
-                      className="form-check form-check-inline align-middle"
-                      key={presetName}
-                    >
-                      <Field
-                        type="radio"
-                        name="presetId"
-                        id={`preset_${presetName}`}
-                        className="form-check-input"
-                        value={presetName}
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor={`preset_${presetName}`}
-                      >
-                        {presetName}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="mb-1 row">
-                <label className="col-sm-4 col-form-label">Style (non-React)</label>
-                <div className="col-sm-8">
-                  <style
-                    id="editable-style-block"
-                    className="form-control"
-                    contentEditable
-                    suppressContentEditableWarning
-                  >
+              <GroupRow
+                label="CSS Framework"
+                name="frameworkId"
+                values={frameworkIds}
+                input={attrs => (
+                  <input
+                    type="radio"
+                    {...attrs}
+                    checked={activeFrameworkId === attrs.value}
+                    onChange={() => setActiveFrameworkId(attrs.value)}
+                  />
+                )}
+              />
+              <GroupRow
+                label="Sub Theme"
+                name="subTheme"
+                values={Object.values(subThemes)}
+                input={props => <Field type="radio" {...props} />}
+              />
+              <InputRow label="Test css var" id="testThemeVariable">
+                {attrs => (
+                  <FieldSelect
+                    name="testThemeVariable"
+                    options={getThemeVariables()}
+                    {...attrs}
+                  />
+                )}
+              </InputRow>
+              <GroupRow
+                label="Preset"
+                name="presetId"
+                values={Object.keys(presets)}
+                input={props => <Field type="radio" {...props} />}
+              />
+              <InputRow label="Style (non-React)" id="editable-style-block">
+                {attrs => (
+                  <style {...attrs} contentEditable suppressContentEditableWarning>
                     {initialStyle}
                   </style>
-                </div>
-              </div>
-              <div className="mb-1 row">
-                <label className="col-sm-4 col-form-label">
-                  Additional Pagination CSS (React)
-                </label>
-                <div className="col-sm-8">
-                  {cssExtraClassOptions.map(value => (
-                    <div
-                      className="form-check form-check-inline align-middle"
-                      key={value}
-                    >
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id={value}
-                        value={value}
-                        checked={cssExtraClasses.includes(value)}
-                        onChange={event =>
-                          toggleCssExtraClass(value, event.target.checked)
-                        }
-                      />
-                      <label className="form-check-label" htmlFor={value}>
-                        {value}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="mb-1 row">
-                <label
-                  htmlFor="renderPagination"
-                  className="col-sm-4 col-form-label"
-                >
-                  Render Pagination
-                </label>
-                <div className="col-sm-2 ">
-                  <div className="form-check">
-                    <Field
-                      name="renderPagination"
-                      type="checkbox"
-                      className="form-check-input"
-                      id="renderPagination"
-                    />
-                  </div>
-                </div>
-              </div>
+                )}
+              </InputRow>
+              <GroupRow
+                label="Additional Pagination CSS (React)"
+                name="cssExtraClasses"
+                values={cssExtraClassOptions}
+                input={attrs => (
+                  <input
+                    type="checkbox"
+                    {...attrs}
+                    checked={cssExtraClasses.includes(attrs.value)}
+                    onChange={event =>
+                      toggleCssExtraClass(attrs.value, event.target.checked)
+                    }
+                  />
+                )}
+              />
+              <CheckboxRow label="Render Pagination" id="renderPagination">
+                {attrs => (
+                  <Field type="checkbox" name="renderPagination" {...attrs} />
+                )}
+              </CheckboxRow>
               {(
-                [
-                  'propsAsJson',
-                  'labelBehaviourFieldsAsJson',
-                  'narrowBehaviourFieldsAsJson',
-                ] as const
+                ['props', 'labelBehaviourFields', 'narrowBehaviourFields'] as const
               ).map(group =>
                 Object.entries(fields[group]).map(([field, title]) => (
-                  <div className="mb-1 row" key={field}>
-                    <label
-                      htmlFor={`${field}AsJson`}
-                      className="col-sm-4 col-form-label"
-                    >
-                      {title} (JSON)
-                    </label>
-                    <div className="col-sm-2">
-                      <Field
-                        name={`${group}.${field}`}
-                        type="text"
-                        className="form-control"
-                        id={`${field}AsJson`}
-                        spellCheck="false"
-                      />
-                    </div>
-                  </div>
+                  <InputRow
+                    key={field}
+                    label={`${title} (JSON)`}
+                    id={`${field}AsJson`}
+                    cellSize="small"
+                  >
+                    {attrs => (
+                      <JsonTextField name={`${group}.${field}`} {...attrs} />
+                    )}
+                  </InputRow>
                 )),
               )}
             </form>
-          </div>
+          </Container>
         </>
       )}
     </Formik>
@@ -335,79 +211,48 @@ function TestHarnessUI({
 
 export default TestHarnessUI;
 
-function getLabelBehaviour({
-  labelBehaviour,
-  srOnlyClassName,
-  a11yActiveLabel,
-}: { [K in keyof (typeof fields)['labelBehaviourFieldsAsJson']]: string }) {
-  if (labelBehaviour === 'srOnlySpanLabel') {
-    return { labelBehaviour: srOnlySpanLabel({ srOnlyClassName, a11yActiveLabel }) };
-  }
-}
-
-function getNarrowBehaviour({
-  narrowBehaviourNames,
-}: {
-  narrowBehaviourNames: unknown;
+function transformProps<K extends string>(props: {
+  [key in K]: unknown;
 }) {
-  const narrowBehaviour = getSingleNarrowBehaviour(narrowBehaviourNames);
-  if (narrowBehaviour) {
-    return { narrowBehaviour };
-  } else if (Array.isArray(narrowBehaviourNames)) {
-    const narrowBehaviours = narrowBehaviourNames
-      .map(getSingleNarrowBehaviour)
-      .filter(x => x !== undefined);
+  const transformedProps = {} as { [key in K]: any }; // eslint-disable-line @typescript-eslint/no-explicit-any
 
-    return { narrowBehaviour: combine(...narrowBehaviours) };
-  }
-}
-
-function getSingleNarrowBehaviour(narrowBehaviourName: unknown) {
-  switch (narrowBehaviourName) {
-    case 'dropEllipsis':
-      return dropEllipsis;
-    case 'dropNav':
-      return dropNav;
-    case 'dropEllipsisThenNav':
-      return dropEllipsisThenNav;
-    case 'dropNavThenEllipsis':
-      return dropNavThenEllipsis;
-    case 'dropFirstAndLast':
-      return dropFirstAndLast;
-  }
-}
-
-function parseJsonFields<K extends string>(jsonValues: {
-  [key in K]: string;
-}) {
-  const props = {} as { [key in K]: any }; // eslint-disable-line @typescript-eslint/no-explicit-any
-
-  (Object.keys(jsonValues) as K[]).forEach(field => {
-    const value = getFieldValue(tryJsonParse(jsonValues[field]));
+  (Object.keys(props) as K[]).forEach(field => {
+    const value = transformProp(props[field]);
 
     if (value !== undefined) {
-      props[field] = value;
+      transformedProps[field] = value;
     }
   });
 
-  return props;
+  return transformedProps;
 }
 
-function getFieldValue(value: unknown) {
-  const testComponent = createTestComponent(value);
-  if (testComponent) return testComponent;
+function transformProp(value: unknown) {
+  switch (value) {
+    case '<PreviousLabel />':
+      return <PreviousLabel />;
 
-  if (value === 'hrefTestFn()') return hrefTestFn;
+    case '<NextLabel />':
+      return <NextLabel />;
 
-  if (value === 'ariaPageLabelTestFn()') return ariaPageLabelTestFn;
+    case '<Anonymous />':
+      return <div>Anonymous</div>;
+
+    case '<AnonymousFragment />':
+      return <>Anonymous</>;
+
+    case '<TestClass />':
+      return <TestClass />;
+
+    case 'hrefTestFn()':
+      return hrefTestFn;
+
+    case 'ariaPageLabelTestFn()':
+      return ariaPageLabelTestFn;
+
+    case 'twMerge()':
+      return twMerge;
+  }
 
   return value;
-}
-
-function hrefTestFn(page: number) {
-  return `/test-page/${page}`;
-}
-
-function ariaPageLabelTestFn(page: number, active: boolean) {
-  return active ? `active ${page}` : `page ${page}`;
 }

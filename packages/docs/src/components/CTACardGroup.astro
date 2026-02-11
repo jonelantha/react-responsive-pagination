@@ -2,20 +2,59 @@
 
 ---
 
-<ul>
+<ul class="cta-card-group">
   <slot />
 </ul>
+
+<script>
+  function setup() {
+    document.querySelectorAll<HTMLUListElement>('.cta-card-group').forEach(group => {
+      if (group.dataset.isSetup === 'true') return;
+
+      group.dataset.isSetup = 'true';
+
+      group.addEventListener('focusin', ({ target }) => {
+        if (!(target instanceof HTMLElement)) return;
+
+        if (!target.matches(':focus-visible')) return;
+
+        const card = target.closest('li');
+
+        if (!card || !group.contains(card)) return;
+
+        card.scrollIntoView({ behavior: 'auto', inline: 'nearest' });
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', setup);
+</script>
 
 <style lang="scss">
   @use '@styles/_vars.scss';
 
   ul {
     list-style: none;
-    padding: 0;
     margin: 0;
+    padding-inline: vars.$landing-padding-inline;
+    padding-block: var(--v-spacing) calc(var(--v-spacing) - 10px);
+    border-block-end: 10px solid transparent;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
 
     gap: 16px;
+    grid-template-columns: 1fr;
+
+    @media (min-width: 28rem) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (min-width: 47rem) {
+      grid-template-columns: repeat(4, minmax(12.5rem, 1fr));
+      overflow-x: scroll;
+
+      @media (prefers-reduced-motion: no-preference) {
+        scroll-behavior: smooth;
+      }
+    }
   }
 </style>

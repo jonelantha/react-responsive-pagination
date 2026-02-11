@@ -1,0 +1,32 @@
+---
+
+---
+
+<style lang="scss">
+  @use '@styles/_vars.scss';
+
+  div {
+    border: var(--box-border);
+    border-radius: vars.$border-radius;
+
+    margin-block-end: vars.$leading;
+    padding-block-start: 1rem;
+
+    overflow: hidden;
+
+    box-shadow: var(--code-box-shadow);
+
+    :global(.expressive-code) {
+      border-block-start: var(--box-border);
+
+      margin-block: 1rem 0;
+
+      --ec-brdCol: transparent;
+      --ec-codePadBlk: 0.75rem;
+    }
+  }
+</style>
+
+<div>
+  <slot />
+</div>

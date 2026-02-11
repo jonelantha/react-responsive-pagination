@@ -1,23 +1,16 @@
 ---
-import BootstrapThemeContainer from '@components/BootstrapThemeContainer.astro';
-import PaginationRenderer from '@components/PaginationRenderer.tsx';
-import ClassicThemeContainer from '@components/ClassicThemeContainer.astro';
-import MinimalThemeContainer from '@components/MinimalThemeContainer.astro';
+import ClassicThemePaginationRenderer from '@components/ClassicThemePaginationRenderer.astro';
+import BootstrapThemePaginationRenderer from '@components/BootstrapThemePaginationRenderer.astro';
+import MinimalThemePaginationRenderer from '@components/MinimalThemePaginationRenderer.astro';
 
 const { ...rest } = Astro.props;
 ---
 
-<div class="outer" {...rest}>
+<div class="outer" {...rest} inert>
   <div class="inner">
-    <BootstrapThemeContainer noBottomMargin>
-      <PaginationRenderer client:load initialPage={1} total={5} />
-    </BootstrapThemeContainer>
-    <MinimalThemeContainer noBottomMargin>
-      <PaginationRenderer client:load initialPage={8} total={10} />
-    </MinimalThemeContainer>
-    <ClassicThemeContainer noBottomMargin>
-      <PaginationRenderer client:load initialPage={5} total={5} />
-    </ClassicThemeContainer>
+    <BootstrapThemePaginationRenderer initialPage={1} total={5} />
+    <MinimalThemePaginationRenderer initialPage={8} total={10} />
+    <ClassicThemePaginationRenderer initialPage={5} total={5} />
   </div>
 </div>
 
@@ -58,4 +51,5 @@ const { ...rest } = Astro.props;
     margin-left: 50%;
     transform: translate(-50%, 0) rotate(-10deg);
   }
+  /** readme gap: 20px; inline-size: 230px; transform: translate(0, 15%); */
 </style>

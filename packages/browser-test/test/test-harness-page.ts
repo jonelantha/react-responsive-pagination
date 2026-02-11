@@ -3,7 +3,7 @@ import { setupThrowOnError, stringifyWithUndefined } from './helper.ts';
 import { URLSearchParams } from 'url';
 import { test } from '@playwright/test';
 
-import '../../test-harness-lib/src/window.d.ts';
+import '../../test-harness-lib/src/global.d.ts';
 
 export class TestHarnessPage {
   page: Page;
@@ -62,6 +62,10 @@ export class TestHarnessPage {
     return this.page.locator('#paginationParent > ul');
   }
 
+  paginationFirstChildLocator() {
+    return this.page.locator('#paginationParent > ul > li').first();
+  }
+
   editableStyleBlockLocator() {
     return this.page.locator('#editable-style-block');
   }
@@ -73,7 +77,7 @@ export class TestHarnessPage {
   }
 
   presetLocator(type: string) {
-    return this.page.locator(`#preset_${type}`);
+    return this.page.locator(`#presetId_${type}`);
   }
 
   async waitForNextFrame() {

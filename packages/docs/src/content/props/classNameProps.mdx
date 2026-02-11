@@ -2,11 +2,16 @@ import PropDef from '@components/PropDef.astro';
 import ExtraClassNameProp from './extraClassNameProp.mdx';
 
 <Fragment>
-  <PropDef name='className' type='string' defaultValue='pagination'>
+  <PropDef name='containerClassName' type='string' defaultValue='pagination'>
     Class name for the top level **\<ul>** container
 
-    Defaults to `pagination`, overrides **extraClassName** prop (below)
+    Defaults to `pagination`
 
+    When this prop is set, **extraClassName** prop (below) will be ignored
+
+  </PropDef>
+  <PropDef name='className' type='string' defaultValue='pagination'>
+    Alias for **containerClassName** see above
   </PropDef>
   <ExtraClassNameProp />
   <PropDef name='pageItemClassName' type='string' defaultValue='page-item'>
@@ -29,6 +34,14 @@ import ExtraClassNameProp from './extraClassNameProp.mdx';
     `<li class='page-item active'><a class='page-link'>1</a></li>`
 
     Defaults to `active`
+
+  </PropDef>
+  <PropDef name='inactiveItemClassName' type='string' defaultValue='undefined'>
+    Appended to **\<li>** class name for all non active elements (including nav elements):
+
+    `<li class='page-item inactive'><a class='page-link'>1</a></li>`
+
+    Defaults to ''
 
   </PropDef>
   <PropDef name='disabledItemClassName' type='string' defaultValue='disabled'>
@@ -67,6 +80,21 @@ import ExtraClassNameProp from './extraClassNameProp.mdx';
     `<li class='page-item my-next-button'><span class='page-link'>»</span></li>`
 
     Overrides `navClassName` and by default will not be output
+
+  </PropDef>
+  <PropDef name='classMerge' type='(classNames: string[]) => string' defaultValue='undefined'>
+    Function to use when merging multiple class names
+    
+    Tailwind users can set this to `twMerge` from the `tailwind-merge` package to remove duplicate Tailwind classes
+
+    ```jsx
+    import { twMerge } from 'tailwind-merge';
+
+    <ResponsivePagination
+      classMerge={twMerge}
+      // ...other props
+    />
+    ```
 
   </PropDef>
 </Fragment>

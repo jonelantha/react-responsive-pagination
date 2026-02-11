@@ -1,0 +1,21 @@
+---
+import PaginationRenderer, {
+  type PaginationRendererProps,
+} from './PaginationRenderer';
+
+type Props = PaginationRendererProps;
+
+const { ...rest } = Astro.props;
+---
+
+<PaginationRenderer {...rest} className="bootstrap-styles" client:load />
+
+<style is:global lang="scss">
+  @use 'sass:meta';
+
+  .bootstrap-styles {
+    @include meta.load-css(
+      'react-responsive-pagination/themes/bootstrap-light-dark'
+    );
+  }
+</style>

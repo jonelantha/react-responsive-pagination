@@ -1,53 +1,26 @@
 ---
 export interface Props {
-  class?: string;
-  hasBorder?: boolean;
   striped?: boolean;
-  shadow?: boolean;
-  inlinePadding?: boolean;
-  noBottomMargin?: boolean;
 }
 
-const {
-  class: className,
-  hasBorder,
-  striped,
-  shadow,
-  inlinePadding,
-  noBottomMargin,
-} = Astro.props;
+const { striped } = Astro.props;
 ---
 
-<div
-  class:list={[
-    className,
-    'container',
-    { hasBorder, inlinePadding, striped, shadow, noBottomMargin },
-  ]}
->
+<div class:list={[{ striped }]}>
   <slot />
 </div>
 
 <style lang="scss">
   @use '@styles/_vars.scss';
 
-  div.container {
+  div {
     margin-block-end: vars.$leading;
+    padding-block: 1rem;
 
-    &.hasBorder {
-      border: var(--box-border);
-      border-radius: vars.$border-radius;
+    border: var(--box-border);
+    border-radius: vars.$border-radius;
 
-      padding-block: 1rem;
-
-      &.inlinePadding {
-        padding-inline: 1rem;
-      }
-    }
-
-    &.noBottomMargin {
-      margin-block-end: 0;
-    }
+    box-shadow: var(--code-box-shadow);
 
     &.striped {
       background: repeating-linear-gradient(
@@ -67,10 +40,6 @@ const {
           #1b1b1d 20px
         );
       }
-    }
-
-    &.shadow {
-      box-shadow: var(--box-shadow);
     }
   }
 </style>

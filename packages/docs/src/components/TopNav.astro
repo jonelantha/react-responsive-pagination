@@ -43,7 +43,7 @@ const starCount = await getStarCount();
     </a>
     <a
       class="gitHubStarLink"
-      href="https://www.github.com/jonelantha/react-responsive-pagination/"
+      href="https://www.github.com/jonelantha/react-responsive-pagination"
       rel="noopener noreferrer"
       aria-label=`${starCount} GitHub stars`
     >
@@ -68,6 +68,7 @@ const starCount = await getStarCount();
     align-items: stretch;
 
     min-height: vars.$top-nav-min-height;
+    border-bottom: 1px solid var(--border-color);
 
     .navLink {
       @include util.for-less-than(730px) {
@@ -147,7 +148,7 @@ const starCount = await getStarCount();
         opacity 0.1s,
         display 0.1s allow-discrete;
 
-      @include util.for-less-than(880px) {
+      @include util.for-less-than(900px) {
         display: none;
         position: absolute;
         inset-inline-end: $nav-padding;

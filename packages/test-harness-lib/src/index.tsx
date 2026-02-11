@@ -1,12 +1,12 @@
 import React, { useCallback } from 'react';
 import TestHarnessUI from './TestHarnessUI';
 import { resetRenderCount, getRenderCount } from 'react-responsive-pagination/debug';
-import type { FrameworkId } from './frameworkStyles';
-import { frameworkCssUrls } from './frameworkStyles';
-import { PageFontsAndStyles } from './PageFontsAndStyles';
-
-import './TestStyles.css';
-import './TestHarness.css';
+import {
+  type FrameworkId,
+  frameworkCssUrls,
+  FrameworkIdContext,
+} from './test-support/framework-styles';
+import { PageFontsAndStyles } from './components/PageFontsAndStyles';
 
 window.resetRenderCount = resetRenderCount;
 window.getRenderCount = getRenderCount;
@@ -20,10 +20,12 @@ export function TestHarnessApp() {
 
   const testHarness = (
     <PageFontsAndStyles cssUrl={frameworkCssUrls[activeFrameworkId]}>
-      <TestHarnessUI
-        activeFrameworkId={activeFrameworkId}
-        setActiveFrameworkId={setActiveFrameworkId}
-      />
+      <FrameworkIdContext.Provider value={activeFrameworkId}>
+        <TestHarnessUI
+          activeFrameworkId={activeFrameworkId}
+          setActiveFrameworkId={setActiveFrameworkId}
+        />
+      </FrameworkIdContext.Provider>
     </PageFontsAndStyles>
   );
 
