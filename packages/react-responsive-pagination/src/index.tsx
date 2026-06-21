@@ -143,7 +143,12 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
             ])}
             aria-hidden={item.a11yHidden}
           >
-            <span className={pageLinkClassName} aria-label={item.a11yLabel}>
+            <span
+              className={pageLinkClassName}
+              aria-label={item.a11yLabel}
+              aria-disabled={item.a11yHidden ? undefined : 'true'}
+              role={item.a11yHidden ? undefined : 'link'}
+            >
               {getLabel(item)}
             </span>
           </li>
