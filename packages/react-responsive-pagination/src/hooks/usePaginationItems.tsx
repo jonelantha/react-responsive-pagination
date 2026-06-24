@@ -16,6 +16,7 @@ export function usePaginationItems(
     ariaNextLabel?: string;
     ariaPreviousLabel?: string;
     ariaPageLabel?: (page: number, active: boolean) => string | undefined;
+    ariaCurrentAttr?: boolean;
     renderNav?: boolean;
     narrowBehaviour?: NarrowBehaviour;
   },

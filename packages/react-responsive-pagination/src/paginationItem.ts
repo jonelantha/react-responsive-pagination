@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 import type { CompositionItem } from './compositionItem.ts';
 
 type BaseItem = {
@@ -8,6 +8,7 @@ type BaseItem = {
   a11yLabel?: string;
   active?: boolean | undefined;
   gotoPage?: number | undefined;
+  listItemProps?: HTMLAttributes<HTMLLIElement> | undefined;
 };
 
 type PageItem = BaseItem & {
@@ -42,6 +43,7 @@ export function compositionToPaginationItems(
     ariaPreviousLabel?: string;
     ariaNextLabel?: string;
     ariaPageLabel?: (page: number, active: boolean) => string | undefined;
+    ariaCurrentAttr?: boolean;
   },
 ): PaginationItem[] {
   const previousLabel = options?.previousLabel || '«';
@@ -49,6 +51,7 @@ export function compositionToPaginationItems(
   const nextLabel = options?.nextLabel || '»';
   const a11yNextLabel = options?.ariaNextLabel || 'Next';
   const ariaPageLabel = options?.ariaPageLabel;
+  const ariaCurrentAttr = options?.ariaCurrentAttr;
 
   return compositionItems.map(({ type, page }) => {
     switch (type) {
@@ -75,7 +78,7 @@ export function compositionToPaginationItems(
           type: 'ellipsis',
           key: `ellipsis_${type === '…L' ? 'l' : 'r'}`,
           label: '…',
-          a11yHidden: true,
+          listItemProps: { 'aria-hidden': 'true' },
           gotoPage: undefined,
         };
       default:
@@ -86,6 +89,10 @@ export function compositionToPaginationItems(
           a11yLabel: ariaPageLabel?.(page, type === 'active'),
           gotoPage: page,
           active: type === 'active',
+          listItemProps:
+            type === 'active' && ariaCurrentAttr
+              ? { 'aria-current': 'page' }
+              : undefined,
         };
     }
   });

@@ -69,6 +69,7 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
       ariaPreviousLabel,
       ariaNextLabel,
       ariaPageLabel,
+      ariaCurrentAttr,
       renderNav,
     },
   );
@@ -127,8 +128,7 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
         <li
           key={item.key}
           className={getListItemClassName(item)}
-          aria-current={item.active && ariaCurrentAttr ? 'page' : undefined}
-          aria-hidden={item.type === 'ellipsis' ? 'true' : undefined}
+          {...item.listItemProps}
         >
           {item.type === 'previous' || item.type === 'next' ? (
             item.gotoPage === undefined ? (
