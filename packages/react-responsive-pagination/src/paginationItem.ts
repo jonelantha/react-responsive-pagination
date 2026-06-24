@@ -6,35 +6,31 @@ type BaseItem = {
   key: string;
   label: string | ReactNode;
   a11yLabel?: string;
+  active?: boolean | undefined;
+  gotoPage?: number | undefined;
 };
 
-type ClickableItem = BaseItem & {
+type PageItem = BaseItem & {
+  type: 'page';
   gotoPage: number;
   active?: boolean;
 };
 
-type NonClickableItem = BaseItem & {
-  gotoPage: undefined;
-  a11yHidden?: boolean;
+type PreviousNavItem = BaseItem & {
+  type: 'previous';
+  gotoPage: number | undefined;
 };
 
-type PageItem = ClickableItem & {
-  type: 'page';
+type NextNavItem = BaseItem & {
+  type: 'next';
+  gotoPage: number | undefined;
 };
 
-type NavItem = ClickableItem & {
-  type: NavType;
-};
-
-type NavDisabledItem = NonClickableItem & {
-  type: NavType;
-};
-
-type EllipsisItem = NonClickableItem & {
+type EllipsisItem = BaseItem & {
   type: 'ellipsis';
 };
 
-export type PaginationItem = NavItem | NavDisabledItem | EllipsisItem | PageItem;
+export type PaginationItem = PreviousNavItem | NextNavItem | EllipsisItem | PageItem;
 
 export type NavType = 'next' | 'previous';
 
