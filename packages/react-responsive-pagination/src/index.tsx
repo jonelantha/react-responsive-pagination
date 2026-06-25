@@ -57,23 +57,19 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
     labelBehaviour: getLabel = defaultLabelBehaviour,
   } = props;
 
-  const { visible, items, ref, clearCache } = usePaginationItems(
-    current,
-    total,
+  const { visible, items, ref, clearCache } = usePaginationItems(current, total, {
+    handlePageChange,
+    previousLabel,
+    nextLabel,
+    ariaPreviousLabel,
+    ariaNextLabel,
+    ariaPageLabel,
+    ariaCurrentAttr,
+    linkHref,
     maxWidth,
-    {
-      handlePageChange,
-      narrowBehaviour,
-      previousLabel,
-      nextLabel,
-      ariaPreviousLabel,
-      ariaNextLabel,
-      ariaPageLabel,
-      ariaCurrentAttr,
-      linkHref,
-      renderNav,
-    },
-  );
+    renderNav,
+    narrowBehaviour,
+  });
 
   useEffect(() => {
     return () => clearCache();
