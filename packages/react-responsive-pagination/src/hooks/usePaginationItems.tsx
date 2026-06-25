@@ -11,12 +11,14 @@ export function usePaginationItems(
   inputTotal: number,
   maxWidth: number | undefined,
   options?: {
+    handlePageChange?: (page: number) => void;
     nextLabel?: string | ReactNode;
     previousLabel?: string | ReactNode;
     ariaNextLabel?: string;
     ariaPreviousLabel?: string;
     ariaPageLabel?: (page: number, active: boolean) => string | undefined;
     ariaCurrentAttr?: boolean;
+    linkHref?: ((page: number) => string) | 'hash' | 'omit';
     renderNav?: boolean;
     narrowBehaviour?: NarrowBehaviour;
   },

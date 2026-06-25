@@ -3,7 +3,6 @@ import type { ReactNode, FC } from 'react';
 import PropTypes from 'prop-types';
 import { usePaginationItems } from './hooks/usePaginationItems.ts';
 import type { PaginationItem } from './paginationItem.ts';
-import { preventDefault } from './helpers/dom.ts';
 import type { NarrowBehaviour } from './narrowBehaviour.ts';
 import type { LabelBehaviour } from './labelBehaviour.ts';
 import { defaultLabelBehaviour } from './labelBehaviour.ts';
@@ -63,6 +62,7 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
     total,
     maxWidth,
     {
+      handlePageChange,
       narrowBehaviour,
       previousLabel,
       nextLabel,
@@ -70,6 +70,7 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
       ariaNextLabel,
       ariaPageLabel,
       ariaCurrentAttr,
+      linkHref,
       renderNav,
     },
   );
@@ -132,21 +133,11 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
         >
           {item.type === 'previous' || item.type === 'next' ? (
             item.gotoPage === undefined ? (
-              <span
-                className={pageLinkClassName}
-                aria-label={item.a11yLabel}
-                aria-disabled="true"
-                role="link"
-              >
+              <span className={pageLinkClassName} {...item.anchorProps}>
                 {getLabel(item)}
               </span>
             ) : (
-              <a
-                className={pageLinkClassName}
-                href={getHref(linkHref, item.gotoPage)}
-                onClick={preventDefault(() => handlePageChange(item.gotoPage!))}
-                aria-label={item.a11yLabel}
-              >
+              <a className={pageLinkClassName} {...item.anchorProps}>
                 {getLabel(item)}
               </a>
             )
@@ -154,12 +145,7 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
             <span className={pageLinkClassName}>{getLabel(item)}</span>
           ) : (
             // page
-            <a
-              className={pageLinkClassName}
-              href={getHref(linkHref, item.gotoPage)}
-              onClick={preventDefault(() => handlePageChange(item.gotoPage))}
-              aria-label={item.a11yLabel}
-            >
+            <a className={pageLinkClassName} {...item.anchorProps}>
               {getLabel(item)}
             </a>
           )}
@@ -174,19 +160,6 @@ function classNames(
   names: (string | false | undefined)[],
 ) {
   return classMerge(names.filter((name): name is string => Boolean(name)));
-}
-
-function getHref(
-  linkHref: ((page: number) => string) | 'hash' | 'omit',
-  page: number,
-) {
-  if (typeof linkHref === 'function') {
-    return linkHref(page);
-  } else if (linkHref === 'hash') {
-    return '#';
-  } else {
-    return undefined;
-  }
 }
 
 const defaultClassMerge = (classNames: string[]) => classNames.join(' ');

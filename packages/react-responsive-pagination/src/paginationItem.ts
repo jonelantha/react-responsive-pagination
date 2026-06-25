@@ -1,5 +1,6 @@
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { AnchorHTMLAttributes, HTMLAttributes, ReactNode } from 'react';
 import type { CompositionItem } from './compositionItem.ts';
+import { preventDefault } from './helpers/dom.ts';
 
 type BaseItem = {
   type: string;
@@ -15,16 +16,19 @@ type PageItem = BaseItem & {
   type: 'page';
   gotoPage: number;
   active?: boolean;
+  anchorProps: AnchorHTMLAttributes<HTMLAnchorElement>;
 };
 
 type PreviousNavItem = BaseItem & {
   type: 'previous';
   gotoPage: number | undefined;
+  anchorProps: AnchorHTMLAttributes<HTMLAnchorElement>;
 };
 
 type NextNavItem = BaseItem & {
   type: 'next';
   gotoPage: number | undefined;
+  anchorProps: AnchorHTMLAttributes<HTMLAnchorElement>;
 };
 
 type EllipsisItem = BaseItem & {
@@ -38,12 +42,14 @@ export type NavType = 'next' | 'previous';
 export function compositionToPaginationItems(
   compositionItems: CompositionItem[],
   options?: {
+    handlePageChange?: (page: number) => void;
     previousLabel?: string | ReactNode;
     nextLabel?: string | ReactNode;
     ariaPreviousLabel?: string;
     ariaNextLabel?: string;
     ariaPageLabel?: (page: number, active: boolean) => string | undefined;
     ariaCurrentAttr?: boolean;
+    linkHref?: ((page: number) => string) | 'hash' | 'omit';
   },
 ): PaginationItem[] {
   const previousLabel = options?.previousLabel || '«';
@@ -52,26 +58,38 @@ export function compositionToPaginationItems(
   const a11yNextLabel = options?.ariaNextLabel || 'Next';
   const ariaPageLabel = options?.ariaPageLabel;
   const ariaCurrentAttr = options?.ariaCurrentAttr;
+  const linkHref = options?.linkHref ?? 'hash';
+  const handlePageChange = options?.handlePageChange ?? (() => {});
 
   return compositionItems.map(({ type, page }) => {
     switch (type) {
       case '<':
+      case '>': {
+        const fullType = type === '<' ? 'previous' : 'next';
+        const label = type === '<' ? previousLabel : nextLabel;
+        const optionsA11yLabel = type === '<' ? a11yPreviousLabel : a11yNextLabel;
+        const a11yLabel = label === optionsA11yLabel ? undefined : optionsA11yLabel;
+
         return {
-          type: 'previous',
-          key: `previous${page === undefined ? '_disabled' : ''}`,
-          label: previousLabel,
-          a11yLabel:
-            previousLabel === a11yPreviousLabel ? undefined : a11yPreviousLabel,
+          type: fullType,
+          key: `${fullType}${page === undefined ? '_disabled' : ''}`,
+          label,
+          a11yLabel,
           gotoPage: page,
+          anchorProps:
+            page === undefined
+              ? {
+                  'aria-label': a11yLabel,
+                  'aria-disabled': 'true',
+                  role: 'link',
+                }
+              : {
+                  href: getHref(linkHref, page),
+                  onClick: preventDefault(() => handlePageChange(page)),
+                  'aria-label': a11yLabel,
+                },
         };
-      case '>':
-        return {
-          type: 'next',
-          key: `next${page === undefined ? '_disabled' : ''}`,
-          label: nextLabel,
-          a11yLabel: nextLabel === a11yNextLabel ? undefined : a11yNextLabel,
-          gotoPage: page,
-        };
+      }
       case '…L':
       case '…R':
         return {
@@ -81,19 +99,39 @@ export function compositionToPaginationItems(
           listItemProps: { 'aria-hidden': 'true' },
           gotoPage: undefined,
         };
-      default:
+      default: {
+        const a11yLabel = ariaPageLabel?.(page, type === 'active');
         return {
           type: 'page',
           key: `${type}_${page}`,
           label: page.toString(),
-          a11yLabel: ariaPageLabel?.(page, type === 'active'),
+          a11yLabel,
           gotoPage: page,
           active: type === 'active',
           listItemProps:
             type === 'active' && ariaCurrentAttr
               ? { 'aria-current': 'page' }
               : undefined,
+          anchorProps: {
+            href: getHref(linkHref, page),
+            onClick: preventDefault(() => handlePageChange(page)),
+            'aria-label': a11yLabel,
+          },
         };
+      }
     }
   });
+}
+
+function getHref(
+  linkHref: ((page: number) => string) | 'hash' | 'omit',
+  page: number,
+) {
+  if (typeof linkHref === 'function') {
+    return linkHref(page);
+  } else if (linkHref === 'hash') {
+    return '#';
+  } else {
+    return undefined;
+  }
 }
