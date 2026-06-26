@@ -50,6 +50,35 @@ test.describe('Pagination navigation', () => {
     });
   }
 
+  for (const { initialCurrent, linkToClick, expectedCurrent } of [
+    { initialCurrent: null, linkToClick: '»', expectedCurrent: '2' },
+    { initialCurrent: 2, linkToClick: '»', expectedCurrent: '3' },
+    { initialCurrent: 100, linkToClick: '«', expectedCurrent: '99' },
+  ]) {
+    test(`clicking ${linkToClick} with nav buttons renders correctly and sets current page to ${expectedCurrent}`, async ({
+      page,
+      testHarness,
+    }) => {
+      await testHarness.setField('renderNav', 'button');
+      await testHarness.setField('current', initialCurrent);
+
+      await testHarness.waitForNextFrame();
+
+      await page.click(`text="${linkToClick}"`);
+
+      await testHarness.waitForNextFrame();
+
+      const paginationHtml = await testHarness.getPaginationHtml();
+      expect(paginationHtml).toMatchSnapshot();
+
+      const current = await testHarness.getField('current');
+      expect(current).toBe(expectedCurrent);
+
+      const currentUrl = page.url();
+      expect(currentUrl).not.toContain('#');
+    });
+  }
+
   for (const programmaticCurrent of [2, 5, -1, 101, null, '', '3']) {
     test(`setting current page programmatically to ${programmaticCurrent} renders correctly`, async ({
       testHarness,

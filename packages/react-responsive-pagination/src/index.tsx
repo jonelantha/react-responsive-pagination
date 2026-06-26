@@ -51,7 +51,7 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
     ariaPreviousLabel,
     ariaNextLabel,
     ariaPageLabel,
-    renderNav = true,
+    renderNav = 'anchor-disabled-span',
     ariaCurrentAttr = true,
     linkHref = 'hash',
     labelBehaviour: getLabel = defaultLabelBehaviour,
@@ -67,7 +67,7 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
     ariaCurrentAttr,
     linkHref,
     maxWidth,
-    renderNav,
+    omitNav: ['none', false].includes(renderNav),
     narrowBehaviour,
   });
 
@@ -128,14 +128,18 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
           {...item.listItemProps}
         >
           {item.type === 'previous' || item.type === 'next' ? (
-            item.gotoPage === undefined ? (
-              <span className={pageLinkClassName} {...item.anchorProps}>
+            renderNav === 'button' ? (
+              <button className={pageLinkClassName} {...item.buttonProps}>
                 {getLabel(item)}
-              </span>
-            ) : (
+              </button>
+            ) : item.gotoPage !== undefined || renderNav === 'anchor' ? (
               <a className={pageLinkClassName} {...item.anchorProps}>
                 {getLabel(item)}
               </a>
+            ) : (
+              <span className={pageLinkClassName} {...item.anchorProps}>
+                {getLabel(item)}
+              </span>
             )
           ) : item.type === 'ellipsis' ? (
             <span className={pageLinkClassName}>{getLabel(item)}</span>
@@ -187,7 +191,7 @@ export type ResponsivePaginationProps = {
   ariaPreviousLabel?: string;
   ariaNextLabel?: string;
   ariaPageLabel?: (page: number, active: boolean) => string | undefined;
-  renderNav?: boolean;
+  renderNav?: boolean | 'none' | 'anchor' | 'anchor-disabled-span' | 'button';
   ariaCurrentAttr?: boolean;
   linkHref?: ((page: number) => string) | 'hash' | 'omit';
   labelBehaviour?: LabelBehaviour;
@@ -217,7 +221,10 @@ ResponsivePagination.propTypes = {
   ariaPreviousLabel: PropTypes.string,
   ariaNextLabel: PropTypes.string,
   ariaPageLabel: PropTypes.func,
-  renderNav: PropTypes.bool,
+  renderNav: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(['none', 'anchor', 'anchor-disabled-span', 'button'] as const),
+  ]),
   ariaCurrentAttr: PropTypes.bool,
   linkHref: PropTypes.oneOfType([
     PropTypes.func,

@@ -1,4 +1,9 @@
-import type { AnchorHTMLAttributes, HTMLAttributes, ReactNode } from 'react';
+import type {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  HTMLAttributes,
+  ReactNode,
+} from 'react';
 import type { CompositionItem } from './compositionItem.ts';
 import { preventDefault } from './helpers/dom.ts';
 
@@ -23,12 +28,14 @@ type PreviousNavItem = BaseItem & {
   type: 'previous';
   gotoPage: number | undefined;
   anchorProps: AnchorHTMLAttributes<HTMLAnchorElement>;
+  buttonProps: ButtonHTMLAttributes<HTMLButtonElement>;
 };
 
 type NextNavItem = BaseItem & {
   type: 'next';
   gotoPage: number | undefined;
   anchorProps: AnchorHTMLAttributes<HTMLAnchorElement>;
+  buttonProps: ButtonHTMLAttributes<HTMLButtonElement>;
 };
 
 type EllipsisItem = BaseItem & {
@@ -91,6 +98,12 @@ export const compositionToPaginationItems = (
                     handlePageChange && preventDefault(() => handlePageChange(page)),
                   'aria-label': ariaLabel,
                 },
+          buttonProps: {
+            'aria-label': ariaLabel,
+            ...(page === undefined
+              ? { disabled: true }
+              : { onClick: handlePageChange && (() => handlePageChange(page)) }),
+          },
         };
       }
       case '…L':

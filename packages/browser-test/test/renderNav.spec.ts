@@ -16,7 +16,15 @@ export const test = base.extend<{
 });
 
 test.describe('renderNav', () => {
-  for (const renderNav of [undefined, false, true]) {
+  for (const renderNav of [
+    undefined,
+    false,
+    true,
+    'none',
+    'anchor',
+    'anchor-disabled-span',
+    'button',
+  ] as const) {
     test(`Setting renderNav to ${renderNav}`, async ({ testHarness }) => {
       await testHarness.setField('renderNav', renderNav);
 

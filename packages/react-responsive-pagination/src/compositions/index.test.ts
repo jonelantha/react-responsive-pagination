@@ -4,7 +4,7 @@ import { narrowToWideCompositions } from './index.ts';
 import { dropNavThenEllipsis } from '../narrowBehaviour.ts';
 import { shorthandOf } from '../compositionItem.test.ts';
 
-const defaultParams = { narrowBehaviour: undefined, renderNav: true };
+const defaultParams = { narrowBehaviour: undefined, omitNav: false };
 
 describe('narrowToWideCompositions - total', () => {
   test('outputs nothing for total < 1', () => {
@@ -213,13 +213,13 @@ describe('narrowToWideCompositions - narrowBehaviour', () => {
   });
 });
 
-describe('narrowToWideCompositions - renderNav', () => {
-  test('will not render nav when false', () => {
+describe('narrowToWideCompositions - omitNav', () => {
+  test('will not render nav when true', () => {
     const narrowestComposition = narrowToWideCompositions({
       ...defaultParams,
       current: 2,
       total: 6,
-      renderNav: false,
+      omitNav: true,
     }).next().value;
 
     const expected = [1, '*2', 3, '…R', 6];

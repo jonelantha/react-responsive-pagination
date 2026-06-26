@@ -9,7 +9,7 @@ import { useWidestComposition } from './useWidestComposition.ts';
 
 type UsePaginationItemsOptions = Partial<CompositionToPaginationItemsOptions> & {
   maxWidth?: number;
-  renderNav?: boolean;
+  omitNav?: boolean;
   narrowBehaviour?: NarrowBehaviour;
 };
 
@@ -29,7 +29,7 @@ export function usePaginationItems(
       current,
       total,
       narrowBehaviour: options.narrowBehaviour,
-      renderNav: options.renderNav,
+      omitNav: options.omitNav,
     });
 
   const {
@@ -69,7 +69,7 @@ function sanatizeInputs(
       ariaCurrentAttr: sanatizeBoolean(options?.ariaCurrentAttr) ?? true,
       linkHref: options?.linkHref ?? 'hash',
       maxWidth: options?.maxWidth,
-      renderNav: sanatizeBoolean(options?.renderNav) ?? true,
+      omitNav: sanatizeBoolean(options?.omitNav) ?? false,
       narrowBehaviour: options?.narrowBehaviour,
     },
   };
