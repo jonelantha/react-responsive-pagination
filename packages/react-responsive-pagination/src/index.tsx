@@ -137,7 +137,7 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
                 {getLabel(item)}
               </a>
             ) : (
-              <span className={pageLinkClassName} {...item.anchorProps}>
+              <span className={pageLinkClassName} {...item.spanAsAnchorProps}>
                 {getLabel(item)}
               </span>
             )

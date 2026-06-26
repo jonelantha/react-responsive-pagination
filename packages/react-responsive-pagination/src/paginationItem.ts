@@ -24,25 +24,27 @@ type PageItem = BaseItem & {
   anchorProps: AnchorHTMLAttributes<HTMLAnchorElement>;
 };
 
-type PreviousNavItem = BaseItem & {
-  type: 'previous';
-  gotoPage: number | undefined;
+type NavBase = BaseItem & {
+  type: NavType;
   anchorProps: AnchorHTMLAttributes<HTMLAnchorElement>;
   buttonProps: ButtonHTMLAttributes<HTMLButtonElement>;
 };
 
-type NextNavItem = BaseItem & {
-  type: 'next';
-  gotoPage: number | undefined;
-  anchorProps: AnchorHTMLAttributes<HTMLAnchorElement>;
-  buttonProps: ButtonHTMLAttributes<HTMLButtonElement>;
+type NavItem = NavBase & {
+  gotoPage: number;
+};
+
+type NavDisabledItem = NavBase & {
+  gotoPage?: undefined;
+  spanAsAnchorProps: HTMLAttributes<HTMLSpanElement>;
 };
 
 type EllipsisItem = BaseItem & {
   type: 'ellipsis';
+  gotoPage?: undefined;
 };
 
-export type PaginationItem = PreviousNavItem | NextNavItem | EllipsisItem | PageItem;
+export type PaginationItem = NavItem | NavDisabledItem | EllipsisItem | PageItem;
 
 export type NavType = 'next' | 'previous';
 
@@ -77,33 +79,43 @@ export const compositionToPaginationItems = (
         const fullType = type === '<' ? 'previous' : 'next';
         const label = type === '<' ? previousLabel : nextLabel;
         const optionsAriaLabel = type === '<' ? ariaPreviousLabel : ariaNextLabel;
-        const ariaLabel = label === optionsAriaLabel ? undefined : optionsAriaLabel;
+        const ariaLabel = optionsAriaLabel === label ? undefined : optionsAriaLabel;
 
         return {
           type: fullType,
           key: `${fullType}${page === undefined ? '_disabled' : ''}`,
           label,
           a11yLabel: ariaLabel,
-          gotoPage: page,
-          anchorProps:
-            page === undefined
-              ? {
+          ...(page === undefined
+            ? {
+                anchorProps: {
                   'aria-label': ariaLabel,
                   'aria-disabled': 'true',
                   role: 'link',
-                }
-              : {
+                },
+                spanAsAnchorProps: {
+                  'aria-label': ariaLabel,
+                  'aria-disabled': 'true',
+                  role: 'link',
+                },
+                buttonProps: {
+                  'aria-label': ariaLabel,
+                  disabled: true,
+                },
+              }
+            : {
+                gotoPage: page,
+                anchorProps: {
                   href: getHref(linkHref, page),
                   onClick:
                     handlePageChange && preventDefault(() => handlePageChange(page)),
                   'aria-label': ariaLabel,
                 },
-          buttonProps: {
-            'aria-label': ariaLabel,
-            ...(page === undefined
-              ? { disabled: true }
-              : { onClick: handlePageChange && (() => handlePageChange(page)) }),
-          },
+                buttonProps: {
+                  onClick: handlePageChange && (() => handlePageChange(page)),
+                  'aria-label': ariaLabel,
+                },
+              }),
         };
       }
       case '…L':
