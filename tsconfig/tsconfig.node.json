@@ -8,8 +8,8 @@
       "ESNext.Iterator",
       "ESNext.Promise"
     ],
+    "types": ["node"],
     "module": "nodenext",
-    "target": "es2024",
-    "moduleResolution": "node16"
+    "target": "es2024"
   }
 }

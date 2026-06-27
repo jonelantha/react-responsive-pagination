@@ -11,6 +11,7 @@ export function JsonTextField({ name, ...rest }: JsonTextFieldProps) {
 
   // sync local value when parent value changes
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLocalValue(stringifyWithUndefined(parentValue));
   }, [parentValue]);
 

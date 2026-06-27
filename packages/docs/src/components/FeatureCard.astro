@@ -41,10 +41,6 @@ const { title } = Astro.props;
         grid-template-rows: auto auto;
       }
 
-      :global(*):last-child {
-        margin-block-end: 0;
-      }
-
       :global(svg) {
         grid-area: icon;
         display: block;
@@ -62,6 +58,10 @@ const { title } = Astro.props;
 
       .content {
         grid-area: body;
+
+        > :global(*:last-child) {
+          margin-block-end: 0;
+        }
       }
     }
   }
