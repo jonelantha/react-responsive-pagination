@@ -1,5 +1,18 @@
 # React Responsive Pagination Changelog
 
+# [2.14.0-beta.1](https://github.com/jonelantha/react-responsive-pagination/compare/v2.13.0...v2.14.0-beta.1) (2026-06-29)
+
+
+### Bug Fixes
+
+* missing `aria-disabled` and `role` added to disabled nav links ([fa8f61e](https://github.com/jonelantha/react-responsive-pagination/commit/fa8f61e79afd5459181a11d9dec9777f6098b75b))
+* package updates ([f1af7c2](https://github.com/jonelantha/react-responsive-pagination/commit/f1af7c2e4c9a4f57e212c851ff0d6e354868a988))
+
+
+### Features
+
+* Extending `renderNav` prop to override how nav elements (`<`/`>`) are rendered, new options `a` = `<a>` (inc disabled items) or `button` = `<button>` ([e4966de](https://github.com/jonelantha/react-responsive-pagination/commit/e4966dedb9f8504313fd2382e76729f953c5baaf))
+
 # [2.13.0](https://github.com/jonelantha/react-responsive-pagination/compare/v2.12.0...v2.13.0) (2026-02-11)
 
 
