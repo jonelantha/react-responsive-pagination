@@ -66,5 +66,4 @@ jobs:
         with:
           name: playwright-report-react-${{ matrix.react-version }}
           path: packages/browser-test/playwright-report/
-          if-no-files-found: error
           retention-days: 30
