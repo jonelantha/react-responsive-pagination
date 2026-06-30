@@ -1,3 +1,6 @@
 {
-  "eslint.workingDirectories": [{ "mode": "auto" }]
+  "eslint.workingDirectories": [{ "mode": "auto" }],
+  "[plaintext]": {
+    "editor.wordWrap": "on"
+  }
 }

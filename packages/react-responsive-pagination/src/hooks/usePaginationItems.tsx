@@ -4,28 +4,32 @@ import { narrowToWideCompositions } from '../compositions/index.ts';
 import { sanatizeInteger, sanatizeBoolean } from '../helpers/util.ts';
 import type { NarrowBehaviour } from '../narrowBehaviour.ts';
 import { compositionToPaginationItems } from '../paginationItem.ts';
+import type { CompositionToPaginationItemsOptions } from '../paginationItem.ts';
 import { useWidestComposition } from './useWidestComposition.ts';
+
+type UsePaginationItemsOptions = Partial<CompositionToPaginationItemsOptions> & {
+  maxWidth?: number;
+  omitNav?: boolean;
+  narrowBehaviour?: NarrowBehaviour;
+};
 
 export function usePaginationItems(
   inputCurrent: number,
   inputTotal: number,
-  maxWidth: number | undefined,
-  options?: {
-    nextLabel?: string | ReactNode;
-    previousLabel?: string | ReactNode;
-    ariaNextLabel?: string;
-    ariaPreviousLabel?: string;
-    ariaPageLabel?: (page: number, active: boolean) => string | undefined;
-    renderNav?: boolean;
-    narrowBehaviour?: NarrowBehaviour;
-  },
+  inputOptions?: UsePaginationItemsOptions,
 ) {
+  const { current, total, options } = sanatizeInputs(
+    inputCurrent,
+    inputTotal,
+    inputOptions,
+  );
+
   const narrowToWideCompositionsProvider = () =>
     narrowToWideCompositions({
-      current: sanatizeInteger(inputCurrent) ?? 0,
-      total: sanatizeInteger(inputTotal) ?? 0,
-      narrowBehaviour: options?.narrowBehaviour,
-      renderNav: sanatizeBoolean(options?.renderNav) ?? true,
+      current,
+      total,
+      narrowBehaviour: options.narrowBehaviour,
+      omitNav: options.omitNav,
     });
 
   const {
@@ -33,10 +37,10 @@ export function usePaginationItems(
     items: compositionItems,
     ref,
     clearCache,
-  } = useWidestComposition(narrowToWideCompositionsProvider, maxWidth);
+  } = useWidestComposition(narrowToWideCompositionsProvider, options.maxWidth);
 
-  const previousLabelCacheKey = labelCacheKey(options?.previousLabel);
-  const nextLabelCacheKey = labelCacheKey(options?.nextLabel);
+  const previousLabelCacheKey = labelCacheKey(options.previousLabel);
+  const nextLabelCacheKey = labelCacheKey(options.nextLabel);
 
   useEffect(() => {
     return () => clearCache();
@@ -45,6 +49,30 @@ export function usePaginationItems(
   const items = compositionToPaginationItems(compositionItems, options);
 
   return { visible, items, ref, clearCache };
+}
+
+function sanatizeInputs(
+  current: number,
+  total: number,
+  options?: UsePaginationItemsOptions,
+) {
+  return {
+    current: sanatizeInteger(current) ?? 0,
+    total: sanatizeInteger(total) ?? 0,
+    options: {
+      handlePageChange: options?.handlePageChange,
+      nextLabel: options?.nextLabel || '»',
+      previousLabel: options?.previousLabel || '«',
+      ariaNextLabel: options?.ariaNextLabel || 'Next',
+      ariaPreviousLabel: options?.ariaPreviousLabel || 'Previous',
+      ariaPageLabel: options?.ariaPageLabel,
+      ariaCurrentAttr: sanatizeBoolean(options?.ariaCurrentAttr) ?? true,
+      linkHref: options?.linkHref ?? 'hash',
+      maxWidth: options?.maxWidth,
+      omitNav: sanatizeBoolean(options?.omitNav) ?? false,
+      narrowBehaviour: options?.narrowBehaviour,
+    },
+  };
 }
 
 function labelCacheKey(item: string | ReactNode) {

@@ -2,7 +2,7 @@ import React, { memo, useEffect } from 'react';
 import type { ReactNode, FC } from 'react';
 import PropTypes from 'prop-types';
 import { usePaginationItems } from './hooks/usePaginationItems.ts';
-import { preventDefault } from './helpers/dom.ts';
+import type { PaginationItem } from './paginationItem.ts';
 import type { NarrowBehaviour } from './narrowBehaviour.ts';
 import type { LabelBehaviour } from './labelBehaviour.ts';
 import { defaultLabelBehaviour } from './labelBehaviour.ts';
@@ -51,26 +51,25 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
     ariaPreviousLabel,
     ariaNextLabel,
     ariaPageLabel,
-    renderNav = true,
+    renderNav = 'anchor-disabled-span',
     ariaCurrentAttr = true,
     linkHref = 'hash',
     labelBehaviour: getLabel = defaultLabelBehaviour,
   } = props;
 
-  const { visible, items, ref, clearCache } = usePaginationItems(
-    current,
-    total,
+  const { visible, items, ref, clearCache } = usePaginationItems(current, total, {
+    handlePageChange,
+    previousLabel,
+    nextLabel,
+    ariaPreviousLabel,
+    ariaNextLabel,
+    ariaPageLabel,
+    ariaCurrentAttr,
+    linkHref,
     maxWidth,
-    {
-      narrowBehaviour,
-      previousLabel,
-      nextLabel,
-      ariaPreviousLabel,
-      ariaNextLabel,
-      ariaPageLabel,
-      renderNav,
-    },
-  );
+    omitNav: ['none', false].includes(renderNav),
+    narrowBehaviour,
+  });
 
   useEffect(() => {
     return () => clearCache();
@@ -103,52 +102,55 @@ function ResponsivePagination(props: ResponsivePaginationProps) {
     }
   }
 
+  function getListItemClassName(item: PaginationItem) {
+    return classNames(classMerge, [
+      pageItemClassName,
+      item.gotoPage === undefined
+        ? disabledItemClassName
+        : item.active
+          ? activeItemClassName
+          : inactiveItemClassName,
+      item.type === 'next' && (nextClassName ?? navClassName),
+      item.type === 'previous' && (previousClassName ?? navClassName),
+    ]);
+  }
+
   return (
     <ul
       className={getContainerClassName()}
       ref={ref}
       {...(!visible && { style: { visibility: 'hidden' } })}
     >
-      {items.map(item =>
-        item.gotoPage !== undefined ? (
-          // item = ClickableItem
-          <li
-            key={item.key}
-            className={classNames(classMerge, [
-              pageItemClassName,
-              item.active ? activeItemClassName : inactiveItemClassName,
-              item.type === 'next' && (nextClassName ?? navClassName),
-              item.type === 'previous' && (previousClassName ?? navClassName),
-            ])}
-            aria-current={item.active && ariaCurrentAttr ? 'page' : undefined}
-          >
-            <a
-              className={pageLinkClassName}
-              href={getHref(linkHref, item.gotoPage)}
-              onClick={preventDefault(() => handlePageChange(item.gotoPage))}
-              aria-label={item.a11yLabel}
-            >
+      {items.map(item => (
+        <li
+          key={item.key}
+          className={getListItemClassName(item)}
+          {...item.listItemProps}
+        >
+          {item.type === 'previous' || item.type === 'next' ? (
+            renderNav === 'button' ? (
+              <button className={pageLinkClassName} {...item.buttonProps}>
+                {getLabel(item)}
+              </button>
+            ) : item.gotoPage !== undefined || renderNav === 'anchor' ? (
+              <a className={pageLinkClassName} {...item.anchorProps}>
+                {getLabel(item)}
+              </a>
+            ) : (
+              <span className={pageLinkClassName} {...item.spanAsAnchorProps}>
+                {getLabel(item)}
+              </span>
+            )
+          ) : item.type === 'ellipsis' ? (
+            <span className={pageLinkClassName}>{getLabel(item)}</span>
+          ) : (
+            // page
+            <a className={pageLinkClassName} {...item.anchorProps}>
               {getLabel(item)}
             </a>
-          </li>
-        ) : (
-          // item = NonClickableItem
-          <li
-            key={item.key}
-            className={classNames(classMerge, [
-              pageItemClassName,
-              disabledItemClassName,
-              item.type === 'next' && (nextClassName ?? navClassName),
-              item.type === 'previous' && (previousClassName ?? navClassName),
-            ])}
-            aria-hidden={item.a11yHidden}
-          >
-            <span className={pageLinkClassName} aria-label={item.a11yLabel}>
-              {getLabel(item)}
-            </span>
-          </li>
-        ),
-      )}
+          )}
+        </li>
+      ))}
     </ul>
   );
 }
@@ -158,19 +160,6 @@ function classNames(
   names: (string | false | undefined)[],
 ) {
   return classMerge(names.filter((name): name is string => Boolean(name)));
-}
-
-function getHref(
-  linkHref: ((page: number) => string) | 'hash' | 'omit',
-  page: number,
-) {
-  if (typeof linkHref === 'function') {
-    return linkHref(page);
-  } else if (linkHref === 'hash') {
-    return '#';
-  } else {
-    return undefined;
-  }
 }
 
 const defaultClassMerge = (classNames: string[]) => classNames.join(' ');
@@ -202,7 +191,7 @@ export type ResponsivePaginationProps = {
   ariaPreviousLabel?: string;
   ariaNextLabel?: string;
   ariaPageLabel?: (page: number, active: boolean) => string | undefined;
-  renderNav?: boolean;
+  renderNav?: boolean | 'none' | 'anchor' | 'anchor-disabled-span' | 'button';
   ariaCurrentAttr?: boolean;
   linkHref?: ((page: number) => string) | 'hash' | 'omit';
   labelBehaviour?: LabelBehaviour;
@@ -232,7 +221,10 @@ ResponsivePagination.propTypes = {
   ariaPreviousLabel: PropTypes.string,
   ariaNextLabel: PropTypes.string,
   ariaPageLabel: PropTypes.func,
-  renderNav: PropTypes.bool,
+  renderNav: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(['none', 'anchor', 'anchor-disabled-span', 'button'] as const),
+  ]),
   ariaCurrentAttr: PropTypes.bool,
   linkHref: PropTypes.oneOfType([
     PropTypes.func,

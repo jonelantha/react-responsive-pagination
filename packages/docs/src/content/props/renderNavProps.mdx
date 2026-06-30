@@ -1,8 +1,19 @@
 import PropDef from '@components/PropDef.astro';
 
 <Fragment>
-  <PropDef name="renderNav" type="boolean" defaultValue="true">
-    When set to `false` the nav buttons (**«**/**»**) will not be rendered. Defaults
-    to `true`
+  <PropDef
+    name="renderNav"
+    type="boolean | 'none' | 'anchor' | 'anchor-disabled-span' | 'button'"
+    defaultValue="'anchor-disabled-span'"
+  >
+    How the nav items (**«**/**»**) are rendered (or whether nav is omitted):
+
+    `anchor` — render **\<a>** for nav items<br />
+    `anchor-disabled-span` — **\<a>**  when enabled, **\<span>** when disabled<br />
+    `button` — render **\<button>** for nav items<br />
+    `none` (or `false`) — nav items not rendered
+
+    Defaults to `anchor-disabled-span`
+
   </PropDef>
 </Fragment>

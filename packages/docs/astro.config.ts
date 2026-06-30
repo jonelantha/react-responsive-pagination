@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import { fileURLToPath } from 'node:url';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
@@ -21,7 +22,12 @@ export default defineConfig({
   trailingSlash: 'never',
 
   vite: {
-    // @ts-expect-error incorrect tailwindcss types
+    resolve: {
+      alias: {
+        // temporary here (and not in tsconfig) https://github.com/vitejs/vite/issues/22766
+        '@styles': fileURLToPath(new URL('./src/styles', import.meta.url)),
+      },
+    },
     plugins: [tailwindcss()],
   },
 });
