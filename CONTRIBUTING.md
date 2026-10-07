@@ -6,7 +6,7 @@ This is an npm workspaces monorepo. Run everything from the repo root.
 npm ci
 ```
 
-Note: `.npmrc` sets `ignore-scripts=true` (install scripts don't run) and `save-exact=true` (new dependencies are pinned to exact versions).
+Note: `.npmrc` sets `ignore-scripts=true` (install scripts don't run), `save-exact=true` (new dependencies are pinned to exact versions) and `min-release-age=7` (npm only resolves package versions that were published at least 7 days ago, as a supply chain precaution; requires a recent npm — check `npm config get min-release-age` prints `7`). Don't override it (e.g. `--min-release-age=0`) without the maintainer's explicit approval, even if a newer version is available.
 
 ## Packages
 
