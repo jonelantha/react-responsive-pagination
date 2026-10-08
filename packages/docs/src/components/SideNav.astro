@@ -41,47 +41,43 @@ function isExpanded(doc: CollectionEntry<'docs'>) {
     </button>
   </div>
   <ul class="root">
-    {
-      docsWithHeadings.map((doc, index) => (
-        <li class:list={{ expanded: isExpanded(doc) }}>
-          <div class="section">
-            <a href={getPageUrl(doc)} class:list={{ active: isActive(doc) }}>
-              {doc.data.navTitle}
-            </a>
-            <button
-              aria-label={`${
-                isExpanded(doc) ? 'Hide' : 'Show'
-              } '${doc.data.title}' sections`}
-              aria-expanded={isExpanded(doc) ? 'true' : 'false'}
-              aria-controls={`sections_${index}`}
-            >
-              <ChevronSVG aria-hidden />
-            </button>
-          </div>
-          <div class="expander">
-            <ul id={`sections_${index}`}>
-              {doc.data.addOverview && (
-                <li>
-                  <a href={getPageUrl(doc)}>Overview</a>
-                </li>
-              )}
-              {doc.headings.map(heading => (
-                <li>
-                  <a href={getPageUrl(doc, heading.slug)}>{heading.text}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </li>
-      ))
-    }
+    {docsWithHeadings.map((doc, index) => (
+      <li class:list={{ expanded: isExpanded(doc) }}>
+        <div class="section">
+          <a href={getPageUrl(doc)} class:list={{ active: isActive(doc) }}>
+            {doc.data.navTitle}
+          </a>
+          <button
+            aria-label={`${
+              isExpanded(doc) ? 'Hide' : 'Show'
+            } '${doc.data.title}' sections`}
+            aria-expanded={isExpanded(doc) ? 'true' : 'false'}
+            aria-controls={`sections_${index}`}
+          >
+            <ChevronSVG aria-hidden />
+          </button>
+        </div>
+        <div class="expander">
+          <ul id={`sections_${index}`}>
+            {doc.data.addOverview && (
+              <li>
+                <a href={getPageUrl(doc)}>Overview</a>
+              </li>
+            )}
+            {doc.headings.map(heading => (
+              <li>
+                <a href={getPageUrl(doc, heading.slug)}>{heading.text}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </li>
+    ))}
     <li class="popup-only">
       <a href="/live-demo">Live Demo</a>
     </li>
     <li class="popup-only">
-      <ExternalLink
-        href="https://www.github.com/jonelantha/react-responsive-pagination"
-      >
+      <ExternalLink href="https://www.github.com/jonelantha/react-responsive-pagination">
         GitHub
       </ExternalLink>
     </li>

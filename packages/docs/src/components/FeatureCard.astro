@@ -10,7 +10,9 @@ const { title } = Astro.props;
   <div class="layout">
     <slot name="icon" />
     <div class="title">{title}</div>
-    <div class="content"><slot /></div>
+    <div class="content">
+      <slot />
+    </div>
   </div>
 </li>
 

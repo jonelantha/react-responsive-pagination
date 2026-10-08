@@ -11,13 +11,17 @@ const { title, cta, ctaLink } = Astro.props;
 ---
 
 <li>
-  <a class="cardLink" href={ctaLink} aria-hidden="true" tabindex="-1">&nbsp;</a>
+  <a class="cardLink" href={ctaLink} aria-hidden="true" tabindex="-1">
+    &nbsp;
+  </a>
   <div class="title">{title}</div>
   <slot />
   <div class="body">
     <slot name="body" />
   </div>
-  <CTALink class="ctaLink" href={ctaLink}>{cta}</CTALink>
+  <CTALink class="ctaLink" href={ctaLink}>
+    {cta}
+  </CTALink>
 </li>
 
 <style lang="scss">

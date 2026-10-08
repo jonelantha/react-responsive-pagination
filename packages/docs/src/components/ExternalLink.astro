@@ -7,9 +7,17 @@ type Props = HTMLAttributes<'a'>;
 const props = Astro.props;
 ---
 
-<a {...props} rel="noopener noreferrer"><slot /><ExternalSVG aria-hidden /></a>
+<a {...props} rel="noopener noreferrer">
+  <slot />
+  <ExternalSVG aria-hidden />
+</a>
 
 <style lang="scss">
+  a {
+    display: inline-flex;
+    align-items: baseline;
+  }
+
   svg {
     margin-left: 0.4em;
     width: 0.8em;
