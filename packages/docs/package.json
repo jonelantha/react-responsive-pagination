@@ -18,7 +18,7 @@
     "astro": "7.3.5",
     "astro-expressive-code": "0.44.2",
     "autoprefixer": "10.6.1",
-    "eslint-plugin-astro": "1.7.0",
+    "eslint-plugin-astro": "3.2.1",
     "nanostores": "1.5.4",
     "prettier-plugin-astro": "1.1.0",
     "sass": "1.105.1",
