@@ -72,9 +72,9 @@
   },
   "devDependencies": {
     "@microsoft/api-extractor": "7.58.9",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/changelog": "7.0.0",
+    "@semantic-release/git": "11.0.1",
     "@types/prop-types": "^15.7.5",
-    "semantic-release": "25.0.5"
+    "semantic-release": "25.0.9"
   }
 }
