@@ -2,5 +2,6 @@
   "extends": "./tsconfig",
   "compilerOptions": {
     "declarationDir": "./temp/types"
-  }
+  },
+  "exclude": ["./src/**/*.test.ts"]
 }
