@@ -19,9 +19,14 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: 0,
-  reporter: process.env.CI ? 'github' : quick ? 'list' : 'html',
+  // in CI also write the HTML report (with traces of failures) for the artifact upload
+  reporter: process.env.CI
+    ? [['github'], ['html', { open: 'never' }]]
+    : quick
+      ? 'list'
+      : 'html',
   use: {
-    trace: 'on-first-retry',
+    trace: 'retain-on-failure',
     baseURL,
   },
 
