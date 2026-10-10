@@ -2,7 +2,7 @@ import PropDef from '@components/PropDef.astro';
 import ExtraClassNameProp from './extraClassNameProp.mdx';
 
 <Fragment>
-  <PropDef name='linkHref' type="'hash' | 'omit' | (page: number) => string" defaultValue='undefined'>
+  <PropDef name='linkHref' type="'hash' | 'omit' | (page: number) => string" defaultValue='hash'>
     Set `linkHref` to `omit` to omit `href='#'` from the page item **\<a>** tags
 
     Set `linkHref` to a callback to set each item's href to a url. The callback takes the item's page as a parameter, this allows the generated url to include the page number, example:
@@ -10,7 +10,7 @@ import ExtraClassNameProp from './extraClassNameProp.mdx';
     ```jsx
     <ResponsivePagination
       //...
-      href={page => `/results/${page}`}
+      linkHref={page => `/results/${page}`}
     />
     ```
 
