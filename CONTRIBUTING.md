@@ -27,6 +27,7 @@ These mirror CI (`.github/workflows/test.yml`); run them in this order:
 npm run build              # library build (tsc + api-extractor). Required before integration/browser tests
 npm run tsc                # type check all workspaces
 npm run lint               # eslint all workspaces
+npm run format-check       # prettier --check (fix with `npx prettier --write <files>`)
 npm test                   # unit tests (node --test, src/**/*.test.ts)
 npm run integration-test   # needs a fresh build
 ```
@@ -59,7 +60,7 @@ Other servers: `npm run start-docs` (docs dev server), `npm run build-docs` (lin
 Avoid watch/dev servers, `--headed`, `--debug` and `--ui`. Use one-shot commands that exit:
 
 ```bash
-npm run check                # build + tsc + lint + unit + integration tests
+npm run check                # build + tsc + lint + format + unit + integration tests
 
 # Rebuilds the library and React 19 harness, then runs chromium only with the list reporter.
 # Extra args go to Playwright, so narrow while debugging:

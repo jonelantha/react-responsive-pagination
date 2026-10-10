@@ -12,7 +12,7 @@
     "test": "npm run test -w react-responsive-pagination",
     "integration-test": "npm run test -w integration-test",
     "start-test-harness": "npm run start -w test-harness-react-19",
-    "check": "npm run build && npm run tsc && npm run lint && npm run test && npm run integration-test",
+    "check": "npm run build && npm run tsc && npm run lint && npm run format-check && npm run test && npm run integration-test",
     "browser-test-17": "node scripts/browser-test.ts 17",
     "browser-test-18": "node scripts/browser-test.ts 18",
     "browser-test-19": "node scripts/browser-test.ts 19",
@@ -22,7 +22,8 @@
     "build-docs": "npm run build -w docs",
     "tsc": "npm run tsc-config && npm run tsc --workspaces",
     "tsc-config": "tsc --p ./tsconfig/tsconfig.config-files.json",
-    "lint": "npm run lint --workspaces"
+    "lint": "npm run lint --workspaces",
+    "format-check": "prettier --check ."
   },
   "dependencies": {
     "@eslint/js": "10.0.1",
