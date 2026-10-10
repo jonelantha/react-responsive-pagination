@@ -1,5 +1,14 @@
 # React Responsive Pagination Changelog
 
+## [2.14.1-beta.1](https://github.com/jonelantha/react-responsive-pagination/compare/v2.14.0...v2.14.1-beta.1) (2026-10-10)
+
+
+### Bug Fixes
+
+* **deps:** migrate to ESLint 10 ([476fa7a](https://github.com/jonelantha/react-responsive-pagination/commit/476fa7afe4aa9f6e929acf977dcfc645ead8af20))
+* **deps:** update build tooling for the published package ([4a404fd](https://github.com/jonelantha/react-responsive-pagination/commit/4a404fdb2ea7c2737fc06af64c3fb047985ab935))
+* exclude test files from the published package ([03051e0](https://github.com/jonelantha/react-responsive-pagination/commit/03051e0a37f60cd38ceba5d2534be8e772a5856b))
+
 # [2.14.0](https://github.com/jonelantha/react-responsive-pagination/compare/v2.13.0...v2.14.0) (2026-06-30)
 
 
