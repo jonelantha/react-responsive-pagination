@@ -34,7 +34,6 @@ export default defineConfig({
     webServer: {
       command: process.env.SERVE_COMMAND,
       url: baseURL,
-      reuseExistingServer: !process.env.CI,
     },
   }),
 });

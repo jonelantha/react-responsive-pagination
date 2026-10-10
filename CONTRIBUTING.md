@@ -39,7 +39,7 @@ npx playwright install                 # first time only
 npm run browser-test-19                # also browser-test-18 / browser-test-17
 ```
 
-`browser-test-<n>` is a thin wrapper around [scripts/browser-test.ts](scripts/browser-test.ts), which builds the library and the matching harness, serves the harness with `vite preview` and runs the whole suite. The script owns the port and the wiring between the harness and browser-test packages. Any extra args are passed to Playwright, e.g. `npm run browser-test-19 -- --project=chromium labels.spec.ts`.
+`browser-test-<n>` is a thin wrapper around [scripts/browser-test.ts](scripts/browser-test.ts), which builds the library and the matching harness, serves the harness with `vite preview` and runs the whole suite. The script owns the port and the wiring between the harness and browser-test packages. Any extra args are passed to Playwright, e.g. `npm run browser-test-19 -- --project=chromium labels.spec.ts`. The harness is served on port 3000 plus the React version (3019 for React 19); set `PORT` to use another port (an occupied port makes the run fail instead of reusing whatever is listening).
 
 ## Development workflows
 
@@ -69,7 +69,7 @@ npm run browser-test-quick -- labels.spec.ts -g "ariaNextLabel"
 
 - Playwright starts and stops the preview server itself; there's nothing to clean up.
 - Failures print the diff against the committed text snapshot, which is usually enough. Add `--trace=on` for more detail.
-- Run the full `npm run browser-test-<n>` matrix (all browsers, React 17/18/19) only as a final check, with `--reporter=list` (or `CI=1`): the default HTML reporter opens a report server on failure and blocks.
+- Run the full `npm run browser-test-<n>` matrix (all browsers, React 17/18/19) only as a final check.
 - Add `--update-snapshots` only for intentional changes, then review the diff.
 - `npm run check` should be kept in step with the core steps in `.github/workflows/test.yml`.
 
