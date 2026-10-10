@@ -48,7 +48,7 @@
     "release-dry-run": "semantic-release --dry-run",
     "api-extractor": "api-extractor run --local --verbose",
     "copy-extra-types": "cp ./src/*.d.ts ./dist && cp ./temp/types/debug.d.ts ./dist",
-    "tsc": "tsc"
+    "tsc": "tsc --noEmit"
   },
   "keywords": [
     "responsive",
