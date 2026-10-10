@@ -43,10 +43,15 @@ run('npm', ['run', 'test-prod', '-w', 'browser-test', '--', ...playwrightArgs], 
 function run(command: string, args: string[], env: Record<string, string> = {}) {
   console.log(`\n> ${[command, ...args].join(' ')}`);
 
-  const { status } = spawnSync(command, args, {
+  const { status, error } = spawnSync(command, args, {
     stdio: 'inherit',
     env: { ...process.env, ...env },
   });
+
+  if (error) {
+    console.error(`failed to run ${command}: ${error.message}`);
+    process.exit(1);
+  }
 
   if (status !== 0) process.exit(status ?? 1);
 }
