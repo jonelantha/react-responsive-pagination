@@ -45,7 +45,7 @@
     "lint": "eslint",
     "clean": "node -e \"fs.rmSync('./dist', { recursive: true, force: true });\"",
     "release": "rm ../../package.json && semantic-release",
-    "previewReleaseNotes": "semantic-release --dry-run",
+    "release-dry-run": "semantic-release --dry-run",
     "api-extractor": "api-extractor run --local --verbose",
     "copy-extra-types": "cp ./src/*.d.ts ./dist && cp ./temp/types/debug.d.ts ./dist",
     "tsc": "tsc"

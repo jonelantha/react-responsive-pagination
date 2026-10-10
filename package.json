@@ -9,6 +9,7 @@
     "start": "npm run start -w react-responsive-pagination",
     "build": "npm run build -w react-responsive-pagination",
     "release": "npm run release -w react-responsive-pagination",
+    "release-dry-run": "npm run release-dry-run -w react-responsive-pagination",
     "test": "npm run test -w react-responsive-pagination",
     "integration-test": "npm run test -w integration-test",
     "start-test-harness": "npm run start -w test-harness-react-19",
