@@ -37,6 +37,8 @@ jobs:
         run: npm run test
       - name: Integration Tests
         run: npm run integration-test
+      - name: Docs Build
+        run: npm run build-docs
 
   browser-tests:
     name: Browser Tests (React ${{ matrix.react-version }})

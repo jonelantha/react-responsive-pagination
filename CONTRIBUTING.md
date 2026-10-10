@@ -30,6 +30,7 @@ npm run lint               # eslint all workspaces
 npm run format-check       # prettier --check (fix with `npx prettier --write <files>`)
 npm test                   # unit tests (node --test, src/**/*.test.ts)
 npm run integration-test   # needs a fresh build
+npm run build-docs         # docs site: lint + astro build
 ```
 
 Browser tests (Playwright, chromium/firefox/webkit) — CI runs these once per React version:
@@ -53,14 +54,14 @@ npm run start-test-harness   # React 19 harness dev server, uses the watched lib
 npm run browser-test-dev     # headed Playwright (chromium) against the running harness
 ```
 
-Other servers: `npm run start-docs` (docs dev server), `npm run build-docs` (lint + build docs).
+Other servers: `npm run start-docs` (docs dev server).
 
 ### Non-interactive (agents / scripts)
 
 Avoid watch/dev servers, `--headed`, `--debug` and `--ui`. Use one-shot commands that exit:
 
 ```bash
-npm run check                # build + tsc + lint + format + unit + integration tests
+npm run check                # build + tsc + lint + format + unit + integration tests + docs build
 
 # Rebuilds the library and React 19 harness, then runs chromium only with the list reporter.
 # Extra args go to Playwright, so narrow while debugging:

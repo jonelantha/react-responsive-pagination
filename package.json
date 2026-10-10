@@ -13,7 +13,7 @@
     "test": "npm run test -w react-responsive-pagination",
     "integration-test": "npm run test -w integration-test",
     "start-test-harness": "npm run start -w test-harness-react-19",
-    "check": "npm run build && npm run tsc && npm run lint && npm run format-check && npm run test && npm run integration-test",
+    "check": "npm run build && npm run tsc && npm run lint && npm run format-check && npm run test && npm run integration-test && npm run build-docs",
     "browser-test-17": "node scripts/browser-test.ts 17",
     "browser-test-18": "node scripts/browser-test.ts 18",
     "browser-test-19": "node scripts/browser-test.ts 19",
