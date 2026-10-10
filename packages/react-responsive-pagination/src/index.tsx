@@ -181,7 +181,6 @@ export type ResponsivePaginationProps = {
   activeItemClassName?: string;
   inactiveItemClassName?: string;
   disabledItemClassName?: string;
-  disabledLinkClassName?: string;
   navClassName?: string;
   previousClassName?: string;
   nextClassName?: string;
@@ -211,7 +210,6 @@ ResponsivePagination.propTypes = {
   activeItemClassName: PropTypes.string,
   inactiveItemClassName: PropTypes.string,
   disabledItemClassName: PropTypes.string,
-  disabledLinkClassName: PropTypes.string,
   navClassName: PropTypes.string,
   previousClassName: PropTypes.string,
   nextClassName: PropTypes.string,
