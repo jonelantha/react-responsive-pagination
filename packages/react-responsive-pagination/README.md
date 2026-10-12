@@ -11,7 +11,7 @@ Perfect for responsive dashboards, tables and any layout that resizes
 
 ✅ Automatically adapts to container width (no CSS breakpoints needed)  
 ✅ Fully accessible with aria tags for screen readers  
-✅ React 16+ and SSR-friendly (Next.js, Remix and similar)  
+✅ React 16.8+, TypeScript types included and SSR-friendly (Next.js, Remix and similar)  
 ✅ [Many styling options](#-styling-options): Built-in themes, Tailwind, Custom CSS & Bootstrap
 
 <a href="https://react-responsive-pagination.elantha.com"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/react-responsive-pagination-dark.gif" width="978"><img alt="react-responsive-pagination example" src="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/react-responsive-pagination.gif" width="978"></picture></a>
@@ -46,14 +46,16 @@ function MyApp() {
 }
 ```
 
-- `current` _number_: active page number
-- `total` _number_: total number of pages
-- `onPageChange` _(page: number) => void_: callback when new page selected
+- `current` _number_: active page number (starts at 1)
+- `total` _number_: total number of pages (e.g. `Math.ceil(totalItems / pageSize)`)
+- `onPageChange` _(page: number) => void_: callback when new page selected (update `current` here)
 - ... many more props - see [full props list](https://react-responsive-pagination.elantha.com/props)
 
 See [styling options](#-styling-options) below for links to styling guides
 
 ## 🎨 Styling options
+
+The component ships no styles of its own, so choose one of the options below:
 
 | Option                                                                                                                                                                                                                                                                                                                                                                           | More Info                                                                                                                                                                                                                   |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -77,6 +79,15 @@ import 'react-responsive-pagination/themes/classic-light-dark.css';
 | minimal-light-dark.css                                   | <a href="https://react-responsive-pagination.elantha.com/themes#3-minimal-theme"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/theme-previews/minimal-dark.png" width="169"><img src="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/theme-previews/minimal.png" width="169" alt="minimal pagination" /></picture></a>                           |
 
 Themes also available as light only, please see the [Themes guide](https://react-responsive-pagination.elantha.com/themes) for more details (including overridable theme attributes)
+
+## 🧩 Integration notes
+
+Things to know when adding the component to a project:
+
+- **It fills its parent's width** - the parent element should have a width that doesn't depend on its content (see the [FAQ](https://react-responsive-pagination.elantha.com/faq#about-auto-sizing)); `maxWidth` overrides the measured width
+- **Next.js App Router** - the component is a Client Component, so it can be rendered from a Server Component, but functions (`onPageChange`, `linkHref` callbacks and so on) can't be passed down from the server. Usually that means a small `'use client'` file that holds the page state; alternatively pass a Server Action as `onPageChange`
+- **URL based paging** - by default links have `href="#"`; set ``linkHref={page => `?page=${page}`}`` for real URLs (clicks still call `onPageChange` rather than following the link)
+- **ESM only** - the package only has ESM exports, see the [FAQ](https://react-responsive-pagination.elantha.com/faq#esm-only) for details
 
 ## ℹ️ More Info
 

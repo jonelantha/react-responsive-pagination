@@ -5,7 +5,7 @@ import PropDef from '@components/PropDef.astro';
     The current active page. Indexed from 1
   </PropDef>
   <PropDef name="total" type="number">
-    The total number of pages
+    The total number of pages (for example `Math.ceil(totalItems / pageSize)`). `current` is kept within `1..total` and nothing is rendered when `total` is less than 1
   </PropDef>
   <PropDef name="onPageChange" type="(newPage: number) => void">
     A callback handler which is called when the user clicks a new page. The `newPage`
