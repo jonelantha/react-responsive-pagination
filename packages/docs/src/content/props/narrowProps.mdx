@@ -4,7 +4,9 @@ import PropDef from '@components/PropDef.astro';
   <PropDef name='narrowBehaviour' type="NarrowBehaviour" defaultValue='undefined'>
     Specify that nav buttons (**«**/**»**) and/or the ellipsis (**…**) can be dropped for very narrow widths (useful if the component is used in narrow widths with high page numbers)
 
-    Valid behaviours should be imported from `react-responsive-pagination/narrowBehaviour`, example:
+    Only the behaviours exported from `react-responsive-pagination/narrowBehaviour` (listed below), or those returned by the `combine` helper, are supported. Custom behaviours are not supported and may stop working in a future major release (behaviours are opaque values, their internals are not part of the public API)
+
+    Import them from `react-responsive-pagination/narrowBehaviour`, example:
 
     ```jsx
     import ResponsivePagination from 'react-responsive-pagination';

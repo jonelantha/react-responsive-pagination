@@ -17,6 +17,8 @@ import ExtraClassNameProp from './extraClassNameProp.mdx';
       />
     ```
 
+    Only `srOnlySpanLabel` (imported from `react-responsive-pagination/labelBehaviour`) is supported. Custom label behaviours are not supported and may stop working in a future major release (label behaviours are opaque values, their internals are not part of the public API)
+
     By default 'sr-only' is used as the class for the visually hidden spans. To override this, pass `srOnlyClassName`:
 
     ```jsx
