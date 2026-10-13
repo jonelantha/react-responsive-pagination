@@ -1,6 +1,6 @@
 // @ts-check
 
-import astroEslintParser from 'astro-eslint-parser';
+import * as astroEslintParser from 'astro-eslint-parser';
 import eslintPluginAstro from 'eslint-plugin-astro';
 import { defineConfig } from 'eslint/config';
 import { baseReactConfig, baseTsNoParseConfig } from '../../eslint.config.js';

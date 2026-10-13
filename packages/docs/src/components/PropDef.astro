@@ -15,7 +15,9 @@ const { type, defaultValue, name } = Astro.props;
     <br />
     <em>{defaultValue ? '(optional)' : '(required)'}</em>
   </td>
-  <td><slot /></td>
+  <td>
+    <slot />
+  </td>
 </tr>
 
 <style lang="scss">

@@ -1,5 +1,6 @@
 name: Deploy Docs Dev
 on: workflow_dispatch
+cache-mode: none
 concurrency:
   group: docs-dev-${{ github.ref }}
   cancel-in-progress: true

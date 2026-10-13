@@ -6,6 +6,6 @@
     "skipLibCheck": true,
     "noEmit": true
   },
-  "include": ["../**/*.config.*", "../**/.prettierrc.*"],
+  "include": ["../**/*.config.*", "../**/.prettierrc.*", "../scripts/**/*.ts"],
   "exclude": ["../**/docs/**/content.config.*"]
 }

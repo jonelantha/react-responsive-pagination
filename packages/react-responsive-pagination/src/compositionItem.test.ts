@@ -72,14 +72,7 @@ describe('containsEllipsis', () => {
 });
 
 type CompositionShorthandItem =
-  | '<'
-  | `<${number}`
-  | '>'
-  | `>${number}`
-  | number
-  | `*${number}`
-  | '…L'
-  | '…R';
+  '<' | `<${number}` | '>' | `>${number}` | number | `*${number}` | '…L' | '…R';
 
 export const shorthandOf = (received: CompositionItem[] | void) =>
   received?.map<CompositionShorthandItem>(({ type, page }) => {

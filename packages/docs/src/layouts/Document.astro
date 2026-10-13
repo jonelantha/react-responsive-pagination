@@ -21,7 +21,9 @@ const { popupNavOnly = false, noArticlePadding = false } = Astro.props;
     <TopNav class="topNav" transition:persist transition:animate="none" />
     <SideNav class="sideNav" transition:persist transition:animate="none" />
     <div id="popupSideNavBackground" transition:persist></div>
-    <article class="content"><slot /></article>
+    <article class="content">
+      <slot />
+    </article>
     <Footer class="footer" />
   </main>
 </body>

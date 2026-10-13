@@ -45,10 +45,10 @@
     "lint": "eslint",
     "clean": "node -e \"fs.rmSync('./dist', { recursive: true, force: true });\"",
     "release": "rm ../../package.json && semantic-release",
-    "previewReleaseNotes": "semantic-release --dry-run",
+    "release-dry-run": "semantic-release --dry-run",
     "api-extractor": "api-extractor run --local --verbose",
     "copy-extra-types": "cp ./src/*.d.ts ./dist && cp ./temp/types/debug.d.ts ./dist",
-    "tsc": "tsc"
+    "tsc": "tsc --noEmit"
   },
   "keywords": [
     "responsive",
@@ -71,10 +71,10 @@
     "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
-    "@microsoft/api-extractor": "7.58.9",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
+    "@microsoft/api-extractor": "7.59.3",
+    "@semantic-release/changelog": "7.0.0",
+    "@semantic-release/git": "11.0.1",
     "@types/prop-types": "^15.7.5",
-    "semantic-release": "25.0.5"
+    "semantic-release": "25.0.9"
   }
 }

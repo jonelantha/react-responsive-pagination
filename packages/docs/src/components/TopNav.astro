@@ -25,13 +25,11 @@ const starCount = await getStarCount();
     <span aria-hidden>🐼</span>
     react-responsive-pagination
   </a>
-  {
-    links.map(doc => (
-      <a href={getPageUrl(doc)} class="navLink">
-        {doc.data.topNavTitle ?? doc.data.navTitle}
-      </a>
-    ))
-  }
+  {links.map(doc => (
+    <a href={getPageUrl(doc)} class="navLink">
+      {doc.data.topNavTitle ?? doc.data.navTitle}
+    </a>
+  ))}
   <div class="gitHubLinks">
     <a
       class="gitHubLink"

@@ -12,6 +12,8 @@ function getDryRunConfig(): GlobalConfig {
     plugins: [
       ['@semantic-release/commit-analyzer', getCommitAnalyzerConfig()],
       '@semantic-release/release-notes-generator',
+      ['@semantic-release/changelog', getChangelogConfig()],
+      ['@semantic-release/git', getGitConfig()],
     ],
     tagFormat: 'v${version}',
   };
@@ -31,23 +33,25 @@ function getNormalConfig(): GlobalConfig {
     plugins: [
       ['@semantic-release/commit-analyzer', getCommitAnalyzerConfig()],
       '@semantic-release/release-notes-generator',
-      [
-        '@semantic-release/changelog',
-        {
-          changelogTitle: '# React Responsive Pagination Changelog',
-        },
-      ],
+      ['@semantic-release/changelog', getChangelogConfig()],
       '@semantic-release/npm',
       '@semantic-release/github',
-      [
-        '@semantic-release/git',
-        {
-          assets: ['CHANGELOG.md', 'package.json'],
-          successComment: false,
-        },
-      ],
+      ['@semantic-release/git', getGitConfig()],
     ],
     tagFormat: 'v${version}',
+  };
+}
+
+function getChangelogConfig() {
+  return {
+    changelogTitle: '# React Responsive Pagination Changelog',
+  };
+}
+
+function getGitConfig() {
+  return {
+    assets: ['CHANGELOG.md', 'package.json'],
+    successComment: false,
   };
 }
 

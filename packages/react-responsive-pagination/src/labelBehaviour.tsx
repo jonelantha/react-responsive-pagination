@@ -27,7 +27,6 @@ export function srOnlySpanLabel({
   a11yActiveLabel?: string;
   srOnlyClassName?: string;
 } = {}) {
-  // eslint-disable-next-line react/display-name
   return (item: PaginationItem): ReactNode => {
     const activePage = item.gotoPage !== undefined && item.active;
     const srOnlyLabel =

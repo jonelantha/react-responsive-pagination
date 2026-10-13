@@ -15,7 +15,9 @@ const { title, hasBackground, headingId } = Astro.props;
     'has-background': hasBackground,
   }}
 >
-  <h2 id={headingId}><BreakableLines content={title} /></h2>
+  <h2 id={headingId}>
+    <BreakableLines content={title} />
+  </h2>
   <slot />
 </section>
 

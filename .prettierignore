@@ -1,0 +1,6 @@
+dist
+.astro
+/packages/react-responsive-pagination/temp
+playwright-report
+test-results
+CHANGELOG.md
