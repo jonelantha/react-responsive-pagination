@@ -18,6 +18,7 @@
     "browser-test-18": "node scripts/browser-test.ts 18",
     "browser-test-19": "node scripts/browser-test.ts 19",
     "browser-test-quick": "node scripts/browser-test.ts 19 --quick",
+    "package-size": "node scripts/package-size.ts",
     "browser-test-dev": "npm run test-dev-chrome -w browser-test",
     "start-docs": "npm run dev -w docs",
     "build-docs": "npm run build -w docs",
