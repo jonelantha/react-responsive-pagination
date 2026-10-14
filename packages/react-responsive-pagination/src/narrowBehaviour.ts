@@ -142,6 +142,7 @@ export function* dropFirstAndLast(
 }
 
 /**
+ * @deprecated Use `combine(dropEllipsis, dropNav)` instead.
  * @public
  */
 export function* dropEllipsisThenNav(
@@ -156,6 +157,7 @@ export function* dropEllipsisThenNav(
 }
 
 /**
+ * @deprecated Use `combine(dropNav, dropEllipsis)` instead.
  * @public
  */
 export function* dropNavThenEllipsis(

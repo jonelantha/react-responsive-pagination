@@ -27,8 +27,10 @@ function getSingleNarrowBehaviour(narrowBehaviourName: unknown) {
     case 'dropNav':
       return dropNav;
     case 'dropEllipsisThenNav':
+      // eslint-disable-next-line @typescript-eslint/no-deprecated -- deprecated but still supported, so still tested
       return dropEllipsisThenNav;
     case 'dropNavThenEllipsis':
+      // eslint-disable-next-line @typescript-eslint/no-deprecated -- deprecated but still supported, so still tested
       return dropNavThenEllipsis;
     case 'dropFirstAndLast':
       return dropFirstAndLast;
