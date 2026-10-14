@@ -22,6 +22,10 @@ export function defaultLabelBehaviour({
 }
 
 /**
+ * Renders the v1 style visually hidden label spans for screen readers. Pass the
+ * result as `labelBehaviour`.
+ *
+ * @see https://react-responsive-pagination.elantha.com/props#labelBehaviour
  * @public
  */
 export function srOnlySpanLabel({

@@ -31,6 +31,9 @@ type NarrowBehaviourMetaData = {
 };
 
 /**
+ * Drops the ellipsis (…) at narrow widths.
+ *
+ * @see https://react-responsive-pagination.elantha.com/props#narrowBehaviour
  * @public
  */
 export function* dropEllipsis(
@@ -67,6 +70,9 @@ export function* dropEllipsis(
 }
 
 /**
+ * Drops the previous and next items (« and ») at narrow widths.
+ *
+ * @see https://react-responsive-pagination.elantha.com/props#narrowBehaviour
  * @public
  */
 export function* dropNav(initialComposition: ReadonlyArray<CompositionItem>) {
@@ -74,6 +80,9 @@ export function* dropNav(initialComposition: ReadonlyArray<CompositionItem>) {
 }
 
 /**
+ * Drops the first and last pages at narrow widths.
+ *
+ * @see https://react-responsive-pagination.elantha.com/props#narrowBehaviour
  * @public
  */
 export function* dropFirstAndLast(

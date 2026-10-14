@@ -169,31 +169,206 @@ const defaultClassMerge = (classNames: string[]) => classNames.join(' ');
  * @public
  */
 export type ResponsivePaginationProps = {
+  /**
+   * The current active page, starting at 1. This is a controlled component:
+   * update this value from `onPageChange`.
+   *
+   * @see https://react-responsive-pagination.elantha.com/props#current
+   */
   current: number;
+  /**
+   * The total number of pages, for example `Math.ceil(totalItems / pageSize)`.
+   * Nothing is rendered when this is less than 1.
+   *
+   * @see https://react-responsive-pagination.elantha.com/props#total
+   */
   total: number;
+  /**
+   * Called with the new page (starting at 1) when the user selects a page. The
+   * active page only changes when `current` is updated.
+   *
+   * @see https://react-responsive-pagination.elantha.com/props#onPageChange
+   */
   onPageChange: (page: number) => void;
+  /**
+   * Maximum width in pixels. Overrides the automatic sizing; the width may be
+   * exceeded if the component cannot fit.
+   *
+   * @see https://react-responsive-pagination.elantha.com/props#maxWidth
+   */
   maxWidth?: number;
+  /**
+   * Which elements can be dropped at very narrow widths. Use `dropEllipsis`,
+   * `dropNav` or `dropFirstAndLast` from
+   * `react-responsive-pagination/narrowBehaviour`, or `combine(...)` to use more
+   * than one.
+   *
+   * @defaultValue No elements are dropped
+   * @see https://react-responsive-pagination.elantha.com/props#narrowBehaviour
+   */
   narrowBehaviour?: NarrowBehaviour;
+  /**
+   * Alias for `containerClassName`.
+   *
+   * @defaultValue `'pagination'`
+   * @see https://react-responsive-pagination.elantha.com/props#className
+   */
   className?: string;
+  /**
+   * Class name for the top level `<ul>`. When set, `extraClassName` is ignored.
+   *
+   * @defaultValue `'pagination'`
+   * @since 2.13.0
+   * @see https://react-responsive-pagination.elantha.com/props#containerClassName
+   */
   containerClassName?: string;
+  /**
+   * Extra class names for the top level `<ul>` (useful with Bootstrap). Ignored
+   * when `className` or `containerClassName` is set.
+   *
+   * @defaultValue `'justify-content-center'`
+   * @see https://react-responsive-pagination.elantha.com/props#extraClassName
+   */
   extraClassName?: string;
+  /**
+   * Class name for every `<li>`.
+   *
+   * @defaultValue `'page-item'`
+   * @see https://react-responsive-pagination.elantha.com/props#pageItemClassName
+   */
   pageItemClassName?: string;
+  /**
+   * Class name for the link element inside each `<li>`.
+   *
+   * @defaultValue `'page-link'`
+   * @see https://react-responsive-pagination.elantha.com/props#pageLinkClassName
+   */
   pageLinkClassName?: string;
+  /**
+   * Appended to the `<li>` class name of the active page.
+   *
+   * @defaultValue `'active'`
+   * @see https://react-responsive-pagination.elantha.com/props#activeItemClassName
+   */
   activeItemClassName?: string;
+  /**
+   * Appended to the `<li>` class name of every clickable item that is not the
+   * active page (including previous and next).
+   *
+   * @defaultValue `''`
+   * @since 2.13.0
+   * @see https://react-responsive-pagination.elantha.com/props#inactiveItemClassName
+   */
   inactiveItemClassName?: string;
+  /**
+   * Appended to the `<li>` class name of non-clickable items (a disabled previous
+   * or next, and the ellipsis).
+   *
+   * @defaultValue `'disabled'`
+   * @see https://react-responsive-pagination.elantha.com/props#disabledItemClassName
+   */
   disabledItemClassName?: string;
+  /**
+   * Appended to the `<li>` class name of the previous and next items.
+   *
+   * @since 2.1.0
+   * @see https://react-responsive-pagination.elantha.com/props#navClassName
+   */
   navClassName?: string;
+  /**
+   * Appended to the `<li>` class name of the previous item. Takes precedence over
+   * `navClassName`.
+   *
+   * @since 2.1.0
+   * @see https://react-responsive-pagination.elantha.com/props#previousClassName
+   */
   previousClassName?: string;
+  /**
+   * Appended to the `<li>` class name of the next item. Takes precedence over
+   * `navClassName`.
+   *
+   * @since 2.1.0
+   * @see https://react-responsive-pagination.elantha.com/props#nextClassName
+   */
   nextClassName?: string;
+  /**
+   * Merges the class names of each `<li>` into one string, for example `twMerge`
+   * when using Tailwind.
+   *
+   * @defaultValue Joins the class names with spaces
+   * @since 2.13.0
+   * @see https://react-responsive-pagination.elantha.com/props#classMerge
+   */
   classMerge?: (classNames: string[]) => string;
+  /**
+   * Label for the previous item. React nodes are experimental, see the FAQ.
+   *
+   * @defaultValue `'«'`
+   * @see https://react-responsive-pagination.elantha.com/props#previousLabel
+   */
   previousLabel?: string | ReactNode;
+  /**
+   * Label for the next item. React nodes are experimental, see the FAQ.
+   *
+   * @defaultValue `'»'`
+   * @see https://react-responsive-pagination.elantha.com/props#nextLabel
+   */
   nextLabel?: string | ReactNode;
+  /**
+   * ARIA label for the previous item.
+   *
+   * @defaultValue `'Previous'`
+   * @see https://react-responsive-pagination.elantha.com/props#ariaPreviousLabel
+   */
   ariaPreviousLabel?: string;
+  /**
+   * ARIA label for the next item.
+   *
+   * @defaultValue `'Next'`
+   * @see https://react-responsive-pagination.elantha.com/props#ariaNextLabel
+   */
   ariaNextLabel?: string;
+  /**
+   * Returns the ARIA label for a page link, given the page number and whether it
+   * is the active page. Return `undefined` for no label.
+   *
+   * @since 2.12.0
+   * @see https://react-responsive-pagination.elantha.com/props#ariaPageLabel
+   */
   ariaPageLabel?: (page: number, active: boolean) => string | undefined;
+  /**
+   * How the previous and next items are rendered: as a link (`'anchor'`), as a
+   * link that becomes a `<span>` when disabled (`'anchor-disabled-span'`), as a
+   * `<button>`, or omitted (`false` or `'none'`). The string values were added in
+   * 2.14.0.
+   *
+   * @defaultValue `'anchor-disabled-span'`
+   * @see https://react-responsive-pagination.elantha.com/props#renderNav
+   */
   renderNav?: boolean | 'none' | 'anchor' | 'anchor-disabled-span' | 'button';
+  /**
+   * Set to `false` to leave `aria-current="page"` off the active `<li>`.
+   *
+   * @defaultValue `true`
+   * @see https://react-responsive-pagination.elantha.com/props#ariaCurrentAttr
+   */
   ariaCurrentAttr?: boolean;
+  /**
+   * The `href` of the page links: `'hash'` for `#`, `'omit'` for none, or a
+   * function returning a URL for a page (functions were added in 2.8.0).
+   *
+   * @defaultValue `'hash'`
+   * @see https://react-responsive-pagination.elantha.com/props#linkHref
+   */
   linkHref?: ((page: number) => string) | 'hash' | 'omit';
+  /**
+   * For v1 compatibility: pass `srOnlySpanLabel()` (from
+   * `react-responsive-pagination/labelBehaviour`) to render visually hidden label
+   * spans.
+   *
+   * @defaultValue No visually hidden spans
+   * @see https://react-responsive-pagination.elantha.com/props#labelBehaviour
+   */
   labelBehaviour?: LabelBehaviour;
 };
 
