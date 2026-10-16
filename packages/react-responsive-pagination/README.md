@@ -1,20 +1,21 @@
 # React Responsive Pagination
 
-![npm version](https://img.shields.io/npm/v/react-responsive-pagination.svg?style=flat)
-![minzipped size](https://img.shields.io/bundlephobia/minzip/react-responsive-pagination)
+[![npm version](https://img.shields.io/npm/v/react-responsive-pagination.svg?style=flat)](https://www.npmjs.com/package/react-responsive-pagination)
+[![minzipped size](https://img.shields.io/bundlephobia/minzip/react-responsive-pagination)](https://bundlephobia.com/package/react-responsive-pagination)
 ![GitHub stars](https://img.shields.io/github/stars/jonelantha/react-responsive-pagination?style=flat)
 ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
 
-**An accessible responsive React pagination component which intelligently renders to the available width**
+**An accessible, responsive React pagination component that fits the width available to it**
 
 Perfect for responsive dashboards, tables and any layout that resizes
 
-✅ Automatically adapts to container width (no CSS breakpoints needed)  
-✅ Fully accessible with aria tags for screen readers  
+✅ Fits its container: as many page links as the width allows, no CSS breakpoints  
+✅ Accessible: `aria-current`, labelled nav items and customisable ARIA labels  
+✅ [Many styling options](#-styling-options): themes (light & dark), Tailwind, Bootstrap or your own CSS  
 ✅ React 16.8+, TypeScript types included and SSR-friendly (Next.js, Remix and similar)  
-✅ [Many styling options](#-styling-options): Built-in themes, Tailwind, Custom CSS & Bootstrap
+✅ [Small and dependable](#-quality-and-maintenance): under 5 kB gzipped, actively maintained since 2019
 
-<a href="https://react-responsive-pagination.elantha.com"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/react-responsive-pagination-dark.gif" width="978"><img alt="react-responsive-pagination example" src="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/react-responsive-pagination.gif" width="978"></picture></a>
+<a href="https://react-responsive-pagination.elantha.com"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/react-responsive-pagination-dark.gif" width="978"><img alt="Animated demo: the page links of react-responsive-pagination re-fit as the container is resized" src="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/react-responsive-pagination.gif" width="978"></picture></a>
 
 **⚡️ [LIVE DEMO - try it out for yourself!](https://react-responsive-pagination.elantha.com/live-demo) ⚡️**
 
@@ -79,6 +80,23 @@ import 'react-responsive-pagination/themes/classic-light-dark.css';
 | minimal-light-dark.css                                   | <a href="https://react-responsive-pagination.elantha.com/themes#3-minimal-theme"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/theme-previews/minimal-dark.png" width="169"><img src="https://raw.githubusercontent.com/jonelantha/react-responsive-pagination/refs/heads/main/theme-previews/minimal.png" width="169" alt="minimal pagination" /></picture></a>                           |
 
 Themes also available as light only, please see the [Themes guide](https://react-responsive-pagination.elantha.com/themes) for more details (including overridable theme attributes)
+
+## 🧭 When to choose something else
+
+This component renders page numbers and nothing else. Another library may suit you better if you need:
+
+- a page-size selector, a jump-to-page input, or cursor or infinite pagination
+- uncontrolled state - you hold `current` and update it from `onPageChange`
+- full control over the markup - it renders a `ul` of `li` and `a` elements, styled with class names
+- CommonJS - the package is ESM only
+
+## 📦 Quality and maintenance
+
+- **Size:** under 5 kB gzipped, with a single runtime dependency (`prop-types`)
+- **Compatibility:** React 16.8+, tested on React 17, 18 and 19 in Chromium, Firefox and WebKit. TypeScript types included
+- **Server rendering:** the markup is in the server HTML and fits the width once hydrated (checked with Next.js 14, 15 and 16)
+- **Releases:** published from CI with npm provenance, MIT licensed
+- **Maintenance:** actively maintained since 2019, with more features planned
 
 ## 🧩 Integration notes
 
