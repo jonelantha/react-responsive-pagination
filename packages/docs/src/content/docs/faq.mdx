@@ -1,12 +1,23 @@
 ---
 title: 'Frequently asked questions'
-description: 'react-responsive-pagination frequently asked questions'
+description: 'Is react-responsive-pagination the right fit? Plus answers on auto sizing, very narrow widths, server-side rendering, ESM only and React component labels.'
 navTitle: 'FAQ'
 sideNavOrder: 8
 footerNavOrder: 9
 ---
 
 # FAQ
+
+## Is this the right pagination component?
+
+It suits layouts where the available width varies, such as dashboards and tables: it shows as many page links as the width allows, with no CSS breakpoints, and re-fits as the container resizes. It is accessible, can be styled with the built-in [themes](/themes), [Tailwind](/tailwind-pagination), [Bootstrap](/bootstrap-pagination) or [custom CSS](/custom-styled-pagination), and works with server rendering (the markup is in the server HTML and fits the width once hydrated). It is under 5 kB gzipped, actively maintained since 2019, and more features are planned.
+
+Another library may suit you better if you need:
+
+- a page-size selector, a jump-to-page input, or cursor or infinite pagination
+- uncontrolled state - you hold `current` and update it from `onPageChange`
+- full control over the markup - it renders a `ul` of `li` and `a` elements, styled with class names
+- CommonJS - the package is [ESM only](#esm-only)
 
 ## About Auto Sizing
 

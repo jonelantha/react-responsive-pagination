@@ -7,7 +7,7 @@
 // Vite, minified, with react and react-dom external and NODE_ENV=production.
 //
 // This only reports a figure; nothing checks it and nothing updates it. The docs
-// only state an approximate size (see CONTRIBUTING.md for when to re-run this).
+// only state an approximate size (see MAINTAINING-DOCS.md for when to re-run this).
 // Other tools (for example Bundlephobia) minify differently and give slightly
 // different figures, so the docs should never state an exact one.
 

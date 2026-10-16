@@ -13,7 +13,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const props = Astro.props;
 
 const siteTitle = 'react-responsive-pagination';
-const siteDescription = 'Responsive React pagination component';
+const siteDescription =
+  'Accessible React pagination component that fits the width of its container with no CSS breakpoints';
 const siteAuthor = '@jonelantha';
 
 const title = `${props.title} | ${siteTitle}`;
@@ -39,7 +40,7 @@ const metaDescription = props.description || siteDescription;
 <meta property="og:description" content={metaDescription} />
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:card" content="summary" />
 <meta property="twitter:creator" content={siteAuthor} />
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={title} />
