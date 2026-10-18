@@ -1,0 +1,13 @@
+---
+import { Code } from 'astro-expressive-code/components';
+import { stylesheets } from './stylesheets.ts';
+
+export interface Props {
+  name: keyof typeof stylesheets;
+  title?: string;
+}
+
+const { name, title } = Astro.props;
+---
+
+<Code code={stylesheets[name]} lang="css" title={title} />

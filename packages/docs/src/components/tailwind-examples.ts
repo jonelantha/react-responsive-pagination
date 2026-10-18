@@ -109,3 +109,14 @@ ${makeTwExampleCode(classProps, '      ')}
   );
 }
 `;
+
+export const makeTwExampleCodeFor = (
+  example: keyof typeof twExamples,
+  full = false,
+) => {
+  if (full) {
+    return makeFullTwExampleCode(twExamples[example]);
+  }
+
+  return makeTwExampleCode(twExamples[example]);
+};

@@ -1,0 +1,13 @@
+---
+import { Code } from 'astro-expressive-code/components';
+import { makeTwExampleCodeFor, type twExamples } from './tailwind-examples.ts';
+
+export interface Props {
+  example: keyof typeof twExamples;
+  full?: boolean;
+}
+
+const { example, full } = Astro.props;
+---
+
+<Code code={makeTwExampleCodeFor(example, full)} lang="jsx" />
