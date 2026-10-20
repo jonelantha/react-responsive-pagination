@@ -11,6 +11,7 @@ addOverview: true
 
 import TailwindPaginationRenderer from '@components/TailwindPaginationRenderer.astro';
 import PaginationAndCode from '@components/PaginationAndCode.astro';
+import WebOnly from '@components/WebOnly.astro';
 import PropsTable from '@components/PropsTable.astro';
 import CommonProps from '@props/commonProps.mdx';
 import LabelProps from '@props/labelProps.mdx';
@@ -34,6 +35,8 @@ npm install react-responsive-pagination
 
 ## Quick Start
 
+<WebOnly>
+
 <div className="light-mode-only">
   **NOTE** - this example is light only - for light & dark mode, see more
   [examples](#examples) below
@@ -51,6 +54,8 @@ npm install react-responsive-pagination
     <TailwindExampleCode example="basicDark" full />
   </PaginationAndCode>
 </div>
+
+</WebOnly>
 
 ## Examples
 

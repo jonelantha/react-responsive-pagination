@@ -7,10 +7,13 @@ footerNavOrder: 3
 popupNavOnly: true
 ---
 
+import WebOnly from '@components/WebOnly.astro';
 import PaginationContainer from '@components/PaginationContainer.astro';
 import BootstrapThemePaginationRenderer from '@components/BootstrapThemePaginationRenderer.astro';
 
 # Live Demo
+
+<WebOnly>
 
 Try resizing your browser to see the component automatically adjust to the available width
 
@@ -19,6 +22,8 @@ Try resizing your browser to see the component automatically adjust to the avail
 </PaginationContainer>
 
 **NOTE**: the striped region illustrates the component's container, it's not part of the component 🙂
+
+</WebOnly>
 
 ## Code Example
 
