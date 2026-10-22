@@ -2,6 +2,7 @@
 import { type CollectionEntry, getCollection } from 'astro:content';
 import Main from '../layouts/Main.astro';
 import Document from '../layouts/Document.astro';
+import Table from '../components/Table.astro';
 import { render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -21,6 +22,6 @@ const { Content } = await render(doc);
     popupNavOnly={doc.data.popupNavOnly}
     noArticlePadding={doc.data.noArticlePadding}
   >
-    <Content />
+    <Content components={{ table: Table }} />
   </Document>
 </Main>
