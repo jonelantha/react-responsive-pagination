@@ -1,9 +1,23 @@
 ---
+import type { MarkdownRenderer } from '../markdown/renderer.ts';
+
 export interface Props {
   name: string;
   type: string;
   defaultValue?: string;
 }
+
+export const markdownRenderer: MarkdownRenderer<Props> = (
+  { name, type, defaultValue },
+  children,
+) =>
+  [
+    `### \`${name}\``,
+    `Type: \`${type}\` · ${defaultValue ? 'optional' : 'required'}`,
+    children,
+  ]
+    .filter(Boolean)
+    .join('\n\n');
 
 const { type, defaultValue, name } = Astro.props;
 ---

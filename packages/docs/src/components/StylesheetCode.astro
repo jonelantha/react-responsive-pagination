@@ -1,11 +1,15 @@
 ---
 import { Code } from 'astro-expressive-code/components';
+import { codeBlock, type MarkdownRenderer } from '../markdown/renderer.ts';
 import { stylesheets } from './stylesheets.ts';
 
 export interface Props {
   name: keyof typeof stylesheets;
   title?: string;
 }
+
+export const markdownRenderer: MarkdownRenderer<Props> = ({ name, title }) =>
+  codeBlock(stylesheets[name], 'css', title);
 
 const { name, title } = Astro.props;
 ---

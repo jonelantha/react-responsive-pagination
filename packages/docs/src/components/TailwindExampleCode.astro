@@ -1,11 +1,15 @@
 ---
 import { Code } from 'astro-expressive-code/components';
+import { codeBlock, type MarkdownRenderer } from '../markdown/renderer.ts';
 import { makeTwExampleCodeFor, type twExamples } from './tailwind-examples.ts';
 
 export interface Props {
   example: keyof typeof twExamples;
   full?: boolean;
 }
+
+export const markdownRenderer: MarkdownRenderer<Props> = ({ example, full }) =>
+  codeBlock(makeTwExampleCodeFor(example, full), 'jsx');
 
 const { example, full } = Astro.props;
 ---

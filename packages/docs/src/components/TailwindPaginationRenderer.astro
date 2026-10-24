@@ -7,6 +7,8 @@ import { twExamples } from './tailwind-examples.ts';
 type Props = PaginationRendererProps & { example?: keyof typeof twExamples };
 
 const { example, ...rest } = Astro.props;
+
+export const markdownRenderer = 'skip';
 ---
 
 <PaginationRenderer

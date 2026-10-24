@@ -6,6 +6,8 @@ import PaginationRenderer, {
 type Props = PaginationRendererProps;
 
 const { ...rest } = Astro.props;
+
+export const markdownRenderer = 'skip';
 ---
 
 <PaginationRenderer {...rest} className="classic-styles" client:load />
