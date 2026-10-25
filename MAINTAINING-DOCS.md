@@ -32,7 +32,7 @@ Each page in `packages/docs/src/content/docs/` is also published as Markdown, at
 - The `WebOnly` component leaves its content out of the Markdown, and `MdOnly` shows its content only there.
 - Links to other docs pages (`/page` or `/page#fragment`) are published as `/page.md` or `/page.md#fragment`, and the home page `/` as `/index.md`. Links in code are left as written. The build fails for a link to a page that does not exist, for a relative link, and for any image or reference definition. The fragment itself is not checked.
 
-Each docs page links to its Markdown version with `<link rel="alternate" type="text/markdown">` in the head (`BaseHead.astro`). The 404 page has none.
+Each docs page links to its Markdown version with `<link rel="alternate" type="text/markdown">` in the head (`BaseHead.astro`) and with a "Markdown version of this page" link at the bottom of the page (`MarkdownLink.astro`). The 404 page has neither.
 
 The Markdown pages pick up new docs pages automatically, but the page list in the `MdOnly` block of `index.mdx` is written by hand.
 

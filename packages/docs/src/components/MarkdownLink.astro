@@ -1,0 +1,16 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'p'> {
+  href: string;
+}
+
+const { href, ...rest } = Astro.props;
+---
+
+<p {...rest}>
+  {/* The Markdown file is not a page the client router can show */}
+  <a {href} type="text/markdown" data-astro-reload>
+    <slot />
+  </a>
+</p>
