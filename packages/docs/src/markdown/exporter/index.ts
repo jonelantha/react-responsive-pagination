@@ -2,6 +2,7 @@ import { extname } from 'node:path';
 import { mdxToMdast } from 'satteri';
 import { findMarkdownRenderer, readProps } from './component.ts';
 import { readImports } from './imports.ts';
+import { rewriteLinks } from './links.ts';
 import { findPartial } from './partial.ts';
 import { renderPlainMarkdown } from './plain-markdown.ts';
 import type { MdxNode } from './mdx.ts';
@@ -13,9 +14,12 @@ import type { MdxNode } from './mdx.ts';
  * the source using the node's position). Imports are dropped, `.mdx` partials are
  * expanded in place, and each JSX element is handed to the `markdownRenderer` export
  * of its component. A component without one, and anything else unexpected, throws.
+ *
+ * Links to other docs pages are then pointed at their Markdown versions: `pages` maps
+ * the url of each page to its Markdown url.
  */
-export function exportMarkdown(source: string): string {
-  return renderSource(source) + '\n';
+export function exportMarkdown(source: string, pages: Map<string, string>): string {
+  return rewriteLinks(renderSource(source), pages) + '\n';
 }
 
 function renderSource(source: string): string {
