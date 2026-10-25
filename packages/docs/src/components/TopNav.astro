@@ -2,9 +2,8 @@
 import { getCollection } from 'astro:content';
 import type { HTMLAttributes } from 'astro/types';
 import HamburgerSVG from '../assets/hamburger.svg';
-import { getPageUrl, getStarCount } from '../utils';
+import { getPageUrl } from '../utils';
 import GitHubSVG from '../assets/github.svg';
-import StarSVG from '../assets/star.svg';
 
 type Props = HTMLAttributes<'nav'>;
 
@@ -13,8 +12,6 @@ const { class: className, ...rest } = Astro.props;
 const links = (await getCollection('docs'))
   .filter(doc => doc.data.topNavOrder)
   .sort((a, b) => a.data.topNavOrder! - b.data.topNavOrder!);
-
-const starCount = await getStarCount();
 ---
 
 <nav id="topNav" class={className} {...rest}>
@@ -38,15 +35,6 @@ const starCount = await getStarCount();
     >
       <GitHubSVG aria-hidden />
       GitHub
-    </a>
-    <a
-      class="gitHubStarLink"
-      href="https://www.github.com/jonelantha/react-responsive-pagination"
-      rel="noopener noreferrer"
-      aria-label=`${starCount} GitHub stars`
-    >
-      <StarSVG />
-      {starCount}
     </a>
   </div>
 </nav>
@@ -146,7 +134,7 @@ const starCount = await getStarCount();
         opacity 0.1s,
         display 0.1s allow-discrete;
 
-      @include util.for-less-than(900px) {
+      @include util.for-less-than(830px) {
         display: none;
         position: absolute;
         inset-inline-end: $nav-padding;
@@ -160,52 +148,6 @@ const starCount = await getStarCount();
         block-size: 1.25em;
         inline-size: 1.25em;
         margin-inline-end: 0.4em;
-      }
-    }
-
-    .gitHubStarLink {
-      margin: 0 0 0 0.4em;
-      position: relative;
-      border: 1px solid var(--star-border-color);
-      border-radius: vars.$border-radius;
-      font-size: 0.9em;
-      background-color: var(--star-background-color);
-
-      svg {
-        block-size: 1em;
-        inline-size: 1em;
-        margin-inline-end: 0.4em;
-      }
-
-      &::after,
-      &::before {
-        content: '';
-        inset-block-start: 50%;
-        position: absolute;
-        display: inline-block;
-        block-size: 0;
-        inline-size: 0;
-        border-color: transparent;
-        border-style: solid;
-      }
-
-      &::before {
-        border-inline-end-color: var(--star-background-color);
-        inset-inline-start: -5px;
-        margin-block-start: -6px;
-        border-width: 6px 6px 6px 0;
-      }
-
-      &:hover::before {
-        border-inline-end-color: var(--nav-bg-hover);
-      }
-
-      &::after {
-        z-index: -1;
-        border-inline-end-color: var(--star-border-color);
-        inset-inline-start: -6px;
-        margin-block-start: -7px;
-        border-width: 7px 7px 7px 0;
       }
     }
   }
