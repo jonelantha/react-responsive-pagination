@@ -18,7 +18,17 @@ export const getStaticPaths = (async () => {
 export const GET: APIRoute<{
   doc: CollectionEntry<'docs'>;
   pages: Map<string, string>;
-}> = ({ props }) =>
-  new Response(exportMarkdown(props.doc.body ?? '', props.pages), {
+}> = ({ props }) => {
+  const { title, description } = props.doc.data;
+  const markdown = exportMarkdown(props.doc.body ?? '', props.pages);
+
+  // JSON strings are valid YAML, so quotes and colons in the text are safe
+  const frontmatter = `---
+title: ${JSON.stringify(title)}
+description: ${JSON.stringify(description)}
+---`;
+
+  return new Response(`${frontmatter}\n\n${markdown}`, {
     headers: { 'Content-Type': 'text/markdown; charset=utf-8' },
   });
+};
