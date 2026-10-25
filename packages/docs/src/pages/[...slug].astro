@@ -4,6 +4,7 @@ import Main from '../layouts/Main.astro';
 import Document from '../layouts/Document.astro';
 import Table from '../components/Table.astro';
 import { render } from 'astro:content';
+import { getMarkdownUrl } from '../utils.ts';
 
 export async function getStaticPaths() {
   return (await getCollection('docs')).map(doc => ({
@@ -17,7 +18,7 @@ const doc = Astro.props;
 const { Content } = await render(doc);
 ---
 
-<Main {...doc.data}>
+<Main {...doc.data} markdownUrl={getMarkdownUrl(doc)}>
   <Document
     popupNavOnly={doc.data.popupNavOnly}
     noArticlePadding={doc.data.noArticlePadding}

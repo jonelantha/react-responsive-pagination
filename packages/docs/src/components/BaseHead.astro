@@ -6,6 +6,7 @@ import { ClientRouter } from 'astro:transitions';
 interface Props {
   title: string;
   description: string;
+  markdownUrl?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -27,6 +28,15 @@ const metaDescription = props.description || siteDescription;
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
+
+<!-- The Markdown version of the page -->
+{props.markdownUrl && (
+  <link
+    rel="alternate"
+    type="text/markdown"
+    href={new URL(props.markdownUrl, Astro.site)}
+  />
+)}
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>

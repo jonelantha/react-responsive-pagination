@@ -6,6 +6,11 @@ export function getPageUrl(doc: CollectionEntry<'docs'>, hash?: string) {
   return hash ? `${path}#${hash}` : path;
 }
 
+/** Where the Markdown version of a page is served (see pages/[...slug].md.ts). */
+export function getMarkdownUrl(doc: CollectionEntry<'docs'>) {
+  return `/${doc.id}.md`;
+}
+
 let starCount: string | undefined;
 export async function getStarCount() {
   if (starCount === undefined) {
