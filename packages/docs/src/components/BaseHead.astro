@@ -2,6 +2,7 @@
 import '@styles/global.scss';
 import '@styles/tailwind.css';
 import { ClientRouter } from 'astro:transitions';
+import { getPageTitle } from '../utils.ts';
 
 interface Props {
   title: string;
@@ -13,12 +14,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const props = Astro.props;
 
-const siteTitle = 'react-responsive-pagination';
 const siteDescription =
   'Accessible React pagination component that fits the width of its container with no CSS breakpoints';
 const siteAuthor = '@jonelantha';
 
-const title = `${props.title} | ${siteTitle}`;
+const title = getPageTitle(props.title);
 const metaDescription = props.description || siteDescription;
 ---
 
