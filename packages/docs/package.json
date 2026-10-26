@@ -13,17 +13,17 @@
     "test:update": "node --test --test-update-snapshots \"test/**/*.test.ts\""
   },
   "dependencies": {
-    "@astrojs/check": "0.9.10",
-    "@astrojs/mdx": "8.0.2",
-    "@astrojs/react": "7.0.0",
+    "@astrojs/check": "0.9.11",
+    "@astrojs/mdx": "8.1.0",
+    "@astrojs/react": "7.1.0",
     "@astrojs/sitemap": "3.7.4",
     "@tailwindcss/vite": "4.3.3",
-    "astro": "7.3.5",
+    "astro": "7.4.1",
     "astro-expressive-code": "0.44.2",
     "autoprefixer": "10.6.1",
     "eslint-plugin-astro": "3.2.1",
     "nanostores": "1.5.4",
-    "prettier-plugin-astro": "1.1.0",
+    "prettier-plugin-astro": "1.1.1",
     "sass": "1.105.1",
     "satteri": "0.10.5",
     "tailwindcss": "4.3.3"
