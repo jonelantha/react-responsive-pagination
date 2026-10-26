@@ -1,0 +1,141 @@
+---
+title: "Ready-styled pagination themes | react-responsive-pagination"
+description: "Classic, Bootstrap and Minimal themes for react-responsive-pagination: import one CSS file, with light and dark variants and CSS variables to customise."
+index: "https://react-responsive-pagination.elantha.com/index.md"
+---
+
+# Themes
+
+**react-responsive-pagination** includes several pre-styled themes 'out of the box'
+
+- **Dark Mode** - each theme comes in two flavours: **auto light / dark** or **light only**
+- **Ready to go** - each theme is a pre-built configurable css stylesheet, just include the css file straight from the package
+- **Customisable** - each theme supports overridable attributes - see [Configuring a theme](#configuring-a-theme-optional) for more details
+
+Alternatively see the [Custom CSS Guide](/custom-styled-pagination.md), [Tailwind Guide](/tailwind-pagination.md) or the [Bootstrap Guide](/bootstrap-pagination.md)
+
+More info on the individual themes below
+
+## Theme quick start
+
+First add the **react-responsive-pagination** package to your project:
+
+```bash
+npm install react-responsive-pagination
+```
+
+Using a theme is simple, just include the theme css file somewhere in your project (usually a root page or maybe the file where the global css file is being included).
+
+For example, using the **Classic** theme:
+
+```jsx title='MyApp.js'
+import React, { useState } from 'react';
+import ResponsivePagination from 'react-responsive-pagination';
+
+import 'react-responsive-pagination/themes/classic-light-dark.css';
+// ^ classic theme, see below for other themes
+// include this once in the project (preferrably the main index.js)
+
+export default function MyApp() {
+  const totalPages = 120;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  function handlePageChange(page) {
+    setCurrentPage(page);
+    // ... do something with `page`
+  }
+
+  return (
+    <ResponsivePagination
+      total={totalPages}
+      current={currentPage}
+      onPageChange={page => handlePageChange(page)}
+    />
+  );
+}
+```
+
+_(see [Configuring a theme](#configuring-a-theme-optional) for details on overriding theme attributes, also please see [Props Reference](/props.md) for more information on Props)_
+
+## 1. Classic theme
+
+**Theme import:**  
+`import 'react-responsive-pagination/themes/classic-light-dark.css';`   
+\- or -  
+`import 'react-responsive-pagination/themes/classic.css';` [light mode only]
+
+**Theme documentation:**  
+See a full list of overridable variables:  
+[Classic theme (auto light or dark) documentation](https://github.com/jonelantha/react-responsive-pagination/tree/main/packages/react-responsive-pagination/themes/classic-light-dark.md)  
+[Classic theme (light only) documentation](https://github.com/jonelantha/react-responsive-pagination/tree/main/packages/react-responsive-pagination/themes/classic.md)
+
+## 2. Bootstrap theme (without Bootstrap)
+
+Bootstrap 5 styled pagination. Standalone styles, no need to install the full Bootstrap library
+
+**Theme import:**  
+`import 'react-responsive-pagination/themes/bootstrap-light-dark.css';`   
+\- or -  
+`import 'react-responsive-pagination/themes/bootstrap.css';` [light mode only]
+
+**Theme documentation:**  
+See a full list of overridable variables:  
+[Bootstrap theme (auto light or dark) documentation](https://github.com/jonelantha/react-responsive-pagination/tree/main/packages/react-responsive-pagination/themes/bootstrap-light-dark.md)  
+[Bootstrap theme (light only) documentation](https://github.com/jonelantha/react-responsive-pagination/tree/main/packages/react-responsive-pagination/themes/bootstrap.md)  
+Also see [additional Bootstrap options](/bootstrap-pagination.md#options)
+
+## 3. Minimal theme
+
+**Theme import:**  
+`import 'react-responsive-pagination/themes/minimal-light-dark.css';`   
+\- or -  
+`import 'react-responsive-pagination/themes/minimal.css';` [light mode only]
+
+**Theme documentation:**  
+See a full list of overridable variables:  
+[Minimal theme (auto light or dark) documentation](https://github.com/jonelantha/react-responsive-pagination/tree/main/packages/react-responsive-pagination/themes/minimal-light-dark.md)  
+[Minimal theme (light only) documentation](https://github.com/jonelantha/react-responsive-pagination/tree/main/packages/react-responsive-pagination/themes/minimal.md)
+
+## Configuring a theme (optional)
+
+All themes are ready-to-go but various attributes can be overridden (if required)
+
+**To override an attribute:** add a root selector to the project's global stylesheet (create a global stylesheet if necessary) and then define one or more css variables in the root selector:
+
+```css
+:root {
+  --pagination-color-light: #0d6efd;
+  --pagination-hover-color-light: #0a58ca;
+  /* etc */
+}
+```
+
+See [Common overridable variables](#common-overridable-variables) below and also see the respective theme documentation files (linked above) for a full list of supported variables
+
+## Common overridable variables
+
+_(see the [Configuring a theme](#configuring-a-theme-optional) section above for details on overriding theme attributes)_
+
+| Variable                                                                    | Description                                                                                                       |
+| --------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `--pagination-font-family`                                                  | Main font                                                                                                         |
+| `--pagination-font-weight-light`<br />`--pagination-font-weight-dark`       | Main font weight, see [mdn font-weight](https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight) for options |
+| `--pagination-font-size`                                                    | Font size                                                                                                         |
+| `--pagination-color-light`<br />`--pagination-color-dark`                   | Text colour                                                                                                       |
+| `--pagination-bg-light`<br />`--pagination-bg-dark`                         | Background colour                                                                                                 |
+| `--pagination-hover-color-light`<br />`--pagination-hover-color-dark`       | Text colour when hovering                                                                                         |
+| `--pagination-hover-bg-light`<br />`--pagination-hover-bg-dark`             | Background colour when hovering                                                                                   |
+| `--pagination-active-color-light`<br />`--pagination-active-color-dark`     | Text colour of active item                                                                                        |
+| `--pagination-active-bg-light`<br />`--pagination-active-bg-dark`           | Background colour of active item                                                                                  |
+| `--pagination-disabled-color-light`<br />`--pagination-disabled-color-dark` | Text colour of disabled items                                                                                     |
+| `--pagination-disabled-bg-light`<br />`--pagination-disabled-bg-dark`       | Background colour of disabled items                                                                               |
+| `--pagination-margin-top`                                                   | Top margin of pagination component                                                                                |
+| `--pagination-margin-bottom`                                                | Bottom margin of pagination component                                                                             |
+
+Also please see the theme documentation files for a full list of variables supported by that theme (theme documentation files linked above in the respective theme section)
+
+## Need custom css?
+
+Users looking to fully customise the component's appearance can create a new set of styles within their project (optionally using these themes as a starting point).
+
+For inspiration, please see the theme files at: [https://github.com/jonelantha/react-responsive-pagination/tree/main/packages/react-responsive-pagination/themes](https://github.com/jonelantha/react-responsive-pagination/tree/main/packages/react-responsive-pagination/themes) and please also see the [custom styles guide](/custom-styled-pagination.md)

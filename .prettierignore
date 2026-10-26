@@ -2,5 +2,6 @@ dist
 .astro
 /packages/react-responsive-pagination/temp
 playwright-report
+/packages/docs/test/snapshots
 test-results
 CHANGELOG.md

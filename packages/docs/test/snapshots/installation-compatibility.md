@@ -1,0 +1,67 @@
+---
+title: "Installation & Compatibility | react-responsive-pagination"
+description: "Install react-responsive-pagination with npm: a minimal React example, the supported React versions (16.8 to 19) and notes on Next.js, URLs and ESM."
+index: "https://react-responsive-pagination.elantha.com/index.md"
+---
+
+# Getting Started
+
+## Installation
+
+Install **react-responsive-pagination** from npm:
+
+```bash
+npm install react-responsive-pagination
+```
+
+## Compatibility
+
+- React 19, 18, 17 and ^16.8
+- ESM only, TypeScript types included (`ResponsivePaginationProps`)
+
+## Minimal example
+
+The component ships no styles of its own, so the example imports one of the [included themes](/themes.md) (see also the [Tailwind](/tailwind-pagination.md), [Bootstrap](/bootstrap-pagination.md) and [Custom CSS](/custom-styled-pagination.md) guides):
+
+```jsx
+import { useState } from 'react';
+import ResponsivePagination from 'react-responsive-pagination';
+import 'react-responsive-pagination/themes/classic-light-dark.css';
+
+export default function Pager({ totalPages }) {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  return (
+    <ResponsivePagination
+      current={currentPage}
+      total={totalPages}
+      onPageChange={setCurrentPage}
+    />
+  );
+}
+```
+
+## Integration notes
+
+- **It fills its parent's width** - the parent element should have a width that doesn't depend on its content (see the [FAQ](/faq.md#about-auto-sizing)). The `maxWidth` prop overrides the measured width
+- **Next.js App Router** - the component is a Client Component, so it can be rendered from a Server Component, but functions (`onPageChange`, `linkHref` callbacks and so on) can't be passed down from the server. Usually that means a small `'use client'` file that holds the page state; alternatively pass a Server Action as `onPageChange`
+- **URL based paging** - by default links have `href="#"`. Use the `linkHref` prop to generate real URLs (clicks still call `onPageChange` rather than following the link):
+
+```jsx
+<ResponsivePagination
+  current={page}
+  total={totalPages}
+  onPageChange={goToPage}
+  linkHref={page => `?page=${page}`}
+/>
+```
+
+See the [Props Reference](/props.md) for everything else.
+
+## Getting Started
+
+- [Included Themes](/themes.md) - ready to go themes with light & dark modes
+- [Tailwind Usage & Examples Guide](/tailwind-pagination.md)
+- [Bootstrap Guide](/bootstrap-pagination.md)
+- [Custom CSS Guide](/custom-styled-pagination.md)
+- [Live Demo](/live-demo.md)

@@ -31,7 +31,10 @@ npm run format-check       # prettier --check (fix with `npx prettier --write <f
 npm test                   # unit tests (node --test, src/**/*.test.ts)
 npm run integration-test   # needs a fresh build
 npm run build-docs         # docs site: lint + astro build
+npm run test-docs          # the docs' Markdown pages against their snapshots (needs the docs build)
 ```
+
+After an intended change to the docs' Markdown pages, `npm run test-docs:update` rewrites the snapshots (review the diff; do not use it just to make a failing `test-docs` pass).
 
 Browser tests (Playwright, chromium/firefox/webkit) — CI runs these once per React version:
 

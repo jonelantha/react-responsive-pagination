@@ -8,7 +8,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint",
-    "tsc": "astro sync && tsc && astro check"
+    "tsc": "astro sync && tsc && astro check",
+    "test": "node --test \"test/**/*.test.ts\"",
+    "test:update": "node --test --test-update-snapshots \"test/**/*.test.ts\""
   },
   "dependencies": {
     "@astrojs/check": "0.9.10",
