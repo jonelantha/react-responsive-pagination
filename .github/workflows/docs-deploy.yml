@@ -40,6 +40,7 @@ jobs:
         run: |
           aws s3 sync --delete ./packages/docs/dist/ s3://${{ secrets.s3-bucket }} --cache-control "public, max-age=0, must-revalidate, s-maxage=31536000"
           aws s3 cp s3://${{ secrets.s3-bucket }} s3://${{ secrets.s3-bucket }} --exclude "*" --include "_astro/*" --recursive --cache-control "public, max-age=31536000, immutable, s-maxage=31536000"
+          aws s3 cp s3://${{ secrets.s3-bucket }} s3://${{ secrets.s3-bucket }} --exclude "*" --include "*.md" --recursive --content-type "text/markdown; charset=utf-8" --cache-control "public, max-age=0, must-revalidate, s-maxage=31536000"
       - name: Invalidate CloudFront
         run: |
           aws cloudfront create-invalidation --distribution-id ${{ secrets.cloudfront-id }} --paths "/*"
