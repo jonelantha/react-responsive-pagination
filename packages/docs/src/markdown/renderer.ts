@@ -8,11 +8,13 @@ export type MarkdownProps = Record<string, string | true>;
  * Turns a JSX element from an MDX page into Markdown, from its attributes and its
  * children already rendered as Markdown (empty when it has none). Return an empty
  * string to leave the element out. Declare the attributes the component takes as `Props`.
+ * It may be async (to read the content collection, say), but it must not depend on the
+ * network or the clock, so that the same source always gives the same Markdown.
  */
 export type MarkdownRenderer<Props = MarkdownProps> = (
   props: Props,
   children: string,
-) => string;
+) => string | Promise<string>;
 
 /**
  * What a component exports as `markdownRenderer` (from its .astro file) to say how its

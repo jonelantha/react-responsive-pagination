@@ -18,7 +18,7 @@ export const getStaticPaths = (async () => {
 export const GET: APIRoute<{
   doc: CollectionEntry<'docs'>;
   pages: Map<string, string>;
-}> = ({ props: { doc, pages }, site }) => {
+}> = async ({ props: { doc, pages }, site }) => {
   const homePath = pages.get('/');
 
   if (!homePath) throw new Error('No docs page at /');
@@ -35,7 +35,7 @@ export const GET: APIRoute<{
     .map(([key, value]) => `${key}: ${JSON.stringify(value)}`)
     .join('\n');
 
-  const markdown = exportMarkdown(doc.body ?? '', pages);
+  const markdown = await exportMarkdown(doc.body ?? '', pages);
 
   return new Response(`---\n${frontmatter}\n---\n\n${markdown}`, {
     headers: { 'Content-Type': 'text/markdown; charset=utf-8' },

@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import type { MarkdownRenderer } from '../markdown/renderer.ts';
+import { getPageUrl } from '../utils.ts';
+
+// The list of the other pages, for the Markdown home page, in the order of the side
+// navigation (pages not in it come last). The HTML pages have their own navigation,
+// so this is not rendered on the web.
+export const markdownRenderer: MarkdownRenderer = async () => {
+  const docs = (await getCollection('docs'))
+    .filter(doc => getPageUrl(doc) !== '/')
+    .sort(
+      (a, b) =>
+        (a.data.sideNavOrder ?? Infinity) - (b.data.sideNavOrder ?? Infinity),
+    );
+
+  return docs
+    .map(doc => `- [${doc.data.navTitle}](${getPageUrl(doc)}) - ${doc.data.summary}`)
+    .join('\n');
+};
+---

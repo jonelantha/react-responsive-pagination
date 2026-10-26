@@ -18,11 +18,14 @@ import type { MdxNode } from './mdx.ts';
  * Links to other docs pages are then pointed at their Markdown versions: `pages` maps
  * the url of each page to its Markdown url.
  */
-export function exportMarkdown(source: string, pages: Map<string, string>): string {
-  return rewriteLinks(renderSource(source), pages) + '\n';
+export async function exportMarkdown(
+  source: string,
+  pages: Map<string, string>,
+): Promise<string> {
+  return rewriteLinks(await renderSource(source), pages) + '\n';
 }
 
-function renderSource(source: string): string {
+async function renderSource(source: string): Promise<string> {
   const root = mdxToMdast(source);
 
   if (root.type !== 'root') throw new Error('Expected mdxToMdast to return a root');
@@ -31,13 +34,12 @@ function renderSource(source: string): string {
     root.children.filter(node => node.type === 'mdxjsEsm').map(node => node.value),
   );
 
-  const renderNodes = (nodes: MdxNode[]): string =>
-    nodes
-      .map(renderNode)
+  const renderNodes = async (nodes: MdxNode[]): Promise<string> =>
+    (await Promise.all(nodes.map(node => renderNode(node))))
       .filter(markdown => markdown !== '')
       .join('\n\n');
 
-  const renderNode = (node: MdxNode): string => {
+  const renderNode = async (node: MdxNode): Promise<string> => {
     switch (node.type) {
       case 'mdxjsEsm':
         return '';
@@ -66,7 +68,10 @@ function renderSource(source: string): string {
                 return renderNodes(node.children);
 
               default:
-                return markdownRenderer(readProps(node), renderNodes(node.children));
+                return markdownRenderer(
+                  readProps(node),
+                  await renderNodes(node.children),
+                );
             }
           }
 
