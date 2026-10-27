@@ -1,7 +1,7 @@
 import PropDef from '@components/PropDef.astro';
 import ExtraClassNameProp from '@props/extraClassNameProp.mdx';
 
-<PropDef name='linkHref' type="'hash' | 'omit' | (page: number) => string" defaultValue='hash'>
+<PropDef name='linkHref' type="'hash' | 'omit' | (page: number) => string" defaultValue="'hash'">
   Set `linkHref` to `omit` to omit `href='#'` from the page item **\<a>** tags
 
 Set `linkHref` to a callback to set each item's href to a url. The callback takes the item's page as a parameter, this allows the generated url to include the page number, example:

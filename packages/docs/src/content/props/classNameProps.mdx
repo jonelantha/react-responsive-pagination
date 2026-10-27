@@ -1,7 +1,7 @@
 import PropDef from '@components/PropDef.astro';
 import ExtraClassNameProp from '@props/extraClassNameProp.mdx';
 
-<PropDef name='containerClassName' type='string' defaultValue='pagination'>
+<PropDef name='containerClassName' type='string' defaultValue="'pagination'">
 Class name for the top level **\<ul>** container
 
 Defaults to `pagination`
@@ -9,17 +9,17 @@ Defaults to `pagination`
 When this prop is set, **extraClassName** prop (below) will be ignored
 
 </PropDef>
-<PropDef name='className' type='string' defaultValue='pagination'>
+<PropDef name='className' type='string' defaultValue="'pagination'">
 Alias for **containerClassName** see above
 </PropDef>
 <ExtraClassNameProp />
-<PropDef name='pageItemClassName' type='string' defaultValue='page-item'>
+<PropDef name='pageItemClassName' type='string' defaultValue="'page-item'">
 Class name for all the **\<li>** elements
 
 Defaults to `page-item`
 
 </PropDef>
-<PropDef name='pageLinkClassName' type='string' defaultValue='page-link'>
+<PropDef name='pageLinkClassName' type='string' defaultValue="'page-link'">
 Class name for **\<a>** or **\<span>** child elements within an **\<li>** element:
 
 `<li ...><a class='page-link'>1</a></li>`
@@ -27,7 +27,7 @@ Class name for **\<a>** or **\<span>** child elements within an **\<li>** elemen
 Defaults to `page-link`
 
 </PropDef>
-<PropDef name='activeItemClassName' type='string' defaultValue='active'>
+<PropDef name='activeItemClassName' type='string' defaultValue="'active'">
 Appended to **\<li>** class name for the active element:
 
 `<li class='page-item active'><a class='page-link'>1</a></li>`
@@ -43,7 +43,7 @@ Appended to **\<li>** class name for all non active elements (including nav elem
 Defaults to ''
 
 </PropDef>
-<PropDef name='disabledItemClassName' type='string' defaultValue='disabled'>
+<PropDef name='disabledItemClassName' type='string' defaultValue="'disabled'">
 Appended to **\<li>** class name for non-clickable elements (disabled nav buttons and the break/ellipsis):
 
 `<li class='page-item disabled'><span class='page-link'>...</span></li>`

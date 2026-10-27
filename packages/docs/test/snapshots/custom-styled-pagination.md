@@ -219,7 +219,7 @@ A selection of props which may be helpful when using custom styles - for the ful
 
 ### `containerClassName`
 
-Type: `string` · optional
+Type: `string` · optional · default `'pagination'`
 
 Class name for the top level **\<ul>** container
 
@@ -229,13 +229,13 @@ When this prop is set, **extraClassName** prop (below) will be ignored
 
 ### `className`
 
-Type: `string` · optional
+Type: `string` · optional · default `'pagination'`
 
 Alias for **containerClassName** see above
 
 ### `extraClassName`
 
-Type: `string` · optional
+Type: `string` · optional · default `'justify-content-center'`
 
 Useful when using Bootstrap styles, extra classNames to be added to the top level **\<ul>** container. Use this prop to override the default justify value - for example to align elements to the start of the page use: `justify-content-start`
 
@@ -243,7 +243,7 @@ Defaults to `justify-content-center`, not applicable if **className** prop is se
 
 ### `pageItemClassName`
 
-Type: `string` · optional
+Type: `string` · optional · default `'page-item'`
 
 Class name for all the **\<li>** elements
 
@@ -251,7 +251,7 @@ Defaults to `page-item`
 
 ### `pageLinkClassName`
 
-Type: `string` · optional
+Type: `string` · optional · default `'page-link'`
 
 Class name for **\<a>** or **\<span>** child elements within an **\<li>** element:
 
@@ -261,7 +261,7 @@ Defaults to `page-link`
 
 ### `activeItemClassName`
 
-Type: `string` · optional
+Type: `string` · optional · default `'active'`
 
 Appended to **\<li>** class name for the active element:
 
@@ -271,7 +271,7 @@ Defaults to `active`
 
 ### `inactiveItemClassName`
 
-Type: `string` · optional
+Type: `string` · optional · default `''`
 
 Appended to **\<li>** class name for all non active elements (including nav elements):
 
@@ -281,7 +281,7 @@ Defaults to ''
 
 ### `disabledItemClassName`
 
-Type: `string` · optional
+Type: `string` · optional · default `'disabled'`
 
 Appended to **\<li>** class name for non-clickable elements (disabled nav buttons and the break/ellipsis):
 
@@ -344,7 +344,7 @@ import { twMerge } from 'tailwind-merge';
 
 ### `previousLabel`
 
-Type: `string | ReactNode` · optional
+Type: `string | ReactNode` · optional · default `'«'`
 
 The label for the previous button, defaults to `«`
 
@@ -352,7 +352,7 @@ See the [FAQ](/faq.md#using-react-components-for-labels) for further information
 
 ### `nextLabel`
 
-Type: `string | ReactNode` · optional
+Type: `string | ReactNode` · optional · default `'»'`
 
 The label for the next button, defaults to `»`
 
@@ -360,13 +360,13 @@ See the [FAQ](/faq.md#using-react-components-for-labels) for further information
 
 ### `ariaPreviousLabel`
 
-Type: `string` · optional
+Type: `string` · optional · default `'Previous'`
 
 The accessibility ARIA label for the previous button, defaults to `Previous`
 
 ### `ariaNextLabel`
 
-Type: `string` · optional
+Type: `string` · optional · default `'Next'`
 
 The accessibility ARIA label for the next button, defaults to `Next`
 
@@ -387,7 +387,7 @@ The accessibility ARIA label for page links - expects a function which takes the
 
 ### `ariaCurrentAttr`
 
-Type: `boolean` · optional
+Type: `boolean` · optional · default `true`
 
 Set to false to prevent output of `aria-current='page'` for the active page **\<li>**
 
@@ -395,7 +395,7 @@ See [MDN's article on aria-current](https://developer.mozilla.org/en-US/docs/Web
 
 ### `renderNav`
 
-Type: `boolean | 'none' | 'anchor' | 'anchor-disabled-span' | 'button'` · optional
+Type: `boolean | 'none' | 'anchor' | 'anchor-disabled-span' | 'button'` · optional · default `'anchor-disabled-span'`
 
 How the nav items (**«**/**»**) are rendered (or whether nav is omitted):
 

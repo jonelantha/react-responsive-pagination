@@ -131,7 +131,7 @@ possible to fit the component to the specified width
 
 ### `previousLabel`
 
-Type: `string | ReactNode` · optional
+Type: `string | ReactNode` · optional · default `'«'`
 
 The label for the previous button, defaults to `«`
 
@@ -139,7 +139,7 @@ See the [FAQ](/faq.md#using-react-components-for-labels) for further information
 
 ### `nextLabel`
 
-Type: `string | ReactNode` · optional
+Type: `string | ReactNode` · optional · default `'»'`
 
 The label for the next button, defaults to `»`
 
@@ -147,13 +147,13 @@ See the [FAQ](/faq.md#using-react-components-for-labels) for further information
 
 ### `ariaPreviousLabel`
 
-Type: `string` · optional
+Type: `string` · optional · default `'Previous'`
 
 The accessibility ARIA label for the previous button, defaults to `Previous`
 
 ### `ariaNextLabel`
 
-Type: `string` · optional
+Type: `string` · optional · default `'Next'`
 
 The accessibility ARIA label for the next button, defaults to `Next`
 
@@ -174,7 +174,7 @@ The accessibility ARIA label for page links - expects a function which takes the
 
 ### `ariaCurrentAttr`
 
-Type: `boolean` · optional
+Type: `boolean` · optional · default `true`
 
 Set to false to prevent output of `aria-current='page'` for the active page **\<li>**
 
@@ -182,7 +182,7 @@ See [MDN's article on aria-current](https://developer.mozilla.org/en-US/docs/Web
 
 ### `extraClassName`
 
-Type: `string` · optional
+Type: `string` · optional · default `'justify-content-center'`
 
 Useful when using Bootstrap styles, extra classNames to be added to the top level **\<ul>** container. Use this prop to override the default justify value - for example to align elements to the start of the page use: `justify-content-start`
 
@@ -190,7 +190,7 @@ Defaults to `justify-content-center`, not applicable if **className** prop is se
 
 ### `renderNav`
 
-Type: `boolean | 'none' | 'anchor' | 'anchor-disabled-span' | 'button'` · optional
+Type: `boolean | 'none' | 'anchor' | 'anchor-disabled-span' | 'button'` · optional · default `'anchor-disabled-span'`
 
 How the nav items (**«**/**»**) are rendered (or whether nav is omitted):
 
