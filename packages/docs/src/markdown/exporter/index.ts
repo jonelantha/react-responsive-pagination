@@ -90,7 +90,7 @@ async function renderSource(source: string): Promise<string> {
 
 /** Only comments are allowed, and they leave nothing behind. */
 function renderFlowExpression(expression: string) {
-  if (/^\s*\/\*[\s\S]*\*\/\s*$/.test(expression)) return '';
+  if (expression.replace(/\/\*[\s\S]*?\*\//g, '').trim() === '') return '';
 
   throw new Error(`Unsupported MDX expression: {${expression}}`);
 }
