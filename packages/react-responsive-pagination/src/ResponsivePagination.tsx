@@ -210,14 +210,14 @@ export type ResponsivePaginationProps = {
   /**
    * Alias for `containerClassName`.
    *
-   * @defaultValue `'pagination'`
+   * @defaultValue `'pagination justify-content-center'` (`'pagination'` followed by `extraClassName`)
    * @see https://react-responsive-pagination.elantha.com/props#className
    */
   className?: string;
   /**
    * Class name for the top level `<ul>`. When set, `extraClassName` is ignored.
    *
-   * @defaultValue `'pagination'`
+   * @defaultValue `'pagination justify-content-center'` (`'pagination'` followed by `extraClassName`)
    * @since 2.13.0
    * @see https://react-responsive-pagination.elantha.com/props#containerClassName
    */

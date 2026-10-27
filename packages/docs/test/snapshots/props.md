@@ -43,17 +43,17 @@ See [Overriding default classNames](/custom-styled-pagination.md#overriding-defa
 
 ### `containerClassName`
 
-Type: `string` · optional · default `'pagination'`
+Type: `string` · optional · default `'pagination justify-content-center'`
 
 Class name for the top level **\<ul>** container
 
-Defaults to `pagination`
+Defaults to `pagination justify-content-center` (`pagination` followed by **extraClassName**)
 
 When this prop is set, **extraClassName** prop (below) will be ignored
 
 ### `className`
 
-Type: `string` · optional · default `'pagination'`
+Type: `string` · optional · default `'pagination justify-content-center'`
 
 Alias for **containerClassName** see above
 

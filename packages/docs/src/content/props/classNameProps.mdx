@@ -1,15 +1,15 @@
 import PropDef from '@components/PropDef.astro';
 import ExtraClassNameProp from '@props/extraClassNameProp.mdx';
 
-<PropDef name='containerClassName' type='string' defaultValue="'pagination'">
+<PropDef name='containerClassName' type='string' defaultValue="'pagination justify-content-center'">
 Class name for the top level **\<ul>** container
 
-Defaults to `pagination`
+Defaults to `pagination justify-content-center` (`pagination` followed by **extraClassName**)
 
 When this prop is set, **extraClassName** prop (below) will be ignored
 
 </PropDef>
-<PropDef name='className' type='string' defaultValue="'pagination'">
+<PropDef name='className' type='string' defaultValue="'pagination justify-content-center'">
 Alias for **containerClassName** see above
 </PropDef>
 <ExtraClassNameProp />
