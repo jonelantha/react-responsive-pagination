@@ -103,7 +103,7 @@ This component renders page numbers and nothing else. Another library may suit y
 Things to know when adding the component to a project:
 
 - **It fills its parent's width** - the parent element should have a width that doesn't depend on its content (see the [FAQ](https://react-responsive-pagination.elantha.com/faq#about-auto-sizing)); `maxWidth` overrides the measured width
-- **Next.js App Router** - the component is a Client Component, so it can be rendered from a Server Component, but functions (`onPageChange`, `linkHref` callbacks and so on) can't be passed down from the server. Usually that means a small `'use client'` file that holds the page state; alternatively pass a Server Action as `onPageChange`
+- **Next.js App Router** - the component is a Client Component, so it can be rendered from a Server Component, but functions (`onPageChange`, `linkHref` callbacks and so on) can't be passed down from the server. Usually that means a small `'use client'` file that holds the page state
 - **URL based paging** - by default links have `href="#"`; set ``linkHref={page => `?page=${page}`}`` for real URLs (clicks still call `onPageChange` rather than following the link)
 - **ESM only** - the package only has ESM exports, see the [FAQ](https://react-responsive-pagination.elantha.com/faq#esm-only) for details
 
