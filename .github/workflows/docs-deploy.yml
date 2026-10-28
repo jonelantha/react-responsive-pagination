@@ -38,7 +38,9 @@ jobs:
           aws-region: eu-west-2
       - name: Copy files to S3
         run: |
-          # The assets first, so that no page refers to a file that isn't uploaded yet
+          # The new assets first, so that no new page refers to a file that isn't uploaded yet.
+          # The old assets are deleted here too, so a page still cached at CloudFront can refer
+          # to one that is gone until the invalidation below
           aws s3 sync --delete --exclude "*" --include "_astro/*" ./packages/docs/dist/ s3://${{ secrets.s3-bucket }} --cache-control "public, max-age=31536000, immutable, s-maxage=31536000"
           aws s3 sync --delete --exclude "*" --include "*.md" ./packages/docs/dist/ s3://${{ secrets.s3-bucket }} --content-type "text/markdown; charset=utf-8" --cache-control "public, max-age=0, must-revalidate, s-maxage=31536000"
           aws s3 sync --delete --exclude "_astro/*" --exclude "*.md" ./packages/docs/dist/ s3://${{ secrets.s3-bucket }} --cache-control "public, max-age=0, must-revalidate, s-maxage=31536000"
