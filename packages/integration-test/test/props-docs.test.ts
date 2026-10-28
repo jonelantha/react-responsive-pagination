@@ -1,6 +1,6 @@
 import { test, describe } from 'node:test';
 import { deepEqual, ok } from 'node:assert';
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import ts from 'typescript';
 
 // The shipped types are what editors and agents read, so every prop needs a doc
@@ -20,6 +20,9 @@ const sourceFile = ts.createSourceFile(
 );
 
 const props = getProps('ResponsivePaginationProps');
+
+// The props reference is built from these (each <PropDef name='...'> is an anchor)
+const propsDocsDir = new URL('../../docs/src/content/props/', import.meta.url);
 
 describe('props documentation', () => {
   test('finds the props', () => {
@@ -54,7 +57,31 @@ describe('props documentation', () => {
       `props missing a correct @see link to .../props#<name>: ${wrong.join(', ')}`,
     );
   });
+
+  test('every prop has a section in the props reference', () => {
+    const documented = new Set(getDocumentedPropNames());
+    const missing = props
+      .map(({ name }) => name)
+      .filter(name => !documented.has(name));
+
+    deepEqual(
+      missing,
+      [],
+      `props without a <PropDef> in packages/docs/src/content/props: ${missing.join(', ')}`,
+    );
+  });
 });
+
+function getDocumentedPropNames() {
+  return readdirSync(propsDocsDir)
+    .filter(file => file.endsWith('.mdx'))
+    .flatMap(file => {
+      const source = readFileSync(new URL(file, propsDocsDir), 'utf8');
+
+      return [...source.matchAll(/<PropDef\s+name=['"](\w+)['"]/g)];
+    })
+    .map(([, name]) => name);
+}
 
 function getProps(typeName: string) {
   const alias = sourceFile.statements.find(
