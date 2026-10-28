@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import { deepEqual } from 'node:assert/strict';
 import {
+  existsSync,
   mkdirSync,
   readdirSync,
   readFileSync,
@@ -14,11 +15,19 @@ import {
 const distDir = new URL('../dist/', import.meta.url);
 const snapshotsDir = new URL('./snapshots/', import.meta.url);
 
-if (process.execArgv.includes('--test-update-snapshots')) {
-  updateSnapshots();
+const built = readMarkdownFiles(distDir);
+
+// Checked before the snapshots are touched, updating them replaces them all
+if (built.size === 0) {
+  throw new Error(
+    'No Markdown pages in dist/, build the docs first (npm run build-docs)',
+  );
 }
 
-const built = readMarkdownFiles(distDir);
+if (process.execArgv.includes('--test-update-snapshots')) {
+  replaceMarkdownFiles(snapshotsDir, built);
+}
+
 const snapshots = readMarkdownFiles(snapshotsDir);
 
 test('there is a snapshot for each page and no others', () => {
@@ -32,21 +41,25 @@ for (const [name, text] of built) {
   });
 }
 
-function updateSnapshots() {
-  rmSync(snapshotsDir, { recursive: true, force: true });
-  mkdirSync(snapshotsDir, { recursive: true });
-
-  for (const [name, text] of readMarkdownFiles(distDir)) {
-    writeFileSync(new URL(name, snapshotsDir), text);
-  }
-}
-
+/** The .md files in a directory by name, empty if the directory doesn't exist. */
 function readMarkdownFiles(directory: URL) {
-  const files = readdirSync(directory).filter(name => name.endsWith('.md'));
+  if (!existsSync(directory)) return new Map<string, string>();
+
+  const names = readdirSync(directory).filter(name => name.endsWith('.md'));
 
   return new Map(
-    files.sort().map(name => [name, readText(new URL(name, directory))]),
+    names.sort().map(name => [name, readText(new URL(name, directory))]),
   );
+}
+
+/** Makes the directory hold exactly these files. */
+function replaceMarkdownFiles(directory: URL, files: Map<string, string>) {
+  rmSync(directory, { recursive: true, force: true });
+  mkdirSync(directory, { recursive: true });
+
+  for (const [name, text] of files) {
+    writeFileSync(new URL(name, directory), text);
+  }
 }
 
 function readText(file: URL) {
