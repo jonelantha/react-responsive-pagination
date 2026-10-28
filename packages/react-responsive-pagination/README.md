@@ -2,7 +2,6 @@
 
 [![npm version](https://img.shields.io/npm/v/react-responsive-pagination.svg?style=flat)](https://www.npmjs.com/package/react-responsive-pagination)
 [![minzipped size](https://img.shields.io/bundlephobia/minzip/react-responsive-pagination)](https://bundlephobia.com/package/react-responsive-pagination)
-![GitHub stars](https://img.shields.io/github/stars/jonelantha/react-responsive-pagination?style=flat)
 ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
 
 **An accessible, responsive React pagination component that fits the width available to it**
