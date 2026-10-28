@@ -35,7 +35,9 @@ export const GET: APIRoute<{
     .map(([key, value]) => `${key}: ${JSON.stringify(value)}`)
     .join('\n');
 
-  const markdown = await exportMarkdown(doc.body ?? '', pages);
+  if (!doc.body) throw new Error(`No body for the docs page ${doc.id}`);
+
+  const markdown = await exportMarkdown(doc.body, pages);
 
   return new Response(`---\n${frontmatter}\n---\n\n${markdown}`, {
     headers: { 'Content-Type': 'text/markdown; charset=utf-8' },
