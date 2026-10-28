@@ -13,6 +13,7 @@
 
 import { spawnSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { gzipSync } from 'node:zlib';
 import { build } from 'vite';
 
@@ -20,7 +21,7 @@ const packageDir = new URL(
   '../packages/react-responsive-pagination/',
   import.meta.url,
 );
-const distIndex = new URL('dist/index.js', packageDir).pathname;
+const distIndex = fileURLToPath(new URL('dist/index.js', packageDir));
 const { version } = JSON.parse(
   readFileSync(new URL('package.json', packageDir), 'utf8'),
 );
