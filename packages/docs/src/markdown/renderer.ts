@@ -10,6 +10,8 @@ export type MarkdownProps = Record<string, string | true>;
  * string to leave the element out. Declare the attributes the component takes as `Props`.
  * It may be async (to read the content collection, say), but it must not depend on the
  * network or the clock, so that the same source always gives the same Markdown.
+ * Of an .astro file's frontmatter only the imports and exports stay at module level, so
+ * anything else the renderer uses must be defined inside it.
  */
 export type MarkdownRenderer<Props = MarkdownProps> = (
   props: Props,
