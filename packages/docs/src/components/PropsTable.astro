@@ -1,20 +1,23 @@
 ---
+export const markdownRenderer = 'unwrap';
 ---
 
-<table>
-  <colgroup>
-    <col />
-  </colgroup>
-  <thead>
-    <tr>
-      <th>Prop</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <slot />
-  </tbody>
-</table>
+<div class="table-wrapper">
+  <table>
+    <colgroup>
+      <col />
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Prop</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <slot />
+    </tbody>
+  </table>
+</div>
 
 <style lang="scss">
   table {

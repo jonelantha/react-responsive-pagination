@@ -4,14 +4,15 @@ import BaseHead from '@components/BaseHead.astro';
 type Props = {
   title: string;
   description: string;
+  markdownUrl?: string;
 };
 
-const { title, description } = Astro.props;
+const { title, description, markdownUrl } = Astro.props;
 ---
 
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} description={description} markdownUrl={markdownUrl} />
   </head>
   <body>
     <slot />

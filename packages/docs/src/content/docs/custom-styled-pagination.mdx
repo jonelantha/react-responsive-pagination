@@ -1,6 +1,7 @@
 ---
 title: 'Custom Styles Guide'
-description: 'React npm responsive pagination component with custom styling'
+description: 'Style react-responsive-pagination with your own CSS: a starter template, the generated HTML and class names, and the props that override them.'
+summary: 'Styling with your own CSS: a starter template, the generated HTML, class names and selectors'
 navTitle: 'Custom CSS'
 topNavOrder: 4
 sideNavOrder: 5
@@ -12,15 +13,13 @@ import PaginationAndCode from '@components/PaginationAndCode.astro';
 import BootstrapThemePaginationRenderer from '@components/BootstrapThemePaginationRenderer.astro';
 import CustomStylePaginationRenderer from '@components/CustomStylePaginationRenderer.astro';
 import NavJustifiedPaginationRenderer from '@components/NavJustifiedPaginationRenderer.astro';
-import customStyles from '@styles/customStyles.css?raw';
-import navJustifiedStyles from '@styles/navJustified.css?raw';
 import PaginationContainer from '@components/PaginationContainer.astro';
 import PropsTable from '@components/PropsTable.astro';
 import ClassNameProps from '@props/classNameProps.mdx';
 import LabelProps from '@props/labelProps.mdx';
 import NarrowProps from '@props/narrowProps.mdx';
 import RenderNavProps from '@props/renderNavProps.mdx';
-import { Code } from 'astro-expressive-code/components';
+import StylesheetCode from '@components/StylesheetCode.astro';
 
 # Custom Styles
 
@@ -78,7 +77,7 @@ To create custom styles for **react-responsive-pagination** simply include some 
   <CustomStylePaginationRenderer />
 </PaginationContainer>
 
-<Code code={customStyles} lang="css" title="pagination.css" />
+<StylesheetCode name="customStyles" title="pagination.css" />
 
 _For a full list of suggested css selectors to target, see [Selector Reference](#selector-reference)_
 
@@ -180,7 +179,7 @@ Aligning the previous and next buttons to the start and end of the row is possib
   ```
 </PaginationAndCode>
 
-<Code code={navJustifiedStyles} lang="css" />
+<StylesheetCode name="navJustified" />
 
 NOTE: `--pagination-override-margin-inline-start` and `--pagination-override-margin-inline-end` must be applied in css classes specific to the previous and next buttons (using `previousClassName` and `nextClassName` props). Applying via `:first-child` or `:last-child` is currently unsupported and may lead to unexpected results.
 

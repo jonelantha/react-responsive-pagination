@@ -1,38 +1,38 @@
 import PropDef from '@components/PropDef.astro';
 
-<Fragment>
-  <PropDef name='previousLabel' type='string | ReactNode' defaultValue='«'>
-    The label for the previous button, defaults to `«`
-    
-    See the [FAQ](/faq#using-react-components-for-labels) for further information on using React components for this prop
-  </PropDef>
-  <PropDef name='nextLabel' type='string | ReactNode' defaultValue='»'>
-    The label for the next button, defaults to `»`
+<PropDef name='previousLabel' type='string | ReactNode' defaultValue="'«'">
+  The label for the previous button, defaults to `«`
+  
+  See the [FAQ](/faq#using-react-components-for-labels) for further information on using React components for this prop
+</PropDef>
+<PropDef name='nextLabel' type='string | ReactNode' defaultValue="'»'">
+  The label for the next button, defaults to `»`
 
-    See the [FAQ](/faq#using-react-components-for-labels) for further information on using React components for this prop
+See the [FAQ](/faq#using-react-components-for-labels) for further information on using React components for this prop
 
-  </PropDef>
-  <PropDef name='ariaPreviousLabel' type='string' defaultValue='Previous'>
-    The accessibility ARIA label for the previous button, defaults to `Previous`
-  </PropDef>
-  <PropDef name='ariaNextLabel' type='string' defaultValue='Next'>
-    The accessibility ARIA label for the next button, defaults to `Next`
-  </PropDef>
-  <PropDef name='ariaPageLabel' type='(page: number, active: boolean) => string | undefined' defaultValue='true'>
-    The accessibility ARIA label for page links - expects a function which takes the page number and active boolean and returns the ARIA label (or undefined), example:
+</PropDef>
+<PropDef name='ariaPreviousLabel' type='string' defaultValue="'Previous'">
+  The accessibility ARIA label for the previous button, defaults to `Previous`
+</PropDef>
+<PropDef name='ariaNextLabel' type='string' defaultValue="'Next'">
+  The accessibility ARIA label for the next button, defaults to `Next`
+</PropDef>
+<PropDef name='ariaPageLabel' type='(page: number, active: boolean) => string | undefined' defaultValue='undefined'>
+  The accessibility ARIA label for page links - expects a function which takes the page number and active boolean and returns the ARIA label (or undefined), example:
 
-    ```jsx
-    <ResponsivePagination
-      //...
-      ariaPageLabel={(page, active) => (active ? `Active Page ${page}` : `Goto Page ${page}`)}
-    />
-    ```
+```jsx
+<ResponsivePagination
+  //...
+  ariaPageLabel={(page, active) =>
+    active ? `Active Page ${page}` : `Goto Page ${page}`
+  }
+/>
+```
 
-  </PropDef>
-  <PropDef name='ariaCurrentAttr' type='boolean' defaultValue='true'>
-    Set to false to prevent output of `aria-current='page'` for the active page **\<li>**
+</PropDef>
+<PropDef name='ariaCurrentAttr' type='boolean' defaultValue='true'>
+  Set to false to prevent output of `aria-current='page'` for the active page **\<li>**
 
-    See [MDN's article on aria-current](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current) for further details
+See [MDN's article on aria-current](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current) for further details
 
-  </PropDef>
-</Fragment>
+</PropDef>

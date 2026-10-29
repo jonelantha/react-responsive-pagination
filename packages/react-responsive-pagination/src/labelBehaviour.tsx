@@ -3,6 +3,10 @@ import type { ReactNode } from 'react';
 import type { PaginationItem } from './paginationItem.ts';
 
 /**
+ * Only the label behaviours exported by this package (such as `srOnlySpanLabel`)
+ * are supported. Custom implementations are not supported (label behaviours are
+ * opaque values).
+ *
  * @public
  */
 export type LabelBehaviour = (item: PaginationItem) => ReactNode;
@@ -18,6 +22,10 @@ export function defaultLabelBehaviour({
 }
 
 /**
+ * Renders the v1 style visually hidden label spans for screen readers. Pass the
+ * result as `labelBehaviour`.
+ *
+ * @see https://react-responsive-pagination.elantha.com/props#labelBehaviour
  * @public
  */
 export function srOnlySpanLabel({

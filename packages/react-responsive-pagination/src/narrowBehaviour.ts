@@ -11,10 +11,14 @@ import {
 } from './compositionItem.ts';
 import { findLastIndex } from './helpers/util.ts';
 
+// Internal contract: a behaviour yields its narrowest composition first and then
+// less narrow ones, and should not yield the initialComposition.
+
 /**
- * NarrowBehaviours will yield their narrowest composition first and then
- * yield a less narrow composition
- * They should not yield the initialComposition
+ * Only the behaviours exported by this package (such as `dropEllipsis`), or
+ * those returned by `combine`, are supported. Custom implementations are not
+ * supported (behaviours are opaque values).
+ *
  * @public
  */
 export type NarrowBehaviour = (
@@ -27,6 +31,9 @@ type NarrowBehaviourMetaData = {
 };
 
 /**
+ * Drops the ellipsis (…) at narrow widths.
+ *
+ * @see https://react-responsive-pagination.elantha.com/props#narrowBehaviour
  * @public
  */
 export function* dropEllipsis(
@@ -63,6 +70,9 @@ export function* dropEllipsis(
 }
 
 /**
+ * Drops the previous and next items (« and ») at narrow widths.
+ *
+ * @see https://react-responsive-pagination.elantha.com/props#narrowBehaviour
  * @public
  */
 export function* dropNav(initialComposition: ReadonlyArray<CompositionItem>) {
@@ -70,6 +80,9 @@ export function* dropNav(initialComposition: ReadonlyArray<CompositionItem>) {
 }
 
 /**
+ * Drops the first and last pages at narrow widths.
+ *
+ * @see https://react-responsive-pagination.elantha.com/props#narrowBehaviour
  * @public
  */
 export function* dropFirstAndLast(
@@ -138,6 +151,7 @@ export function* dropFirstAndLast(
 }
 
 /**
+ * @deprecated Use `combine(dropEllipsis, dropNav)` instead.
  * @public
  */
 export function* dropEllipsisThenNav(
@@ -152,6 +166,7 @@ export function* dropEllipsisThenNav(
 }
 
 /**
+ * @deprecated Use `combine(dropNav, dropEllipsis)` instead.
  * @public
  */
 export function* dropNavThenEllipsis(

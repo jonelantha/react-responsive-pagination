@@ -1,6 +1,7 @@
 ---
-title: 'React Responsive Pagination Component'
-description: 'An npm React component for truly responsive pagination'
+title: 'Accessible React Pagination'
+description: 'Accessible React pagination component that fits the width of its container with no CSS breakpoints. Built-in themes, Tailwind, Bootstrap or custom CSS.'
+summary: 'The overview: what it is, how to install it and where the other pages are'
 navTitle: 'Introduction'
 footerNavTitle: 'Documentation'
 path: '/'
@@ -11,6 +12,9 @@ popupNavOnly: true
 noArticlePadding: true
 ---
 
+import WebOnly from '@components/WebOnly.astro';
+import MdOnly from '@components/MdOnly.astro';
+import PageList from '@components/PageList.astro';
 import Hero from '@components/Hero.astro';
 import ThemesExample from '@components/ThemesExample.astro';
 import BootstrapThemePaginationRenderer from '@components/BootstrapThemePaginationRenderer.astro';
@@ -30,6 +34,8 @@ import TreeSVG from '@assets/tree.svg';
 import BootstrapSVG from '@assets/bootstrap.svg';
 import TailwindSVG from '@assets/tailwind.svg';
 import StarSVG from '@assets/star-filled.svg';
+
+<WebOnly>
 
 {/* prettier-ignore */}
 <Hero>
@@ -113,3 +119,27 @@ import StarSVG from '@assets/star-filled.svg';
     </FeatureCard>
   </FeatureCardGroup>
 </LandingSection>
+
+</WebOnly>
+
+<MdOnly>
+
+# React Responsive Pagination
+
+An accessible, responsive React pagination component that fits the width available to it: it shows as many page links as the container allows, with no CSS breakpoints.
+
+```bash
+npm install react-responsive-pagination
+```
+
+- React 19, 18, 17 and ^16.8, TypeScript types included, ESM only
+- Controlled: `current`, `total` and `onPageChange` are the required props
+- Ships no styles: use one of the included themes, or style it with Tailwind, Bootstrap or custom CSS
+- Source code: [GitHub](https://github.com/jonelantha/react-responsive-pagination)
+- Package: [npm](https://www.npmjs.com/package/react-responsive-pagination)
+
+**Pages**
+
+<PageList />
+
+</MdOnly>

@@ -2,13 +2,21 @@
 import PaginationRenderer, {
   type PaginationRendererProps,
 } from './PaginationRenderer';
+import { twExamples } from './tailwind-examples.ts';
 
-type Props = PaginationRendererProps;
+type Props = PaginationRendererProps & { example?: keyof typeof twExamples };
 
-const { ...rest } = Astro.props;
+const { example, ...rest } = Astro.props;
+
+export const markdownRenderer = 'skip';
 ---
 
-<PaginationRenderer {...rest} className="tailwind-preflight" client:load />
+<PaginationRenderer
+  {...(example ? twExamples[example] : {})}
+  {...rest}
+  className="tailwind-preflight"
+  client:load
+/>
 
 <style is:global lang="scss">
   @use 'sass:meta';

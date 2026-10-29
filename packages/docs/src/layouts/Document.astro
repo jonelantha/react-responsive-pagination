@@ -2,13 +2,15 @@
 import TopNav from '@components/TopNav.astro';
 import SideNav from '@components/SideNav.astro';
 import Footer from '@components/Footer.astro';
+import MarkdownLink from '@components/MarkdownLink.astro';
 
 type Props = {
   popupNavOnly?: boolean;
   noArticlePadding?: boolean;
+  markdownUrl?: string;
 };
 
-const { popupNavOnly = false, noArticlePadding = false } = Astro.props;
+const { popupNavOnly = false, noArticlePadding = false, markdownUrl } = Astro.props;
 ---
 
 <body
@@ -23,6 +25,11 @@ const { popupNavOnly = false, noArticlePadding = false } = Astro.props;
     <div id="popupSideNavBackground" transition:persist></div>
     <article class="content">
       <slot />
+      {markdownUrl && (
+        <MarkdownLink class="markdown-link" href={markdownUrl}>
+          Markdown version of this page
+        </MarkdownLink>
+      )}
     </article>
     <Footer class="footer" />
   </main>
@@ -134,9 +141,17 @@ const { popupNavOnly = false, noArticlePadding = false } = Astro.props;
 
       min-width: 100px;
 
+      padding-block-end: 2rem;
+
       body.article-padding & {
-        padding-block: vars.$spacing-vertical 3rem;
+        padding-block-start: vars.$spacing-vertical;
         padding-inline: vars.$content-padding-inline;
+      }
+
+      .markdown-link {
+        body:not(.article-padding) & {
+          padding-inline: vars.$content-padding-inline;
+        }
       }
 
       :global(h1),

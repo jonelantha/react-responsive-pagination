@@ -104,6 +104,7 @@ describe('dropEllipsis', () => {
 
 describe('dropNavThenEllipsis', () => {
   test('will prioritise dropping nav, then ellipsis', () => {
+    // eslint-disable-next-line @typescript-eslint/no-deprecated -- deprecated but still supported, so still tested
     const receivedCompositions = dropNavThenEllipsis(
       fromShorthand(['<4', 1, '…L', 4, '*5', 6, '…R', 9, '>6']),
     );
@@ -121,6 +122,7 @@ describe('dropNavThenEllipsis', () => {
   });
 
   test('no extra composition output if no ellipsis', () => {
+    // eslint-disable-next-line @typescript-eslint/no-deprecated -- deprecated but still supported, so still tested
     const receivedCompositions = dropNavThenEllipsis(
       fromShorthand(['<1', 1, '*2', 3, '>3']),
     );
@@ -137,6 +139,7 @@ describe('dropNavThenEllipsis', () => {
 
 describe('dropEllipsisThenNav', () => {
   test('will prioritise dropping ellipsis, then nav', () => {
+    // eslint-disable-next-line @typescript-eslint/no-deprecated -- deprecated but still supported, so still tested
     const receivedCompositions = dropEllipsisThenNav(
       fromShorthand(['<4', 1, '…L', 4, '*5', 6, '…R', 9, '>6']),
     );
@@ -154,6 +157,7 @@ describe('dropEllipsisThenNav', () => {
   });
 
   test('no extra composition output if no ellipsis', () => {
+    // eslint-disable-next-line @typescript-eslint/no-deprecated -- deprecated but still supported, so still tested
     const receivedCompositions = dropEllipsisThenNav(
       fromShorthand(['<1', 1, '*2', 3, '>3']),
     );

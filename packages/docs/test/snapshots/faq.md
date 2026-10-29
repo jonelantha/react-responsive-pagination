@@ -1,0 +1,61 @@
+---
+title: "Frequently asked questions | react-responsive-pagination"
+description: "Is react-responsive-pagination the right fit? Plus answers on auto sizing, very narrow widths, server-side rendering, ESM only and React component labels."
+index: "https://react-responsive-pagination.elantha.com/index.md"
+---
+
+# FAQ
+
+## Is this the right pagination component?
+
+It suits layouts where the available width varies, such as dashboards and tables: it shows as many page links as the width allows, with no CSS breakpoints, and re-fits as the container resizes. It is accessible, can be styled with the built-in [themes](/themes.md), [Tailwind](/tailwind-pagination.md), [Bootstrap](/bootstrap-pagination.md) or [custom CSS](/custom-styled-pagination.md), and works with server rendering (the markup is in the server HTML and fits the width once hydrated). It is under 5 kB gzipped, actively maintained since 2019, and more features are planned.
+
+Another library may suit you better if you need:
+
+- a page-size selector, a jump-to-page input, or cursor or infinite pagination
+- uncontrolled state - you hold `current` and update it from `onPageChange`
+- full control over the markup - it renders a `ul` of `li` and `a` elements, styled with class names
+- CommonJS - the package is [ESM only](#esm-only)
+
+## About Auto Sizing
+
+Auto sizing uses the width of the immediate parent element. For best results make sure the parent element isn't intrinsically sized; that means the width of the parent element shouldn't depend on its contents. If your layout is intrinsic then the pagination component should still fill the space correctly but you may occasionally see inconsistant results or additional renders.
+
+You can choose to override the auto sizing by specifying the `maxWidth` prop (see [Props](/props.md) section).
+
+## Very Narrow Widths
+
+For very narrow widths the component may exceed the available space - this is to ensure that there's always a usable pagination component.
+
+The `narrowBehaviour` prop can be used to specify that either the nav buttons (**«**/**»**) and/or the ellipsis (**…**) can be dropped for narrow widths - see the [narrowBehaviour prop](/props.md#misc-props) for more details.
+
+## Server Side Rendering
+
+`Warning: useLayoutEffect does nothing on the server ...`
+
+First class support for SSR was added in v2.7 - please update to the latest version to take advantage of SSR support.
+
+_(any SSR workarounds can be removed after upgrading to v2.7)_
+
+## ESM only
+
+Like many modern npm packages, react-responsive-pagination only has ESM exports - it's compatible with up-to-date versions of all popular bundlers and frameworks.
+
+When using [Remix](https://remix.run) with the [Classic Remix Compiler](https://remix.run/docs/en/main/guides/vite#classic-remix-compiler-vs-remix-vite) the following will need to be added to **remix.config.js**:
+
+```js
+serverDependenciesToBundle: [
+  'react-responsive-pagination',
+  'react-responsive-pagination/labelBehaviour', // if required
+  'react-responsive-pagination/narrowBehaviour', // if required
+  'react-responsive-pagination/presets', // if required
+];
+```
+
+See [Remix Gotchas](https://remix.run/docs/en/main/guides/gotchas#importing-esm-packages) for further details.
+
+## Using React Components for labels
+
+Using React Components for the `previousLabel` and `nextLabel` props is currently experimental. It should work fine for simple components (for example static `<img />` or `<svg />` tags) but complex components with internal state and/or props which change may lead to unexpected results (full support is planned for a future release).
+
+_(NOTE the console warning about using component for labels is only shown for development builds)_

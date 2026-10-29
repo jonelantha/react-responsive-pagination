@@ -4,6 +4,8 @@ export interface Props {
 }
 
 const { striped } = Astro.props;
+
+export const markdownRenderer = 'unwrap';
 ---
 
 <div class:list={[{ striped }]}>

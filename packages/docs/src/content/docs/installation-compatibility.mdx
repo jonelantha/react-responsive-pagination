@@ -1,6 +1,7 @@
 ---
 title: 'Installation & Compatibility'
-description: 'React npm responsive pagination installation & compatibility'
+description: 'Install react-responsive-pagination with npm: a minimal React example, the supported React versions (16.8 to 19) and notes on Next.js, URLs and ESM.'
+summary: 'Install, a minimal example, supported React versions, Next.js, URL paging and ESM notes'
 navTitle: 'Installation & Compatibility'
 footerNavOrder: 2
 sideNavOrder: 2
@@ -19,6 +20,46 @@ npm install react-responsive-pagination
 ## Compatibility
 
 - React 19, 18, 17 and ^16.8
+- ESM only, TypeScript types included (`ResponsivePaginationProps`)
+
+## Minimal example
+
+The component ships no styles of its own, so the example imports one of the [included themes](/themes) (see also the [Tailwind](/tailwind-pagination), [Bootstrap](/bootstrap-pagination) and [Custom CSS](/custom-styled-pagination) guides):
+
+```jsx
+import { useState } from 'react';
+import ResponsivePagination from 'react-responsive-pagination';
+import 'react-responsive-pagination/themes/classic-light-dark.css';
+
+export default function Pager({ totalPages }) {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  return (
+    <ResponsivePagination
+      current={currentPage}
+      total={totalPages}
+      onPageChange={setCurrentPage}
+    />
+  );
+}
+```
+
+## Integration notes
+
+- **It fills its parent's width** - the parent element should have a width that doesn't depend on its content (see the [FAQ](/faq#about-auto-sizing)). The `maxWidth` prop overrides the measured width
+- **Next.js App Router** - the component is a Client Component, so it can be rendered from a Server Component, but the props that take functions can't be passed down from the server: `onPageChange`, `narrowBehaviour`, `labelBehaviour` (the behaviours the package exports, such as `dropEllipsis`, are functions), `classMerge`, `ariaPageLabel` and the callback form of `linkHref`. Usually that means a small `'use client'` file that holds the page state
+- **URL based paging** - by default links have `href="#"`. Use the `linkHref` prop to generate real URLs (clicks still call `onPageChange` rather than following the link):
+
+```jsx
+<ResponsivePagination
+  current={page}
+  total={totalPages}
+  onPageChange={goToPage}
+  linkHref={page => `?page=${page}`}
+/>
+```
+
+See the [Props Reference](/props) for everything else.
 
 ## Getting Started
 

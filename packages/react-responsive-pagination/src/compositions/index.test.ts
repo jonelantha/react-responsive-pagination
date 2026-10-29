@@ -194,6 +194,7 @@ describe('narrowToWideCompositions - narrowBehaviour', () => {
       ...defaultParams,
       current: 5,
       total: 9,
+      // eslint-disable-next-line @typescript-eslint/no-deprecated -- deprecated but still supported, so still tested
       narrowBehaviour: dropNavThenEllipsis,
     });
 

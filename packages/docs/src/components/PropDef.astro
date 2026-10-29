@@ -1,9 +1,29 @@
 ---
+import type { MarkdownRenderer } from '../markdown/renderer.ts';
+
 export interface Props {
   name: string;
   type: string;
   defaultValue?: string;
 }
+
+export const markdownRenderer: MarkdownRenderer<Props> = (
+  { name, type, defaultValue },
+  children,
+) => {
+  const optional =
+    defaultValue === 'undefined'
+      ? 'optional'
+      : `optional · default \`${defaultValue}\``;
+
+  return [
+    `### \`${name}\``,
+    `Type: \`${type}\` · ${defaultValue === undefined ? 'required' : optional}`,
+    children,
+  ]
+    .filter(Boolean)
+    .join('\n\n');
+};
 
 const { type, defaultValue, name } = Astro.props;
 ---
@@ -13,7 +33,7 @@ const { type, defaultValue, name } = Astro.props;
     <div id={name}>{name}</div>
     <code>{type}</code>
     <br />
-    <em>{defaultValue ? '(optional)' : '(required)'}</em>
+    <em>{defaultValue === undefined ? '(required)' : '(optional)'}</em>
   </td>
   <td>
     <slot />

@@ -28,4 +28,9 @@ export default defineConfig([
     ignores: ['**/*.astro'],
     extends: baseReactConfig,
   },
+  {
+    // components export `markdownRenderer` to say how they become Markdown (src/markdown)
+    files: ['src/components/*.astro'],
+    rules: { 'astro/no-exports-from-components': 'off' },
+  },
 ]);

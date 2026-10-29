@@ -13,14 +13,17 @@
     "test": "npm run test -w react-responsive-pagination",
     "integration-test": "npm run test -w integration-test",
     "start-test-harness": "npm run start -w test-harness-react-19",
-    "check": "npm run build && npm run tsc && npm run lint && npm run format-check && npm run test && npm run integration-test && npm run build-docs",
+    "check": "npm run build && npm run tsc && npm run lint && npm run format-check && npm run test && npm run integration-test && npm run build-docs && npm run test-docs",
     "browser-test-17": "node scripts/browser-test.ts 17",
     "browser-test-18": "node scripts/browser-test.ts 18",
     "browser-test-19": "node scripts/browser-test.ts 19",
     "browser-test-quick": "node scripts/browser-test.ts 19 --quick",
+    "package-size": "node scripts/package-size.ts",
     "browser-test-dev": "npm run test-dev-chrome -w browser-test",
     "start-docs": "npm run dev -w docs",
     "build-docs": "npm run build -w docs",
+    "test-docs": "npm run test -w docs",
+    "test-docs:update": "npm run test:update -w docs",
     "tsc": "npm run tsc-config && npm run tsc --workspaces",
     "tsc-config": "tsc --p ./tsconfig/tsconfig.config-files.json",
     "lint": "npm run lint --workspaces",
@@ -46,6 +49,6 @@
     "tailwindcss": "4.3.3",
     "typescript": "6.0.3",
     "typescript-eslint": "8.71.0",
-    "vite": "8.3.2"
+    "vite": "8.3.4"
   }
 }

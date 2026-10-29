@@ -1,6 +1,7 @@
 ---
-title: 'Responsive Tailwind Pagination Component'
-description: 'React npm responsive Tailwind pagination component'
+title: 'Tailwind Pagination Component'
+description: 'Style react-responsive-pagination with Tailwind CSS: quick start, light and dark examples, class name props and tailwind-merge support.'
+summary: 'Styling with Tailwind: class name props, light and dark examples, tailwind-merge'
 navTitle: 'Tailwind Usage & Examples'
 topNavTitle: 'Tailwind'
 topNavOrder: 2
@@ -11,19 +12,15 @@ addOverview: true
 
 import TailwindPaginationRenderer from '@components/TailwindPaginationRenderer.astro';
 import PaginationAndCode from '@components/PaginationAndCode.astro';
+import WebOnly from '@components/WebOnly.astro';
+import MdOnly from '@components/MdOnly.astro';
 import PropsTable from '@components/PropsTable.astro';
 import CommonProps from '@props/commonProps.mdx';
 import LabelProps from '@props/labelProps.mdx';
-import ExtraClassNameProp from '@props/extraClassNameProp.mdx';
 import RenderNavProps from '@props/renderNavProps.mdx';
 import NarrowProps from '@props/narrowProps.mdx';
 import ClassNameProps from '@props/classNameProps.mdx';
-import { Code } from 'astro-expressive-code/components';
-import {
-  makeFullTwExampleCode,
-  makeTwExampleCode,
-  twExamples,
-} from '@components/tailwind-examples.ts';
+import TailwindExampleCode from '@components/TailwindExampleCode.astro';
 
 # Tailwind Usage & Examples
 
@@ -39,12 +36,14 @@ npm install react-responsive-pagination
 
 ## Quick Start
 
+<WebOnly>
+
 <div className="light-mode-only">
   **NOTE** - this example is light only - for light & dark mode, see more
   [examples](#examples) below
   <PaginationAndCode>
-    <TailwindPaginationRenderer {...twExamples.basicLight} />
-    <Code code={makeFullTwExampleCode(twExamples.basicLight)} lang="jsx" />
+    <TailwindPaginationRenderer example="basicLight" />
+    <TailwindExampleCode example="basicLight" full />
   </PaginationAndCode>
 </div>
 
@@ -52,10 +51,24 @@ npm install react-responsive-pagination
   **NOTE** - this example is dark only - for light & dark mode, see more
   [examples](#examples) below
   <PaginationAndCode>
-    <TailwindPaginationRenderer {...twExamples.basicDark} />
-    <Code code={makeFullTwExampleCode(twExamples.basicDark)} lang="jsx" />
+    <TailwindPaginationRenderer example="basicDark" />
+    <TailwindExampleCode example="basicDark" full />
   </PaginationAndCode>
 </div>
+
+</WebOnly>
+
+<MdOnly>
+
+**Light mode only** - for light & dark mode, see more [examples](#examples) below
+
+<TailwindExampleCode example="basicLight" full />
+
+**Dark mode only** - for light & dark mode, see more [examples](#examples) below
+
+<TailwindExampleCode example="basicDark" full />
+
+</MdOnly>
 
 ## Examples
 
@@ -66,8 +79,8 @@ npm install react-responsive-pagination
 Inspired by https://www.material-tailwind.com/docs/html/pagination#rounded-pagination
 
 <PaginationAndCode>
-  <TailwindPaginationRenderer {...twExamples.materialRounded} />
-  <Code code={makeTwExampleCode(twExamples.materialRounded)} lang="jsx" />
+  <TailwindPaginationRenderer example="materialRounded" />
+  <TailwindExampleCode example="materialRounded" />
 </PaginationAndCode>
 
 ### Material Tailwind Circular (light + dark)
@@ -75,8 +88,8 @@ Inspired by https://www.material-tailwind.com/docs/html/pagination#rounded-pagin
 Inspired by https://www.material-tailwind.com/docs/html/pagination#circular-pagination
 
 <PaginationAndCode>
-  <TailwindPaginationRenderer {...twExamples.materialCircular} />
-  <Code code={makeTwExampleCode(twExamples.materialCircular)} lang="jsx" />
+  <TailwindPaginationRenderer example="materialCircular" />
+  <TailwindExampleCode example="materialCircular" />
 </PaginationAndCode>
 
 ### Material Tailwind Group (light + dark)
@@ -84,8 +97,8 @@ Inspired by https://www.material-tailwind.com/docs/html/pagination#circular-pagi
 Inspired by https://www.material-tailwind.com/docs/html/pagination#pagination-group
 
 <PaginationAndCode>
-  <TailwindPaginationRenderer {...twExamples.materialGrouped} />
-  <Code code={makeTwExampleCode(twExamples.materialGrouped)} lang="jsx" />
+  <TailwindPaginationRenderer example="materialGrouped" />
+  <TailwindExampleCode example="materialGrouped" />
 </PaginationAndCode>
 
 ### Preline (light + dark)
@@ -93,8 +106,8 @@ Inspired by https://www.material-tailwind.com/docs/html/pagination#pagination-gr
 Inspired by https://preline.co/docs/pagination.html#example
 
 <PaginationAndCode>
-  <TailwindPaginationRenderer {...twExamples.preline} />
-  <Code code={makeTwExampleCode(twExamples.preline)} lang="jsx" />
+  <TailwindPaginationRenderer example="preline" />
+  <TailwindExampleCode example="preline" />
 </PaginationAndCode>
 
 ### Tailwind Plus (light + dark)
@@ -102,8 +115,8 @@ Inspired by https://preline.co/docs/pagination.html#example
 Inspired by https://tailwindcss.com/plus/ui-blocks/application-ui/navigation/pagination
 
 <PaginationAndCode>
-  <TailwindPaginationRenderer {...twExamples.plus} />
-  <Code code={makeTwExampleCode(twExamples.plus)} lang="jsx" />
+  <TailwindPaginationRenderer example="plus" />
+  <TailwindExampleCode example="plus" />
 </PaginationAndCode>
 
 ## How Tailwind Styling Works
@@ -144,16 +157,14 @@ These six props are applied like this (more details in the table below):
 </ul>
 ```
 
-<div class="table-wrapper">
 | ClassName Prop          | Notes                                                                                                                                                                                                                                                  |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `containerClassName`    | Classes for the top-level **\<ul>** container (use for layout/positioning)<br />Typically a flex parent with gap or margin between items                                                                                                               |
 | `pageItemClassName`     | Sets the base classes for all child **\<li>** elements<br />Might include border, rounding, text size and transition styles<br />**NOTE:** these styles will always be combined with one (and only one) of the following three `*ItemClassName` styles |
-| `activeItemClassName`   | Appended to `pageItemClassName` for active/selected page<br /> Might include background color, text color and shadow styles                                                                                                                            |
+| `activeItemClassName`   | Appended to `pageItemClassName` for active/selected page<br />Might include background color, text color and shadow styles                                                                                                                             |
 | `inactiveItemClassName` | Appended to `pageItemClassName` for all non-active but clickable pages (including nav elements)<br /> Might include text color and hover styles for background                                                                                         |
 | `disabledItemClassName` | Appended to `pageItemClassName` for disabled nav elements and ellipsis (&hellip;)<br /> Might include opacity and pointer-events-none styles                                                                                                           |
 | `pageLinkClassName`     | Classes for **\<a>** or **\<span>** elements inside each **\<li>**<br /> Might include padding and focus styles                                                                                                                                        |
-</div>
 
 **Further Info:**
 
@@ -172,7 +183,7 @@ If needed, the ARIA labels can also be changed by setting the `ariaPreviousLabel
 
 <PaginationAndCode>
   <TailwindPaginationRenderer
-    {...twExamples.materialRounded}
+    example="materialRounded"
     previousLabel="Previous"
     nextLabel="Next"
   />
@@ -185,7 +196,7 @@ If needed, the ARIA labels can also be changed by setting the `ariaPreviousLabel
 
 <PaginationAndCode>
   <TailwindPaginationRenderer
-    {...twExamples.materialRounded}
+    example="materialRounded"
     previousLabel="‹"
     nextLabel="›"
   />
@@ -201,7 +212,7 @@ Don't include the navigation buttons by setting `renderNav` to **false**:
 **Example - No navigation buttons**
 
 <PaginationAndCode>
-  <TailwindPaginationRenderer {...twExamples.materialRounded} renderNav={false} />
+  <TailwindPaginationRenderer example="materialRounded" renderNav={false} />
   ```jsx
   <ResponsivePagination /*...*/ renderNav={false} />
   ```

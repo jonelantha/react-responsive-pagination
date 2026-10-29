@@ -2,21 +2,23 @@
 import '@styles/global.scss';
 import '@styles/tailwind.css';
 import { ClientRouter } from 'astro:transitions';
+import { getPageTitle } from '../utils.ts';
 
 interface Props {
   title: string;
   description: string;
+  markdownUrl?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const props = Astro.props;
 
-const siteTitle = 'react-responsive-pagination';
-const siteDescription = 'Responsive React pagination component';
+const siteDescription =
+  'Accessible React pagination component that fits the width of its container with no CSS breakpoints';
 const siteAuthor = '@jonelantha';
 
-const title = `${props.title} | ${siteTitle}`;
+const title = getPageTitle(props.title);
 const metaDescription = props.description || siteDescription;
 ---
 
@@ -26,6 +28,15 @@ const metaDescription = props.description || siteDescription;
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
+
+<!-- The Markdown version of the page -->
+{props.markdownUrl && (
+  <link
+    rel="alternate"
+    type="text/markdown"
+    href={new URL(props.markdownUrl, Astro.site)}
+  />
+)}
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
@@ -39,7 +50,7 @@ const metaDescription = props.description || siteDescription;
 <meta property="og:description" content={metaDescription} />
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:card" content="summary" />
 <meta property="twitter:creator" content={siteAuthor} />
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={title} />
