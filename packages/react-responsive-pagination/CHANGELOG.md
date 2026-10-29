@@ -1,5 +1,13 @@
 # React Responsive Pagination Changelog
 
+## [2.14.2-beta.1](https://github.com/jonelantha/react-responsive-pagination/compare/v2.14.1...v2.14.2-beta.1) (2026-10-29)
+
+
+### Bug Fixes
+
+* add 'use client' for improved usage in next RSC ([33befdf](https://github.com/jonelantha/react-responsive-pagination/commit/33befdf26c5c073ee7416db0cefcaafd7a422668))
+* remove incorrect disabledLinkClassName prop from types ([44a734f](https://github.com/jonelantha/react-responsive-pagination/commit/44a734fb70e313de36bc6e39ecdedb0e6f542042))
+
 ## [2.14.1](https://github.com/jonelantha/react-responsive-pagination/compare/v2.14.0...v2.14.1) (2026-10-13)
 
 

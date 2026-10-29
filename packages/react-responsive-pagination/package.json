@@ -1,6 +1,6 @@
 {
   "name": "react-responsive-pagination",
-  "version": "2.14.1",
+  "version": "2.14.2-beta.1",
   "description": "Accessible React pagination that fits its container's width, no breakpoints. Themes, Tailwind and Bootstrap.",
   "author": "jonelantha",
   "license": "MIT",
