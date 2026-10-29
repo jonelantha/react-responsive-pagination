@@ -24,6 +24,7 @@ Each page in `packages/docs/src/content/docs/` is also published as Markdown, at
 - Each file starts with front matter (`title`, `description` and `index`), written by the endpoint.
 - Plain Markdown is copied as written. A component or an `{expression}` inside a paragraph, list or table cell fails the build, and `<br />` is the one HTML tag allowed.
 - Every component used as an element in a page needs a `markdownRenderer` export in its `.astro` file: `'skip'` leaves the element out, `'unwrap'` keeps only its children, or a function `(props, children) => string` (it can be async) typed with `MarkdownRenderer<Props>` from `packages/docs/src/markdown/renderer.ts`. A renderer must not use the network or the clock, so the same source always gives the same Markdown.
+- The exporter fails the build on anything it does not support. Add support only for what a page needs, and keep failing for the rest.
 - `WebOnly` leaves its content out of the Markdown, and `MdOnly` shows its content only there.
 - `packages/docs/test/snapshots/` holds the expected Markdown of every page. `npm run test-docs` (after `npm run build-docs`) compares the built files with them, so a content or exporter change shows up as a failing page. After an intended change run `npm run test-docs:update` and review the diff; do not update the snapshots just to make a failure pass.
 - Links to other docs pages are rewritten to their `.md` pages. Their fragments are not checked.
